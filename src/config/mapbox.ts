@@ -1,5 +1,5 @@
 export function getMapboxToken(): string | undefined {
-  return process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
+  return process.env.NEXT_PUBLIC_MAPBOX_TOKEN || process.env.MAPBOX_ACCESS_TOKEN;
 }
 
 export function assertMapboxToken(): string {

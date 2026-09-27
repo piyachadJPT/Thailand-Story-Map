@@ -30,7 +30,7 @@ export default function Navbar() {
         isHome && "lg:left-[24rem]",
       )}
     >
-      <div className="pointer-events-auto w-full overflow-hidden rounded-3xl border border-border bg-card/80 shadow-[0_10px_40px_-16px_rgba(10,15,28,0.16)] backdrop-blur-2xl backdrop-saturate-150 dark:shadow-[0_10px_40px_-16px_rgba(0,0,0,0.55)]">
+      <div className="pointer-events-auto w-full overflow-hidden rounded-3xl p-1 border border-border bg-card/80 shadow-[0_10px_40px_-16px_rgba(10,15,28,0.16)] backdrop-blur-2xl backdrop-saturate-150 dark:shadow-[0_10px_40px_-16px_rgba(0,0,0,0.55)]">
         <div className="flex h-12 items-center gap-1 px-2">
           <Link
             href="/"
@@ -45,9 +45,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <span className="mx-1 hidden h-5 w-px shrink-0 bg-border md:block" />
-
-          <nav className="hidden min-w-0 flex-1 items-center gap-0.5 md:flex">
+          <nav className="hidden min-w-0 flex-1 justify-center items-center gap-0.5 md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -92,7 +90,7 @@ export default function Navbar() {
           )}
         >
           <div className="overflow-hidden">
-            <nav className="flex flex-col gap-1 border-t border-border px-2 pt-2 pb-2">
+            <nav className="flex flex-col gap-1 px-2 pt-2 pb-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}

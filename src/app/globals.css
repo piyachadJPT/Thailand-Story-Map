@@ -63,114 +63,144 @@ body {
   font-family: var(--font-noto-thai), sans-serif;
 }
 
-/* Light: white and blue. */
-:root {
-  color-scheme: light;
-  --background: #f5f7fa;
-  --foreground: #111827;
-  --card: #ffffff;
-  --card-foreground: #111827;
-  --popover: #ffffff;
-  --popover-foreground: #111827;
-  --primary: #00a8de;
-  --primary-foreground: #ffffff;
-  --secondary: #e8ecf2;
-  --secondary-foreground: #111827;
-  --muted: #e8ecf2;
-  --muted-foreground: #6b7280;
-  --accent: #ddf6ff;
-  --accent-foreground: #0a4f6e;
-  --destructive: #ff3b30;
-  --border: #dde4ee;
-  --input: #dde4ee;
-  --ring: #00a8de;
-  --chart-1: #00a8de;
-  --chart-2: #00c2ff;
-  --chart-3: #1d4e89;
-  --chart-4: #64748b;
-  --chart-5: #94a3b8;
-  --radius: 0.75rem;
-  --sidebar: #f5f7fa;
-  --sidebar-foreground: #111827;
-  --sidebar-primary: #00a8de;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #ddf6ff;
-  --sidebar-accent-foreground: #0a4f6e;
-  --sidebar-border: #dde4ee;
-  --sidebar-ring: #00a8de;
+/* Thin, quiet scrollbars that follow the parchment / crimson theme. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--foreground) 32%, transparent) transparent;
 }
 
-/* Dark: black and blue. Class, data-theme, or the system preference. */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--foreground) 28%, transparent);
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, var(--primary) 72%, transparent);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Light: Vintage Parchment & Crimson Ink (กระดาษข่อยโบราณ & แฟ้มคดีชาด) */
+:root {
+  color-scheme: light;
+  --background: #f4efea;
+  --foreground: #1c1412;
+  --card: #fcf9f5;
+  --card-foreground: #1c1412;
+  --popover: #fcf9f5;
+  --popover-foreground: #1c1412;
+  --primary: #8c1d1d;
+  --primary-foreground: #fcf9f5;
+  --secondary: #e6ded2;
+  --secondary-foreground: #1c1412;
+  --muted: #e6ded2;
+  --muted-foreground: #6e615a;
+  --accent: #f2e6d8;
+  --accent-foreground: #6b1414;
+  --destructive: #b91c1c;
+  --border: #dcd0c0;
+  --input: #dcd0c0;
+  --ring: #8c1d1d;
+  --chart-1: #8c1d1d;
+  --chart-2: #b45309;
+  --chart-3: #451a03;
+  --chart-4: #57534e;
+  --chart-5: #78716c;
+  --radius: 0.75rem;
+  --sidebar: #ece4d8;
+  --sidebar-foreground: #1c1412;
+  --sidebar-primary: #8c1d1d;
+  --sidebar-primary-foreground: #fcf9f5;
+  --sidebar-accent: #f2e6d8;
+  --sidebar-accent-foreground: #6b1414;
+  --sidebar-border: #dcd0c0;
+  --sidebar-ring: #8c1d1d;
+}
+
+/* Dark: Midnight Shadows & Blood Red Glow (คืนมืดลึกลับ & เลือดกับควันธูป) */
 .dark,
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --background: #0a0f1c;
-  --foreground: #ffffff;
-  --card: #141c2f;
-  --card-foreground: #ffffff;
-  --popover: #141c2f;
-  --popover-foreground: #ffffff;
-  --primary: #00c2ff;
+  --background: #0d0a0b;
+  --foreground: #f3ede6;
+  --card: #181214;
+  --card-foreground: #f3ede6;
+  --popover: #181214;
+  --popover-foreground: #f3ede6;
+  --primary: #dc2626;
   --primary-foreground: #ffffff;
-  --secondary: #1d2942;
-  --secondary-foreground: #ffffff;
-  --muted: #1d2942;
-  --muted-foreground: #94a3b8;
-  --accent: rgb(0 194 255 / 14%);
-  --accent-foreground: #ffffff;
-  --destructive: #ff3b30;
-  --border: #26334d;
-  --input: #26334d;
-  --ring: #00c2ff;
-  --chart-1: #00c2ff;
-  --chart-2: #00a8de;
-  --chart-3: #7dd3fc;
-  --chart-4: #94a3b8;
-  --chart-5: #64748b;
-  --sidebar: #0d1424;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #00c2ff;
+  --secondary: #271c20;
+  --secondary-foreground: #f3ede6;
+  --muted: #271c20;
+  --muted-foreground: #a1928a;
+  --accent: rgb(220 38 38 / 16%);
+  --accent-foreground: #fca5a5;
+  --destructive: #ef4444;
+  --border: #332328;
+  --input: #332328;
+  --ring: #dc2626;
+  --chart-1: #dc2626;
+  --chart-2: #d97706;
+  --chart-3: #991b1b;
+  --chart-4: #78716c;
+  --chart-5: #a8a29e;
+  --sidebar: #0a0708;
+  --sidebar-foreground: #f3ede6;
+  --sidebar-primary: #dc2626;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: rgb(0 194 255 / 14%);
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #26334d;
-  --sidebar-ring: #00c2ff;
+  --sidebar-accent: rgb(220 38 38 / 16%);
+  --sidebar-accent-foreground: #fca5a5;
+  --sidebar-border: #332328;
+  --sidebar-ring: #dc2626;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]):not(.light) {
     color-scheme: dark;
-    --background: #0a0f1c;
-    --foreground: #ffffff;
-    --card: #141c2f;
-    --card-foreground: #ffffff;
-    --popover: #141c2f;
-    --popover-foreground: #ffffff;
-    --primary: #00c2ff;
+    --background: #0d0a0b;
+    --foreground: #f3ede6;
+    --card: #181214;
+    --card-foreground: #f3ede6;
+    --popover: #181214;
+    --popover-foreground: #f3ede6;
+    --primary: #dc2626;
     --primary-foreground: #ffffff;
-    --secondary: #1d2942;
-    --secondary-foreground: #ffffff;
-    --muted: #1d2942;
-    --muted-foreground: #94a3b8;
-    --accent: rgb(0 194 255 / 14%);
-    --accent-foreground: #ffffff;
-    --destructive: #ff3b30;
-    --border: #26334d;
-    --input: #26334d;
-    --ring: #00c2ff;
-    --chart-1: #00c2ff;
-    --chart-2: #00a8de;
-    --chart-3: #7dd3fc;
-    --chart-4: #94a3b8;
-    --chart-5: #64748b;
-    --sidebar: #0d1424;
-    --sidebar-foreground: #ffffff;
-    --sidebar-primary: #00c2ff;
+    --secondary: #271c20;
+    --secondary-foreground: #f3ede6;
+    --muted: #271c20;
+    --muted-foreground: #a1928a;
+    --accent: rgb(220 38 38 / 16%);
+    --accent-foreground: #fca5a5;
+    --destructive: #ef4444;
+    --border: #332328;
+    --input: #332328;
+    --ring: #dc2626;
+    --chart-1: #dc2626;
+    --chart-2: #d97706;
+    --chart-3: #991b1b;
+    --chart-4: #78716c;
+    --chart-5: #a8a29e;
+    --sidebar: #0a0708;
+    --sidebar-foreground: #f3ede6;
+    --sidebar-primary: #dc2626;
     --sidebar-primary-foreground: #ffffff;
-    --sidebar-accent: rgb(0 194 255 / 14%);
-    --sidebar-accent-foreground: #ffffff;
-    --sidebar-border: #26334d;
-    --sidebar-ring: #00c2ff;
+    --sidebar-accent: rgb(220 38 38 / 16%);
+    --sidebar-accent-foreground: #fca5a5;
+    --sidebar-border: #332328;
+    --sidebar-ring: #dc2626;
   }
 }
 
@@ -253,7 +283,7 @@ body {
 .delay-500 { animation-delay: 500ms; }
 
 .text-gradient {
-  background: linear-gradient(135deg, #0a4f6e 0%, #00a8de 100%);
+  background: linear-gradient(135deg, #6b1414 0%, #8c1d1d 50%, #b45309 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -267,43 +297,57 @@ body {
 }
 
 .dark .text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #00c2ff 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #ef4444 50%, #dc2626 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .glass-card {
-  background: rgb(20 28 47 / 78%);
+  background: rgb(24 18 20 / 82%);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid rgb(38 51 77 / 80%);
-  color: #ffffff;
+  border: 1px solid rgb(51 35 40 / 80%);
+  color: #f3ede6;
 }
 
 .glass-card-light {
-  background: rgb(255 255 255 / 88%);
+  background: rgb(252 249 245 / 88%);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid rgb(0 168 222 / 18%);
-  color: #111827;
+  border: 1px solid rgb(140 29 29 / 18%);
+  color: #1c1412;
 }
 
 .neon-glow {
-  box-shadow: 0 8px 24px rgb(0 194 255 / 12%);
+  box-shadow: 0 8px 24px rgb(220 38 38 / 18%);
 }
 
 .hover-glow {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 .hover-glow:hover {
-  box-shadow: 0 10px 28px rgb(0 168 222 / 18%);
+  box-shadow: 0 10px 28px rgb(140 29 29 / 22%);
   transform: translateY(-2px);
+}
+
+.story-map [data-map-fade] {
+  opacity: 0;
+}
+
+.story-map .mapboxgl-ctrl-bottom-right {
+  margin: 0 0.75rem 5.5rem 0;
+}
+
+@media (min-width: 1024px) {
+  .story-map .mapboxgl-ctrl-bottom-right {
+    margin: 0 0.75rem 1rem 0;
+  }
 }
 
 .bg-mesh {
   background:
-    radial-gradient(ellipse at 18% 40%, rgb(0 194 255 / 8%) 0%, transparent 52%),
-    radial-gradient(ellipse at 82% 16%, rgb(0 168 222 / 6%) 0%, transparent 50%),
-    radial-gradient(ellipse at 62% 84%, rgb(29 78 137 / 5%) 0%, transparent 52%);
+    radial-gradient(ellipse at 18% 40%, rgb(220 38 38 / 8%) 0%, transparent 52%),
+    radial-gradient(ellipse at 82% 16%, rgb(217 119 6 / 6%) 0%, transparent 50%),
+    radial-gradient(ellipse at 62% 84%, rgb(140 29 29 / 6%) 0%, transparent 52%);
 }
