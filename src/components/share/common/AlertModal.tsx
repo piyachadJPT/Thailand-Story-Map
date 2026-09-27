@@ -37,32 +37,32 @@ export default function AlertModal({
         switch (type) {
             case "success":
                 return {
-                    iconBg: "bg-green-100 dark:bg-green-900/30",
-                    iconText: "text-green-600 dark:text-green-400",
-                    buttonText: "text-white",
-                    buttonBg: "bg-green-600 hover:bg-green-700",
+                    iconBg: "bg-[#e5fff2] dark:bg-[#00d26a]/15",
+                    iconText: "text-[#00a854] dark:text-[#00d26a]",
+                    buttonText: "text-[#0a0f1c]",
+                    buttonBg: "bg-[#00d26a] hover:bg-[#00b85c]",
                 };
             case "error":
                 return {
-                    iconBg: "bg-red-100 dark:bg-red-900/30",
-                    iconText: "text-red-600 dark:text-red-400",
+                    iconBg: "bg-[#ffe2e0] dark:bg-[#ff3b30]/15",
+                    iconText: "text-[#ff3b30]",
                     buttonText: "text-white",
-                    buttonBg: "bg-red-600 hover:bg-red-700",
+                    buttonBg: "bg-[#ff3b30] hover:bg-[#e0342a]",
                 };
             case "warning":
                 return {
-                    iconBg: "bg-orange-100 dark:bg-orange-900/30",
-                    iconText: "text-orange-600 dark:text-orange-400",
+                    iconBg: "bg-[#ffe8d6] dark:bg-[#ff6b00]/15",
+                    iconText: "text-[#e55f00] dark:text-[#ff6b00]",
                     buttonText: "text-white",
-                    buttonBg: "bg-orange-600 hover:bg-orange-700",
+                    buttonBg: "bg-[#ff6b00] hover:bg-[#e55f00]",
                 };
             case "info":
             default:
                 return {
-                    iconBg: "bg-blue-100 dark:bg-blue-900/30",
-                    iconText: "text-blue-600 dark:text-blue-400",
-                    buttonText: "text-white",
-                    buttonBg: "bg-blue-600 hover:bg-blue-700",
+                    iconBg: "bg-primary/10",
+                    iconText: "text-primary",
+                    buttonText: "text-primary-foreground",
+                    buttonBg: "bg-primary hover:bg-primary/90",
                 };
         }
     };
@@ -71,21 +71,21 @@ export default function AlertModal({
 
     return (
         <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
-            <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl w-full max-w-sm overflow-hidden scale-100 animate-in zoom-in-95 duration-200 border border-gray-100 dark:border-neutral-700">
+            <div className="bg-card text-card-foreground rounded-2xl shadow-xl w-full max-w-sm overflow-hidden scale-100 animate-in zoom-in-95 duration-200 border border-border">
                 <div className="p-6 text-center">
                     <div
                         className={`mx-auto mb-4 w-12 h-12 rounded-full flex items-center justify-center ${colors.iconBg} ${colors.iconText}`}
                     >
                         {getIcon()}
                     </div>
-                    <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    <h3 className="mb-2 text-lg font-semibold text-foreground">
                         {title}
                     </h3>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm whitespace-pre-wrap">
+                    <p className="text-muted-foreground text-sm whitespace-pre-wrap">
                         {message}
                     </p>
                 </div>
-                <div className="flex border-t border-gray-100 dark:border-neutral-700 p-4">
+                <div className="flex border-t border-border p-4">
                     <button
                         onClick={onClose}
                         className={`flex-1 px-4 py-2.5 text-sm font-medium rounded-lg transition ${colors.buttonBg} ${colors.buttonText}`}

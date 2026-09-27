@@ -6,11 +6,13 @@ import { useState } from "react";
 import { MapPin, Menu, Sparkles, X } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
-  { name: "แผนที่", href: "/", icon: "🗺️" },
-  { name: "สร้างเรื่อง", href: "/create", icon: "✍️" },
-  { name: "แอดมิน", href: "/admin", icon: "⚙️" },
+  { name: "หน้าแรก", href: "/" },
+  { name: "สำรวจ", href: "/categories" },
+  { name: "สถานที่แนะนำ", href: "/admin" },
+  { name: "เรื่องราวใหม่", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -24,91 +26,97 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "pointer-events-none fixed inset-x-0 top-3 z-50 flex flex-col items-center px-3 sm:top-4",
-        isHome && "lg:pl-[24.5rem]",
+        "pointer-events-none fixed top-4 right-4 left-4 z-50",
+        isHome && "lg:left-[24rem]",
       )}
     >
-      <div className="pointer-events-auto flex h-12 max-w-[calc(100vw-1.5rem)] items-center gap-1 rounded-full border border-white/70 bg-white/72 px-2 shadow-[0_10px_40px_-16px_rgba(49,24,90,0.45)] backdrop-blur-2xl backdrop-saturate-150 dark:border-white/10 dark:bg-zinc-900/70 dark:shadow-[0_10px_40px_-16px_rgba(0,0,0,0.7)]">
-        <Link
-          href="/"
-          className="flex items-center gap-2 rounded-full py-1 pr-2 pl-1 transition-colors hover:bg-black/5 dark:hover:bg-white/10"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 via-fuchsia-500 to-teal-500 text-white shadow-sm">
-            <MapPin className="h-4 w-4" strokeWidth={2.5} />
-          </span>
-          <span className="hidden max-w-[10rem] truncate text-sm font-semibold tracking-tight text-zinc-900 sm:block dark:text-zinc-50">
-            {siteConfig.name}
-          </span>
-        </Link>
+      <div className="pointer-events-auto w-full overflow-hidden rounded-3xl border border-border bg-card/80 shadow-[0_10px_40px_-16px_rgba(10,15,28,0.16)] backdrop-blur-2xl backdrop-saturate-150 dark:shadow-[0_10px_40px_-16px_rgba(0,0,0,0.55)]">
+        <div className="flex h-12 items-center gap-1 px-2">
+          <Link
+            href="/"
+            className="flex min-w-0 items-center gap-2 rounded-full py-1 pr-2 pl-1 transition-colors hover:bg-black/5 dark:hover:bg-white/10"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm">
+              <MapPin className="h-4 w-4" strokeWidth={2.5} />
+            </span>
+            <span className="hidden truncate text-sm font-semibold tracking-tight text-foreground sm:block">
+              {siteConfig.name}
+            </span>
+          </Link>
 
-        <span className="mx-1 hidden h-5 w-px bg-zinc-200 md:block dark:bg-white/10" />
+          <span className="mx-1 hidden h-5 w-px shrink-0 bg-border md:block" />
 
-        <nav className="hidden items-center gap-0.5 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "rounded-full px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-black/5 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white",
-                isActive(link.href) &&
-                  "bg-violet-500/10 text-violet-800 dark:bg-white/10 dark:text-white",
-              )}
-            >
-              <span className="flex items-center gap-1.5">
-                <span aria-hidden="true">{link.icon}</span>
-                {link.name}
-              </span>
-            </Link>
-          ))}
-        </nav>
-
-        <button
-          type="button"
-          className="ml-1 hidden items-center gap-1.5 rounded-full bg-zinc-900 px-3.5 py-1.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03] active:scale-[0.98] md:inline-flex dark:bg-white dark:text-zinc-900"
-        >
-          <Sparkles className="h-3.5 w-3.5" />
-          Sign In
-        </button>
-
-        <button
-          type="button"
-          className="ml-1 inline-flex h-8 w-8 items-center justify-center rounded-full text-zinc-600 hover:bg-black/5 md:hidden dark:text-zinc-300 dark:hover:bg-white/10"
-          onClick={() => setIsMenuOpen((open) => !open)}
-          aria-expanded={isMenuOpen}
-          aria-label={isMenuOpen ? "ปิดเมนู" : "เปิดเมนู"}
-        >
-          {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-        </button>
-      </div>
-
-      {isMenuOpen && (
-        <div className="pointer-events-auto mt-2 w-[min(100%,18rem)] rounded-2xl border border-white/70 bg-white/80 p-2 shadow-[0_16px_40px_-20px_rgba(49,24,90,0.5)] backdrop-blur-2xl md:hidden dark:border-white/10 dark:bg-zinc-900/85">
-          <nav className="flex flex-col gap-1">
+          <nav className="hidden min-w-0 flex-1 items-center gap-0.5 md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setIsMenuOpen(false)}
                 className={cn(
-                  "flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-black/5 dark:text-zinc-200 dark:hover:bg-white/10",
-                  isActive(link.href) && "bg-violet-500/10 text-violet-800 dark:text-white",
+                  "rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground",
+                  isActive(link.href) && "bg-primary/10 text-primary",
                 )}
               >
-                <span aria-hidden="true">{link.icon}</span>
                 {link.name}
               </Link>
             ))}
           </nav>
-          <button
-            type="button"
-            className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-xl bg-zinc-900 px-3 py-2.5 text-sm font-semibold text-white dark:bg-white dark:text-zinc-900"
-          >
-            <Sparkles className="h-3.5 w-3.5" />
-            Sign In
-          </button>
+
+          <div className="ml-auto flex shrink-0 items-center gap-1">
+            <ThemeToggle />
+
+            <button
+              type="button"
+              className="hidden items-center gap-1.5 rounded-full bg-foreground px-3.5 py-1.5 text-sm font-semibold text-background transition-transform hover:scale-[1.03] active:scale-[0.98] md:inline-flex"
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              Sign In
+            </button>
+
+            <button
+              type="button"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground hover:bg-foreground/5 md:hidden"
+              onClick={() => setIsMenuOpen((open) => !open)}
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? "ปิดเมนู" : "เปิดเมนู"}
+            >
+              {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </button>
+          </div>
         </div>
-      )}
+
+        <div
+          className={cn(
+            "grid transition-[grid-template-rows] duration-200 md:hidden",
+            isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+          )}
+        >
+          <div className="overflow-hidden">
+            <nav className="flex flex-col gap-1 border-t border-border px-2 pt-2 pb-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={cn(
+                    "rounded-xl px-3 py-2.5 text-sm font-medium text-foreground hover:bg-foreground/5",
+                    isActive(link.href) && "bg-primary/10 text-primary",
+                  )}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <button
+                type="button"
+                className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-xl bg-foreground px-3 py-2.5 text-sm font-semibold text-background"
+              >
+                <Sparkles className="h-3.5 w-3.5" />
+                Sign In
+              </button>
+            </nav>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

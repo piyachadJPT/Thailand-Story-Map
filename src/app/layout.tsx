@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Noto_Sans_Thai, Geist } from "next/font/google";
+import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 
 import { siteConfig } from "@/config/site";
 import ReactQueryProvider from "@/front/providers/ReactQueryProvider";
+import { themeInitScript } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
@@ -29,10 +31,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="th" className={cn("font-sans", geist.variable)}>
+    <html lang="th" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
       <body
         className={`${notoThai.variable} antialiased`}
       >
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
         <ReactQueryProvider>
           {children}
           <ToastContainer position="top-right" autoClose={3000} />
