@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ChevronsLeft, ChevronsRight, Menu, Plus, X } from "lucide-react";
+import { useSession } from "next-auth/react";
 import AuthControls from "@/components/auth/AuthControls";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -20,6 +21,8 @@ const navLinks = [
 export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [desktopExpanded, setDesktopExpanded] = useState(false);
+  const { data: session, status } = useSession();
   const isHome = pathname === "/";
 
   const isActive = (href: string) =>
@@ -29,17 +32,140 @@ export default function Navbar() {
     <header
       className={cn(
         "pointer-events-none fixed top-4 right-4 left-4 z-50",
-        isHome && "lg:left-[24rem]",
+        isHome && "lg:left-[24rem]"
       )}
     >
-      <div className="liquid-glass pointer-events-auto w-full overflow-hidden rounded-[1.85rem] p-1">
+      <div className="pointer-events-auto hidden items-start justify-end gap-3 lg:flex">
+        <div
+          className={cn(
+            "liquid-glass min-w-0 overflow-hidden rounded-[1.85rem] p-1 transition-[flex-grow] duration-200 motion-reduce:transition-none",
+            desktopExpanded ? "flex-1" : "shrink-0"
+          )}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") setDesktopExpanded(false);
+          }}
+        >
+          {desktopExpanded ? (
+            <div
+              id="desktop-navigation"
+              className="flex h-12 items-center gap-1 px-1.5"
+            >
+              <Link
+                href="/"
+                onClick={() => setDesktopExpanded(false)}
+                className="hover:bg-foreground/5 flex shrink-0 items-center gap-2 rounded-full p-1 transition-colors"
+                aria-label={siteConfig.name}
+              >
+                <Image
+                  src="/logo.png"
+                  alt=""
+                  width={32}
+                  height={32}
+                  className="h-8 w-8 object-contain"
+                />
+                <span className="text-foreground hidden text-sm font-semibold 2xl:block">
+                  {siteConfig.name}
+                </span>
+              </Link>
+              <nav
+                className="flex min-w-0 flex-1 items-center justify-start gap-0.5 overflow-x-auto xl:justify-center"
+                aria-label="เมนูหลัก"
+              >
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setDesktopExpanded(false)}
+                    className={cn(
+                      "text-muted-foreground hover:bg-foreground/5 hover:text-foreground shrink-0 rounded-full px-2.5 py-1.5 text-sm font-medium whitespace-nowrap transition-colors",
+                      isActive(link.href) &&
+                        "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground"
+                    )}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </nav>
+              <div className="ml-auto flex shrink-0 items-center gap-0.5">
+                <ThemeToggle />
+                <AuthControls variant="desktop" />
+                <button
+                  type="button"
+                  onClick={() => setDesktopExpanded(false)}
+                  aria-expanded={true}
+                  aria-controls="desktop-navigation"
+                  aria-label="ย่อเมนูนำทาง"
+                  title="ย่อเมนู"
+                  className="icon-well focus-visible:outline-primary inline-flex h-8 w-8 focus-visible:outline-2"
+                >
+                  <ChevronsRight className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="flex h-12 items-center gap-2 px-2">
+              <Link
+                href="/"
+                className="hover:bg-foreground/5 rounded-full p-1 transition-colors"
+                aria-label={siteConfig.name}
+              >
+                <Image
+                  src="/logo.png"
+                  alt=""
+                  width={32}
+                  height={32}
+                  className="h-8 w-8 object-contain"
+                />
+              </Link>
+              {session?.user && <AuthControls variant="desktop" />}
+              <button
+                type="button"
+                aria-expanded={false}
+                aria-label="ขยายเมนูนำทาง"
+                title="ขยายเมนู"
+                onClick={() => setDesktopExpanded(true)}
+                className="bg-primary/10 text-primary hover:bg-primary/20 focus-visible:outline-primary inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors focus-visible:outline-2"
+              >
+                <ChevronsLeft className="h-4 w-4" aria-hidden="true" />
+              </button>
+            </div>
+          )}
+        </div>
+        {status !== "loading" &&
+          (session?.user && isHome ? (
+            <button
+              type="button"
+              onClick={() => {
+                setDesktopExpanded(false);
+                window.dispatchEvent(new Event("story-composer-open"));
+              }}
+              className="bg-primary text-primary-foreground shadow-primary/25 focus-visible:outline-primary mt-1 inline-flex h-12 shrink-0 items-center gap-2 rounded-full px-5 text-sm font-semibold shadow-lg transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-4"
+            >
+              <Plus className="h-4 w-4" />
+              เขียนเรื่องราว
+            </button>
+          ) : (
+            <Link
+              href={
+                session?.user
+                  ? "/?compose=1"
+                  : "/login?callbackUrl=%2F%3Fcompose%3D1"
+              }
+              className="bg-primary text-primary-foreground shadow-primary/25 focus-visible:outline-primary mt-1 inline-flex h-12 shrink-0 items-center gap-2 rounded-full px-5 text-sm font-semibold shadow-lg transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-4"
+            >
+              <Plus className="h-4 w-4" />
+              เขียนเรื่องราว
+            </Link>
+          ))}
+      </div>
+      <div className="liquid-glass pointer-events-auto w-full overflow-hidden rounded-[1.85rem] p-1 lg:hidden">
         <div className="flex h-12 items-center gap-1 px-1.5">
           <Link
             href="/"
-            className="flex min-w-0 items-center gap-2 rounded-full py-0.5 pr-2.5 pl-0.5 transition-colors hover:bg-foreground/5"
+            className="hover:bg-foreground/5 flex min-w-0 items-center gap-2 rounded-full py-0.5 pr-2.5 pl-0.5 transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-background/70 ring-1 ring-foreground/8">
+            <span className="bg-background/70 ring-foreground/8 flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full ring-1">
               <Image
                 src="/logo.png"
                 alt=""
@@ -49,7 +175,7 @@ export default function Navbar() {
                 className="h-8 w-8 object-contain"
               />
             </span>
-            <span className="hidden truncate text-[0.92rem] font-semibold tracking-tight text-foreground sm:block">
+            <span className="text-foreground hidden truncate text-[0.92rem] font-semibold tracking-tight sm:block">
               {siteConfig.name}
             </span>
           </Link>
@@ -60,9 +186,9 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "rounded-full px-3.5 py-1.5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-all duration-200 hover:bg-foreground/5 hover:text-foreground",
+                  "text-muted-foreground hover:bg-foreground/5 hover:text-foreground rounded-full px-3.5 py-1.5 text-sm font-medium whitespace-nowrap transition-all duration-200",
                   isActive(link.href) &&
-                    "bg-primary text-primary-foreground shadow-sm shadow-primary/25 hover:bg-primary hover:text-primary-foreground",
+                    "bg-primary text-primary-foreground shadow-primary/25 hover:bg-primary hover:text-primary-foreground shadow-sm"
                 )}
               >
                 {link.name}
@@ -81,7 +207,11 @@ export default function Navbar() {
               aria-expanded={isMenuOpen}
               aria-label={isMenuOpen ? "ปิดเมนู" : "เปิดเมนู"}
             >
-              {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              {isMenuOpen ? (
+                <X className="h-4 w-4" />
+              ) : (
+                <Menu className="h-4 w-4" />
+              )}
             </button>
           </div>
         </div>
@@ -89,7 +219,7 @@ export default function Navbar() {
         <div
           className={cn(
             "grid transition-[grid-template-rows] duration-200 md:hidden",
-            isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+            isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
           )}
         >
           <div className="overflow-hidden">
@@ -100,8 +230,8 @@ export default function Navbar() {
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
                   className={cn(
-                    "rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-foreground/5",
-                    isActive(link.href) && "bg-primary/12 text-primary",
+                    "text-foreground hover:bg-foreground/5 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
+                    isActive(link.href) && "bg-primary/12 text-primary"
                   )}
                 >
                   {link.name}

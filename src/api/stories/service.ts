@@ -1,8 +1,13 @@
+import { storySearchConditions } from "./search";
 import { StoryStatus } from "@prisma/client";
 import { prisma } from "@/api/db/prisma";
-import { NotFoundError } from "@/api/common/errors";
+import { ApiError, NotFoundError } from "@/api/common/errors";
 import type { CreateStoryInput, ListStoriesQuery } from "@/models/schemas";
-import type { StoryDetail, StoryListItem, StoryMapPoint } from "@/models/types/story";
+import type {
+  StoryDetail,
+  StoryListItem,
+  StoryMapPoint,
+} from "@/models/types/story";
 
 function toMapPoint(row: {
   id: string;
@@ -39,6 +44,7 @@ const storyListSelect = {
   viewCount: true,
   status: true,
   createdAt: true,
+  author: { select: { name: true } },
   category: { select: { slug: true, color: true } },
   province: { select: { slug: true } },
 } as const;
@@ -50,28 +56,22 @@ export async function listStories(query: ListStoriesQuery) {
 
   const where = {
     status,
-    ...(query.categorySlug
-      ? { category: { slug: query.categorySlug } }
+    ...(query.categorySlug ? { category: { slug: query.categorySlug } } : {}),
+    ...(query.provinceSlug ? { province: { slug: query.provinceSlug } } : {}),
+    ...(query.tagSlug
+      ? { tags: { some: { tag: { slug: query.tagSlug } } } }
       : {}),
-    ...(query.provinceSlug
-      ? { province: { slug: query.provinceSlug } }
-      : {}),
-    ...(query.tagSlug ? { tags: { some: { tag: { slug: query.tagSlug } } } } : {}),
-    ...(query.q
-      ? {
-          OR: [
-            { title: { contains: query.q, mode: "insensitive" as const } },
-            { summary: { contains: query.q, mode: "insensitive" as const } },
-          ],
-        }
-      : {}),
+    AND: storySearchConditions(query.q),
   };
 
   const [rows, total] = await Promise.all([
     prisma.story.findMany({
       where,
       select: storyListSelect,
-      orderBy: [{ viewCount: "desc" }, { createdAt: "desc" }],
+      orderBy:
+        query.sort === "recent"
+          ? [{ createdAt: "desc" }, { id: "asc" }]
+          : [{ viewCount: "desc" }, { createdAt: "desc" }, { id: "asc" }],
       skip: (page - 1) * limit,
       take: limit,
     }),
@@ -81,6 +81,7 @@ export async function listStories(query: ListStoriesQuery) {
   const data: StoryListItem[] = rows.map((row) => ({
     ...toMapPoint(row),
     status: row.status,
+    authorName: row.author.name,
     createdAt: row.createdAt.toISOString(),
   }));
 
@@ -95,13 +96,17 @@ export async function listStories(query: ListStoriesQuery) {
   };
 }
 
-export async function listMapPoints(query: Pick<ListStoriesQuery, "categorySlug" | "provinceSlug" | "tagSlug">) {
+export async function listMapPoints(
+  query: Pick<ListStoriesQuery, "categorySlug" | "provinceSlug" | "tagSlug">
+) {
   const rows = await prisma.story.findMany({
     where: {
       status: StoryStatus.APPROVED,
       ...(query.categorySlug ? { category: { slug: query.categorySlug } } : {}),
       ...(query.provinceSlug ? { province: { slug: query.provinceSlug } } : {}),
-      ...(query.tagSlug ? { tags: { some: { tag: { slug: query.tagSlug } } } } : {}),
+      ...(query.tagSlug
+        ? { tags: { some: { tag: { slug: query.tagSlug } } } }
+        : {}),
     },
     select: {
       id: true,
@@ -121,7 +126,7 @@ export async function listMapPoints(query: Pick<ListStoriesQuery, "categorySlug"
 
 export async function getStoryByProvinceAndSlug(
   provinceSlug: string,
-  storySlug: string,
+  storySlug: string
 ): Promise<StoryDetail> {
   const story = await prisma.story.findFirst({
     where: {
@@ -142,13 +147,15 @@ export async function getStoryByProvinceAndSlug(
     throw new NotFoundError("Story not found");
   }
 
-  await prisma.story.update({
+  const viewedStory = await prisma.story.update({
     where: { id: story.id },
     data: { viewCount: { increment: 1 } },
+    select: { viewCount: true },
   });
 
   return {
     ...toMapPoint(story),
+    viewCount: viewedStory.viewCount,
     status: story.status,
     createdAt: story.createdAt.toISOString(),
     content: story.content,
@@ -176,18 +183,35 @@ export async function getStoryByProvinceAndSlug(
 
 /** Requires authenticated author — wired in Phase 1 with Auth.js */
 export async function createStory(input: CreateStoryInput, authorId: string) {
-  const { tagIds, images, status, ...rest } = input;
+  const { tagIds, images, ...rest } = input;
+  const { status: ignoredStatus, ...storyData } = rest;
+  void ignoredStatus;
+  const category = await prisma.category.findUnique({
+    where: { id: input.categoryId },
+    select: { slug: true },
+  });
+  if (!category) throw new NotFoundError("Story category not found");
+  const isCrime = category.slug === "crime";
+  if (isCrime && !input.sourceUrl) {
+    throw new ApiError("คดีอาชญากรรมต้องมีลิงก์หลักฐานอ้างอิง");
+  }
 
-  return prisma.story.create({
+  const story = await prisma.story.create({
     data: {
-      ...rest,
+      ...storyData,
       authorId,
-      status,
+      status: isCrime ? StoryStatus.PENDING : StoryStatus.APPROVED,
       tags: tagIds.length
         ? { create: tagIds.map((tagId) => ({ tagId })) }
         : undefined,
       images: images.length ? { create: images } : undefined,
     },
-    select: { id: true, slug: true, status: true },
+    select: storyListSelect,
   });
+  return {
+    id: story.id,
+    slug: story.slug,
+    status: story.status,
+    mapPoint: story.status === StoryStatus.APPROVED ? toMapPoint(story) : null,
+  };
 }

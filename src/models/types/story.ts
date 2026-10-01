@@ -15,6 +15,7 @@ export interface StoryMapPoint {
 }
 
 export interface StoryListItem extends StoryMapPoint {
+  authorName?: string | null;
   status: StoryStatus;
   createdAt: string;
 }
@@ -24,7 +25,12 @@ export interface StoryDetail extends StoryListItem {
   sourceUrl: string | null;
   isSensitive: boolean;
   rejectReason: string | null;
-  images: { id: string; url: string; altText: string | null; sortOrder: number }[];
+  images: {
+    id: string;
+    url: string;
+    altText: string | null;
+    sortOrder: number;
+  }[];
   tags: { id: string; name: string; slug: string }[];
   author: { id: string; name: string; image: string | null };
 }

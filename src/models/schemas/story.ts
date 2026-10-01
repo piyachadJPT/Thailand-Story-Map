@@ -22,7 +22,9 @@ export const createStorySchema = z.object({
   isSensitive: z.boolean().default(false),
   tagIds: z.array(z.string().uuid()).max(20).default([]),
   images: z.array(storyImageInputSchema).max(10).default([]),
-  status: z.enum([StoryStatus.DRAFT, StoryStatus.PENDING]).default(StoryStatus.PENDING),
+  status: z
+    .enum([StoryStatus.DRAFT, StoryStatus.PENDING])
+    .default(StoryStatus.PENDING),
 });
 
 export type CreateStoryInput = z.infer<typeof createStorySchema>;
@@ -34,13 +36,16 @@ export const listStoriesQuerySchema = z.object({
   provinceSlug: z.string().optional(),
   tagSlug: z.string().optional(),
   q: z.string().max(100).optional(),
+  sort: z.enum(["popular", "recent"]).default("popular"),
   /** Public map/list defaults to APPROVED only */
-  status: z.enum([
-    StoryStatus.DRAFT,
-    StoryStatus.PENDING,
-    StoryStatus.APPROVED,
-    StoryStatus.REJECTED,
-  ]).optional(),
+  status: z
+    .enum([
+      StoryStatus.DRAFT,
+      StoryStatus.PENDING,
+      StoryStatus.APPROVED,
+      StoryStatus.REJECTED,
+    ])
+    .optional(),
 });
 
 export type ListStoriesQuery = z.infer<typeof listStoriesQuerySchema>;

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type MapSheet = "search" | "style" | null;
+export type MapSheet = "search" | "style" | "composer" | null;
 
 export type MapFlyRequest = {
   id: number;
@@ -10,6 +10,8 @@ export type MapFlyRequest = {
 };
 
 type MapSheetState = {
+  mapCenter: { longitude: number; latitude: number };
+  setMapCenter: (longitude: number, latitude: number) => void;
   sheet: MapSheet;
   openSheet: (sheet: Exclude<MapSheet, null>) => void;
   closeSheet: () => void;
@@ -18,6 +20,9 @@ type MapSheetState = {
 };
 
 export const useMapSheetStore = create<MapSheetState>((set) => ({
+  mapCenter: { longitude: 100.5018, latitude: 13.7563 },
+  setMapCenter: (longitude, latitude) =>
+    set({ mapCenter: { longitude, latitude } }),
   sheet: null,
   openSheet: (sheet) => set({ sheet }),
   closeSheet: () => set({ sheet: null }),

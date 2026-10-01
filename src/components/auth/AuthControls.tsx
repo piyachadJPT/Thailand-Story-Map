@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { LogOut } from "lucide-react";
+import { LogOut, Mail } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,7 +20,7 @@ function loginHref(pathname: string) {
   return `/login?callbackUrl=${encodeURIComponent(callbackUrl)}`;
 }
 
-function UserAvatar({
+export function UserAvatar({
   name,
   image,
   className,
@@ -38,15 +38,18 @@ function UserAvatar({
         src={image}
         alt=""
         referrerPolicy="no-referrer"
-        className={cn("h-8 w-8 rounded-full object-cover ring-1 ring-foreground/10", className)}
+        className={cn(
+          "ring-foreground/10 h-8 w-8 rounded-full object-cover ring-1",
+          className
+        )}
       />
     );
   }
   return (
     <span
-        className={cn(
-        "inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/15 text-xs font-semibold text-primary ring-1 ring-primary/15",
-        className,
+      className={cn(
+        "bg-primary/15 text-primary ring-primary/15 inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold ring-1",
+        className
       )}
     >
       {initial}
@@ -54,7 +57,11 @@ function UserAvatar({
   );
 }
 
-export default function AuthControls({ variant }: { variant: "desktop" | "mobile" }) {
+export default function AuthControls({
+  variant,
+}: {
+  variant: "desktop" | "mobile";
+}) {
   const pathname = usePathname();
   const { data: session, status } = useSession();
   const href = loginHref(pathname === "/login" ? "/" : pathname);
@@ -63,8 +70,8 @@ export default function AuthControls({ variant }: { variant: "desktop" | "mobile
     return (
       <span
         className={cn(
-          "animate-pulse rounded-full bg-foreground/10",
-          variant === "desktop" ? "h-8 w-24" : "mt-1 h-10 w-full",
+          "bg-foreground/10 animate-pulse rounded-full",
+          variant === "desktop" ? "h-8 w-24" : "mt-1 h-10 w-full"
         )}
         aria-hidden
       />
@@ -76,7 +83,7 @@ export default function AuthControls({ variant }: { variant: "desktop" | "mobile
       return (
         <Link
           href={href}
-          className="mt-1 flex w-full items-center justify-center rounded-xl bg-foreground px-3 py-2.5 text-sm font-semibold text-background shadow-sm"
+          className="bg-foreground text-background mt-1 flex w-full items-center justify-center rounded-xl px-3 py-2.5 text-sm font-semibold shadow-sm"
         >
           เข้าสู่ระบบ
         </Link>
@@ -85,7 +92,7 @@ export default function AuthControls({ variant }: { variant: "desktop" | "mobile
     return (
       <Link
         href={href}
-        className="hidden items-center rounded-full bg-foreground px-3.5 py-1.5 text-sm font-semibold text-background shadow-sm transition-all hover:scale-[1.03] hover:bg-foreground/90 active:scale-[0.98] md:inline-flex"
+        className="bg-foreground text-background hover:bg-foreground/90 hidden items-center rounded-full px-3.5 py-1.5 text-sm font-semibold shadow-sm transition-all hover:scale-[1.03] active:scale-[0.98] md:inline-flex"
       >
         เข้าสู่ระบบ
       </Link>
@@ -99,8 +106,10 @@ export default function AuthControls({ variant }: { variant: "desktop" | "mobile
       <div className="mt-1 flex items-center gap-3 rounded-xl px-3 py-2">
         <UserAvatar name={name} image={image} />
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold text-foreground">{name || "ผู้ใช้"}</p>
-          <p className="truncate text-xs text-muted-foreground">{email}</p>
+          <p className="text-foreground truncate text-sm font-semibold">
+            {name || "ผู้ใช้"}
+          </p>
+          <p className="text-muted-foreground truncate text-xs">{email}</p>
         </div>
         <button
           type="button"
@@ -117,24 +126,54 @@ export default function AuthControls({ variant }: { variant: "desktop" | "mobile
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        className="hidden h-8 w-8 items-center justify-center rounded-full outline-none md:inline-flex"
+        className="hover:ring-primary/10 focus-visible:ring-primary data-popup-open:ring-primary/15 hidden h-9 w-9 items-center justify-center rounded-full transition-shadow outline-none hover:ring-4 focus-visible:ring-2 data-popup-open:ring-4 md:inline-flex"
         aria-label="บัญชีผู้ใช้"
       >
         <UserAvatar name={name} image={image} />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="min-w-56 rounded-2xl p-1.5">
+      <DropdownMenuContent
+        align="end"
+        sideOffset={12}
+        className="bg-popover ring-border w-72 max-w-[calc(100vw-2rem)] rounded-[1.5rem] p-2 shadow-xl ring-1 shadow-black/10"
+      >
         <DropdownMenuGroup>
-          <DropdownMenuLabel className="font-normal">
-            <span className="block truncate text-sm font-semibold text-foreground">
-              {name || "ผู้ใช้"}
+          <DropdownMenuLabel className="bg-primary/5 rounded-2xl p-4 font-normal">
+            <span className="text-muted-foreground mb-3 block text-[0.7rem] font-medium">
+              บัญชีของคุณ
             </span>
-            <span className="block truncate text-xs text-muted-foreground">{email}</span>
+            <span className="flex items-center gap-3">
+              <UserAvatar
+                name={name}
+                image={image}
+                className="h-12 w-12 shrink-0 text-lg"
+              />
+              <span className="min-w-0">
+                <span className="text-foreground block text-sm leading-relaxed font-semibold break-words">
+                  {name || "ผู้ใช้"}
+                </span>
+                {email && (
+                  <span className="text-muted-foreground mt-1 flex items-start gap-1.5 text-xs leading-relaxed">
+                    <Mail
+                      className="mt-0.5 h-3.5 w-3.5 shrink-0"
+                      aria-hidden="true"
+                    />
+                    <span className="min-w-0 break-all">{email}</span>
+                  </span>
+                )}
+              </span>
+            </span>
           </DropdownMenuLabel>
         </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => void signOut({ callbackUrl: "/" })}>
-          <LogOut />
-          ออกจากระบบ
+        <DropdownMenuSeparator className="mx-2 my-2" />
+        <DropdownMenuItem
+          variant="destructive"
+          className="hover:bg-destructive/10 data-highlighted:bg-destructive/10 min-h-11 cursor-pointer gap-3 rounded-xl px-3 py-2.5 transition-colors"
+          onClick={() => void signOut({ callbackUrl: "/" })}
+        >
+          <span className="bg-destructive/10 inline-flex h-8 w-8 items-center justify-center rounded-lg">
+            <LogOut aria-hidden="true" />
+          </span>
+          <span className="font-medium">ออกจากระบบ</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
