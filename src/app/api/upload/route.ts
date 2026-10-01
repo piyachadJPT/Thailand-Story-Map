@@ -1,5 +1,6 @@
 import { createUploadIntent } from "@/api/upload/service";
 import { jsonOk, handleRouteError } from "@/api/common/http";
+import { requireUser } from "@/api/auth/session";
 import { z } from "zod";
 
 const uploadSchema = z.object({
@@ -10,6 +11,7 @@ const uploadSchema = z.object({
 
 export async function POST(request: Request) {
   try {
+    await requireUser();
     const body = uploadSchema.parse(await request.json());
     const intent = await createUploadIntent(body);
     return jsonOk(intent);

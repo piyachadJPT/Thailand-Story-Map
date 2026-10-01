@@ -1,6 +1,6 @@
 import { createStory, listStories, listMapPoints } from "@/api/stories/service";
 import { jsonOk, jsonPaginated, handleRouteError } from "@/api/common/http";
-import { UnauthorizedError } from "@/api/common/errors";
+import { requireUser } from "@/api/auth/session";
 import { createStorySchema, listStoriesQuerySchema } from "@/models/schemas";
 
 export async function GET(request: Request) {
@@ -23,13 +23,9 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
+    const author = await requireUser();
     const body = createStorySchema.parse(await request.json());
-    // TODO(Phase 1): resolve session user from Auth.js
-    const authorId = request.headers.get("x-dev-user-id");
-    if (!authorId) {
-      throw new UnauthorizedError("Sign in required to create a story");
-    }
-    const story = await createStory(body, authorId);
+    const story = await createStory(body, author.id);
     return jsonOk(story, { status: 201, message: "Story submitted" });
   } catch (error) {
     return handleRouteError(error);

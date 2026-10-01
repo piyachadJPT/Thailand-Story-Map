@@ -6,16 +6,46 @@ import { Search, X } from "lucide-react";
 import type { StoryListItem } from "@/models/types/story";
 import type { PlaceHit } from "@/components/map/geocode";
 import { useMapSheetStore } from "@/components/map/mapSheetStore";
-
-const categories = [
-  { name: "เรื่องลี้ลับ", slug: "ghost", icon: "👻" },
-  { name: "ประวัติศาสตร์", slug: "history", icon: "🏛" },
-  { name: "ตำนานพื้นบ้าน", slug: "legend", icon: "📖" },
-  { name: "คดีอาชญากรรม", slug: "crime", icon: "🔪" },
-  { name: "เรื่องเล่าท้องถิ่น", slug: "local", icon: "🧭" },
-];
+import { categoryIcon, storyCategories } from "@/config/categories";
+import { cn } from "@/lib/utils";
 
 type SearchStatus = "idle" | "loading" | "ready" | "error";
+
+const traceCard =
+  "rounded-2xl border border-dashed border-foreground/12 px-3 py-2.5";
+
+function ResultTraces({ pulse = false }: { pulse?: boolean }) {
+  return (
+    <div className={cn("space-y-4", pulse && "animate-pulse")} aria-hidden>
+      <div>
+        <div className="mb-2 h-2 w-14 rounded-full bg-primary/25" />
+        <div className="space-y-2">
+          {[0, 1].map((item) => (
+            <div key={`place-${item}`} className={traceCard}>
+              <div className="h-3.5 w-2/3 rounded-full bg-foreground/8" />
+              <div className="mt-2 h-2.5 w-full rounded-full bg-foreground/5" />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div className="mb-2 h-2 w-16 rounded-full bg-primary/25" />
+        <div className="space-y-2">
+          {[0, 1, 2].map((item) => (
+            <div key={`story-${item}`} className="flex items-start gap-1">
+              <div className={cn("min-w-0 flex-1", traceCard)}>
+                <div className="h-3.5 w-2/3 rounded-full bg-foreground/8" />
+                <div className="mt-2 h-2.5 w-full rounded-full bg-foreground/5" />
+                <div className="mt-1.5 h-2.5 w-4/5 rounded-full bg-foreground/5" />
+              </div>
+              <div className="mt-2 h-6 w-10 shrink-0 rounded-full border border-dashed border-primary/30" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function SearchSidebar() {
   const [query, setQuery] = useState("");
@@ -143,13 +173,13 @@ export default function SearchSidebar() {
     <form onSubmit={onSubmit}>
       <label className="relative block">
         <span className="sr-only">ค้นหาเรื่องเล่า</span>
-        <Search className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <input
           type="search"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="ชื่อเรื่อง จังหวัด หรือตำนาน"
-          className="h-10 w-full rounded-xl border border-border bg-card/80 pr-3 pl-9 text-sm text-foreground outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-3 focus:ring-primary/25"
+          className="liquid-field h-11 w-full rounded-2xl pr-3 pl-10 text-sm text-foreground outline-none placeholder:text-muted-foreground"
         />
       </label>
     </form>
@@ -157,23 +187,23 @@ export default function SearchSidebar() {
 
   const categoryChips = (
     <div className="flex flex-wrap gap-1.5">
-      {categories.map((category) => {
+      {storyCategories.map((category) => {
         const selected = categorySlug === category.slug;
+        const Icon = categoryIcon(category.slug);
         return (
           <button
             key={category.slug}
             type="button"
             onClick={() => setCategorySlug(selected ? null : category.slug)}
-            className={`rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
+            className={cn(
+              "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium transition-all duration-200",
               selected
-                ? "bg-primary text-primary-foreground"
-                : "bg-primary/10 text-primary hover:bg-primary/15"
-            }`}
+                ? "bg-primary text-primary-foreground shadow-sm shadow-primary/25"
+                : "bg-foreground/5 text-foreground hover:bg-foreground/10",
+            )}
             aria-pressed={selected}
           >
-            {/* <span className="mr-1" aria-hidden="true">
-              {category.icon}
-            </span> */}
+            <Icon className="h-3 w-3 shrink-0 opacity-80" />
             {category.name}
           </button>
         );
@@ -183,30 +213,26 @@ export default function SearchSidebar() {
 
   const resultList = (
     <div className="min-h-0 flex-1 overflow-y-auto">
-      {status === "idle" && (
-        <p className="text-sm leading-relaxed text-muted-foreground">
-          พิมพ์ชื่อสถานที่ จังหวัด หรือเรื่องเล่า
-        </p>
-      )}
-      {status === "loading" && (
-        <p className="text-sm text-muted-foreground">กำลังค้นหา...</p>
+      {(status === "idle" ||
+        status === "loading" ||
+        (status === "ready" && places.length === 0 && results.length === 0)) && (
+        <ResultTraces pulse={status === "loading"} />
       )}
       {status === "error" && (
-        <p className="text-sm text-destructive">ค้นหาไม่สำเร็จ ลองอีกครั้ง</p>
-      )}
-      {status === "ready" && places.length === 0 && results.length === 0 && (
-        <p className="text-sm text-muted-foreground">ไม่พบผลลัพธ์ที่ตรงกับคำค้น</p>
+        <div className={cn(traceCard, "text-sm text-destructive")}>ค้นหาไม่สำเร็จ ลองอีกครั้ง</div>
       )}
       {status === "ready" && places.length > 0 && (
-        <div className="mb-3">
-          <p className="px-3 pb-1 text-xs font-medium text-primary">สถานที่</p>
-          <ul className="space-y-1">
+        <div className="mb-4">
+          <p className="px-1 pb-2 text-[0.68rem] font-semibold tracking-[0.16em] text-primary uppercase">
+            สถานที่
+          </p>
+          <ul className="space-y-2">
             {places.map((place) => (
               <li key={place.id}>
                 <button
                   type="button"
                   onClick={() => openPlace(place)}
-                  className="block w-full rounded-xl px-3 py-2.5 text-left transition-colors hover:bg-primary/10"
+                  className={cn(traceCard, "block w-full text-left transition-colors hover:bg-primary/8")}
                 >
                   <p className="text-sm font-medium text-foreground">{place.title}</p>
                   {place.subtitle && (
@@ -222,14 +248,19 @@ export default function SearchSidebar() {
       )}
       {status === "ready" && results.length > 0 && (
         <div>
-          <p className="px-3 pb-1 text-xs font-medium text-primary">เรื่องเล่า</p>
-          <ul className="space-y-1">
+          <p className="px-1 pb-2 text-[0.68rem] font-semibold tracking-[0.16em] text-primary uppercase">
+            เรื่องเล่า
+          </p>
+          <ul className="space-y-2">
             {results.map((story) => (
               <li key={story.id} className="flex items-start gap-1">
                 <button
                   type="button"
                   onClick={() => openStory(story)}
-                  className="min-w-0 flex-1 rounded-xl px-3 py-2.5 text-left transition-colors hover:bg-primary/10"
+                  className={cn(
+                    traceCard,
+                    "min-w-0 flex-1 text-left transition-colors hover:bg-primary/8",
+                  )}
                 >
                   <p className="text-sm font-medium text-foreground">{story.title}</p>
                   <p className="mt-0.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
@@ -238,7 +269,7 @@ export default function SearchSidebar() {
                 </button>
                 <Link
                   href={`/story/${story.provinceSlug}/${story.slug}`}
-                  className="mt-2 shrink-0 rounded-full px-2 py-1 text-xs font-medium text-primary hover:bg-primary/10"
+                  className="mt-2 shrink-0 rounded-full border border-dashed border-primary/35 px-2.5 py-1 text-xs font-semibold text-primary transition-colors hover:bg-primary/10"
                 >
                   อ่าน
                 </Link>
@@ -253,74 +284,76 @@ export default function SearchSidebar() {
   return (
     <>
       <aside
-        className="absolute top-4 bottom-4 left-4 z-30 hidden w-[22rem] flex-col rounded-3xl border border-border bg-card/80 p-4 shadow-[0_20px_50px_-24px_rgba(10,15,28,0.16)] backdrop-blur-2xl lg:flex"
+        className="liquid-glass absolute top-4 bottom-4 left-4 z-30 hidden w-[22rem] flex-col rounded-[1.85rem] p-5 lg:flex"
         aria-label="ค้นหาเรื่องเล่า"
       >
         <div className="space-y-1">
-          <p className="text-xs font-medium tracking-wide text-primary">
+          <p className="text-[0.68rem] font-semibold tracking-[0.2em] text-primary uppercase">
             สำรวจเรื่องราวบนแผนที่
           </p>
-          <h2 className="text-lg font-semibold text-foreground">ค้นหาเรื่องเล่า</h2>
+          <h2 className="font-heading text-xl font-semibold tracking-tight text-foreground">
+            ค้นหาเรื่องเล่า
+          </h2>
         </div>
-        <div className="mt-4">{searchField}</div>
-        <div className="mt-3">{categoryChips}</div>
-        <div className="mt-4 min-h-0 flex-1 overflow-y-auto">{resultList}</div>
+        <div className="mt-5">{searchField}</div>
+        <div className="mt-3.5">{categoryChips}</div>
+        <div className="mt-5 min-h-0 flex-1 overflow-y-auto">{resultList}</div>
       </aside>
 
       {searchOpen && (
         <button
           type="button"
-          className="absolute inset-0 z-30 bg-foreground/10 lg:hidden"
+          className="absolute inset-0 z-30 bg-foreground/15 backdrop-blur-[2px] lg:hidden"
           aria-label="ปิดค้นหา"
           onClick={closeSheet}
         />
       )}
 
       {sheet !== "style" && (
-      <div className="absolute inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 flex justify-center px-3 lg:hidden">
-        {searchOpen ? (
-          <div className="animate-slide-up flex max-h-[min(70vh,28rem)] w-full max-w-md flex-col rounded-3xl border border-border bg-card/85 p-3 shadow-[0_16px_40px_-16px_rgba(10,15,28,0.18)] backdrop-blur-2xl">
-            <div className="mb-3 flex items-center justify-between gap-2">
-              <p className="text-sm font-semibold text-foreground">ค้นหาเรื่องเล่า</p>
-              <button
-                type="button"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground hover:bg-foreground/5"
-                aria-label="ปิดค้นหา"
-                onClick={closeSheet}
-              >
-                <X className="h-4 w-4" />
-              </button>
+        <div className="absolute inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 flex justify-center px-3 lg:hidden">
+          {searchOpen ? (
+            <div className="liquid-glass animate-slide-up flex max-h-[min(70vh,28rem)] w-full max-w-md flex-col rounded-[1.85rem] p-4">
+              <div className="mb-3 flex items-center justify-between gap-2">
+                <p className="font-heading text-base font-semibold text-foreground">ค้นหาเรื่องเล่า</p>
+                <button
+                  type="button"
+                  className="icon-well inline-flex h-8 w-8"
+                  aria-label="ปิดค้นหา"
+                  onClick={closeSheet}
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+              <form onSubmit={onSubmit}>
+                <label className="relative block">
+                  <span className="sr-only">ค้นหาเรื่องเล่า</span>
+                  <Search className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <input
+                    ref={mobileInputRef}
+                    type="search"
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                    placeholder="ชื่อเรื่อง จังหวัด หรือตำนาน"
+                    className="liquid-field h-11 w-full rounded-2xl pr-3 pl-10 text-sm text-foreground outline-none placeholder:text-muted-foreground"
+                  />
+                </label>
+              </form>
+              <div className="mt-3">{categoryChips}</div>
+              <div className="mt-3 min-h-0 flex-1 overflow-y-auto">{resultList}</div>
             </div>
-            <form onSubmit={onSubmit}>
-              <label className="relative block">
-                <span className="sr-only">ค้นหาเรื่องเล่า</span>
-                <Search className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <input
-                  ref={mobileInputRef}
-                  type="search"
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder="ชื่อเรื่อง จังหวัด หรือตำนาน"
-                  className="h-10 w-full rounded-xl border border-border bg-card/80 pr-3 pl-9 text-sm text-foreground outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-3 focus:ring-primary/25"
-                />
-              </label>
-            </form>
-            <div className="mt-3">{categoryChips}</div>
-            <div className="mt-3 min-h-0 flex-1 overflow-y-auto">{resultList}</div>
-          </div>
-        ) : (
-          <button
-            type="button"
-            className="flex h-12 translate-x-[calc(50%+0.375rem)] items-center gap-2 rounded-full border border-border bg-card/80 px-4 text-sm font-medium text-primary shadow-[0_10px_40px_-16px_rgba(10,15,28,0.16)] backdrop-blur-2xl backdrop-saturate-150"
-            aria-label="เปิดค้นหา"
-            aria-expanded={false}
-            onClick={() => openSheet("search")}
-          >
-            <Search className="h-4 w-4" />
-            ค้นหา
-          </button>
-        )}
-      </div>
+          ) : (
+            <button
+              type="button"
+              className="liquid-glass flex h-12 translate-x-[calc(50%+0.375rem)] items-center gap-2 rounded-full px-4 text-sm font-semibold text-primary"
+              aria-label="เปิดค้นหา"
+              aria-expanded={false}
+              onClick={() => openSheet("search")}
+            >
+              <Search className="h-4 w-4" />
+              ค้นหา
+            </button>
+          )}
+        </div>
       )}
     </>
   );

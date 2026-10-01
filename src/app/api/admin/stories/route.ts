@@ -1,6 +1,7 @@
 import { listPendingStories, moderateStory } from "@/api/admin/service";
 import { jsonOk, handleRouteError } from "@/api/common/http";
-import { ForbiddenError, UnauthorizedError } from "@/api/common/errors";
+import { requireAdmin } from "@/api/auth/session";
+import { ForbiddenError } from "@/api/common/errors";
 import { z } from "zod";
 
 const moderateSchema = z.object({
@@ -9,9 +10,9 @@ const moderateSchema = z.object({
   rejectReason: z.string().min(3).max(500).optional(),
 });
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
-    assertAdmin(request);
+    await requireAdmin();
     const pending = await listPendingStories();
     return jsonOk(pending);
   } catch (error) {
@@ -21,8 +22,7 @@ export async function GET(request: Request) {
 
 export async function PATCH(request: Request) {
   try {
-    assertAdmin(request);
-    const adminId = requireUserId(request);
+    const admin = await requireAdmin();
     const body = moderateSchema.parse(await request.json());
     if (body.action === "REJECT" && !body.rejectReason) {
       throw new ForbiddenError("rejectReason is required when rejecting");
@@ -30,7 +30,7 @@ export async function PATCH(request: Request) {
     const updated = await moderateStory(
       body.storyId,
       body.action,
-      adminId,
+      admin.id,
       body.rejectReason,
     );
     return jsonOk(updated);
@@ -39,16 +39,3 @@ export async function PATCH(request: Request) {
   }
 }
 
-function requireUserId(request: Request) {
-  const id = request.headers.get("x-dev-user-id");
-  if (!id) throw new UnauthorizedError();
-  return id;
-}
-
-/** TODO(Phase 1): replace with Auth.js session + UserRole.ADMIN */
-function assertAdmin(request: Request) {
-  requireUserId(request);
-  if (request.headers.get("x-dev-admin") !== "1") {
-    throw new ForbiddenError("Admin access required");
-  }
-}

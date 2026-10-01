@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { MapPin, Menu, Sparkles, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import AuthControls from "@/components/auth/AuthControls";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./ThemeToggle";
@@ -30,29 +32,37 @@ export default function Navbar() {
         isHome && "lg:left-[24rem]",
       )}
     >
-      <div className="pointer-events-auto w-full overflow-hidden rounded-3xl p-1 border border-border bg-card/80 shadow-[0_10px_40px_-16px_rgba(10,15,28,0.16)] backdrop-blur-2xl backdrop-saturate-150 dark:shadow-[0_10px_40px_-16px_rgba(0,0,0,0.55)]">
-        <div className="flex h-12 items-center gap-1 px-2">
+      <div className="liquid-glass pointer-events-auto w-full overflow-hidden rounded-[1.85rem] p-1">
+        <div className="flex h-12 items-center gap-1 px-1.5">
           <Link
             href="/"
-            className="flex min-w-0 items-center gap-2 rounded-full py-1 pr-2 pl-1 transition-colors hover:bg-black/5 dark:hover:bg-white/10"
+            className="flex min-w-0 items-center gap-2 rounded-full py-0.5 pr-2.5 pl-0.5 transition-colors hover:bg-foreground/5"
             onClick={() => setIsMenuOpen(false)}
           >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm">
-              <MapPin className="h-4 w-4" strokeWidth={2.5} />
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-background/70 ring-1 ring-foreground/8">
+              <Image
+                src="/logo.png"
+                alt=""
+                width={36}
+                height={36}
+                priority
+                className="h-8 w-8 object-contain"
+              />
             </span>
-            <span className="hidden truncate text-sm font-semibold tracking-tight text-foreground sm:block">
+            <span className="hidden truncate text-[0.92rem] font-semibold tracking-tight text-foreground sm:block">
               {siteConfig.name}
             </span>
           </Link>
 
-          <nav className="hidden min-w-0 flex-1 justify-center items-center gap-0.5 md:flex">
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground",
-                  isActive(link.href) && "bg-primary/10 text-primary",
+                  "rounded-full px-3.5 py-1.5 text-sm font-medium whitespace-nowrap text-muted-foreground transition-all duration-200 hover:bg-foreground/5 hover:text-foreground",
+                  isActive(link.href) &&
+                    "bg-primary text-primary-foreground shadow-sm shadow-primary/25 hover:bg-primary hover:text-primary-foreground",
                 )}
               >
                 {link.name}
@@ -60,20 +70,13 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="ml-auto flex shrink-0 items-center gap-1">
+          <div className="ml-auto flex shrink-0 items-center gap-0.5">
             <ThemeToggle />
+            <AuthControls variant="desktop" />
 
             <button
               type="button"
-              className="hidden items-center gap-1.5 rounded-full bg-foreground px-3.5 py-1.5 text-sm font-semibold text-background transition-transform hover:scale-[1.03] active:scale-[0.98] md:inline-flex"
-            >
-              <Sparkles className="h-3.5 w-3.5" />
-              Sign In
-            </button>
-
-            <button
-              type="button"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground hover:bg-foreground/5 md:hidden"
+              className="icon-well inline-flex h-8 w-8 md:hidden"
               onClick={() => setIsMenuOpen((open) => !open)}
               aria-expanded={isMenuOpen}
               aria-label={isMenuOpen ? "ปิดเมนู" : "เปิดเมนู"}
@@ -90,27 +93,21 @@ export default function Navbar() {
           )}
         >
           <div className="overflow-hidden">
-            <nav className="flex flex-col gap-1 px-2 pt-2 pb-2">
+            <nav className="flex flex-col gap-1 px-2 pt-1.5 pb-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
                   className={cn(
-                    "rounded-xl px-3 py-2.5 text-sm font-medium text-foreground hover:bg-foreground/5",
-                    isActive(link.href) && "bg-primary/10 text-primary",
+                    "rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-foreground/5",
+                    isActive(link.href) && "bg-primary/12 text-primary",
                   )}
                 >
                   {link.name}
                 </Link>
               ))}
-              <button
-                type="button"
-                className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-xl bg-foreground px-3 py-2.5 text-sm font-semibold text-background"
-              >
-                <Sparkles className="h-3.5 w-3.5" />
-                Sign In
-              </button>
+              <AuthControls variant="mobile" />
             </nav>
           </div>
         </div>

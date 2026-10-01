@@ -252,15 +252,15 @@ export default function MapShell({ token }: { token?: string }) {
   if (!token || failed) {
     return (
       <div
-        className="absolute inset-0 flex items-center justify-center bg-background px-6"
+        className="page-canvas absolute inset-0 flex items-center justify-center px-6"
         role="status"
       >
-        <div className="max-w-sm space-y-3 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
+        <div className="liquid-glass max-w-sm space-y-4 rounded-[1.85rem] p-8 text-center">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/25">
             <Map className="h-8 w-8" />
           </div>
-          <p className="text-lg font-semibold text-foreground">แผนที่เรื่องเล่า</p>
-          <p className="text-sm text-muted-foreground">
+          <p className="font-heading text-xl font-semibold text-foreground">แผนที่เรื่องเล่า</p>
+          <p className="text-sm leading-relaxed text-muted-foreground">
             {failed
               ? "โทเคน Mapbox ใช้ไม่ได้ ตรวจสอบค่าใน .env"
               : "ตั้ง NEXT_PUBLIC_MAPBOX_TOKEN ใน .env แล้วรีสตาร์ทเซิร์ฟเวอร์"}
@@ -280,7 +280,7 @@ export default function MapShell({ token }: { token?: string }) {
         className="pointer-events-none absolute inset-0 z-10 h-full w-full"
       />
       <div
-        className="absolute bottom-5 left-[calc(50%+12rem)] z-20 hidden -translate-x-1/2 gap-0.5 rounded-full border border-border bg-card/85 p-1 shadow-[0_10px_40px_-16px_rgba(10,15,28,0.2)] backdrop-blur-2xl lg:flex"
+        className="liquid-glass absolute bottom-5 left-[calc(50%+12rem)] z-20 hidden -translate-x-1/2 gap-0.5 rounded-full p-1 lg:flex"
         role="group"
         aria-label="รูปแบบแผนที่"
       >
@@ -295,9 +295,9 @@ export default function MapShell({ token }: { token?: string }) {
               aria-pressed={selected}
               aria-label={style.label}
               onClick={() => selectStyle(style.id)}
-              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-medium whitespace-nowrap transition-colors ${
+              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-all duration-200 ${
                 selected
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-primary text-primary-foreground shadow-sm shadow-primary/30"
                   : "text-foreground hover:bg-primary/10"
               }`}
             >
@@ -311,7 +311,7 @@ export default function MapShell({ token }: { token?: string }) {
       {styleOpen && (
         <button
           type="button"
-          className="absolute inset-0 z-[45] bg-foreground/10 lg:hidden"
+          className="absolute inset-0 z-[45] bg-foreground/15 backdrop-blur-[2px] lg:hidden"
           aria-label="ปิดรูปแบบแผนที่"
           onClick={closeSheet}
         />
@@ -320,12 +320,12 @@ export default function MapShell({ token }: { token?: string }) {
       {sheet !== "search" && (
       <div className="pointer-events-none absolute inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 flex justify-center px-3 lg:hidden">
         {styleOpen ? (
-          <div className="pointer-events-auto animate-slide-up w-full max-w-md rounded-3xl border border-border bg-card/85 p-3 shadow-[0_16px_40px_-16px_rgba(10,15,28,0.18)] backdrop-blur-2xl">
+          <div className="liquid-glass pointer-events-auto animate-slide-up w-full max-w-md rounded-[1.85rem] p-4">
             <div className="mb-3 flex items-center justify-between gap-2">
-              <p className="text-sm font-semibold text-foreground">รูปแบบแผนที่</p>
+              <p className="font-heading text-base font-semibold text-foreground">รูปแบบแผนที่</p>
               <button
                 type="button"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground hover:bg-foreground/5"
+                className="icon-well inline-flex h-8 w-8"
                 aria-label="ปิดรูปแบบแผนที่"
                 onClick={closeSheet}
               >
@@ -343,9 +343,9 @@ export default function MapShell({ token }: { token?: string }) {
                     data-map-style={style.id}
                     aria-pressed={selected}
                     onClick={() => selectStyle(style.id)}
-                    className={`inline-flex h-11 items-center justify-center gap-2 rounded-2xl px-3 text-sm font-medium transition-colors ${
+                    className={`inline-flex h-11 items-center justify-center gap-2 rounded-2xl px-3 text-sm font-medium transition-all duration-200 ${
                       selected
-                        ? "bg-primary text-primary-foreground"
+                        ? "bg-primary text-primary-foreground shadow-sm shadow-primary/25"
                         : "bg-primary/10 text-foreground hover:bg-primary/15"
                     }`}
                   >
@@ -359,7 +359,7 @@ export default function MapShell({ token }: { token?: string }) {
         ) : (
           <button
             type="button"
-            className="pointer-events-auto flex h-12 -translate-x-[calc(50%+0.375rem)] items-center gap-2 rounded-full border border-border bg-card/80 px-4 text-sm font-medium text-primary shadow-[0_10px_40px_-16px_rgba(10,15,28,0.16)] backdrop-blur-2xl backdrop-saturate-150"
+            className="liquid-glass pointer-events-auto flex h-12 -translate-x-[calc(50%+0.375rem)] items-center gap-2 rounded-full px-4 text-sm font-semibold text-primary"
             aria-label="เปิดรูปแบบแผนที่"
             aria-expanded={false}
             onClick={() => openSheet("style")}

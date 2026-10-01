@@ -24,7 +24,7 @@ export default function ThemeToggle() {
   return (
     <button
       type="button"
-      className="inline-flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground hover:bg-foreground/5"
+      className="icon-well inline-flex h-8 w-8"
       aria-label={next === "dark" ? "เปลี่ยนเป็นโหมดมืด" : "เปลี่ยนเป็นโหมดสว่าง"}
       onClick={() => applyTheme(next)}
     >
