@@ -197,7 +197,7 @@ export default function MapShell({ token }: { token?: string }) {
       element.className = "story-map-marker";
       element.style.setProperty(
         "--marker-color",
-        story.categoryColor ?? "#087f75"
+        story.categoryColor ?? "#171717"
       );
       const symbol = document.createElement("span");
       symbol.className = "story-map-marker-symbol";
@@ -377,7 +377,7 @@ export default function MapShell({ token }: { token?: string }) {
       ).detail;
       draftMarkerRef.current?.remove();
       draftMarkerRef.current = point
-        ? new mapboxgl.Marker({ color: "#087f75", draggable: true })
+        ? new mapboxgl.Marker({ color: "#171717", draggable: true })
             .setLngLat([point.longitude, point.latitude])
             .addTo(map)
         : null;
