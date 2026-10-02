@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { Building2, Map, Moon, Satellite, X } from "lucide-react";
+import { Building2, Map, Satellite, X } from "lucide-react";
 import type { PlaceHit } from "@/components/map/geocode";
 import type { StoryMapPoint } from "@/models/types/story";
 import { storyCategories } from "@/config/categories";
@@ -15,7 +15,7 @@ import { useMapSheetStore } from "@/components/map/mapSheetStore";
 const BANGKOK_CENTER: [number, number] = [100.5018, 13.7563];
 const BANGKOK_ZOOM = 12;
 
-type MapStyleId = "streets" | "night" | "satellite" | "city3d";
+type MapStyleId = "streets" | "satellite" | "city3d";
 
 const MAP_STYLES: {
   id: MapStyleId;
@@ -28,12 +28,6 @@ const MAP_STYLES: {
     label: "ถนน",
     url: "mapbox://styles/mapbox/streets-v12",
     icon: Map,
-  },
-  {
-    id: "night",
-    label: "กลางคืน",
-    url: "mapbox://styles/mapbox/dark-v11",
-    icon: Moon,
   },
   {
     id: "satellite",
@@ -50,6 +44,9 @@ const MAP_STYLES: {
 ];
 
 function styleUrl(id: MapStyleId) {
+  if (id === "streets" && readTheme() === "dark") {
+    return "mapbox://styles/mapbox/dark-v11";
+  }
   return MAP_STYLES.find((style) => style.id === id)?.url ?? MAP_STYLES[0].url;
 }
 
@@ -410,6 +407,10 @@ export default function MapShell({ token }: { token?: string }) {
     });
 
     const onTheme = () => {
+      if (styleIdRef.current === "streets") {
+        map.setStyle(styleUrl("streets"));
+        return;
+      }
       if (styleIdRef.current !== "city3d") return;
       try {
         map.setConfigProperty("basemap", "lightPreset", cityLightPreset());
@@ -418,6 +419,8 @@ export default function MapShell({ token }: { token?: string }) {
       }
     };
     window.addEventListener("themechange", onTheme);
+    const themeMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    themeMedia.addEventListener("change", onTheme);
 
     const onResize = () => {
       map.setPadding(
@@ -445,6 +448,7 @@ export default function MapShell({ token }: { token?: string }) {
       map.off("moveend", onMoveEnd);
       window.removeEventListener("map-search-location", onSearchLocation);
       window.removeEventListener("themechange", onTheme);
+      themeMedia.removeEventListener("change", onTheme);
       window.removeEventListener("stories-refresh", onStoriesRefresh);
       window.removeEventListener("story-pin-mode", onPinMode);
       window.removeEventListener("story-draft-location", onDraftLocation);

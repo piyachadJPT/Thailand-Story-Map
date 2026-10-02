@@ -1,9 +1,37 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Check, Copy, Minus, Plus, Type } from "lucide-react";
 
 export default function StoryReader({ children }: { children: ReactNode }) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        const distance = Math.max(1, rect.height - window.innerHeight + 120);
+        const progress = Math.min(1, Math.max(0, (120 - rect.top) / distance));
+        if (progressRef.current)
+          progressRef.current.style.transform = `scaleX(${progress})`;
+      });
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    const observer = new ResizeObserver(update);
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
   const [fontSize, setFontSize] = useState(18);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
@@ -21,10 +49,18 @@ export default function StoryReader({ children }: { children: ReactNode }) {
 
   return (
     <section
+      ref={sectionRef}
       id="story-content"
-      className="border-border bg-card/90 scroll-mt-24 overflow-hidden rounded-[1.5rem] border shadow-[0_8px_32px_-24px_rgba(0,0,0,0.18)] sm:rounded-[1.75rem]"
+      className="liquid-glass scroll-mt-28 overflow-hidden rounded-[1.5rem] sm:rounded-[1.75rem]"
       aria-label="เนื้อหาเรื่องราว"
     >
+      <div aria-hidden="true" className="bg-primary/10 h-1">
+        <div
+          ref={progressRef}
+          className="bg-gold h-full origin-left"
+          style={{ transform: "scaleX(0)" }}
+        />
+      </div>
       <div className="border-border bg-muted/40 flex flex-wrap items-center justify-between gap-2 border-b px-5 py-3 sm:px-8">
         <div
           className="flex items-center gap-2"
@@ -82,7 +118,7 @@ export default function StoryReader({ children }: { children: ReactNode }) {
         </p>
       )}
       <div
-        className="story-reader-body text-foreground px-6 py-8 sm:px-10 sm:py-12"
+        className="story-reader-body text-foreground mx-auto max-w-[72ch] px-6 py-8 sm:px-10 sm:py-12"
         style={{ fontSize }}
       >
         {children}

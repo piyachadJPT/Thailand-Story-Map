@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronsLeft, ChevronsRight, Menu, Plus, X } from "lucide-react";
 import { useSession } from "next-auth/react";
 import AuthControls from "@/components/auth/AuthControls";
@@ -20,32 +20,71 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const headerRef = useRef<HTMLElement>(null);
+  const [hiddenOnPath, setHiddenOnPath] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [desktopExpanded, setDesktopExpanded] = useState(false);
   const { data: session, status } = useSession();
   const isHome = pathname === "/";
+  const isStory = pathname === "/story" || pathname.startsWith("/story/");
+  const navigationExpanded = isStory || desktopExpanded;
+  const isHidden = isStory && hiddenOnPath === pathname && !isMenuOpen;
+
+  useEffect(() => {
+    if (!isStory) return;
+    let previousY = Math.max(0, window.scrollY);
+    let frame = 0;
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const currentY = Math.max(0, window.scrollY);
+        const delta = currentY - previousY;
+        if (currentY <= 80) {
+          setHiddenOnPath(null);
+          previousY = currentY;
+          return;
+        }
+        // Ignore tiny movements so touch scrolling does not flicker the navbar.
+        if (Math.abs(delta) < 6) return;
+        const hasFocus = headerRef.current?.contains(document.activeElement);
+        setHiddenOnPath(delta > 0 && !hasFocus ? pathname : null);
+        previousY = currentY;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.cancelAnimationFrame(frame);
+    };
+  }, [isStory, pathname]);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header
+      ref={headerRef}
+      inert={isHidden}
       className={cn(
         "pointer-events-none fixed top-4 right-4 left-4 z-50",
-        isHome && "lg:left-[24rem]"
+        isHome && "lg:left-[24rem]",
+        isStory &&
+          "transition-transform duration-300 ease-out motion-reduce:transition-none",
+        isHidden && "-translate-y-[calc(100%+2rem)]"
       )}
     >
       <div className="pointer-events-auto hidden items-start justify-end gap-3 lg:flex">
         <div
           className={cn(
             "liquid-glass min-w-0 overflow-hidden rounded-[1.85rem] p-1 transition-[flex-grow] duration-200 motion-reduce:transition-none",
-            desktopExpanded ? "flex-1" : "shrink-0"
+            navigationExpanded ? "flex-1" : "shrink-0"
           )}
           onKeyDown={(event) => {
             if (event.key === "Escape") setDesktopExpanded(false);
           }}
         >
-          {desktopExpanded ? (
+          {navigationExpanded ? (
             <div
               id="desktop-navigation"
               className="flex h-12 items-center gap-1 px-1.5"
@@ -89,17 +128,19 @@ export default function Navbar() {
               <div className="ml-auto flex shrink-0 items-center gap-0.5">
                 <ThemeToggle />
                 <AuthControls variant="desktop" />
-                <button
-                  type="button"
-                  onClick={() => setDesktopExpanded(false)}
-                  aria-expanded={true}
-                  aria-controls="desktop-navigation"
-                  aria-label="ย่อเมนูนำทาง"
-                  title="ย่อเมนู"
-                  className="icon-well focus-visible:outline-primary inline-flex h-8 w-8 focus-visible:outline-2"
-                >
-                  <ChevronsRight className="h-4 w-4" />
-                </button>
+                {!isStory && (
+                  <button
+                    type="button"
+                    onClick={() => setDesktopExpanded(false)}
+                    aria-expanded={true}
+                    aria-controls="desktop-navigation"
+                    aria-label="ย่อเมนูนำทาง"
+                    title="ย่อเมนู"
+                    className="icon-well focus-visible:outline-primary inline-flex h-8 w-8 focus-visible:outline-2"
+                  >
+                    <ChevronsRight className="h-4 w-4" />
+                  </button>
+                )}
               </div>
             </div>
           ) : (
@@ -131,7 +172,8 @@ export default function Navbar() {
             </div>
           )}
         </div>
-        {status !== "loading" &&
+        {!isStory &&
+          status !== "loading" &&
           (session?.user && isHome ? (
             <button
               type="button"

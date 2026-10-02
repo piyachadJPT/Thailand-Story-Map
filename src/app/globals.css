@@ -149,107 +149,107 @@ body {
   --glass-field: color-mix(in srgb, #fafafa 64%, transparent);
 }
 
-/* Dark: black surfaces with neutral glass edges */
+/* Dark: soft charcoal surfaces with subdued neutral glass edges */
 .dark,
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --background: #0a0a0a;
-  --foreground: #f5f5f5;
-  --card: #171717;
-  --card-foreground: #f5f5f5;
-  --popover: #171717;
-  --popover-foreground: #f5f5f5;
-  --primary: #e5e5e5;
-  --primary-foreground: #171717;
-  --secondary: #262626;
-  --secondary-foreground: #f5f5f5;
-  --muted: #262626;
-  --muted-foreground: #b5b5b5;
-  --accent: rgb(229 229 229 / 15%);
-  --accent-foreground: #f5f5f5;
-  --destructive: #ff8f80;
-  --border: rgb(255 255 255 / 14%);
-  --input: rgb(255 255 255 / 14%);
-  --ring: #e5e5e5;
-  --gold: #e1b765;
-  --chart-1: #e5e5e5;
-  --chart-2: #e1b765;
-  --chart-3: #a8c9ec;
+  --background: #151515;
+  --foreground: #dededb;
+  --card: #1e1e1e;
+  --card-foreground: #dededb;
+  --popover: #1e1e1e;
+  --popover-foreground: #dededb;
+  --primary: #c5c5c0;
+  --primary-foreground: #1e1e1e;
+  --secondary: #292929;
+  --secondary-foreground: #dededb;
+  --muted: #292929;
+  --muted-foreground: #a3a3a0;
+  --accent: rgb(197 197 192 / 10%);
+  --accent-foreground: #dededb;
+  --destructive: #e58b80;
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 10%);
+  --ring: #c5c5c0;
+  --gold: #c9a76a;
+  --chart-1: #c5c5c0;
+  --chart-2: #c9a76a;
+  --chart-3: #91abc4;
   --chart-4: #a3a3a3;
-  --chart-5: #d4d4d4;
-  --sidebar: #0a0a0a;
-  --sidebar-foreground: #f5f5f5;
-  --sidebar-primary: #e5e5e5;
-  --sidebar-primary-foreground: #171717;
-  --sidebar-accent: rgb(229 229 229 / 15%);
-  --sidebar-accent-foreground: #f5f5f5;
-  --sidebar-border: rgb(255 255 255 / 12%);
-  --sidebar-ring: #e5e5e5;
-  --glass-fill: color-mix(in srgb, #141414 84%, transparent);
+  --chart-5: #bcbcb7;
+  --sidebar: #151515;
+  --sidebar-foreground: #dededb;
+  --sidebar-primary: #c5c5c0;
+  --sidebar-primary-foreground: #1e1e1e;
+  --sidebar-accent: rgb(197 197 192 / 10%);
+  --sidebar-accent-foreground: #dededb;
+  --sidebar-border: rgb(255 255 255 / 6%);
+  --sidebar-ring: #c5c5c0;
+  --glass-fill: color-mix(in srgb, #1c1c1c 92%, transparent);
   --glass-sheen: linear-gradient(
     165deg,
-    rgb(255 255 255 / 14%) 0%,
-    rgb(255 255 255 / 4%) 28%,
+    rgb(255 255 255 / 10%) 0%,
+    rgb(255 255 255 / 2%) 28%,
     rgb(255 255 255 / 0%) 52%
   );
-  --glass-stroke: rgb(255 255 255 / 18%);
-  --glass-highlight: rgb(255 255 255 / 18%);
-  --glass-shade: rgb(0 0 0 / 34%);
-  --glass-edge: rgb(255 255 255 / 9%);
+  --glass-stroke: rgb(255 255 255 / 10%);
+  --glass-highlight: rgb(255 255 255 / 10%);
+  --glass-shade: rgb(0 0 0 / 22%);
+  --glass-edge: rgb(255 255 255 / 6%);
   --glass-shadow:
-    0 22px 54px -18px rgb(0 0 0 / 58%), 0 2px 8px -4px rgb(0 0 0 / 38%);
-  --glass-field: rgb(255 255 255 / 10%);
+    0 22px 54px -18px rgb(0 0 0 / 36%), 0 2px 8px -4px rgb(0 0 0 / 24%);
+  --glass-field: rgb(255 255 255 / 5%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]):not(.light) {
     color-scheme: dark;
-    --background: #0a0a0a;
-    --foreground: #f5f5f5;
-    --card: #171717;
-    --card-foreground: #f5f5f5;
-    --popover: #171717;
-    --popover-foreground: #f5f5f5;
-    --primary: #e5e5e5;
-    --primary-foreground: #171717;
-    --secondary: #262626;
-    --secondary-foreground: #f5f5f5;
-    --muted: #262626;
-    --muted-foreground: #b5b5b5;
-    --accent: rgb(229 229 229 / 15%);
-    --accent-foreground: #f5f5f5;
-    --destructive: #ff8f80;
-    --border: rgb(255 255 255 / 14%);
-    --input: rgb(255 255 255 / 14%);
-    --ring: #e5e5e5;
-    --gold: #e1b765;
-    --chart-1: #e5e5e5;
-    --chart-2: #e1b765;
-    --chart-3: #a8c9ec;
+    --background: #151515;
+    --foreground: #dededb;
+    --card: #1e1e1e;
+    --card-foreground: #dededb;
+    --popover: #1e1e1e;
+    --popover-foreground: #dededb;
+    --primary: #c5c5c0;
+    --primary-foreground: #1e1e1e;
+    --secondary: #292929;
+    --secondary-foreground: #dededb;
+    --muted: #292929;
+    --muted-foreground: #a3a3a0;
+    --accent: rgb(197 197 192 / 10%);
+    --accent-foreground: #dededb;
+    --destructive: #e58b80;
+    --border: rgb(255 255 255 / 10%);
+    --input: rgb(255 255 255 / 10%);
+    --ring: #c5c5c0;
+    --gold: #c9a76a;
+    --chart-1: #c5c5c0;
+    --chart-2: #c9a76a;
+    --chart-3: #91abc4;
     --chart-4: #a3a3a3;
-    --chart-5: #d4d4d4;
-    --sidebar: #0a0a0a;
-    --sidebar-foreground: #f5f5f5;
-    --sidebar-primary: #e5e5e5;
-    --sidebar-primary-foreground: #171717;
-    --sidebar-accent: rgb(229 229 229 / 15%);
-    --sidebar-accent-foreground: #f5f5f5;
-    --sidebar-border: rgb(255 255 255 / 12%);
-    --sidebar-ring: #e5e5e5;
-    --glass-fill: color-mix(in srgb, #141414 84%, transparent);
+    --chart-5: #bcbcb7;
+    --sidebar: #151515;
+    --sidebar-foreground: #dededb;
+    --sidebar-primary: #c5c5c0;
+    --sidebar-primary-foreground: #1e1e1e;
+    --sidebar-accent: rgb(197 197 192 / 10%);
+    --sidebar-accent-foreground: #dededb;
+    --sidebar-border: rgb(255 255 255 / 6%);
+    --sidebar-ring: #c5c5c0;
+    --glass-fill: color-mix(in srgb, #1c1c1c 92%, transparent);
     --glass-sheen: linear-gradient(
       165deg,
-      rgb(255 255 255 / 14%) 0%,
-      rgb(255 255 255 / 4%) 28%,
+      rgb(255 255 255 / 10%) 0%,
+      rgb(255 255 255 / 2%) 28%,
       rgb(255 255 255 / 0%) 52%
     );
-    --glass-stroke: rgb(255 255 255 / 18%);
-    --glass-highlight: rgb(255 255 255 / 18%);
-    --glass-shade: rgb(0 0 0 / 34%);
-    --glass-edge: rgb(255 255 255 / 9%);
+    --glass-stroke: rgb(255 255 255 / 10%);
+    --glass-highlight: rgb(255 255 255 / 10%);
+    --glass-shade: rgb(0 0 0 / 22%);
+    --glass-edge: rgb(255 255 255 / 6%);
     --glass-shadow:
-      0 22px 54px -18px rgb(0 0 0 / 58%), 0 2px 8px -4px rgb(0 0 0 / 38%);
-    --glass-field: rgb(255 255 255 / 10%);
+      0 22px 54px -18px rgb(0 0 0 / 36%), 0 2px 8px -4px rgb(0 0 0 / 24%);
+    --glass-field: rgb(255 255 255 / 5%);
   }
 }
 
@@ -399,7 +399,12 @@ body {
 
 .dark .text-gradient,
 :root[data-theme="dark"] .text-gradient {
-  background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 70%, #e1b765 100%);
+  background: linear-gradient(
+    135deg,
+    var(--foreground) 0%,
+    var(--primary) 70%,
+    var(--gold) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -408,7 +413,8 @@ body {
 /* Floating material: clear fill, heavy blur, light only along the top lip. */
 .liquid-glass,
 .glass-card,
-.glass-card-light {
+.glass-card-light,
+.story-map-popup .mapboxgl-popup-content {
   isolation: isolate;
   background-color: var(--glass-fill);
   backdrop-filter: blur(72px) saturate(180%);
@@ -430,7 +436,8 @@ body {
 
 .liquid-glass::before,
 .glass-card::before,
-.glass-card-light::before {
+.glass-card-light::before,
+.story-map-popup .mapboxgl-popup-content::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -553,29 +560,25 @@ body {
 
 .story-map-popup .mapboxgl-popup-content {
   padding: 20px;
-  border: 1px solid var(--glass-stroke);
   border-radius: 22px;
-  background: var(--popover);
-  color: var(--foreground);
-  box-shadow: var(--glass-shadow);
   font-family: var(--font-noto-thai), sans-serif;
 }
 
 .story-map-popup.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
 .story-map-popup.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
 .story-map-popup.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
-  border-top-color: var(--popover);
+  border-top-color: var(--glass-fill);
 }
 .story-map-popup.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
 .story-map-popup.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
 .story-map-popup.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
-  border-bottom-color: var(--popover);
+  border-bottom-color: var(--glass-fill);
 }
 .story-map-popup.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
-  border-right-color: var(--popover);
+  border-right-color: var(--glass-fill);
 }
 .story-map-popup.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
-  border-left-color: var(--popover);
+  border-left-color: var(--glass-fill);
 }
 
 .story-map-popup .mapboxgl-popup-close-button {
