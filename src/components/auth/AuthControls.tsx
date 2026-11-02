@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { LogOut, Mail } from "lucide-react";
+import { BookOpen, LogOut, Mail } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -59,8 +59,10 @@ export function UserAvatar({
 
 export default function AuthControls({
   variant,
+  onNavigate,
 }: {
   variant: "desktop" | "mobile";
+  onNavigate?: () => void;
 }) {
   const pathname = usePathname();
   const { data: session, status } = useSession();
@@ -103,22 +105,32 @@ export default function AuthControls({
 
   if (variant === "mobile") {
     return (
-      <div className="mt-1 flex items-center gap-3 rounded-xl px-3 py-2">
-        <UserAvatar name={name} image={image} />
-        <div className="min-w-0 flex-1">
-          <p className="text-foreground truncate text-sm font-semibold">
-            {name || "ผู้ใช้"}
-          </p>
-          <p className="text-muted-foreground truncate text-xs">{email}</p>
-        </div>
-        <button
-          type="button"
-          className="icon-well inline-flex h-8 w-8"
-          aria-label="ออกจากระบบ"
-          onClick={() => void signOut({ callbackUrl: "/" })}
+      <div>
+        <Link
+          href="/my-stories"
+          onClick={onNavigate}
+          className="text-foreground hover:bg-foreground/5 flex min-h-11 items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium"
         >
-          <LogOut className="h-4 w-4" />
-        </button>
+          <BookOpen className="h-4 w-4" aria-hidden="true" />
+          เรื่องราวของฉัน
+        </Link>
+        <div className="mt-1 flex items-center gap-3 rounded-xl px-3 py-2">
+          <UserAvatar name={name} image={image} />
+          <div className="min-w-0 flex-1">
+            <p className="text-foreground truncate text-sm font-semibold">
+              {name || "ผู้ใช้"}
+            </p>
+            <p className="text-muted-foreground truncate text-xs">{email}</p>
+          </div>
+          <button
+            type="button"
+            className="icon-well inline-flex h-8 w-8"
+            aria-label="ออกจากระบบ"
+            onClick={() => void signOut({ callbackUrl: "/" })}
+          >
+            <LogOut className="h-4 w-4" />
+          </button>
+        </div>
       </div>
     );
   }
@@ -165,6 +177,15 @@ export default function AuthControls({
           </DropdownMenuLabel>
         </DropdownMenuGroup>
         <DropdownMenuSeparator className="mx-2 my-2" />
+        <DropdownMenuItem
+          render={<Link href="/my-stories" />}
+          className="hover:bg-primary/5 min-h-11 cursor-pointer gap-3 rounded-xl px-3 py-2.5"
+        >
+          <span className="bg-primary/10 inline-flex h-8 w-8 items-center justify-center rounded-lg">
+            <BookOpen aria-hidden="true" />
+          </span>
+          <span className="font-medium">เรื่องราวของฉัน</span>
+        </DropdownMenuItem>
         <DropdownMenuItem
           variant="destructive"
           className="hover:bg-destructive/10 data-highlighted:bg-destructive/10 min-h-11 cursor-pointer gap-3 rounded-xl px-3 py-2.5 transition-colors"

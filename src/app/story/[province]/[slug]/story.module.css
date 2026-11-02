@@ -395,7 +395,7 @@
   margin-bottom: 0.75rem;
 }
 .sourceCard h2 {
-  font-family: var(--font-noto-thai), sans-serif;
+  font-family: var(--font-kanit), sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -448,7 +448,7 @@
 }
 .chapterHeading h2 {
   font-size: 0.85rem;
-  font-family: var(--font-noto-thai), sans-serif;
+  font-family: var(--font-kanit), sans-serif;
   font-weight: 600;
 }
 .chapterHeading > div {
@@ -738,13 +738,165 @@
 .articleHero {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
+  border-radius: 1.6rem;
+  isolation: isolate;
+}
+.articleMapWrap {
+  display: flex;
+  min-height: 360px;
+  padding: 0.75rem;
+}
+.articleMap {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: var(--muted);
+}
+.articleMapCanvas,
+.articleMapCanvas :global(.mapboxgl-map) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.articleMap :global(.mapboxgl-ctrl-bottom-left) {
+  top: 0.45rem;
+  right: 0.45rem;
+  bottom: auto;
+  left: auto;
+}
+.articleMap :global(.mapboxgl-ctrl-top-left) {
+  max-width: calc(100% - 1rem);
+}
+.articleMap :global(.mapboxgl-ctrl-attrib) {
+  background: transparent;
+  font-size: 10px;
+}
+.mapFallback {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px), var(--muted);
+  background-size:
+    48px 48px,
+    48px 48px,
+    auto;
+}
+.mapFallbackPin {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+}
+.heroPin {
+  position: relative;
+  width: 42px;
+  height: 54px;
+  filter: drop-shadow(0 8px 10px rgb(0 0 0 / 35%));
+}
+.heroPinSvg {
+  display: block;
+  width: 42px;
+  height: 54px;
+}
+.heroPinIcon {
+  position: absolute;
+  top: 9px;
+  right: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  color: var(--primary-foreground);
+}
+.heroPinIcon svg {
+  width: 16px;
+  height: 16px;
+}
+.mapCard {
+  position: absolute;
+  z-index: 2;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  left: 0.85rem;
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.95rem 1rem 0.85rem;
+  border: 1px solid var(--glass-stroke);
+  border-radius: 1.05rem;
+  background: var(--glass-sheen), var(--glass-fill);
+  color: var(--foreground);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+}
+.mapCardTitle {
+  overflow: hidden;
+  font-size: 1.02rem;
+  font-weight: 650;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.mapCardPlace {
+  color: var(--muted-foreground);
+  font-size: 0.78rem;
+}
+.mapCardCoords {
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.mapCardButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.55rem;
+  margin-top: 0.55rem;
+  border-radius: 999px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+.mapCardButton:hover {
+  background: color-mix(in srgb, var(--primary) 88%, var(--background));
+}
+.mapCardButton:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+.storyBanner {
+  margin: 0 0 1.35rem;
+  overflow: hidden;
+  border-radius: 1.05rem;
+}
+.storyBanner img {
+  display: block;
+  width: 100%;
+  height: clamp(168px, 24vw, 250px);
+  object-fit: cover;
+  background: var(--muted);
 }
 .articleCover {
   position: relative;
-  min-height: 280px;
-  max-height: 420px;
+  height: clamp(240px, 45vw, 360px);
+  min-width: 0;
   overflow: hidden;
   margin: 0;
+  border-top: 1px solid var(--border);
+}
+.articleCover > img {
+  position: absolute;
+  inset: 0;
 }
 .coverCaption {
   position: absolute;
@@ -762,7 +914,7 @@
   font-size: 0.8rem;
 }
 .articleParagraphs {
-  line-height: 2.15;
+  line-height: 1.9;
   overflow-wrap: anywhere;
 }
 .articleParagraphs p {
@@ -770,20 +922,7 @@
   overflow-wrap: anywhere;
 }
 .articleParagraphs p + p {
-  margin-top: 1.65em;
-}
-.articleParagraphs p:first-child {
-  font-size: 1.05em;
-  font-weight: 500;
-  line-height: 2.05;
-}
-.articleParagraphs p:first-child::before {
-  content: "";
-  display: block;
-  width: 2.75rem;
-  height: 2px;
-  margin-bottom: 1.15rem;
-  background: var(--gold);
+  margin-top: 1.15em;
 }
 .articleGallery {
   margin-top: 2.75rem;
@@ -987,10 +1126,26 @@
 }
 @media (min-width: 1024px) {
   .articleHero {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.92fr);
+    align-items: stretch;
+    border-radius: 1.85rem;
+  }
+  .articleMapWrap {
+    min-height: 100%;
+    padding: 0.85rem 0.85rem 0.85rem 0;
+  }
+  .articleHeroText {
+    padding: 1.65rem 1.2rem 1.4rem 1.7rem;
   }
   .articleCover {
-    max-height: none;
+    height: auto;
+    min-height: 360px;
+    border-top: 0;
+    border-left: 1px solid var(--border);
+  }
+  .articleHero > .articleArtwork {
+    border-top: 0;
+    border-left: 1px solid var(--border);
   }
 }
 
@@ -999,27 +1154,27 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.25rem;
 }
 .articleHeroText {
-  padding: clamp(1.5rem, 4vw, 3.5rem);
+  padding: 1.35rem 1.15rem 1.25rem;
   align-self: center;
   min-width: 0;
 }
 .articleTitle {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 3.8vw, 3.6rem);
-  font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: -0.035em;
+  font-size: clamp(2.05rem, 3.4vw, 3.15rem);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.03em;
   text-wrap: balance;
   overflow-wrap: anywhere;
 }
 .articleDeck {
-  margin-top: 1.5rem;
+  margin-top: 1.05rem;
   color: var(--muted-foreground);
-  line-height: 1.95;
-  font-size: 1.05rem;
+  line-height: 1.75;
+  font-size: 0.95rem;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
@@ -1030,7 +1185,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 340px;
+  min-height: 280px;
   overflow: hidden;
   background:
     radial-gradient(
@@ -1039,7 +1194,7 @@
       transparent 65%
     ),
     var(--glass-field);
-  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
 }
 .articleArtwork::before {
   content: "";
@@ -1139,6 +1294,7 @@
   width: calc(100% + 24px);
   height: calc(100% + 24px);
   filter: blur(1.5px);
+  opacity: 0.4;
 }
 .mapBackdropVeil {
   position: absolute;

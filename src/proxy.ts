@@ -2,7 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { getSupabasePublishableKey, getSupabaseUrl } from "@/config/supabase-env";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const url = getSupabaseUrl();
   const publishableKey = getSupabasePublishableKey();
   if (!url || !publishableKey) {

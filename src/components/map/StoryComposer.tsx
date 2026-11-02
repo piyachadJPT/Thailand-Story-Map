@@ -15,6 +15,9 @@ import {
   X,
 } from "lucide-react";
 import StoryDropdown from "@/components/map/StoryDropdown";
+import CoverImageInput, {
+  useCoverImage,
+} from "@/components/story/CoverImageInput";
 import type { PlaceHit } from "@/components/map/geocode";
 import { useMapSheetStore } from "@/components/map/mapSheetStore";
 
@@ -30,6 +33,7 @@ const inputClass =
 const labelClass = "mb-2 block text-sm font-medium text-foreground";
 
 export default function StoryComposer() {
+  const cover = useCoverImage();
   const { data: session, status: sessionStatus } = useSession();
   const formRef = useRef<HTMLFormElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -279,10 +283,11 @@ export default function StoryComposer() {
 
     setSaving(true);
     try {
+      const coverUrl = await cover.upload();
       const response = await fetch("/api/stories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ ...payload, coverUrl }),
       });
       const body = (await response.json()) as {
         success?: boolean;
@@ -303,6 +308,7 @@ export default function StoryComposer() {
       }
       const savedPoint = point;
       formElement.reset();
+      cover.select(null);
       setCategoryId("");
       setProvinceId("");
       setPlaceQuery("");
@@ -477,6 +483,7 @@ export default function StoryComposer() {
                 icon={<ListFilter className="h-4 w-4" />}
               />
             </div>
+            <CoverImageInput image={cover} disabled={saving} />
             <h3 className="text-primary border-border border-t pt-5 text-sm font-semibold">
               2. เรื่องนี้เกิดขึ้นที่ไหน
             </h3>

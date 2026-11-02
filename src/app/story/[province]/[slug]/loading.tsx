@@ -1,10 +1,8 @@
-import MainLayout from "@/components/layout/MainLayout";
-
 export default function LoadingStory() {
   return (
-    <MainLayout>
+    <>
       <div
-        className="mx-auto w-full max-w-4xl space-y-6 px-4 py-12 sm:px-6"
+        className="mx-auto w-full max-w-6xl space-y-6 px-[18px] py-6 sm:py-8"
         role="status"
         aria-label="กำลังโหลดเรื่องราว"
       >
@@ -21,6 +19,6 @@ export default function LoadingStory() {
         </div>
         <span className="sr-only">กำลังโหลดเรื่องราว…</span>
       </div>
-    </MainLayout>
+    </>
   );
 }

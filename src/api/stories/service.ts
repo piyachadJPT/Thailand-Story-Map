@@ -1,7 +1,9 @@
 import { storySearchConditions } from "./search";
 import { StoryStatus } from "@prisma/client";
 import { prisma } from "@/api/db/prisma";
-import { ApiError, NotFoundError } from "@/api/common/errors";
+import { ApiError, ForbiddenError, NotFoundError } from "@/api/common/errors";
+import type { UpdateStoryInput } from "@/models/schemas/story";
+import { validateOwnedCover } from "@/api/upload/service";
 import type { CreateStoryInput, ListStoriesQuery } from "@/models/schemas";
 import type {
   StoryDetail,
@@ -138,7 +140,7 @@ export async function getStoryByProvinceAndSlug(
       category: { select: { slug: true, color: true } },
       province: { select: { slug: true } },
       author: { select: { id: true, name: true, image: true } },
-      images: { orderBy: { sortOrder: "asc" } },
+      images: { orderBy: [{ sortOrder: "asc" }, { id: "asc" }] },
       tags: { include: { tag: true } },
     },
   });
@@ -183,7 +185,7 @@ export async function getStoryByProvinceAndSlug(
 
 /** Requires authenticated author — wired in Phase 1 with Auth.js */
 export async function createStory(input: CreateStoryInput, authorId: string) {
-  const { tagIds, images, ...rest } = input;
+  const { tagIds, images, coverUrl, ...rest } = input;
   const { status: ignoredStatus, ...storyData } = rest;
   void ignoredStatus;
   const category = await prisma.category.findUnique({
@@ -195,6 +197,13 @@ export async function createStory(input: CreateStoryInput, authorId: string) {
   if (isCrime && !input.sourceUrl) {
     throw new ApiError("คดีอาชญากรรมต้องมีลิงก์หลักฐานอ้างอิง");
   }
+  if (coverUrl) await validateOwnedCover(coverUrl, authorId);
+  const storyImages = coverUrl
+    ? [
+        { url: coverUrl, altText: input.title, sortOrder: 0 },
+        ...images.map((image, index) => ({ ...image, sortOrder: index + 1 })),
+      ]
+    : images;
 
   const story = await prisma.story.create({
     data: {
@@ -204,7 +213,7 @@ export async function createStory(input: CreateStoryInput, authorId: string) {
       tags: tagIds.length
         ? { create: tagIds.map((tagId) => ({ tagId })) }
         : undefined,
-      images: images.length ? { create: images } : undefined,
+      images: storyImages.length ? { create: storyImages } : undefined,
     },
     select: storyListSelect,
   });
@@ -214,4 +223,80 @@ export async function createStory(input: CreateStoryInput, authorId: string) {
     status: story.status,
     mapPoint: story.status === StoryStatus.APPROVED ? toMapPoint(story) : null,
   };
+}
+
+export async function getOwnedStory(id: string, authorId: string) {
+  const story = await prisma.story.findUnique({
+    where: { id },
+    include: {
+      images: { orderBy: [{ sortOrder: "asc" }, { id: "asc" }] },
+      category: { select: { slug: true } },
+      province: { select: { slug: true } },
+    },
+  });
+  if (!story) throw new NotFoundError("ไม่พบเรื่องราว");
+  if (story.authorId !== authorId)
+    throw new ForbiddenError("คุณแก้ไขได้เฉพาะเรื่องราวของตัวเอง");
+  return story;
+}
+
+export async function updateStory(
+  id: string,
+  input: UpdateStoryInput,
+  authorId: string
+) {
+  const story = await getOwnedStory(id, authorId);
+  const category = await prisma.category.findUnique({
+    where: { id: input.categoryId },
+  });
+  if (!category) throw new NotFoundError("ไม่พบประเภทเรื่องราว");
+  const province = await prisma.province.findUnique({
+    where: { id: input.provinceId },
+  });
+  if (!province) throw new NotFoundError("ไม่พบจังหวัด");
+  const isCrime = category.slug === "crime";
+  if (isCrime && !input.sourceUrl)
+    throw new ApiError("คดีอาชญากรรมต้องมีลิงก์หลักฐานอ้างอิง");
+  const needsReview =
+    isCrime ||
+    story.category.slug === "crime" ||
+    story.status !== StoryStatus.APPROVED;
+  const { coverUrl, ...storyData } = input;
+  const currentCover = story.images[0];
+  const coverChanged =
+    coverUrl !== undefined && coverUrl !== (currentCover?.url ?? null);
+  if (coverChanged && coverUrl) await validateOwnedCover(coverUrl, authorId);
+  const updated = await prisma.story.update({
+    where: { id, authorId },
+    data: {
+      ...storyData,
+      ...(coverChanged
+        ? {
+            images: coverUrl
+              ? currentCover
+                ? {
+                    update: {
+                      where: { id: currentCover.id },
+                      data: { url: coverUrl, altText: input.title },
+                    },
+                  }
+                : {
+                    create: {
+                      url: coverUrl,
+                      altText: input.title,
+                      sortOrder: 0,
+                    },
+                  }
+              : currentCover
+                ? { delete: { id: currentCover.id } }
+                : undefined,
+          }
+        : {}),
+      isSensitive: isCrime || input.isSensitive,
+      status: needsReview ? StoryStatus.PENDING : StoryStatus.APPROVED,
+      rejectReason: null,
+    },
+    select: { id: true, slug: true, status: true },
+  });
+  return { ...updated, provinceSlug: province.slug };
 }

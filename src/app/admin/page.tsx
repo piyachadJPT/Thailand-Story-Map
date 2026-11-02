@@ -1,5 +1,4 @@
 import { Compass, Landmark, Sparkles } from "lucide-react";
-import MainLayout from "@/components/layout/MainLayout";
 import PageHero from "@/components/layout/PageHero";
 
 const highlights = [
@@ -22,7 +21,7 @@ const highlights = [
 
 export default function RecommendedPlacesPage() {
   return (
-    <MainLayout>
+    <>
       <div className="mx-auto w-full max-w-3xl px-4 py-12 sm:px-6">
         <PageHero
           eyebrow="คัดสรร"
@@ -35,13 +34,13 @@ export default function RecommendedPlacesPage() {
             const Icon = item.icon;
             return (
               <li key={item.title} className="glass-card rounded-[1.4rem] p-5">
-                <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <span className="bg-primary/10 text-primary mb-4 flex h-10 w-10 items-center justify-center rounded-xl">
                   <Icon className="h-5 w-5" />
                 </span>
-                <h2 className="font-heading text-base font-semibold text-foreground">
+                <h2 className="font-heading text-foreground text-base font-semibold">
                   {item.title}
                 </h2>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
                   {item.body}
                 </p>
               </li>
@@ -49,6 +48,6 @@ export default function RecommendedPlacesPage() {
           })}
         </ul>
       </div>
-    </MainLayout>
+    </>
   );
 }

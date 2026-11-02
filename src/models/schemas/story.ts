@@ -22,12 +22,24 @@ export const createStorySchema = z.object({
   isSensitive: z.boolean().default(false),
   tagIds: z.array(z.string().uuid()).max(20).default([]),
   images: z.array(storyImageInputSchema).max(10).default([]),
+  coverUrl: z.string().url().nullable().optional(),
   status: z
     .enum([StoryStatus.DRAFT, StoryStatus.PENDING])
     .default(StoryStatus.PENDING),
 });
 
 export type CreateStoryInput = z.infer<typeof createStorySchema>;
+
+export const updateStorySchema = createStorySchema
+  .omit({
+    slug: true,
+    status: true,
+    tagIds: true,
+    images: true,
+  })
+  .extend({ sourceUrl: z.string().url().nullable() });
+
+export type UpdateStoryInput = z.infer<typeof updateStorySchema>;
 
 export const listStoriesQuerySchema = z.object({
   page: z.coerce.number().int().min(1).default(1),

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { MapPin, PenLine, Share2 } from "lucide-react";
-import MainLayout from "@/components/layout/MainLayout";
 import PageHero from "@/components/layout/PageHero";
 
 const steps = [
@@ -23,7 +22,7 @@ const steps = [
 
 export default function ContactPage() {
   return (
-    <MainLayout>
+    <>
       <div className="mx-auto w-full max-w-3xl px-4 py-12 sm:px-6">
         <PageHero
           eyebrow="ร่วมเล่า"
@@ -39,17 +38,17 @@ export default function ContactPage() {
                 key={step.title}
                 className="glass-card flex gap-4 rounded-[1.4rem] p-4 sm:p-5"
               >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                <span className="bg-primary/10 text-primary flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl">
                   <Icon className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="text-[0.68rem] font-semibold tracking-[0.18em] text-primary uppercase">
+                  <p className="text-primary text-[0.68rem] font-semibold tracking-[0.18em] uppercase">
                     ขั้นตอนที่ {index + 1}
                   </p>
-                  <h2 className="mt-1 font-heading text-lg font-semibold text-foreground">
+                  <h2 className="font-heading text-foreground mt-1 text-lg font-semibold">
                     {step.title}
                   </h2>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                  <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
                     {step.body}
                   </p>
                 </div>
@@ -61,18 +60,18 @@ export default function ContactPage() {
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link
             href="/login"
-            className="inline-flex h-11 items-center rounded-full bg-foreground px-5 text-sm font-semibold text-background shadow-sm transition-transform hover:scale-[1.03] active:scale-[0.98]"
+            className="bg-foreground text-background inline-flex h-11 items-center rounded-full px-5 text-sm font-semibold shadow-sm transition-transform hover:scale-[1.03] active:scale-[0.98]"
           >
             เข้าสู่ระบบเพื่อเล่าเรื่อง
           </Link>
           <Link
             href="/"
-            className="inline-flex h-11 items-center rounded-full px-4 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground inline-flex h-11 items-center rounded-full px-4 text-sm font-medium transition-colors"
           >
             กลับไปที่แผนที่
           </Link>
         </div>
       </div>
-    </MainLayout>
+    </>
   );
 }

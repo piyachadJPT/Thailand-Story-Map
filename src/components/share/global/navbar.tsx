@@ -27,7 +27,7 @@ export default function Navbar() {
   const { data: session, status } = useSession();
   const isHome = pathname === "/";
   const isStory = pathname === "/story" || pathname.startsWith("/story/");
-  const navigationExpanded = isStory || desktopExpanded;
+  const navigationExpanded = desktopExpanded;
   const isHidden = isStory && hiddenOnPath === pathname && !isMenuOpen;
 
   useEffect(() => {
@@ -84,95 +84,83 @@ export default function Navbar() {
             if (event.key === "Escape") setDesktopExpanded(false);
           }}
         >
-          {navigationExpanded ? (
-            <div
-              id="desktop-navigation"
-              className="flex h-12 items-center gap-1 px-1.5"
+          <div className="flex h-12 items-center gap-2 px-2">
+            <Link
+              href="/"
+              onClick={() => setDesktopExpanded(false)}
+              className="hover:bg-foreground/5 flex shrink-0 items-center gap-2 rounded-full p-1 transition-colors"
+              aria-label={siteConfig.name}
             >
-              <Link
-                href="/"
-                onClick={() => setDesktopExpanded(false)}
-                className="hover:bg-foreground/5 flex shrink-0 items-center gap-2 rounded-full p-1 transition-colors"
-                aria-label={siteConfig.name}
-              >
-                <Image
-                  src="/logo.png"
-                  alt=""
-                  width={32}
-                  height={32}
-                  className="h-8 w-8 object-contain"
-                />
-                <span className="text-foreground hidden text-sm font-semibold 2xl:block">
-                  {siteConfig.name}
-                </span>
-              </Link>
-              <nav
-                className="flex min-w-0 flex-1 items-center justify-start gap-0.5 overflow-x-auto xl:justify-center"
-                aria-label="เมนูหลัก"
-              >
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setDesktopExpanded(false)}
-                    className={cn(
-                      "text-muted-foreground hover:bg-foreground/5 hover:text-foreground shrink-0 rounded-full px-2.5 py-1.5 text-sm font-medium whitespace-nowrap transition-colors",
-                      isActive(link.href) &&
-                        "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground"
-                    )}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </nav>
-              <div className="ml-auto flex shrink-0 items-center gap-0.5">
-                <ThemeToggle />
-                <AuthControls variant="desktop" />
-                {!isStory && (
-                  <button
-                    type="button"
-                    onClick={() => setDesktopExpanded(false)}
-                    aria-expanded={true}
-                    aria-controls="desktop-navigation"
-                    aria-label="ย่อเมนูนำทาง"
-                    title="ย่อเมนู"
-                    className="icon-well focus-visible:outline-primary inline-flex h-8 w-8 focus-visible:outline-2"
-                  >
-                    <ChevronsRight className="h-4 w-4" />
-                  </button>
+              <Image
+                src="/logo.png"
+                alt=""
+                width={32}
+                height={32}
+                className="h-8 w-8 object-contain"
+              />
+              <span
+                className={cn(
+                  "text-foreground text-sm font-semibold",
+                  navigationExpanded ? "hidden 2xl:block" : "hidden"
                 )}
-              </div>
-            </div>
-          ) : (
-            <div className="flex h-12 items-center gap-2 px-2">
-              <Link
-                href="/"
-                className="hover:bg-foreground/5 rounded-full p-1 transition-colors"
-                aria-label={siteConfig.name}
               >
-                <Image
-                  src="/logo.png"
-                  alt=""
-                  width={32}
-                  height={32}
-                  className="h-8 w-8 object-contain"
-                />
-              </Link>
-              {session?.user && <AuthControls variant="desktop" />}
+                {siteConfig.name}
+              </span>
+            </Link>
+            <nav
+              id="desktop-navigation"
+              hidden={!navigationExpanded}
+              className={cn(
+                "min-w-0 flex-1 items-center justify-start gap-0.5 overflow-x-auto xl:justify-center",
+                navigationExpanded ? "flex" : "hidden"
+              )}
+              aria-label="เมนูหลัก"
+            >
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setDesktopExpanded(false)}
+                  className={cn(
+                    "text-muted-foreground hover:bg-foreground/5 hover:text-foreground shrink-0 rounded-full px-2.5 py-1.5 text-sm font-medium whitespace-nowrap transition-colors",
+                    isActive(link.href) &&
+                      "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground"
+                  )}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
+            <div className="ml-auto flex shrink-0 items-center gap-0.5">
+              <div
+                hidden={!navigationExpanded}
+                className={navigationExpanded ? "block" : "hidden"}
+              >
+                <ThemeToggle />
+              </div>
+              <AuthControls variant="desktop" />
               <button
                 type="button"
-                aria-expanded={false}
-                aria-label="ขยายเมนูนำทาง"
-                title="ขยายเมนู"
-                onClick={() => setDesktopExpanded(true)}
+                onClick={() => setDesktopExpanded((expanded) => !expanded)}
+                aria-expanded={navigationExpanded}
+                aria-controls="desktop-navigation"
+                aria-label={
+                  navigationExpanded ? "ย่อเมนูนำทาง" : "ขยายเมนูนำทาง"
+                }
+                title={navigationExpanded ? "ย่อเมนู" : "ขยายเมนู"}
                 className="bg-primary/10 text-primary hover:bg-primary/20 focus-visible:outline-primary inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors focus-visible:outline-2"
               >
-                <ChevronsLeft className="h-4 w-4" aria-hidden="true" />
+                {navigationExpanded ? (
+                  <ChevronsRight className="h-4 w-4" aria-hidden="true" />
+                ) : (
+                  <ChevronsLeft className="h-4 w-4" aria-hidden="true" />
+                )}
               </button>
             </div>
-          )}
+          </div>
         </div>
         {!isStory &&
+          pathname !== "/my-stories" &&
           status !== "loading" &&
           (session?.user && isHome ? (
             <button
@@ -279,7 +267,10 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <AuthControls variant="mobile" />
+              <AuthControls
+                variant="mobile"
+                onNavigate={() => setIsMenuOpen(false)}
+              />
             </nav>
           </div>
         </div>

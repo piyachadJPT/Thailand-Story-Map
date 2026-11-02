@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_Thai, Noto_Serif_Thai, Geist } from "next/font/google";
+import { Kanit } from "next/font/google";
 import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
@@ -7,21 +7,15 @@ import "./globals.css";
 import { siteConfig } from "@/config/site";
 import AuthProvider from "@/front/providers/AuthProvider";
 import ReactQueryProvider from "@/front/providers/ReactQueryProvider";
+import MainLayout from "@/components/layout/MainLayout";
 import { themeInitScript } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
-
-const notoThai = Noto_Sans_Thai({
-  subsets: ["thai"],
-  weight: ["100", "300", "400", "500", "700", "900"],
-  variable: "--font-noto-thai",
-});
-
-const notoSerif = Noto_Serif_Thai({
-  subsets: ["thai"],
-  weight: ["400", "600", "700"],
-  variable: "--font-noto-serif",
+const kanit = Kanit({
+  subsets: ["thai", "latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-kanit",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -41,7 +35,7 @@ export default function RootLayout({
     <html
       lang="th"
       suppressHydrationWarning
-      className={cn("font-sans", geist.variable, notoThai.variable, notoSerif.variable)}
+      className={cn("font-sans", kanit.variable)}
     >
       <body className="antialiased">
         <Script id="theme-init" strategy="beforeInteractive">
@@ -49,7 +43,7 @@ export default function RootLayout({
         </Script>
         <AuthProvider>
           <ReactQueryProvider>
-            {children}
+            <MainLayout>{children}</MainLayout>
             <ToastContainer
               position="top-right"
               autoClose={3000}
