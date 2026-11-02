@@ -220,6 +220,8 @@ async function recentActivity(limit = 10): Promise<Activity[]> {
       select: { id: true, name: true, createdAt: true },
     }),
     prisma.auditLog.findMany({
+      // Logins and password changes are noise on the dashboard; they stay in the audit page.
+      where: { targetType: { not: AUDIT_TARGET.ADMIN } },
       orderBy: { createdAt: "desc" },
       take: limit,
       select: {

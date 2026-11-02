@@ -1,10 +1,12 @@
 "use client";
 
+import { createElement } from "react";
 import Link from "next/link";
-import { AlertTriangle, ArrowRight, CheckCircle2, Clock, Eye, FilePlus2, Flag, Siren, UserPlus } from "lucide-react";
+import { AlertTriangle, ArrowRight, Clock, Eye, FilePlus2, Flag, Siren, UserPlus } from "lucide-react";
 import CategoryChip from "@/components/story/CategoryChip";
 import { buttonVariants } from "@/components/ui/button";
 import { backofficeHref } from "@/config/backoffice";
+import { categoryColor, categoryIcon } from "@/config/categories";
 import { auditMeta } from "@/config/auditActions";
 import { reportReasonLabel } from "@/config/reportReasons";
 import { cn } from "@/lib/utils";
@@ -15,18 +17,12 @@ import type { Overview } from "./types";
 
 export function NeedsAttention({ data }: { data: Overview["needsAttention"] }) {
   const empty = !data.stalePending.length && !data.heavilyReported.length;
-  if (empty) {
-    return (
-      <p className="flex items-center gap-2 rounded-2xl border border-success/30 bg-success/8 px-4 py-3 text-sm text-success">
-        <CheckCircle2 aria-hidden="true" className="size-[18px]" strokeWidth={1.75} />
-        ไม่มีงานค้าง
-      </p>
-    );
-  }
+  // Nothing to act on: the KPI strip already shows 0 pending / 0 reports.
+  if (empty) return null;
   return (
     <section
       aria-labelledby="needs-attention"
-      className="rounded-2xl border border-warning/40 bg-card p-5 shadow-soft sm:p-6"
+      className="rounded-2xl border border-warning/40 bg-card p-5 sm:p-6"
     >
       <h2 id="needs-attention" className="flex items-center gap-2 text-sm font-medium text-warning">
         <AlertTriangle aria-hidden="true" className="size-[18px]" strokeWidth={1.75} />
@@ -73,7 +69,7 @@ function AttentionList({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="min-w-0">
       <h3 className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
         <Icon aria-hidden="true" className="size-4" strokeWidth={1.75} />
         {title}
@@ -90,7 +86,7 @@ function AttentionItem({ href, title, meta, danger }: { href: string; title: str
         <p className="truncate text-sm font-medium">{title}</p>
         <p className={cn("text-xs tabular-nums", danger ? "text-destructive" : "text-muted-foreground")}>{meta}</p>
       </div>
-      <Link href={href} className={buttonVariants({ size: "sm", variant: "outline" })}>
+      <Link href={href} className={cn(buttonVariants({ size: "sm", variant: "outline" }), "shrink-0")}>
         ตรวจเลย
       </Link>
     </li>
@@ -109,7 +105,7 @@ export function TopStories({ stories }: { stories: Overview["topStories"] }) {
                 className="-mx-2 flex items-center gap-3 rounded-xl px-2 py-2.5 outline-none transition-colors hover:bg-foreground/4 focus-visible:ring-3 focus-visible:ring-ring/40"
               >
                 <span className="w-5 text-center text-sm font-semibold text-gold-ink tabular-nums">{index + 1}</span>
-                <Cover url={story.coverUrl} />
+                <Cover url={story.coverUrl} categorySlug={story.categorySlug} />
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-sm font-medium">{story.title}</span>
                   <span className="mt-1 flex items-center gap-2">
@@ -133,13 +129,33 @@ export function TopStories({ stories }: { stories: Overview["topStories"] }) {
   );
 }
 
-export function Cover({ url, className }: { url: string | null; className?: string }) {
-  return url ? (
-    // Covers live on external storage.
-    // eslint-disable-next-line @next/next/no-img-element
-    <img src={url} alt="" loading="lazy" className={cn("size-12 shrink-0 rounded-xl object-cover ring-1 ring-border", className)} />
-  ) : (
-    <span aria-hidden="true" className={cn("size-12 shrink-0 rounded-xl bg-linear-to-br from-muted to-accent ring-1 ring-border", className)} />
+export function Cover({
+  url,
+  categorySlug,
+  className,
+}: {
+  url: string | null;
+  categorySlug?: string;
+  className?: string;
+}) {
+  if (url) {
+    return (
+      // Covers live on external storage.
+      // eslint-disable-next-line @next/next/no-img-element
+      <img src={url} alt="" loading="lazy" className={cn("size-12 shrink-0 rounded-xl object-cover ring-1 ring-border", className)} />
+    );
+  }
+  return (
+    <span
+      aria-hidden="true"
+      style={{ "--cover": categoryColor(categorySlug ?? "") } as React.CSSProperties}
+      className={cn(
+        "grid size-12 shrink-0 place-items-center rounded-xl bg-(--cover)/10 text-(--cover) ring-1 ring-(--cover)/20",
+        className
+      )}
+    >
+      {createElement(categoryIcon(categorySlug ?? ""), { className: "size-5", strokeWidth: 1.75 })}
+    </span>
   );
 }
 

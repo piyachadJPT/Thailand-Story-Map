@@ -4,7 +4,6 @@ import Link from "next/link";
 import { backofficeHref } from "@/config/backoffice";
 import { auditMeta } from "@/config/auditActions";
 import { cn } from "@/lib/utils";
-import Avatar from "./Avatar";
 import RelativeTime from "./RelativeTime";
 import { dayHeading, dayKeyOf, formatTime } from "./format";
 
@@ -26,29 +25,34 @@ export function auditTargetHref(item: Pick<AuditItem, "targetType" | "targetId">
 }
 
 const toneClass = {
-  success: "text-success bg-success/10",
-  destructive: "text-destructive bg-destructive/10",
-  warning: "text-warning bg-warning/10",
-  neutral: "text-muted-foreground bg-foreground/5",
+  success: "text-success bg-success/12",
+  destructive: "text-destructive bg-destructive/12",
+  warning: "text-warning bg-warning/12",
+  neutral: "text-muted-foreground bg-muted",
 };
 
-function AuditEntry({ item, showTime, compact }: { item: AuditItem; showTime?: boolean; compact?: boolean }) {
+function AuditEntry({ item, showTime }: { item: AuditItem; showTime?: boolean }) {
   const meta = auditMeta(item.action);
   const Icon = meta.icon;
   const href = auditTargetHref(item);
   const adminName = item.admin.username ?? item.admin.name;
   return (
-    <li className="relative flex gap-3">
-      <span className={cn("relative z-10 grid size-8 shrink-0 place-items-center rounded-full ring-4 ring-card", toneClass[meta.tone])}>
-        <Icon aria-hidden="true" className="size-4" strokeWidth={1.75} />
+    <li className={cn("group/entry grid gap-x-3", showTime ? "grid-cols-[2.75rem_2rem_1fr]" : "grid-cols-[2rem_1fr]")}>
+      {showTime ? (
+        <time dateTime={item.createdAt} className="pt-1.5 text-right text-xs text-muted-foreground tabular-nums">
+          {formatTime(item.createdAt)}
+        </time>
+      ) : null}
+      {/* Icon plus the connector down to the next entry. */}
+      <span className="relative flex justify-center">
+        <span className={cn("relative z-10 grid size-8 place-items-center rounded-full", toneClass[meta.tone])}>
+          <Icon aria-hidden="true" className="size-4" strokeWidth={1.75} />
+        </span>
+        <span aria-hidden="true" className="absolute top-9 -bottom-4 w-px bg-border group-last/entry:hidden" />
       </span>
-      <div className="min-w-0 flex-1 pt-0.5">
+      <div className="min-w-0 pt-1 pb-4 group-last/entry:pb-0">
         <p className="text-sm leading-relaxed">
-          {compact ? null : (
-            <Avatar id={item.admin.id} name={adminName} image={item.admin.image} size="xs" className="mr-1.5 inline-grid align-[-6px]" />
-          )}
-          <span className="font-medium">{adminName}</span>{" "}
-          <span className="text-muted-foreground">{meta.verb}</span>
+          <span className="font-medium">{adminName}</span> <span className="text-muted-foreground">{meta.verb}</span>
           {item.targetType !== "ADMIN" ? (
             <>
               {" "}
@@ -62,32 +66,20 @@ function AuditEntry({ item, showTime, compact }: { item: AuditItem; showTime?: b
             </>
           ) : null}
         </p>
-        {item.note ? (
-          <p className="mt-1 rounded-lg bg-foreground/4 px-2.5 py-1.5 text-xs leading-relaxed text-muted-foreground">
-            {item.note}
-          </p>
-        ) : null}
-        <p className="mt-0.5 text-xs text-muted-foreground">
-          {showTime ? (
-            <time dateTime={item.createdAt} className="tabular-nums">
-              {formatTime(item.createdAt)} น.
-            </time>
-          ) : (
-            <RelativeTime value={item.createdAt} />
-          )}
-        </p>
+        {item.note ? <p className="mt-1 text-[0.8125rem] leading-relaxed text-muted-foreground">“{item.note}”</p> : null}
+        {showTime ? null : <RelativeTime value={item.createdAt} className="mt-0.5 block text-xs text-muted-foreground" />}
       </div>
     </li>
   );
 }
 
 /** Flat list (story / user history). */
-export default function AuditTimeline({ items, compact }: { items: AuditItem[]; compact?: boolean }) {
+export default function AuditTimeline({ items }: { items: AuditItem[]; compact?: boolean }) {
   if (!items.length) return <p className="py-4 text-sm text-muted-foreground">ยังไม่มีประวัติการจัดการ</p>;
   return (
-    <ol className="relative space-y-4 before:absolute before:top-3 before:bottom-3 before:left-[15px] before:w-px before:bg-border">
+    <ol>
       {items.map((item) => (
-        <AuditEntry key={item.id} item={item} compact={compact} />
+        <AuditEntry key={item.id} item={item} />
       ))}
     </ol>
   );
@@ -104,10 +96,10 @@ export function GroupedAuditTimeline({ items }: { items: AuditItem[] }) {
     <div className="space-y-8">
       {[...groups].map(([day, entries]) => (
         <section key={day} aria-label={dayHeading(day)}>
-          <h2 className="sticky top-16 z-10 -mx-1 mb-3 bg-background/90 px-1 py-1 text-sm font-medium text-muted-foreground backdrop-blur-sm">
+          <h2 className="mb-3 text-sm font-medium text-foreground">
             {dayHeading(day)}
           </h2>
-          <ol className="relative space-y-5 rounded-2xl border border-border bg-card p-5 shadow-soft before:absolute before:top-8 before:bottom-8 before:left-[35px] before:w-px before:bg-border sm:p-6 sm:before:left-[39px]">
+          <ol className="rounded-2xl border border-border bg-card p-5 sm:p-6">
             {entries.map((item) => (
               <AuditEntry key={item.id} item={item} showTime />
             ))}

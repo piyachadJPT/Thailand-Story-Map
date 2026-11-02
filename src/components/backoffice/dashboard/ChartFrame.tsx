@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { BarChart3, Table2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Panel } from "../PageHeader";
 
 /** Card around a chart with a "view as table" toggle for screen readers and keyboard users. */
@@ -26,7 +27,8 @@ export default function ChartFrame({
     <Panel
       title={title}
       description={description}
-      className={className}
+      className={cn("flex h-full flex-col", className)}
+      bodyClassName="flex flex-1 flex-col"
       action={
         <button
           type="button"
@@ -42,7 +44,7 @@ export default function ChartFrame({
       {asTable ? (
         <div className="max-h-80 overflow-auto">{table}</div>
       ) : (
-        <figure role="img" aria-label={summary}>
+        <figure role="img" aria-label={summary} className="flex flex-1 flex-col">
           {children}
         </figure>
       )}

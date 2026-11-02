@@ -47,6 +47,7 @@ export default function DensityMap({ token }: { token?: string }) {
     const container = containerRef.current;
     if (!container || !token || !points.data) return;
     let map: import("mapbox-gl").Map | null = null;
+    let observer: ResizeObserver | null = null;
     let disposed = false;
     const data = toGeoJson(points.data);
 
@@ -106,8 +107,8 @@ export default function DensityMap({ token }: { token?: string }) {
         map = new mapboxgl.Map({
           container,
           style: styleUrl("streets"),
-          bounds: THAILAND_BOUNDS,
-          fitBoundsOptions: { padding: 16 },
+          center: [101, 13],
+          zoom: 4.6,
           attributionControl: false,
           dragRotate: false,
           pitchWithRotate: false,
@@ -121,6 +122,13 @@ export default function DensityMap({ token }: { token?: string }) {
       map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
       map.addControl(new mapboxgl.AttributionControl({ compact: true }), "bottom-right");
       map.on("style.load", addLayers);
+      // The panel may still be laying out: size the map once it has real dimensions.
+      observer = new ResizeObserver(() => map?.resize());
+      observer.observe(container);
+      map.once("load", () => {
+        map?.resize();
+        map?.fitBounds(THAILAND_BOUNDS, { padding: 16, duration: 0 });
+      });
       map.on("click", "stories-points", (event) => {
         const id = event.features?.[0]?.properties?.id;
         if (typeof id === "string") router.push(backofficeHref(`/stories/${id}`));
@@ -146,6 +154,7 @@ export default function DensityMap({ token }: { token?: string }) {
     return () => {
       disposed = true;
       window.removeEventListener("themechange", onTheme);
+      observer?.disconnect();
       map?.remove();
     };
   }, [token, points.data, router]);
@@ -158,7 +167,10 @@ export default function DensityMap({ token }: { token?: string }) {
       aria-label={`แผนที่ความหนาแน่นของเรื่องที่เผยแพร่ ${count} เรื่องทั่วประเทศไทย`}
     >
       {points.isPending && !failed ? <Skeleton className="absolute inset-0 rounded-xl" /> : null}
-      <div ref={containerRef} className="absolute inset-0" />
+      {/* Mapbox forces its container to position: relative, so it fills a positioned wrapper. */}
+      <div className="absolute inset-0">
+        <div ref={containerRef} className="size-full" />
+      </div>
       {failed ? <MapUnavailable invalidToken={Boolean(token)} /> : null}
     </div>
   );

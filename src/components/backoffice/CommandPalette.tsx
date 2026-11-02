@@ -41,7 +41,9 @@ export default function CommandPalette({ open, onOpenChange }: { open: boolean; 
   }
 
   const pages = navItems.filter((item) => !query.trim() || item.label.toLowerCase().includes(query.trim().toLowerCase()));
-  const loading = search.isFetching && q.length > 0;
+  const typed = query.trim();
+  // Still waiting for the debounce or the request: say so instead of "type to search".
+  const loading = typed.length > 0 && (typed !== q || search.isFetching);
   const results = q.length > 0 ? search.data : undefined;
 
   return (
@@ -54,7 +56,7 @@ export default function CommandPalette({ open, onOpenChange }: { open: boolean; 
       label="ค้นหาและไปยังหน้า"
       shouldFilter={false}
       overlayClassName="fixed inset-0 z-50 bg-black/25 backdrop-blur-xs"
-      contentClassName="fixed top-[12vh] left-1/2 z-50 w-[min(640px,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-popover text-popover-foreground shadow-lift"
+      contentClassName="fixed top-[12vh] left-1/2 z-50 w-[min(640px,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-popover text-popover-foreground"
     >
       <div className="flex items-center gap-3 border-b border-border px-4">
         <Search aria-hidden="true" className="size-4 text-muted-foreground" />
@@ -68,7 +70,7 @@ export default function CommandPalette({ open, onOpenChange }: { open: boolean; 
       </div>
       <Command.List className="max-h-[min(60vh,420px)] overflow-y-auto p-2">
         <Command.Empty className="px-3 py-8 text-center text-sm text-muted-foreground">
-          {loading ? "กำลังค้นหา…" : q ? `ไม่พบผลลัพธ์สำหรับ “${q}”` : "พิมพ์เพื่อค้นหา"}
+          {loading ? "กำลังค้นหา…" : typed ? `ไม่พบผลลัพธ์สำหรับ “${typed}”` : "พิมพ์เพื่อค้นหา"}
         </Command.Empty>
         {pages.length ? (
           <Command.Group heading="ไปยังหน้า" className={groupClass}>

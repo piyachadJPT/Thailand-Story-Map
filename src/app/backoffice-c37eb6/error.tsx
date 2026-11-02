@@ -10,7 +10,7 @@ export default function BackofficeError({ error, reset }: { error: Error & { dig
   }, [error]);
   return (
     <div className="grid min-h-[60dvh] place-items-center px-4">
-      <div role="alert" className="w-full max-w-md rounded-2xl border border-border bg-card p-8 text-center shadow-soft">
+      <div role="alert" className="w-full max-w-md rounded-2xl border border-border bg-card p-8 text-center">
         <span className="mx-auto grid size-12 place-items-center rounded-full bg-destructive/12 text-destructive">
           <AlertTriangle aria-hidden="true" className="size-5" strokeWidth={1.75} />
         </span>

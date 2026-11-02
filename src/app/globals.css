@@ -659,3 +659,27 @@
   background-color: color-mix(in srgb, var(--foreground) 6%, transparent);
   color: var(--foreground);
 }
+
+/*
+ * Backoffice: flat surfaces. No drop shadows anywhere on the page (including
+ * shared buttons, tabs and popups rendered in portals); borders are a touch
+ * stronger so cards and tables still read clearly. Focus rings are untouched.
+ */
+:root:has([data-backoffice]) {
+  --border: rgb(18 22 31 / 14%);
+}
+:root:has([data-backoffice]):is(.dark, [data-theme="dark"]) {
+  --border: rgb(255 255 255 / 13%);
+}
+@media (prefers-color-scheme: dark) {
+  :root:has([data-backoffice]):not([data-theme="light"]):not(.light) {
+    --border: rgb(255 255 255 / 13%);
+  }
+}
+:root:has([data-backoffice]) *,
+:root:has([data-backoffice]) *::before,
+:root:has([data-backoffice]) *::after {
+  --tw-shadow: 0 0 #0000 !important;
+  --tw-inset-shadow: 0 0 #0000 !important;
+}
+

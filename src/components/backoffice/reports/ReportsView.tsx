@@ -106,7 +106,7 @@ function ReportGroupCard({ group, open }: { group: Group; open: boolean }) {
   const shown = expanded ? group.reports : group.reports.slice(0, 2);
 
   return (
-    <li className="rounded-2xl border border-border bg-card shadow-soft">
+    <li className="rounded-2xl border border-border bg-card">
       <div className="flex flex-wrap items-start gap-4 p-5 sm:p-6">
         <span
           className={cn(

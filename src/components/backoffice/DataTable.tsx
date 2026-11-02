@@ -19,7 +19,12 @@ export type Column<T> = {
   sort?: SortOption[];
   /** Label shown beside the value in the phone card layout; omit to hide there. */
   cardLabel?: string;
+  /** Keep the column visible on the right edge when the table scrolls sideways. */
+  stickyRight?: boolean;
 };
+
+const stickyRightClass =
+  "sticky right-0 border-l border-border bg-card group-hover:bg-[color-mix(in_srgb,var(--card),var(--foreground)_3%)]";
 
 const interactive = "a,button,input,select,textarea,label,[role=menuitem],[role=checkbox],[data-row-ignore]";
 
@@ -71,7 +76,7 @@ export default function DataTable<T>({
 
   return (
     <>
-      <div className="hidden overflow-x-auto rounded-2xl border border-border bg-card shadow-soft md:block">
+      <div className="hidden overflow-x-auto rounded-2xl border border-border bg-card md:block">
         <table className="w-full border-separate border-spacing-0 text-sm">
           <caption className="sr-only">{caption}</caption>
           <thead>
@@ -87,8 +92,9 @@ export default function DataTable<T>({
                     scope="col"
                     aria-sort={active ? (active.direction === "asc" ? "ascending" : "descending") : undefined}
                     className={cn(
-                      "sticky top-0 z-10 border-b border-border bg-card px-4 py-3 text-xs font-medium whitespace-nowrap text-muted-foreground first:rounded-tl-2xl last:rounded-tr-2xl",
+                      "sticky top-0 z-10 border-b border-border bg-card px-3 py-3 text-xs first:pl-4 last:pr-4 font-medium whitespace-nowrap text-muted-foreground first:rounded-tl-2xl last:rounded-tr-2xl",
                       column.align === "right" ? "text-right" : "text-left",
+                      column.stickyRight && "right-0 z-20 border-l border-border",
                       column.className
                     )}
                   >
@@ -136,8 +142,9 @@ export default function DataTable<T>({
                     <td
                       key={column.key}
                       className={cn(
-                        "h-14 px-4 py-2.5 align-middle",
+                        "h-14 px-3 py-2.5 align-middle first:pl-4 last:pr-4",
                         column.align === "right" && "text-right tabular-nums",
+                        column.stickyRight && stickyRightClass,
                         column.className
                       )}
                     >
@@ -165,7 +172,7 @@ export default function DataTable<T>({
               key={rowKey(row)}
               onClick={(event) => onRowClick(event, href)}
               className={cn(
-                "rounded-2xl border border-border bg-card p-4 shadow-soft",
+                "rounded-2xl border border-border bg-card p-4",
                 href && "cursor-pointer active:bg-foreground/3"
               )}
             >
@@ -222,7 +229,7 @@ function RowLink({ href, label, children }: { href: string; label?: string; chil
 
 export function TableSkeleton({ columns = 5, rows = 6 }: { columns?: number; rows?: number }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft" aria-busy="true">
+    <div className="overflow-hidden rounded-2xl border border-border bg-card" aria-busy="true">
       <span className="sr-only">กำลังโหลด…</span>
       <div className="flex gap-6 border-b border-border px-4 py-3.5">
         {Array.from({ length: columns }, (_, index) => (

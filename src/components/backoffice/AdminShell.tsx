@@ -77,7 +77,7 @@ export default function AdminShell({
               <DialogPrimitive.Backdrop className="fixed inset-0 z-40 bg-black/30 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 lg:hidden" />
               <DialogPrimitive.Popup
                 aria-label="เมนู"
-                className="border-border bg-card shadow-lift fixed inset-y-0 left-0 z-50 w-72 max-w-[85vw] border-r transition-transform duration-200 ease-out outline-none data-ending-style:-translate-x-full data-starting-style:-translate-x-full lg:hidden"
+                className="border-border bg-card fixed inset-y-0 left-0 z-50 w-72 max-w-[85vw] border-r transition-transform duration-200 ease-out outline-none data-ending-style:-translate-x-full data-starting-style:-translate-x-full lg:hidden"
               >
                 <DialogPrimitive.Close
                   render={

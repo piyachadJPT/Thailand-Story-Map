@@ -10,5 +10,9 @@ export const metadata: Metadata = {
 
 /** Backoffice root: no public navbar or footer. */
 export default function BackofficeLayout({ children }: { children: React.ReactNode }) {
-  return <div className="min-h-dvh bg-background font-sans text-foreground">{children}</div>;
+  return (
+    <div data-backoffice className="min-h-dvh bg-background font-sans text-foreground">
+      {children}
+    </div>
+  );
 }

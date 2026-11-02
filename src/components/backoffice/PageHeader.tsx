@@ -49,7 +49,7 @@ export function Panel({
 }) {
   return (
     <Comp
-      className={cn("rounded-2xl border border-border bg-card text-card-foreground shadow-soft", className)}
+      className={cn("min-w-0 rounded-2xl border border-border bg-card text-card-foreground", className)}
       {...props}
     >
       {title || action ? (

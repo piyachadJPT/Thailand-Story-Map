@@ -21,7 +21,6 @@ import CategoryChip from "@/components/story/CategoryChip";
 import SourceLink from "@/components/story/SourceLink";
 import StoryBody from "@/components/story/StoryBody";
 import StoryCover from "@/components/story/StoryCover";
-import StoryLocationMap from "@/components/story/StoryLocationMap";
 import { buildStoryView } from "@/components/story/storyView";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Notice } from "@/components/ui/notice";
@@ -43,6 +42,7 @@ import Tip from "../Tip";
 import { AdminApiError, adminFetch, adminKeys } from "../api";
 import { formatDateTime, formatNumber } from "../format";
 import { useModerateStory, type StoryAction } from "../moderation";
+import MiniMap from "./MiniMap";
 import type { StoryDetail } from "./types";
 
 function toPublicShape(story: StoryDetail): PublicStoryDetail {
@@ -70,8 +70,8 @@ function toPublicShape(story: StoryDetail): PublicStoryDetail {
 }
 
 function typingInField(target: EventTarget | null) {
-  const element = target as HTMLElement | null;
-  return Boolean(element?.closest("input, textarea, select, [contenteditable=true], [role=dialog]"));
+  if (!(target instanceof Element)) return false;
+  return Boolean(target.closest("input, textarea, select, [contenteditable=true], [role=dialog]"));
 }
 
 export default function StoryReview({ id, mapboxToken }: { id: string; mapboxToken?: string }) {
@@ -203,7 +203,7 @@ export default function StoryReview({ id, mapboxToken }: { id: string; mapboxTok
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] xl:grid-cols-[minmax(0,1fr)_380px]">
-        <article className="order-2 min-w-0 space-y-8 rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-8 lg:order-1">
+        <article className="order-2 min-w-0 space-y-8 rounded-2xl border border-border bg-card p-5 sm:p-8 lg:order-1">
           <header className="mx-auto max-w-170 space-y-4">
             <div className="flex flex-wrap items-center gap-2">
               <CategoryChip slug={story.category.slug} size="md" />
@@ -252,21 +252,14 @@ export default function StoryReview({ id, mapboxToken }: { id: string; mapboxTok
               <Info label="รายงานเปิดอยู่" value={<span className={cn(openReports && "font-medium text-destructive")}>{formatNumber(openReports)}</span>} />
               <Info label="สร้างเมื่อ" value={<span title={formatDateTime(story.createdAt)}><RelativeTime value={story.createdAt} /></span>} />
               <Info label="แก้ล่าสุด" value={<RelativeTime value={story.updatedAt} />} />
-              <Info
-                label="พิกัด"
-                value={`${story.latitude.toFixed(5)}, ${story.longitude.toFixed(5)}`}
-                className="col-span-2"
-              />
             </dl>
-            <div className="mt-4 [&_section]:h-56 [&_section]:rounded-xl [&_section]:shadow-none">
-              <StoryLocationMap
+            <div className="mt-4">
+              <MiniMap
                 token={mapboxToken}
                 latitude={story.latitude}
                 longitude={story.longitude}
-                title={story.title}
-                provinceName={story.province.name}
                 categorySlug={story.category.slug}
-                href={`/?story=${encodeURIComponent(story.id)}`}
+                provinceName={story.province.name}
               />
             </div>
             {story.status === "APPROVED" ? (
@@ -388,13 +381,13 @@ function ActionButtons({
     return (
       <div className="flex gap-2 lg:flex-col">
         <Tip label={<>อนุมัติ <Kbd>A</Kbd></>}>
-          <Button className="flex-1 rounded-xl lg:w-full" disabled={pending} onClick={onApprove}>
+          <Button className="h-11 flex-1 rounded-xl lg:w-full lg:flex-none" disabled={pending} onClick={onApprove}>
             <Check aria-hidden="true" />
             อนุมัติและเผยแพร่
           </Button>
         </Tip>
         <Tip label={<>ปฏิเสธ <Kbd>R</Kbd></>}>
-          <Button variant="outline" className="flex-1 rounded-xl text-destructive lg:w-full" disabled={pending} onClick={onReject}>
+          <Button variant="outline" className="h-11 flex-1 rounded-xl text-destructive lg:w-full lg:flex-none" disabled={pending} onClick={onReject}>
             <X aria-hidden="true" />
             ปฏิเสธ
           </Button>

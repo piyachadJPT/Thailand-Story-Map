@@ -15,7 +15,7 @@ export default function LoginScreen({ showSetupHint }: { showSetupHint: boolean 
 
       <main className="w-full max-w-[400px]">
         <div className="mb-6 flex flex-col items-center gap-3 text-center">
-          <span className="grid size-14 place-items-center overflow-hidden rounded-full bg-card shadow-soft ring-1 ring-gold/50">
+          <span className="grid size-14 place-items-center overflow-hidden rounded-full bg-card ring-1 ring-gold/50">
             <Image src="/logo.png" alt="" width={44} height={44} className="size-11 object-contain" priority />
           </span>
           <div>
@@ -23,7 +23,7 @@ export default function LoginScreen({ showSetupHint }: { showSetupHint: boolean 
             <p className="text-sm text-gold-ink">Backoffice</p>
           </div>
         </div>
-        <div className="rounded-2xl border border-border bg-card p-6 shadow-lift sm:p-8">
+        <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
           <h1 className="font-heading text-xl font-semibold">เข้าสู่ระบบผู้ดูแล</h1>
           <p className="mt-1 text-sm text-muted-foreground">ใช้ชื่อผู้ใช้และรหัสผ่านของบัญชีแอดมิน</p>
           {showSetupHint ? (

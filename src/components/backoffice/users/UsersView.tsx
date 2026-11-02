@@ -78,7 +78,7 @@ export default function UsersView() {
         </span>
       ),
     },
-    { key: "method", header: "ช่องทางล็อกอิน", cardLabel: "ล็อกอิน", cell: (user) => <LoginMethod adminAccount={user.isAdminAccount} /> },
+    { key: "method", header: "ช่องทางล็อกอิน", cardLabel: "ล็อกอิน", className: "hidden xl:table-cell", cell: (user) => <LoginMethod adminAccount={user.isAdminAccount} /> },
     {
       key: "status",
       header: "สถานะ",
@@ -113,6 +113,7 @@ export default function UsersView() {
     {
       key: "views",
       header: "ยอดอ่านรวม",
+      className: "hidden xl:table-cell",
       align: "right",
       cardLabel: "ยอดอ่านรวม",
       cell: (user) => formatCompact(user.totalViews),
@@ -128,6 +129,7 @@ export default function UsersView() {
       key: "actions",
       header: <span className="sr-only">การจัดการ</span>,
       className: "w-12",
+      stickyRight: true,
       cell: (user) => <UserActionsMenu user={user} />,
     },
   ];
@@ -136,7 +138,7 @@ export default function UsersView() {
     <div className="space-y-6">
       <PageHeader title="ผู้ใช้" description="ผู้เขียนและผู้อ่านที่สมัครด้วย Google รวมถึงบัญชีแอดมิน">
         <div className="space-y-4">
-          <dl className="grid grid-cols-3 gap-3 sm:max-w-xl">
+          <dl className="grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:max-w-xl">
             <Stat label="ทั้งหมด" value={summary?.all} />
             <Stat label="ใหม่ใน 30 วัน" value={summary?.newUsers} />
             <Stat label="ถูกระงับ" value={summary?.banned} danger />
@@ -208,7 +210,7 @@ export default function UsersView() {
 
 function Stat({ label, value, danger }: { label: string; value?: number; danger?: boolean }) {
   return (
-    <div className="rounded-2xl border border-border bg-card px-4 py-3 shadow-soft">
+    <div className="bg-card px-4 py-3">
       <dt className="text-xs text-muted-foreground">{label}</dt>
       <dd className={`font-heading text-xl font-semibold tabular-nums ${danger && value ? "text-destructive" : ""}`}>
         {value === undefined ? "—" : formatNumber(value)}

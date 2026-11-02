@@ -29,7 +29,7 @@ function TooltipBox({
   rows: { name: string; value: number; color: string }[];
 }) {
   return (
-    <div className="rounded-xl border border-border bg-popover px-3 py-2 text-xs text-popover-foreground shadow-soft">
+    <div className="rounded-xl border border-border bg-popover px-3 py-2 text-xs text-popover-foreground">
       <p className="mb-1 font-medium">{label}</p>
       {rows.map((row) => (
         <p key={row.name} className="flex items-center gap-2">
@@ -61,7 +61,13 @@ export function DailyStoriesChart({ series, range }: { series: Overview["series"
         <Legend color="var(--success)" label="เผยแพร่" value={published} />
         <Legend color="var(--warning)" label="รอตรวจ/ถูกปฏิเสธ" value={other} />
       </div>
-      <div className="h-64">
+      {/* Grows to match the card beside it (min 16rem). */}
+      <div className="relative min-h-64 flex-1">
+        {published + other === 0 ? (
+          <p className="absolute inset-0 z-10 grid place-items-center text-sm text-muted-foreground">
+            ไม่มีเรื่องใหม่ในช่วงนี้
+          </p>
+        ) : null}
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={series} margin={{ top: 4, right: 4, bottom: 0, left: -24 }}>
             <defs>
@@ -196,7 +202,7 @@ export function ProvinceBars({ provinces }: { provinces: Overview["provinces"] }
       table={<MiniTable head={["จังหวัด", "เรื่อง"]} rows={top.map((item) => [item.name, item.count])} />}
     >
       {top.length ? (
-        <div style={{ height: Math.max(160, top.length * 32) }}>
+        <div style={{ height: top.length * 34 + 8 }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={top} layout="vertical" margin={{ top: 0, right: 32, bottom: 0, left: 0 }}>
               <XAxis type="number" hide allowDecimals={false} />

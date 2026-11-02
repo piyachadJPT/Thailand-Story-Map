@@ -16,8 +16,8 @@ import type { StoryRow } from "./types";
 export function StoryTitleCell({ story }: { story: StoryRow }) {
   return (
     <div className="flex min-w-0 items-center gap-3">
-      <Cover url={story.coverUrl} />
-      <div className="min-w-0 max-w-[26rem]">
+      <Cover url={story.coverUrl} categorySlug={story.category.slug} />
+      <div className="min-w-0 max-w-52 xl:max-w-60 min-[1400px]:max-w-72 2xl:max-w-md">
         <p className="truncate font-medium text-foreground">{story.title}</p>
         <p className="truncate text-xs text-muted-foreground">{story.summary}</p>
         {story.resubmitted || story.isSensitive ? (
@@ -46,7 +46,7 @@ export function WaitingBadge({ since }: { since: string }) {
   return (
     <span
       title={new Date(since).toLocaleString("th-TH", { timeZone: "Asia/Bangkok" })}
-      className={cn("text-sm tabular-nums", hours > 24 ? "font-medium text-warning" : "text-muted-foreground")}
+      className={cn("text-sm whitespace-nowrap tabular-nums", hours > 24 ? "font-medium text-warning" : "text-muted-foreground")}
     >
       รอ {formatDuration(hours)}
     </span>
@@ -66,6 +66,7 @@ export function storyColumns({ pendingTab, showAuthor = true }: { pendingTab: bo
     {
       key: "province",
       header: "จังหวัด",
+      className: "hidden min-[1400px]:table-cell",
       cardLabel: "จังหวัด",
       cell: (story) => <span className="whitespace-nowrap">{story.province.name}</span>,
     },
@@ -74,11 +75,12 @@ export function storyColumns({ pendingTab, showAuthor = true }: { pendingTab: bo
     columns.push({
       key: "author",
       header: "ผู้เขียน",
+      className: "hidden xl:table-cell",
       cardLabel: "ผู้เขียน",
       cell: (story) => (
         <span className="flex min-w-0 items-center gap-2">
           <Avatar id={story.author.id} name={story.author.name} image={story.author.image} size="xs" />
-          <span className="max-w-36 truncate">{story.author.name}</span>
+          <span className="max-w-28 truncate xl:max-w-36">{story.author.name}</span>
         </span>
       ),
     });
@@ -124,14 +126,16 @@ export function storyColumns({ pendingTab, showAuthor = true }: { pendingTab: bo
       key: "status",
       header: "สถานะ",
       cardLabel: "สถานะ",
-      cell: (story) => <StatusBadge status={story.status as StoryStatus} />,
+      cell: (story) => <StatusBadge status={story.status as StoryStatus} className="h-6 gap-1.5 px-2.5" />,
     },
     {
       key: "actions",
       header: <span className="sr-only">การจัดการ</span>,
       className: "w-12",
+      stickyRight: true,
       cell: (story) => <StoryActionsMenu story={story} />,
     }
   );
-  return columns;
+  // Every row in the pending queue has the same status.
+  return pendingTab ? columns.filter((column) => column.key !== "status") : columns;
 }
