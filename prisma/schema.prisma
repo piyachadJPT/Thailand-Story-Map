@@ -30,6 +30,15 @@ enum ReportStatus {
   RESOLVED
 }
 
+enum ReportReason {
+  FALSE_INFO // ข้อมูลเท็จหรือบิดเบือน
+  INAPPROPRIATE // เนื้อหาไม่เหมาะสม
+  COPYRIGHT // ละเมิดลิขสิทธิ์
+  PRIVACY // ละเมิดความเป็นส่วนตัว
+  SPAM // สแปมหรือโฆษณา
+  OTHER // อื่นๆ
+}
+
 model User {
   id            String     @id @default(uuid())
   name          String
@@ -39,14 +48,37 @@ model User {
   role          UserRole   @default(USER)
   status        UserStatus @default(ACTIVE)
   createdAt     DateTime   @default(now()) @map("created_at")
+  username      String?    @unique
+  passwordHash  String?    @map("password_hash")
+  bannedAt      DateTime?  @map("banned_at")
+  banReason     String?    @map("ban_reason")
 
-  accounts  Account[]
-  sessions  Session[]
-  stories   Story[]
-  reports   Report[]
-  auditLogs AuditLog[]
+  accounts        Account[]
+  sessions        Session[]
+  stories         Story[]
+  reports         Report[]       @relation("ReportReporter")
+  resolvedReports Report[]       @relation("ReportResolver")
+  auditLogs       AuditLog[]
+  adminSessions   AdminSession[]
 
+  @@index([createdAt])
   @@map("users")
+}
+
+model AdminSession {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  tokenHash  String   @unique @map("token_hash")
+  expiresAt  DateTime @map("expires_at")
+  lastSeenAt DateTime @default(now()) @map("last_seen_at")
+  ip         String?
+  userAgent  String?  @map("user_agent")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("admin_sessions")
 }
 
 model Account {
@@ -90,11 +122,11 @@ model VerificationToken {
 }
 
 model Category {
-  id     String  @id @default(uuid())
-  name   String
-  slug   String  @unique
-  icon   String?
-  color  String?
+  id    String  @id @default(uuid())
+  name  String
+  slug  String  @unique
+  icon  String?
+  color String?
 
   stories Story[]
 
@@ -113,23 +145,23 @@ model Province {
 }
 
 model Story {
-  id            String      @id @default(uuid())
-  title         String
-  slug          String      @unique
-  summary       String
-  content       String      @db.Text
-  latitude      Float
-  longitude     Float
-  provinceId    String      @map("province_id")
-  categoryId    String      @map("category_id")
-  authorId      String      @map("author_id")
-  status        StoryStatus @default(DRAFT)
-  rejectReason  String?     @map("reject_reason")
-  viewCount     Int         @default(0) @map("view_count")
-  sourceUrl     String?     @map("source_url")
-  isSensitive   Boolean     @default(false) @map("is_sensitive")
-  createdAt     DateTime    @default(now()) @map("created_at")
-  updatedAt     DateTime    @updatedAt @map("updated_at")
+  id           String      @id @default(uuid())
+  title        String
+  slug         String      @unique
+  summary      String
+  content      String      @db.Text
+  latitude     Float
+  longitude    Float
+  provinceId   String      @map("province_id")
+  categoryId   String      @map("category_id")
+  authorId     String      @map("author_id")
+  status       StoryStatus @default(DRAFT)
+  rejectReason String?     @map("reject_reason")
+  viewCount    Int         @default(0) @map("view_count")
+  sourceUrl    String?     @map("source_url")
+  isSensitive  Boolean     @default(false) @map("is_sensitive")
+  createdAt    DateTime    @default(now()) @map("created_at")
+  updatedAt    DateTime    @updatedAt @map("updated_at")
 
   province Province     @relation(fields: [provinceId], references: [id])
   category Category     @relation(fields: [categoryId], references: [id])
@@ -141,6 +173,7 @@ model Story {
   @@index([status])
   @@index([provinceId])
   @@index([categoryId])
+  @@index([createdAt])
   @@map("stories")
 }
 
@@ -180,30 +213,44 @@ model StoryTag {
 }
 
 model Report {
-  id          String       @id @default(uuid())
-  storyId     String       @map("story_id")
-  reporterId  String?      @map("reporter_id")
-  reason      String
-  status      ReportStatus @default(OPEN)
-  createdAt   DateTime     @default(now()) @map("created_at")
+  id           String       @id @default(uuid())
+  storyId      String       @map("story_id")
+  reporterId   String?      @map("reporter_id")
+  /// Details typed by the reporter.
+  reason       String
+  status       ReportStatus @default(OPEN)
+  createdAt    DateTime     @default(now()) @map("created_at")
+  reasonType   ReportReason @default(OTHER) @map("reason_type")
+  /// DISMISSED | STORY_HIDDEN
+  resolution   String?
+  resolvedNote String?      @map("resolved_note")
+  resolvedAt   DateTime?    @map("resolved_at")
+  resolvedById String?      @map("resolved_by_id")
 
-  story    Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
-  reporter User? @relation(fields: [reporterId], references: [id])
+  story      Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  reporter   User? @relation("ReportReporter", fields: [reporterId], references: [id])
+  resolvedBy User? @relation("ReportResolver", fields: [resolvedById], references: [id])
 
   @@index([status])
+  @@index([storyId])
+  @@index([createdAt])
   @@map("reports")
 }
 
 model AuditLog {
-  id        String   @id @default(uuid())
-  adminId   String   @map("admin_id")
-  action    String
-  targetId  String   @map("target_id")
-  note      String?
-  createdAt DateTime @default(now()) @map("created_at")
+  id         String   @id @default(uuid())
+  adminId    String   @map("admin_id")
+  action     String
+  targetId   String   @map("target_id")
+  note       String?
+  createdAt  DateTime @default(now()) @map("created_at")
+  /// STORY | REPORT | USER | ADMIN
+  targetType String   @default("STORY") @map("target_type")
 
   admin User @relation(fields: [adminId], references: [id])
 
   @@index([adminId])
+  @@index([targetId])
+  @@index([createdAt])
   @@map("audit_logs")
 }

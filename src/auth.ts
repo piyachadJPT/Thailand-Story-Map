@@ -46,11 +46,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       const email = user.email;
       if (!email) return false;
 
+      // Backoffice accounts sign in with username + password only.
+      if (email.toLowerCase().endsWith("@admin.local")) return false;
       const existing = await prisma.user.findUnique({
         where: { email },
-        select: { status: true },
+        select: { status: true, passwordHash: true },
       });
       if (existing?.status === UserStatus.BANNED) return false;
+      if (existing?.passwordHash) return false;
       return true;
     },
     async redirect({ url, baseUrl }) {

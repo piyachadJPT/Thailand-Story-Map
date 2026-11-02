@@ -1,7 +1,7 @@
 export const navLinks = [
   { name: "หน้าแรก", href: "/" },
   { name: "สำรวจ", href: "/categories" },
-  { name: "สถานที่แนะนำ", href: "/admin" },
+  { name: "สถานที่แนะนำ", href: "/places" },
   { name: "เรื่องราวใหม่", href: "/contact" },
 ] as const;
 

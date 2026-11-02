@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 import type { ApiErrorBody, ApiResponse, PaginatedResponse, PaginationMeta } from "@/models/types/api";
-import { ApiError } from "./errors";
+import { ApiError, TooManyRequestsError } from "./errors";
 
 export function jsonOk<T>(data: T, init?: { message?: string; status?: number }) {
   const body: ApiResponse<T> = {
@@ -23,6 +23,11 @@ export function jsonError(message: string, status = 400, code?: string) {
 }
 
 export function handleRouteError(error: unknown) {
+  if (error instanceof TooManyRequestsError) {
+    const response = jsonError(error.message, error.status, error.code);
+    response.headers.set("Retry-After", String(error.retryAfter));
+    return response;
+  }
   if (error instanceof ApiError) {
     return jsonError(error.message, error.status, error.code);
   }

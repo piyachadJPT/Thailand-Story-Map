@@ -1,5 +1,6 @@
 import type { StoryMapPoint } from "@/models/types/story";
 import type { Point } from "@/components/story/form/types";
+import { responseErrorMessage } from "@/utils/errorHandler";
 
 /** Builds the POST /api/stories payload from the form (same shape as before). */
 export function buildStoryPayload(
@@ -42,7 +43,7 @@ export async function createStory(
     message?: string;
     data?: { status: string; mapPoint?: StoryMapPoint | null };
   };
-  if (!response.ok) throw new Error(body.message || "บันทึกเรื่องราวไม่สำเร็จ");
+  if (!response.ok) throw new Error(responseErrorMessage(response, body, "บันทึกเรื่องราวไม่สำเร็จ"));
   if (!body.success || !body.data) throw new Error(body.message || "บันทึกเรื่องราวไม่สำเร็จ");
   return body.data;
 }

@@ -1,3 +1,5 @@
+import { responseErrorMessage } from "@/utils/errorHandler";
+
 /** PATCH /api/stories/manage/:id with the edit form's values (unchanged payload). */
 export async function updateStory(
   storyId: string,
@@ -22,6 +24,6 @@ export async function updateStory(
   });
   const body = await response.json();
   if (!response.ok || !body.success || !body.data)
-    throw new Error(body.message || "บันทึกไม่สำเร็จ กรุณาลองใหม่");
+    throw new Error(responseErrorMessage(response, body, "บันทึกไม่สำเร็จ กรุณาลองใหม่"));
   return body.data as { status: string };
 }

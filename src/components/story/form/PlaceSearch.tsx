@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { MapPin, Search } from "lucide-react";
 import type { PlaceHit } from "@/components/map/geocode";
 import { inputClass } from "./fieldStyles";
+import { responseErrorMessage } from "@/utils/errorHandler";
 
 /** Place search with suggestions (/api/geocode). Picking one calls onSelect. */
 export default function PlaceSearch({ onSelect }: { onSelect: (place: PlaceHit) => void }) {
@@ -29,7 +30,7 @@ export default function PlaceSearch({ onSelect }: { onSelect: (place: PlaceHit) 
         void fetch(`/api/geocode?q=${encodeURIComponent(q)}`, { signal: controller.signal })
           .then(async (response) => {
             const body = (await response.json()) as { data?: PlaceHit[]; message?: string };
-            if (!response.ok) throw new Error(body.message || "ค้นหาสถานที่ไม่สำเร็จ");
+            if (!response.ok) throw new Error(responseErrorMessage(response, body, "ค้นหาสถานที่ไม่สำเร็จ"));
             setPlaces(body.data ?? []);
           })
           .catch((cause: unknown) => {

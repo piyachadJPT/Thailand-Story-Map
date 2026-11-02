@@ -1,6 +1,7 @@
 import { createStory, listStories, listMapPoints } from "@/api/stories/service";
 import { jsonOk, jsonPaginated, handleRouteError } from "@/api/common/http";
 import { requireUser } from "@/api/auth/session";
+import { enforceRateLimit } from "@/api/common/ratelimit";
 import { createStorySchema, listStoriesQuerySchema } from "@/models/schemas";
 
 export async function GET(request: Request) {
@@ -24,6 +25,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const author = await requireUser();
+    await enforceRateLimit("story:create", author.id);
     const body = createStorySchema.parse(await request.json());
     const story = await createStory(body, author.id);
     return jsonOk(story, { status: 201, message: "Story submitted" });

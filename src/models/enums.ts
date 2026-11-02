@@ -25,3 +25,13 @@ export const ReportStatus = {
   RESOLVED: "RESOLVED",
 } as const;
 export type ReportStatus = (typeof ReportStatus)[keyof typeof ReportStatus];
+
+export const ReportReason = {
+  FALSE_INFO: "FALSE_INFO",
+  INAPPROPRIATE: "INAPPROPRIATE",
+  COPYRIGHT: "COPYRIGHT",
+  PRIVACY: "PRIVACY",
+  SPAM: "SPAM",
+  OTHER: "OTHER",
+} as const;
+export type ReportReason = (typeof ReportReason)[keyof typeof ReportReason];

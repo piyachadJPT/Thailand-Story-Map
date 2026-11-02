@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { responseErrorMessage } from "@/utils/errorHandler";
 
 /** Selected cover image (local preview) and its upload to /api/upload. */
 export function useCoverImage(initialUrl: string | null = null) {
@@ -25,7 +26,7 @@ export function useCoverImage(initialUrl: string | null = null) {
     const response = await fetch("/api/upload", { method: "POST", body: form });
     const body = await response.json();
     if (!response.ok || !body.success || !body.data?.url)
-      throw new Error(body.message || "อัปโหลดรูปไม่สำเร็จ กรุณาลองใหม่");
+      throw new Error(responseErrorMessage(response, body, "อัปโหลดรูปไม่สำเร็จ กรุณาลองใหม่"));
     const url = body.data.url as string;
     setImage({ file: null, url });
     return url;

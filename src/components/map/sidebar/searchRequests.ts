@@ -1,5 +1,6 @@
 import type { StoryListItem } from "@/models/types/story";
 import type { PlaceHit } from "../geocode";
+import { responseErrorMessage } from "@/utils/errorHandler";
 
 export async function fetchStoryPage({
   q,
@@ -51,6 +52,6 @@ export async function fetchPlaces({
     data?: PlaceHit[];
     message?: string;
   };
-  if (!response.ok) throw new Error(body.message || "ค้นหาสถานที่ไม่สำเร็จ");
+  if (!response.ok) throw new Error(responseErrorMessage(response, body, "ค้นหาสถานที่ไม่สำเร็จ"));
   return body.data ?? [];
 }

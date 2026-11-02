@@ -1,9 +1,11 @@
 import { getMapboxToken } from "@/config/mapbox";
 import SourceLink from "./SourceLink";
 import StoryLocationMap from "./StoryLocationMap";
+import ReportStoryButton from "./report/ReportStoryButton";
 import type { StoryView } from "./storyView";
 
 type StoryFooterProps = {
+  storyId: string;
   title: string;
   tags: { id: string; name: string }[];
   source: StoryView["source"];
@@ -45,6 +47,8 @@ export default function StoryFooter(props: StoryFooterProps) {
         categorySlug={props.categorySlug}
         href={props.mapHref}
       />
+
+      <ReportStoryButton storyId={props.storyId} title={props.title} />
     </footer>
   );
 }

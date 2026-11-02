@@ -1,5 +1,7 @@
 import { jsonError, jsonOk, handleRouteError } from "@/api/common/http";
 import { getMapboxToken } from "@/config/mapbox";
+import { enforceRateLimit } from "@/api/common/ratelimit";
+import { getClientIp } from "@/api/common/request";
 import {
   coordinatePlace,
   searchMapPlaces,
@@ -8,6 +10,7 @@ import {
 
 export async function GET(request: Request) {
   try {
+    await enforceRateLimit("geocode", `ip:${getClientIp(request)}`);
     const params = new URL(request.url).searchParams;
     const query = params.get("q")?.trim() ?? "";
     if (!query) return jsonOk([]);

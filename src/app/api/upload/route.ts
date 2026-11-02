@@ -2,6 +2,7 @@ import { uploadStoryCover } from "@/api/upload/service";
 import { jsonOk, handleRouteError } from "@/api/common/http";
 import { requireUser } from "@/api/auth/session";
 import { ApiError } from "@/api/common/errors";
+import { enforceRateLimit } from "@/api/common/ratelimit";
 import { MAX_IMAGE_BYTES } from "@/lib/storage/images";
 
 export const runtime = "nodejs";
@@ -9,6 +10,7 @@ export const runtime = "nodejs";
 export async function POST(request: Request) {
   try {
     const user = await requireUser();
+    await enforceRateLimit("upload", user.id);
     if (!request.headers.get("content-type")?.startsWith("multipart/form-data"))
       throw new ApiError("กรุณาส่งไฟล์รูปภาพ");
     const length = Number(request.headers.get("content-length"));

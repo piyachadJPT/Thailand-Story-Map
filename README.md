@@ -16,10 +16,58 @@
 
 ---
 
+## Backoffice
+
+ระบบหลังบ้านสำหรับแอดมิน: ตรวจเรื่องก่อน/หลังเผยแพร่ จัดการรายงาน ระงับผู้ใช้ Dashboard และบันทึกการทำงาน
+path ของ backoffice ไม่ได้ลิงก์จากหน้าสาธารณะ — ดูได้ใน `src/config/backoffice.ts`
+
+**ไม่ต้องตั้ง env เพิ่ม** แอดมินล็อกอินด้วยชื่อผู้ใช้ + รหัสผ่าน (session แยกจาก Google login ของผู้ใช้ทั่วไป เก็บในตาราง `admin_sessions`)
+
+### ติดตั้งครั้งแรก
+
+```bash
+npm run db:push        # เพิ่มคอลัมน์/ตารางใหม่ (ทุกฟิลด์ใหม่ nullable หรือมี default)
+npm run admin:create   # สร้างบัญชีแอดมิน (พิมพ์รหัสผ่านแบบซ่อน)
+```
+
+> โปรเจกต์นี้ใช้ `prisma db push` — อย่าใช้ `migrate dev` / `migrate reset` / `--accept-data-loss`
+
+| คำสั่ง | การใช้งาน |
+|--------|-----------|
+| `npm run admin:create` | สร้างแอดมิน (username: a–z, 0–9, `_`, `.` ยาว 3–32 ตัว · รหัสผ่าน ≥ 12 ตัว) |
+| `npm run admin:password` | ตั้งรหัสผ่านใหม่ และออกจากระบบทุกอุปกรณ์ของแอดมินคนนั้น |
+| `npm run admin:disable` | ปิดบัญชีแอดมิน (ไม่ลบแถว เพราะ audit log อ้างถึง) และลบ session ทั้งหมด |
+| `npm run admin:list` | รายชื่อแอดมิน สถานะ วันที่สร้าง ล็อกอินล่าสุด |
+| `npm test` | unit test ทั้งหมด (Prisma จำลอง ไม่แตะฐานข้อมูลจริง) |
+
+รหัสผ่านรับจากการพิมพ์ในเทอร์มินัลเท่านั้น (ไม่รับผ่าน argument หรือ env) และไม่แสดงออกหน้าจอ
+Session แอดมินหมดอายุใน 8 ชั่วโมง หรือเมื่อไม่ใช้งาน 2 ชั่วโมง
+
+### Rate limit
+
+| bucket | ใช้ที่ | ลิมิต | นับตาม |
+|---|---|---|---|
+| `story:create` | `POST /api/stories` | 5 / 1 ชม. | user id |
+| `story:update` | `PATCH /api/stories/manage/[id]` | 30 / 1 ชม. | user id |
+| `upload` | `POST /api/upload` | 20 / 1 ชม. | user id |
+| `report` | `POST /api/reports` | 5 / 1 ชม. | user id หรือ IP |
+| `geocode` | `GET /api/geocode` | 60 / 1 นาที | IP |
+| `admin:login:ip` | `POST /api/admin/login` | 10 / 15 นาที | IP |
+| `admin:login:user` | `POST /api/admin/login` | 5 / 15 นาที | username (ล็อกอินสำเร็จแล้วรีเซ็ต) |
+
+- ตั้ง `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` (แนะนำใน production) → ใช้ Upstash sliding window ร่วมกันทุก instance
+- ไม่ตั้ง → นับในหน่วยความจำของแต่ละ instance (log เตือนครั้งเดียวใน production); ถ้า Upstash ล่มระหว่างรัน จะ fallback เป็นหน่วยความจำ
+- เกินลิมิต → HTTP 429 + header `Retry-After` (วินาที) ฝั่งเว็บแสดง "ส่งบ่อยเกินไป กรุณาลองใหม่ในอีก X นาที"
+
+**ข้อควรรู้เรื่อง IP:** IP อ่านจาก `x-forwarded-for` (ค่าแรก) แล้ว `x-real-ip` ซึ่งเชื่อถือได้เฉพาะเมื่อ deploy หลัง proxy ที่เขียนทับ header เหล่านี้ เช่น Vercel ถ้า deploy เองโดยไม่มี proxy ผู้ใช้ปลอม header ได้ ลิมิตที่นับตาม IP จึงหลบได้
+
+---
+
 ## สารบัญ
 
 | ส่วน | หัวข้อ |
 |------|--------|
+| — | [Backoffice](#backoffice) |
 | A | [เริ่มต้นพัฒนา](#a-เริ่มต้นพัฒนา) |
 | B | [สถานะและ Roadmap](#b-สถานะและ-roadmap) |
 | C | [ผลิตภัณฑ์และผู้ใช้](#c-ผลิตภัณฑ์และผู้ใช้) |
@@ -142,12 +190,13 @@ src/
 | Next.js App Router + TypeScript + Tailwind | ✅ |
 | Layout, Navbar, Footer, Modal พื้นฐาน | ✅ |
 | React Query, Axios, Zustand, Zod | ✅ |
-| Supabase (Postgres + JS client) | 🟡 client/middleware พร้อม; รอ `PROJECT_REF` + `db:push` |
-| PostgreSQL + Prisma (9 ตาราง) | 🟡 schema + `directUrl`; รอ connection strings |
-| Auth (Supabase Auth หรือ Auth.js) | ⬜ Phase 1 |
-| Mapbox + clustering + filter | ⬜ Phase 2 |
-| CRUD Story, R2 upload, Story detail SSR | ⬜ Phase 3 |
-| Admin moderation + Report + rate limit | ⬜ Phase 4 |
+| Supabase (Postgres + JS client) | ✅ ใช้ Postgres + Storage (`src/proxy.ts` แทน middleware) |
+| PostgreSQL + Prisma (`db push`, ไม่มี migrations) | ✅ 12 ตาราง รวม `admin_sessions` |
+| Auth (Auth.js v5 + Google, session แบบ database) | ✅ |
+| Mapbox + filter + ค้นหาสถานที่ | ✅ |
+| สร้าง/แก้เรื่อง, อัปโหลดรูปปก (Supabase Storage), หน้าอ่านเรื่อง SSR | ✅ |
+| Backoffice: ตรวจเรื่อง, รายงาน, ระงับผู้ใช้, Dashboard, audit log | ✅ (ดู [Backoffice](#backoffice)) |
+| ปุ่มรายงานเรื่อง + rate limit (Upstash หรือหน่วยความจำ) | ✅ |
 | Seed content 100+ เรื่อง + SEO polish | ⬜ Phase 5 |
 
 ### B.2 Roadmap รายสัปดาห์

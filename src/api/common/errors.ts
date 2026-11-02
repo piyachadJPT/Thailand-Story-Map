@@ -26,3 +26,18 @@ export class NotFoundError extends ApiError {
     super(message, 404, "NOT_FOUND");
   }
 }
+
+export class ConflictError extends ApiError {
+  constructor(message = "Conflict") {
+    super(message, 409, "CONFLICT");
+  }
+}
+
+export class TooManyRequestsError extends ApiError {
+  constructor(
+    public retryAfter: number,
+    message = "ส่งบ่อยเกินไป กรุณาลองใหม่ภายหลัง",
+  ) {
+    super(message, 429, "RATE_LIMITED");
+  }
+}

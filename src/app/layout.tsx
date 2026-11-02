@@ -7,7 +7,6 @@ import "./globals.css";
 import { siteConfig } from "@/config/site";
 import AuthProvider from "@/front/providers/AuthProvider";
 import ReactQueryProvider from "@/front/providers/ReactQueryProvider";
-import MainLayout from "@/components/layout/MainLayout";
 import { themeInitScript } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
@@ -43,7 +42,7 @@ export default function RootLayout({
         </Script>
         <AuthProvider>
           <ReactQueryProvider>
-            <MainLayout>{children}</MainLayout>
+            {children}
             <ToastContainer
               position="top-right"
               autoClose={3000}

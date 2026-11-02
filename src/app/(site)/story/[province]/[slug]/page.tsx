@@ -67,6 +67,7 @@ export default async function StoryDetailPage({ params }: Props) {
           />
         </StoryReader>
         <StoryFooter
+          storyId={story.id}
           title={story.title}
           tags={story.tags}
           source={view.source}
