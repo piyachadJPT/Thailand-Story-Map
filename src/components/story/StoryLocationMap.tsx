@@ -5,9 +5,9 @@ import type { Root } from "react-dom/client";
 import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { buttonVariants } from "@/components/ui/button";
 import { readTheme } from "@/lib/theme";
-import { categoryIcon } from "@/config/categories";
-import styles from "@/app/story/[province]/[slug]/story.module.css";
+import StoryMapPin from "./StoryMapPin";
 
 type Props = {
   token?: string;
@@ -23,27 +23,6 @@ function formatCoordinate(latitude: number, longitude: number) {
   const latitudeLabel = `${Math.abs(latitude).toFixed(3)}° ${latitude >= 0 ? "N" : "S"}`;
   const longitudeLabel = `${Math.abs(longitude).toFixed(3)}° ${longitude >= 0 ? "E" : "W"}`;
   return `${latitudeLabel} · ${longitudeLabel}`;
-}
-
-function HeroPin({ categorySlug }: { categorySlug: string }) {
-  return (
-    <div className={styles.heroPin}>
-      <svg className={styles.heroPinSvg} viewBox="0 0 48 62" aria-hidden="true">
-        <path
-          d="M24 2.5C13.2 2.5 5 11.2 5 22.2 5 36.4 24 59 24 59s19-22.6 19-36.8C43 11.2 34.8 2.5 24 2.5z"
-          fill="var(--primary)"
-          stroke="var(--card)"
-          strokeWidth="2.5"
-        />
-      </svg>
-      <span className={styles.heroPinIcon}>
-        {createElement(categoryIcon(categorySlug), {
-          size: 16,
-          strokeWidth: 2,
-        })}
-      </span>
-    </div>
-  );
 }
 
 export default function StoryLocationMap({
@@ -113,7 +92,7 @@ export default function StoryLocationMap({
 
       const element = document.createElement("div");
       root = createRoot(element);
-      root.render(createElement(HeroPin, { categorySlug }));
+      root.render(createElement(StoryMapPin, { categorySlug }));
       marker = new mapboxgl.Marker({ element, anchor: "bottom" })
         .setLngLat([longitude, latitude])
         .addTo(map);
@@ -137,30 +116,33 @@ export default function StoryLocationMap({
   }, [token, latitude, longitude, categorySlug]);
 
   return (
-    <div className={styles.articleMap}>
-      <div
-        ref={containerRef}
-        className={styles.articleMapCanvas}
-        aria-hidden="true"
-      />
-      {failed && <div className={styles.mapFallback} aria-hidden="true" />}
-      {failed && (
-        <div className={styles.mapFallbackPin}>
-          <HeroPin categorySlug={categorySlug} />
+    <section
+      aria-label="ตำแหน่งบนแผนที่"
+      className="relative h-80 overflow-hidden rounded-panel bg-muted shadow-lift ring-1 ring-border sm:h-96 [&_.mapboxgl-ctrl-bottom-left]:top-2! [&_.mapboxgl-ctrl-bottom-left]:right-2! [&_.mapboxgl-ctrl-bottom-left]:bottom-auto! [&_.mapboxgl-ctrl-bottom-left]:left-auto!"
+    >
+      {/* Mapbox styles its container as position: relative, so it sits in a positioned wrapper. */}
+      <div aria-hidden="true" className="absolute inset-0">
+        <div ref={containerRef} className="size-full" />
+      </div>
+      {failed ? (
+        <div aria-hidden="true" className="absolute inset-0 grid place-items-center bg-linear-to-br from-muted to-accent">
+          <StoryMapPin categorySlug={categorySlug} />
         </div>
-      )}
-      <div className={styles.mapCard}>
-        <p className={styles.mapCardTitle}>{title}</p>
-        <p className={styles.mapCardPlace}>{provinceName} · ประเทศไทย</p>
-        <p className={styles.mapCardCoords}>
-          {formatCoordinate(latitude, longitude)}
-        </p>
-        <Link href={href} className={styles.mapCardButton}>
-          <MapPin className="h-4 w-4" aria-hidden="true" />
-          ดูตำแหน่งบนแผนที่
-          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+      ) : null}
+      <div className="liquid-glass absolute inset-x-3 bottom-3 z-10 flex flex-wrap items-end justify-between gap-3 rounded-2xl p-4">
+        <div className="min-w-0">
+          <p className="line-clamp-2 font-heading font-semibold text-foreground">{title}</p>
+          <p className="text-xs text-muted-foreground">{provinceName} · ประเทศไทย</p>
+          <p className="mt-0.5 text-xs text-gold-ink tabular-nums">
+            {formatCoordinate(latitude, longitude)}
+          </p>
+        </div>
+        <Link href={href} className={buttonVariants({ size: "sm" })}>
+          <MapPin aria-hidden="true" />
+          ดูบนแผนที่
+          <ArrowUpRight aria-hidden="true" />
         </Link>
       </div>
-    </div>
+    </section>
   );
 }

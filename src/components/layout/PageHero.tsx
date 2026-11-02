@@ -1,30 +1,45 @@
+import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
 
+type PageHeroProps = {
+  eyebrow?: string;
+  title: string;
+  /** Subtitle under the title. */
+  description?: string;
+  /** Optional buttons or links shown under the subtitle. */
+  actions?: React.ReactNode;
+  align?: "start" | "center";
+  className?: string;
+};
+
+/** Page opener: gold eyebrow, large Kanit title, subtitle, actions. */
 export default function PageHero({
   eyebrow,
   title,
   description,
+  actions,
+  align = "start",
   className,
-}: {
-  eyebrow?: string;
-  title: string;
-  description?: string;
-  className?: string;
-}) {
+}: PageHeroProps) {
   return (
-    <header className={cn("mb-10 max-w-2xl", className)}>
-      {eyebrow ? (
-        <p className="mb-3 text-[0.68rem] font-semibold tracking-[0.22em] text-primary uppercase">
-          {eyebrow}
-        </p>
-      ) : null}
-      <h1 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-        {title}
-      </h1>
-      {description ? (
-        <p className="mt-3 text-[0.95rem] leading-relaxed text-muted-foreground">
-          {description}
-        </p>
+    <header
+      className={cn(
+        "mb-10 flex max-w-3xl flex-col gap-6 sm:mb-14",
+        align === "center" && "mx-auto items-center",
+        className
+      )}
+    >
+      <SectionHeading
+        as="h1"
+        size="lg"
+        align={align}
+        eyebrow={eyebrow}
+        title={title}
+        description={description}
+        className="gap-4"
+      />
+      {actions ? (
+        <div className="flex flex-wrap items-center gap-3">{actions}</div>
       ) : null}
     </header>
   );

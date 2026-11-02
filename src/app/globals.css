@@ -18,41 +18,59 @@
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-kanit), sans-serif;
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-kanit), sans-serif;
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
   --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Gold leaf: `gold` for fills and hairlines, `gold-ink` for readable text. */
   --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
+  --color-gold-foreground: var(--gold-foreground);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+
+  --color-cat-ghost: var(--cat-ghost);
+  --color-cat-history: var(--cat-history);
+  --color-cat-legend: var(--cat-legend);
+  --color-cat-crime: var(--cat-crime);
+  --color-cat-local: var(--cat-local);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -60,10 +78,192 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  /* Floating panels: `rounded-panel` */
+  --radius-panel: 1.75rem;
+
+  /* Featured map pin: `animate-pin-ping` (color comes from --pin-color). */
+  --animate-pin-ping: pin-ping 1.4s ease-out 3;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-spin-slow: spin 12s linear infinite;
+  @keyframes pin-ping {
+    0% {
+      box-shadow:
+        var(--elevation-lift),
+        0 0 0 3px color-mix(in srgb, var(--pin-color) 60%, transparent);
+    }
+    100% {
+      box-shadow:
+        var(--elevation-lift),
+        0 0 0 18px transparent;
+    }
+  }
+
+  --shadow-soft: var(--elevation-soft);
+  --shadow-lift: var(--elevation-lift);
 }
 
-body {
-  font-family: var(--font-kanit), sans-serif;
+/* ── Light: warm paper, ink, gold leaf ── */
+:root {
+  color-scheme: light;
+  --radius: 0.625rem;
+
+  --background: #f6f3ec;
+  --foreground: #12161f;
+  --card: #ffffff;
+  --card-foreground: #12161f;
+  --popover: #ffffff;
+  --popover-foreground: #12161f;
+  --primary: #12161f;
+  --primary-foreground: #f6f3ec;
+  --secondary: #ece7dc;
+  --secondary-foreground: #12161f;
+  --muted: #efebe2;
+  --muted-foreground: #6b6f78;
+  --accent: #efe4cc;
+  --accent-foreground: #12161f;
+  --destructive: #d92d20;
+  --destructive-foreground: #ffffff;
+  --border: rgb(18 22 31 / 10%);
+  --input: rgb(18 22 31 / 14%);
+  --ring: #12161f;
+
+  --gold: #c8963e;
+  --gold-ink: #85601f;
+  --gold-foreground: #12161f;
+  --success: #1d7550;
+  --warning: #93560a;
+
+  --cat-ghost: #7c5cff;
+  --cat-history: #c8963e;
+  --cat-legend: #2fa58a;
+  --cat-crime: #e0475b;
+  --cat-local: #3b8edb;
+
+  --chart-1: var(--cat-ghost);
+  --chart-2: var(--cat-history);
+  --chart-3: var(--cat-legend);
+  --chart-4: var(--cat-crime);
+  --chart-5: var(--cat-local);
+
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  --elevation-soft:
+    0 1px 2px rgb(18 22 31 / 5%), 0 12px 32px -16px rgb(18 22 31 / 18%);
+  --elevation-lift:
+    0 2px 6px rgb(18 22 31 / 6%), 0 28px 60px -24px rgb(18 22 31 / 28%);
+
+  /* Glass reads from --card, so it follows the theme automatically. */
+  --glass-fill: color-mix(in srgb, var(--card) 60%, transparent);
+  --glass-field: color-mix(in srgb, var(--card) 70%, transparent);
+  --glass-stroke: rgb(255 255 255 / 70%);
+  --glass-highlight: rgb(255 255 255 / 85%);
+  --glass-shadow: var(--elevation-lift);
+}
+
+/* ── Dark: night sky, moonlit ink, warm gold ── */
+.dark,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #0e1117;
+  --foreground: #e6e3dc;
+  --card: #171c26;
+  --card-foreground: #e6e3dc;
+  --popover: #171c26;
+  --popover-foreground: #e6e3dc;
+  --primary: #e6e3dc;
+  --primary-foreground: #0e1117;
+  --secondary: #1f2531;
+  --secondary-foreground: #e6e3dc;
+  --muted: #1b212c;
+  --muted-foreground: #9ba1ac;
+  --accent: rgb(212 170 94 / 12%);
+  --accent-foreground: #e6e3dc;
+  --destructive: #f26b60;
+  --destructive-foreground: #0e1117;
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 12%);
+  --ring: #e6e3dc;
+  --gold: #d4aa5e;
+  --gold-ink: #d4aa5e;
+  --gold-foreground: #0e1117;
+  --success: #5fcb9b;
+  --warning: #e9b65c;
+  --elevation-soft: 0 1px 2px rgb(0 0 0 / 30%), 0 12px 32px -16px rgb(0 0 0 / 60%);
+  --elevation-lift: 0 2px 6px rgb(0 0 0 / 30%), 0 28px 60px -24px rgb(0 0 0 / 70%);
+  --glass-stroke: rgb(255 255 255 / 10%);
+  --glass-highlight: rgb(255 255 255 / 8%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light) {
+    color-scheme: dark;
+    --background: #0e1117;
+    --foreground: #e6e3dc;
+    --card: #171c26;
+    --card-foreground: #e6e3dc;
+    --popover: #171c26;
+    --popover-foreground: #e6e3dc;
+    --primary: #e6e3dc;
+    --primary-foreground: #0e1117;
+    --secondary: #1f2531;
+    --secondary-foreground: #e6e3dc;
+    --muted: #1b212c;
+    --muted-foreground: #9ba1ac;
+    --accent: rgb(212 170 94 / 12%);
+    --accent-foreground: #e6e3dc;
+    --destructive: #f26b60;
+    --destructive-foreground: #0e1117;
+    --border: rgb(255 255 255 / 10%);
+    --input: rgb(255 255 255 / 12%);
+    --ring: #e6e3dc;
+    --gold: #d4aa5e;
+    --gold-ink: #d4aa5e;
+    --gold-foreground: #0e1117;
+    --success: #5fcb9b;
+    --warning: #e9b65c;
+    --elevation-soft:
+      0 1px 2px rgb(0 0 0 / 30%), 0 12px 32px -16px rgb(0 0 0 / 60%);
+    --elevation-lift:
+      0 2px 6px rgb(0 0 0 / 30%), 0 28px 60px -24px rgb(0 0 0 / 70%);
+    --glass-stroke: rgb(255 255 255 / 10%);
+    --glass-highlight: rgb(255 255 255 / 8%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-kanit), sans-serif;
+    /* Thai stacks vowels and tone marks above and below; give them room. */
+    line-height: 1.75;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-heading {
+    font-family: var(--font-heading);
+    line-height: 1.35;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--gold) 30%, transparent);
+    color: var(--foreground);
+  }
 }
 
 /* Thin scrollbars that follow the theme. */
@@ -78,7 +278,8 @@ body {
   height: 8px;
 }
 
-*::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-corner {
   background: transparent;
 }
 
@@ -90,191 +291,23 @@ body {
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: color-mix(in srgb, var(--primary) 70%, transparent);
+  background-color: color-mix(in srgb, var(--gold) 70%, transparent);
 }
 
-*::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
-/* Light: black accents, neutral surfaces, and restrained gold details */
-:root {
-  color-scheme: light;
-  --background: #f5f5f5;
-  --foreground: #171717;
-  --card: #fafafa;
-  --card-foreground: #171717;
-  --popover: #fafafa;
-  --popover-foreground: #171717;
-  --primary: #171717;
-  --primary-foreground: #ffffff;
-  --secondary: #e5e5e5;
-  --secondary-foreground: #262626;
-  --muted: #eeeeee;
-  --muted-foreground: #666666;
-  --accent: #e5e5e5;
-  --accent-foreground: #262626;
-  --destructive: #d92d20;
-  --border: rgb(23 23 23 / 11%);
-  --input: rgb(23 23 23 / 13%);
-  --ring: #171717;
-  --gold: #c58b35;
-  --chart-1: #171717;
-  --chart-2: #c58b35;
-  --chart-3: #354f65;
-  --chart-4: #737373;
-  --chart-5: #b5b5b5;
-  --radius: 0.95rem;
-  --sidebar: #f5f5f5;
-  --sidebar-foreground: #171717;
-  --sidebar-primary: #171717;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #e5e5e5;
-  --sidebar-accent-foreground: #262626;
-  --sidebar-border: rgb(23 23 23 / 12%);
-  --sidebar-ring: #171717;
-  --glass-fill: color-mix(in srgb, #fafafa 54%, transparent);
-  --glass-sheen: linear-gradient(
-    165deg,
-    rgb(255 255 255 / 82%) 0%,
-    rgb(245 245 245 / 24%) 32%,
-    rgb(255 255 255 / 0%) 58%
-  );
-  --glass-stroke: rgb(255 255 255 / 72%);
-  --glass-highlight: rgb(255 255 255 / 94%);
-  --glass-shade: rgb(23 23 23 / 7%);
-  --glass-edge: rgb(255 255 255 / 54%);
-  --glass-shadow:
-    0 20px 52px -24px rgb(23 23 23 / 26%), 0 3px 12px -5px rgb(23 23 23 / 12%);
-  --glass-field: color-mix(in srgb, #fafafa 64%, transparent);
-}
-
-/* Dark: soft charcoal surfaces with subdued neutral glass edges */
-.dark,
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --background: #151515;
-  --foreground: #dededb;
-  --card: #1e1e1e;
-  --card-foreground: #dededb;
-  --popover: #1e1e1e;
-  --popover-foreground: #dededb;
-  --primary: #c5c5c0;
-  --primary-foreground: #1e1e1e;
-  --secondary: #292929;
-  --secondary-foreground: #dededb;
-  --muted: #292929;
-  --muted-foreground: #a3a3a0;
-  --accent: rgb(197 197 192 / 10%);
-  --accent-foreground: #dededb;
-  --destructive: #e58b80;
-  --border: rgb(255 255 255 / 10%);
-  --input: rgb(255 255 255 / 10%);
-  --ring: #c5c5c0;
-  --gold: #c9a76a;
-  --chart-1: #c5c5c0;
-  --chart-2: #c9a76a;
-  --chart-3: #91abc4;
-  --chart-4: #a3a3a3;
-  --chart-5: #bcbcb7;
-  --sidebar: #151515;
-  --sidebar-foreground: #dededb;
-  --sidebar-primary: #c5c5c0;
-  --sidebar-primary-foreground: #1e1e1e;
-  --sidebar-accent: rgb(197 197 192 / 10%);
-  --sidebar-accent-foreground: #dededb;
-  --sidebar-border: rgb(255 255 255 / 6%);
-  --sidebar-ring: #c5c5c0;
-  --glass-fill: color-mix(in srgb, #1c1c1c 92%, transparent);
-  --glass-sheen: linear-gradient(
-    165deg,
-    rgb(255 255 255 / 10%) 0%,
-    rgb(255 255 255 / 2%) 28%,
-    rgb(255 255 255 / 0%) 52%
-  );
-  --glass-stroke: rgb(255 255 255 / 10%);
-  --glass-highlight: rgb(255 255 255 / 10%);
-  --glass-shade: rgb(0 0 0 / 22%);
-  --glass-edge: rgb(255 255 255 / 6%);
-  --glass-shadow:
-    0 22px 54px -18px rgb(0 0 0 / 36%), 0 2px 8px -4px rgb(0 0 0 / 24%);
-  --glass-field: rgb(255 255 255 / 5%);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]):not(.light) {
-    color-scheme: dark;
-    --background: #151515;
-    --foreground: #dededb;
-    --card: #1e1e1e;
-    --card-foreground: #dededb;
-    --popover: #1e1e1e;
-    --popover-foreground: #dededb;
-    --primary: #c5c5c0;
-    --primary-foreground: #1e1e1e;
-    --secondary: #292929;
-    --secondary-foreground: #dededb;
-    --muted: #292929;
-    --muted-foreground: #a3a3a0;
-    --accent: rgb(197 197 192 / 10%);
-    --accent-foreground: #dededb;
-    --destructive: #e58b80;
-    --border: rgb(255 255 255 / 10%);
-    --input: rgb(255 255 255 / 10%);
-    --ring: #c5c5c0;
-    --gold: #c9a76a;
-    --chart-1: #c5c5c0;
-    --chart-2: #c9a76a;
-    --chart-3: #91abc4;
-    --chart-4: #a3a3a3;
-    --chart-5: #bcbcb7;
-    --sidebar: #151515;
-    --sidebar-foreground: #dededb;
-    --sidebar-primary: #c5c5c0;
-    --sidebar-primary-foreground: #1e1e1e;
-    --sidebar-accent: rgb(197 197 192 / 10%);
-    --sidebar-accent-foreground: #dededb;
-    --sidebar-border: rgb(255 255 255 / 6%);
-    --sidebar-ring: #c5c5c0;
-    --glass-fill: color-mix(in srgb, #1c1c1c 92%, transparent);
-    --glass-sheen: linear-gradient(
-      165deg,
-      rgb(255 255 255 / 10%) 0%,
-      rgb(255 255 255 / 2%) 28%,
-      rgb(255 255 255 / 0%) 52%
-    );
-    --glass-stroke: rgb(255 255 255 / 10%);
-    --glass-highlight: rgb(255 255 255 / 10%);
-    --glass-shade: rgb(0 0 0 / 22%);
-    --glass-edge: rgb(255 255 255 / 6%);
-    --glass-shadow:
-      0 22px 54px -18px rgb(0 0 0 / 36%), 0 2px 8px -4px rgb(0 0 0 / 24%);
-    --glass-field: rgb(255 255 255 / 5%);
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+/* Respect reduced motion everywhere, including utility animations. */
+@media (prefers-reduced-motion: reduce) {
   html {
-    @apply font-sans;
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
-  ::selection {
-    background: color-mix(in srgb, var(--primary) 26%, transparent);
-    color: var(--foreground);
-  }
-  h1,
-  h2,
-  h3,
-  .font-heading {
-    font-family: var(--font-heading);
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
+
 
 /* ── Custom Keyframes ── */
 @keyframes float {
@@ -384,7 +417,12 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #171717 0%, #171717 72%, #c58b35 100%);
+  background: linear-gradient(
+    135deg,
+    var(--foreground) 0%,
+    var(--foreground) 68%,
+    var(--gold) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -397,33 +435,21 @@ body {
   background-clip: border-box;
 }
 
-.dark .text-gradient,
-:root[data-theme="dark"] .text-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--foreground) 0%,
-    var(--primary) 70%,
-    var(--gold) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Floating material: clear fill, heavy blur, light only along the top lip. */
+/*
+ * Floating material: ~60% card fill, xl blur, 1px light border, soft shadow.
+ * A faint top sheen gives the edge a lit, gold-leaf-adjacent lip.
+ */
 .liquid-glass,
 .glass-card,
 .glass-card-light,
 .story-map-popup .mapboxgl-popup-content {
   isolation: isolate;
   background-color: var(--glass-fill);
-  backdrop-filter: blur(72px) saturate(180%);
-  -webkit-backdrop-filter: blur(72px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
   border: 1px solid var(--glass-stroke);
   box-shadow:
     inset 0 1px 0 0 var(--glass-highlight),
-    inset 0 -1px 0 0 var(--glass-shade),
-    inset 0 0 0 0.5px var(--glass-edge),
     var(--glass-shadow);
   color: var(--foreground);
 }
@@ -444,13 +470,28 @@ body {
   z-index: -1;
   border-radius: inherit;
   pointer-events: none;
-  background: var(--glass-sheen);
+  background: linear-gradient(
+    170deg,
+    var(--glass-highlight) 0%,
+    transparent 38%
+  );
+  opacity: 0.5;
+}
+
+/* Browsers without backdrop blur get a solid, readable surface. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .liquid-glass,
+  .glass-card,
+  .glass-card-light,
+  .story-map-popup .mapboxgl-popup-content {
+    background-color: var(--card);
+  }
 }
 
 .liquid-field {
   background-color: var(--glass-field);
-  border: 0.5px solid color-mix(in srgb, var(--foreground) 10%, transparent);
-  box-shadow: inset 0 1px 1px rgb(0 0 0 / 6%);
+  border: 1px solid var(--input);
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 4%);
   transition:
     box-shadow 0.2s ease,
     border-color 0.2s ease,
@@ -459,10 +500,10 @@ body {
 
 .liquid-field:focus,
 .liquid-field:focus-visible {
-  border-color: color-mix(in srgb, var(--primary) 45%, transparent);
+  border-color: color-mix(in srgb, var(--gold) 70%, transparent);
   box-shadow:
     inset 0 1px 1px rgb(0 0 0 / 4%),
-    0 0 0 3px color-mix(in srgb, var(--primary) 16%, transparent);
+    0 0 0 3px color-mix(in srgb, var(--gold) 22%, transparent);
 }
 
 .neon-glow {
@@ -483,104 +524,33 @@ body {
   opacity: 0;
 }
 
-.story-map-marker {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  width: 44px;
-  height: 52px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  /* Mapbox owns the outer transform used to position the marker. */
-}
-
-.story-map-marker-symbol {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border: 3px solid white;
-  border-radius: 50%;
-  background: var(--marker-color, var(--primary));
-  font-size: 22px;
-  line-height: 1;
-  box-shadow:
-    0 4px 12px rgb(0 0 0 / 30%),
-    0 0 0 3px color-mix(in srgb, var(--marker-color) 25%, transparent);
-  transition:
-    scale 160ms ease,
-    box-shadow 160ms ease;
-}
-
-.story-map-marker-symbol::after {
-  content: "";
-  position: absolute;
-  top: calc(100% + 2px);
-  left: 50%;
-  transform: translateX(-50%);
-  border: 7px solid transparent;
-  border-top-color: var(--marker-color, var(--primary));
-}
-
-.story-map-marker:hover .story-map-marker-symbol,
-.story-map-marker:focus-visible .story-map-marker-symbol,
-.story-map-marker[data-active] .story-map-marker-symbol {
-  scale: 1.12;
-  box-shadow:
-    0 6px 18px rgb(0 0 0 / 35%),
-    0 0 0 5px color-mix(in srgb, var(--marker-color) 35%, transparent);
-}
-
-.story-map-marker:focus-visible {
-  outline: 3px solid var(--foreground);
-  outline-offset: 4px;
-  border-radius: 50%;
-}
-
-.story-map-marker[data-featured] .story-map-marker-symbol {
-  animation: story-marker-highlight 1.4s ease-out 3;
-}
-
-@keyframes story-marker-highlight {
-  0% {
-    box-shadow:
-      0 4px 12px rgb(0 0 0 / 30%),
-      0 0 0 3px color-mix(in srgb, var(--marker-color) 60%, transparent);
-  }
-  100% {
-    box-shadow:
-      0 4px 12px rgb(0 0 0 / 30%),
-      0 0 0 18px transparent;
-  }
-}
-
+/* Mapbox popup frame (the card inside is Tailwind: StoryPreviewCard). */
 .story-map-popup .mapboxgl-popup-content {
-  padding: 20px;
-  border-radius: 22px;
+  /* Reading surface: more opaque than regular glass so text stays crisp. */
+  background-color: color-mix(in srgb, var(--card) 88%, transparent);
+  padding: 0;
+  border-radius: var(--radius-panel);
   font-family: var(--font-kanit), sans-serif;
 }
 
 .story-map-popup.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
 .story-map-popup.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
 .story-map-popup.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
-  border-top-color: var(--glass-fill);
+  border-top-color: color-mix(in srgb, var(--card) 88%, transparent);
 }
 .story-map-popup.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
 .story-map-popup.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
 .story-map-popup.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
-  border-bottom-color: var(--glass-fill);
+  border-bottom-color: color-mix(in srgb, var(--card) 88%, transparent);
 }
 .story-map-popup.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
-  border-right-color: var(--glass-fill);
+  border-right-color: color-mix(in srgb, var(--card) 88%, transparent);
 }
 .story-map-popup.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
-  border-left-color: var(--glass-fill);
+  border-left-color: color-mix(in srgb, var(--card) 88%, transparent);
 }
 
+/* Built-in close button (used by the searched-place popup). */
 .story-map-popup .mapboxgl-popup-close-button {
   top: 10px;
   right: 10px;
@@ -593,121 +563,69 @@ body {
   color: var(--foreground);
   font-size: 22px;
 }
-
 .story-map-popup .mapboxgl-popup-close-button:hover {
-  background: color-mix(in srgb, var(--primary) 15%, transparent);
+  background: color-mix(in srgb, var(--gold) 18%, transparent);
 }
-.story-map-popup .mapboxgl-popup-close-button:focus-visible,
-.story-map-preview-link:focus-visible {
-  outline: 2px solid var(--primary);
+.story-map-popup .mapboxgl-popup-close-button:focus-visible {
+  outline: 2px solid var(--ring);
   outline-offset: 3px;
 }
 
-.story-map-preview {
-  max-height: min(380px, 50dvh);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: none;
-}
-
-.story-map-preview:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: -2px;
-  border-radius: 12px;
-}
-
-.story-map-preview::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
-}
-.story-map-preview-category {
-  width: fit-content;
-  max-width: calc(100% - 28px);
-  margin-bottom: 12px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--primary) 10%, transparent);
-  padding: 5px 10px;
-  color: var(--primary);
-  font-size: 12px;
-  font-weight: 600;
-}
-.story-map-preview-title {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-.story-map-preview-location {
-  margin-top: 6px;
-  color: var(--muted-foreground);
-  font-size: 12px;
-}
-.story-map-preview-summary {
-  margin-top: 12px;
-  font-size: 14px;
-  line-height: 1.8;
-  white-space: pre-line;
-  overflow-wrap: anywhere;
-}
-.story-map-preview-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  margin-top: 16px;
-  border-radius: 12px;
-  background: var(--primary);
-  padding: 10px 14px;
-  color: var(--primary-foreground);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-}
-.story-map-preview-link:hover {
-  filter: brightness(1.1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .story-map-marker-symbol {
-    transition: none;
-  }
-  .story-map-marker[data-featured] .story-map-marker-symbol {
-    animation: none;
-  }
-}
-
+/* Below lg, lift map controls (and the Mapbox logo) above the bottom bar. */
 .story-map .mapboxgl-ctrl-bottom-right {
   margin: 0 0.75rem 5.5rem 0;
+}
+.story-map .mapboxgl-ctrl-bottom-left {
+  margin: 0 0 4.5rem 0;
 }
 
 @media (min-width: 1024px) {
   .story-map .mapboxgl-ctrl-bottom-right {
     margin: 0 0.75rem 1rem 0;
   }
+  .story-map .mapboxgl-ctrl-bottom-left {
+    margin: 0;
+  }
 }
 
 .bg-mesh {
   background:
-    radial-gradient(ellipse at 14% 8%, rgb(23 23 23 / 8%) 0%, transparent 46%),
+    radial-gradient(
+      ellipse at 14% 8%,
+      color-mix(in srgb, var(--foreground) 7%, transparent) 0%,
+      transparent 46%
+    ),
     radial-gradient(
       ellipse at 88% 4%,
-      rgb(197 139 53 / 9%) 0%,
+      color-mix(in srgb, var(--gold) 12%, transparent) 0%,
       transparent 42%
     ),
-    radial-gradient(ellipse at 50% 100%, rgb(23 23 23 / 5%) 0%, transparent 48%);
+    radial-gradient(
+      ellipse at 50% 100%,
+      color-mix(in srgb, var(--foreground) 5%, transparent) 0%,
+      transparent 48%
+    );
 }
 
+/* Night-journey canvas: ink vignette with a low gold moon in the corner. */
 .page-canvas {
   background-color: var(--background);
   background-image:
-    radial-gradient(ellipse at 12% 0%, rgb(23 23 23 / 7%) 0%, transparent 42%),
+    radial-gradient(
+      ellipse at 12% 0%,
+      color-mix(in srgb, var(--foreground) 6%, transparent) 0%,
+      transparent 42%
+    ),
     radial-gradient(
       ellipse at 92% 8%,
-      rgb(197 139 53 / 8%) 0%,
+      color-mix(in srgb, var(--gold) 12%, transparent) 0%,
       transparent 40%
     ),
-    radial-gradient(ellipse at 50% 120%, rgb(23 23 23 / 5%) 0%, transparent 46%);
+    radial-gradient(
+      ellipse at 50% 120%,
+      color-mix(in srgb, var(--foreground) 5%, transparent) 0%,
+      transparent 46%
+    );
 }
 
 .page-canvas::before {

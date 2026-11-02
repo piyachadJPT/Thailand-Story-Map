@@ -2,8 +2,8 @@
 
 import { ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import Navbar from "../share/global/navbar";
-import Footer from "../share/global/footer";
+import Navbar from "../share/global/navbar/Navbar";
+import Footer from "../share/global/footer/Footer";
 import { cn } from "@/lib/utils";
 
 interface MainLayoutProps {

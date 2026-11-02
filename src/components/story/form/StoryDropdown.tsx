@@ -18,6 +18,7 @@ type StoryDropdownProps = {
   icon: ReactNode;
 };
 
+/** Searchable single-select (Base UI Combobox) used by category and province. */
 export default function StoryDropdown({
   id,
   label,
@@ -47,54 +48,45 @@ export default function StoryDropdown({
         id={id}
         aria-label={label}
         disabled={options.length === 0}
-        className="liquid-field text-foreground focus-visible:ring-primary/50 hover:bg-primary/5 flex min-h-12 w-full items-center gap-3 rounded-xl px-3 text-left text-base transition-colors outline-none focus-visible:ring-2 disabled:opacity-50 sm:text-sm"
+        className="liquid-field flex min-h-12 w-full items-center gap-3 rounded-2xl px-2 text-left text-base text-foreground transition-colors outline-none hover:border-gold/50 disabled:opacity-50 sm:text-sm"
       >
         <span
-          className="bg-primary/10 text-primary flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
           aria-hidden="true"
+          className="grid size-8 shrink-0 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold-ink"
         >
           {icon}
         </span>
-        <span
-          className={cn(
-            "min-w-0 flex-1 truncate",
-            !selected && "text-muted-foreground"
-          )}
-        >
+        <span className={cn("min-w-0 flex-1 truncate", !selected && "text-muted-foreground")}>
           <Combobox.Value placeholder={placeholder} />
         </span>
         <ChevronDown
+          aria-hidden="true"
           className={cn(
-            "text-muted-foreground h-4 w-4 shrink-0 transition-transform motion-reduce:transition-none",
+            "mr-2 size-4 shrink-0 text-muted-foreground transition-transform motion-reduce:transition-none",
             open && "rotate-180"
           )}
-          aria-hidden="true"
         />
       </Combobox.Trigger>
       <Combobox.Portal>
-        <Combobox.Positioner
-          sideOffset={8}
-          align="start"
-          className="z-[80] outline-none"
-        >
+        <Combobox.Positioner sideOffset={8} align="start" className="z-80 outline-none">
           <Combobox.Popup
-            className="border-border bg-popover text-popover-foreground w-[var(--anchor-width)] max-w-[calc(100vw-1rem)] overflow-hidden rounded-2xl border p-2 shadow-xl shadow-black/10 outline-none"
+            className="w-(--anchor-width) max-w-[calc(100vw-1rem)] overflow-hidden rounded-2xl border border-border bg-popover p-2 text-popover-foreground shadow-lift outline-none"
             onKeyDown={(event) => {
               if (event.key === "Escape") event.stopPropagation();
             }}
           >
-            <div className="border-border relative border-b pb-2">
+            <div className="relative border-b border-border pb-2">
               <Search
-                className="text-muted-foreground pointer-events-none absolute top-3.5 left-3 h-4 w-4"
                 aria-hidden="true"
+                className="pointer-events-none absolute top-3.5 left-3.5 size-4 text-gold-ink"
               />
               <Combobox.Input
                 aria-label={searchPlaceholder}
                 placeholder={searchPlaceholder}
-                className="bg-primary/5 text-foreground placeholder:text-muted-foreground focus:ring-primary/30 h-11 w-full rounded-xl pr-3 pl-9 text-base outline-none focus:ring-2 sm:text-sm"
+                className="liquid-field h-11 w-full rounded-full pr-3 pl-10 text-base text-foreground outline-none placeholder:text-muted-foreground sm:text-sm"
               />
             </div>
-            <Combobox.Empty className="text-muted-foreground px-3 py-6 text-center text-sm empty:hidden">
+            <Combobox.Empty className="px-3 py-6 text-center text-sm text-muted-foreground empty:hidden">
               ไม่พบรายการ ลองพิมพ์ชื่อใหม่
             </Combobox.Empty>
             <Combobox.List className="max-h-[min(16rem,calc(var(--available-height)-7rem))] scroll-py-1 space-y-1 overflow-y-auto overscroll-contain py-2">
@@ -102,16 +94,16 @@ export default function StoryDropdown({
                 <Combobox.Item
                   key={option.id}
                   value={option}
-                  className="text-foreground data-highlighted:bg-primary/10 data-highlighted:text-primary data-selected:bg-primary/10 flex min-h-11 cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-2 text-sm transition-colors outline-none"
+                  className="flex min-h-11 cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-2 text-sm text-foreground transition-colors outline-none data-highlighted:bg-accent data-selected:font-medium"
                 >
                   <span className="min-w-0 flex-1">{option.name}</span>
-                  <Combobox.ItemIndicator className="text-primary flex h-5 w-5 shrink-0 items-center justify-center">
-                    <Check className="h-4 w-4" aria-hidden="true" />
+                  <Combobox.ItemIndicator className="grid size-5 shrink-0 place-items-center text-gold-ink">
+                    <Check aria-hidden="true" className="size-4" />
                   </Combobox.ItemIndicator>
                 </Combobox.Item>
               )}
             </Combobox.List>
-            <p className="border-border text-muted-foreground border-t px-3 pt-2 pb-1 text-xs">
+            <p className="border-t border-border px-3 pt-2 pb-1 text-xs text-muted-foreground">
               {options.length} รายการให้เลือก
             </p>
           </Combobox.Popup>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
+import { IconButton } from "@/components/ui/icon-button";
 import { applyTheme, readTheme, type ThemeMode } from "@/lib/theme";
 
 export default function ThemeToggle() {
@@ -22,13 +23,13 @@ export default function ThemeToggle() {
   const next = mode === "dark" ? "light" : "dark";
 
   return (
-    <button
-      type="button"
-      className="icon-well inline-flex h-8 w-8"
+    <IconButton
+      size="sm"
+      className="text-muted-foreground hover:text-gold-ink"
       aria-label={next === "dark" ? "เปลี่ยนเป็นโหมดมืด" : "เปลี่ยนเป็นโหมดสว่าง"}
       onClick={() => applyTheme(next)}
     >
-      {mode === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-    </button>
+      {mode === "dark" ? <Sun /> : <Moon />}
+    </IconButton>
   );
 }
