@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Compass, Map } from "lucide-react";
 import MainLayout from "@/components/layout/MainLayout";
@@ -5,6 +6,9 @@ import LostPinIllustration from "@/components/layout/LostPinIllustration";
 import PageContainer from "@/components/layout/PageContainer";
 import { buttonVariants } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
+
+// Next.js adds <meta name="robots" content="noindex"> to 404 responses itself.
+export const metadata: Metadata = { title: "ไม่พบหน้านี้" };
 
 export default function NotFound() {
   // Rendered outside the (site) layout, so it brings its own navbar and footer.
@@ -19,7 +23,7 @@ export default function NotFound() {
           text="ไม่พบหน้านี้ — หน้าที่ต้องการไม่มีอยู่ หรือถูกย้ายไปแล้ว กลับไปสำรวจเรื่องบนแผนที่ได้"
           action={
             <>
-              <Link href="/" className={buttonVariants()}>
+              <Link href="/" prefetch={false} className={buttonVariants()}>
                 <Map aria-hidden="true" />
                 กลับหน้าแรก
               </Link>

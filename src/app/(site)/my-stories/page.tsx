@@ -9,9 +9,10 @@ import MyStoriesList from "@/components/story/MyStoriesList";
 import type { MyStory } from "@/components/story/myStory";
 import { buttonVariants } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
+import { privatePageRobots } from "@/lib/seo/metadata";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "เรื่องราวของฉัน" };
+export const metadata = { title: "เรื่องราวของฉัน", robots: privatePageRobots };
 
 export default async function MyStoriesPage() {
   const user = await getSessionUser();

@@ -24,7 +24,7 @@ export default function ContributeCta() {
       />
       <div className="flex flex-wrap items-center gap-3">
         <WriteStoryButton isHome={false} className="h-12 shadow-soft" />
-        <Link href="/" className={buttonVariants({ variant: "ghost" })}>
+        <Link href="/" prefetch={false} className={buttonVariants({ variant: "ghost" })}>
           กลับไปที่แผนที่
         </Link>
       </div>

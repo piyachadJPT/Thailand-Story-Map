@@ -50,7 +50,7 @@ export default function LoginShowcase() {
       <div className="relative max-w-sm">
         <p className="text-gold-ink inline-flex items-center gap-2 text-xs font-medium tracking-widest">
           <span className="bg-gold h-px w-6" />
-          {siteConfig.name}
+          {siteConfig.shortName}
         </p>
         <p className="font-heading text-foreground mt-3 text-xl font-semibold sm:text-2xl">
           {siteConfig.description}

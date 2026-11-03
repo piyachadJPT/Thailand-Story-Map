@@ -1,4 +1,5 @@
 import { storyCategories } from "@/config/categories";
+import { categoryPath } from "@/lib/seo/url";
 import CategoryCard from "./CategoryCard";
 
 /**
@@ -22,7 +23,7 @@ export default function CategoryGrid() {
             slug={category.slug}
             name={category.name}
             hint={category.hint}
-            href="/"
+            href={categoryPath(category.slug)}
             feature={index === 0}
           />
         </li>

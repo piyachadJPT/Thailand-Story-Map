@@ -4,6 +4,7 @@ import { assertSameOrigin } from "@/api/common/request";
 import { getAdminStory, moderateStory } from "@/api/admin/stories";
 import { requireAdminSession } from "@/api/admin/session";
 import { moderateStorySchema } from "@/models/schemas/admin";
+import { revalidateStoriesWhere } from "@/lib/seo/revalidateStories";
 
 type Params = { params: Promise<{ id: string }> };
 const idSchema = z.string().uuid("รหัสเรื่องไม่ถูกต้อง");
@@ -24,7 +25,9 @@ export async function PATCH(request: Request, { params }: Params) {
     assertSameOrigin(request);
     const id = idSchema.parse((await params).id);
     const input = moderateStorySchema.parse(await request.json());
-    return jsonOk(await moderateStory(id, input, user.id));
+    const result = await moderateStory(id, input, user.id);
+    await revalidateStoriesWhere({ id });
+    return jsonOk(result);
   } catch (error) {
     return handleRouteError(error);
   }

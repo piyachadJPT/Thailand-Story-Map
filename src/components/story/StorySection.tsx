@@ -32,7 +32,7 @@ export default function StorySection({ index, icon, title, description, stories,
           icon={icon}
           title="จะทยอยอัปเดตจากเรื่องที่เผยแพร่บนแผนที่"
           action={
-            <Link href="/" className={buttonVariants({ variant: "outline", size: "sm" })}>
+            <Link href="/" prefetch={false} className={buttonVariants({ variant: "outline", size: "sm" })}>
               กลับไปที่แผนที่
             </Link>
           }

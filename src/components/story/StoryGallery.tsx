@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { cva } from "class-variance-authority";
+import { isOptimizableImage } from "@/lib/seo/images";
 import type { GalleryLayout } from "./storyView";
 
 const gridVariants = cva("grid gap-3", {
@@ -29,14 +31,16 @@ export default function StoryGallery({ images, layout, title, provinceName }: St
       <div className={gridVariants({ layout })}>
         {images.map((image, index) => (
           <figure key={image.id} className="overflow-hidden rounded-2xl bg-card ring-1 ring-border">
-            {/* Uploaded images may use external storage URLs. */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={image.url}
-              alt={image.altText || `ภาพประกอบ ${title}`}
-              loading="lazy"
-              className="aspect-4/3 w-full bg-muted object-cover"
-            />
+            <div className="relative aspect-4/3 w-full bg-muted">
+              <Image
+                src={image.url}
+                alt={image.altText || `ภาพประกอบ ${title}`}
+                fill
+                sizes={layout === "single" ? "(min-width: 768px) 680px, 100vw" : "(min-width: 768px) 340px, 100vw"}
+                unoptimized={!isOptimizableImage(image.url)}
+                className="object-cover"
+              />
+            </div>
             <figcaption className="flex items-baseline gap-2 px-4 py-3 text-xs text-muted-foreground">
               <span className="font-heading font-semibold text-gold-ink tabular-nums">
                 {String(index + 1).padStart(2, "0")}

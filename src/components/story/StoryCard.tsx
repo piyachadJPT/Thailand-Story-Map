@@ -4,6 +4,7 @@ import type { StoryListItem } from "@/models/types/story";
 import { categoryColor } from "@/config/categories";
 import { provinceRecords } from "@/lib/thai-provinces";
 import CategoryChip from "./CategoryChip";
+import { storyPath } from "@/lib/seo/url";
 
 type StoryCardProps = {
   story: StoryListItem;
@@ -18,7 +19,7 @@ export default function StoryCard({ story, step }: StoryCardProps) {
 
   return (
     <Link
-      href={`/story/${story.provinceSlug}/${story.slug}`}
+      href={storyPath(story.provinceSlug, story.slug)}
       style={{ "--tint": categoryColor(story.categorySlug) } as React.CSSProperties}
       className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/80 p-5 shadow-soft outline-none backdrop-blur-sm transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-0.5 hover:border-(--tint)/50 hover:shadow-lift focus-visible:ring-3 focus-visible:ring-ring/40 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
     >

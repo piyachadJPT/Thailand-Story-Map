@@ -1,11 +1,27 @@
+import type { Metadata } from "next";
 import { Compass, Landmark, Sparkles } from "lucide-react";
 import { listStories } from "@/api/stories/service";
 import PageContainer from "@/components/layout/PageContainer";
 import PageHero from "@/components/layout/PageHero";
 import StorySection from "@/components/story/StorySection";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, collectionPageJsonLd, graph } from "@/lib/seo/jsonld";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { storyPath } from "@/lib/seo/url";
 import { listStoriesQuerySchema } from "@/models/schemas";
 
-export const dynamic = "force-dynamic";
+// Nothing here depends on the visitor: cached and refreshed hourly or after story changes.
+export const revalidate = 3600;
+
+const description =
+  "จุดที่น่าเดินทางผ่านเรื่องเล่า — จะทยอยอัปเดตจากเรื่องที่เผยแพร่บนแผนที่";
+
+export const metadata: Metadata = buildMetadata({
+  title: "สถานที่แนะนำ — เรื่องเล่ายอดนิยมและเส้นทางสำรวจทั่วไทย",
+  description:
+    "สถานที่ที่คนอ่านกลับไปบ่อย เส้นทางสำรวจจากเรื่องลี้ลับสู่ตำนาน และมรดกประวัติศาสตร์ที่ยังมีเรื่องเล่า คัดจากเรื่องที่เผยแพร่บนแผนที่ประเทศไทย",
+  path: "/places",
+});
 
 /** Published stories for a row; an empty row if the database is unavailable. */
 async function storiesFor(query: Record<string, string | number>) {
@@ -25,12 +41,28 @@ export default async function RecommendedPlacesPage() {
     storiesFor({ categorySlug: "history", limit: 8 }),
   ]);
 
+  const listed = [...new Map([...community, ...ghost, ...legend, ...local, ...heritage].map((s) => [s.id, s])).values()];
+
   return (
     <PageContainer width="wide" className="flex flex-col gap-16 sm:gap-20">
+      <JsonLd
+        data={graph(
+          collectionPageJsonLd({
+            name: "สถานที่แนะนำ",
+            description,
+            path: "/places",
+            items: listed.map((story) => ({ name: story.title, path: storyPath(story.provinceSlug, story.slug) })),
+          }),
+          breadcrumbJsonLd([
+            { name: "หน้าแรก", path: "/" },
+            { name: "สถานที่แนะนำ", path: "/places" },
+          ])
+        )}
+      />
       <PageHero
         eyebrow="คัดสรร"
         title="สถานที่แนะนำ"
-        description="จุดที่น่าเดินทางผ่านเรื่องเล่า — จะทยอยอัปเดตจากเรื่องที่เผยแพร่บนแผนที่"
+        description={description}
         className="mb-0 sm:mb-0"
       />
       <StorySection

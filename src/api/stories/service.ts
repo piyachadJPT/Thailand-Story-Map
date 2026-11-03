@@ -1,5 +1,6 @@
 import { storySearchConditions } from "./search";
-import { StoryStatus } from "@prisma/client";
+import { Prisma, StoryStatus } from "@prisma/client";
+import { createStorySlug } from "@/lib/seo/slug";
 import { prisma } from "@/api/db/prisma";
 import { ApiError, ForbiddenError, NotFoundError } from "@/api/common/errors";
 import type { UpdateStoryInput } from "@/models/schemas/story";
@@ -149,15 +150,9 @@ export async function getStoryByProvinceAndSlug(
     throw new NotFoundError("Story not found");
   }
 
-  const viewedStory = await prisma.story.update({
-    where: { id: story.id },
-    data: { viewCount: { increment: 1 } },
-    select: { viewCount: true },
-  });
-
+  // Views are counted by POST /api/stories/:id/view, never while reading.
   return {
     ...toMapPoint(story),
-    viewCount: viewedStory.viewCount,
     status: story.status,
     createdAt: story.createdAt.toISOString(),
     content: story.content,
@@ -183,6 +178,14 @@ export async function getStoryByProvinceAndSlug(
   };
 }
 
+const SLUG_ATTEMPTS = 3;
+
+function isSlugConflict(error: unknown) {
+  if (!(error instanceof Prisma.PrismaClientKnownRequestError) || error.code !== "P2002") return false;
+  const target = error.meta?.target;
+  return Array.isArray(target) ? target.includes("slug") : String(target ?? "").includes("slug");
+}
+
 /** Requires authenticated author — wired in Phase 1 with Auth.js */
 export async function createStory(input: CreateStoryInput, authorId: string) {
   const { tagIds, images, coverUrl, ...rest } = input;
@@ -205,24 +208,37 @@ export async function createStory(input: CreateStoryInput, authorId: string) {
       ]
     : images;
 
-  const story = await prisma.story.create({
-    data: {
-      ...storyData,
-      authorId,
-      status: isCrime ? StoryStatus.PENDING : StoryStatus.APPROVED,
-      tags: tagIds.length
-        ? { create: tagIds.map((tagId) => ({ tagId })) }
-        : undefined,
-      images: storyImages.length ? { create: storyImages } : undefined,
-    },
-    select: storyListSelect,
-  });
-  return {
-    id: story.id,
-    slug: story.slug,
-    status: story.status,
-    mapPoint: story.status === StoryStatus.APPROVED ? toMapPoint(story) : null,
+  const status = isCrime ? StoryStatus.PENDING : StoryStatus.APPROVED;
+  const data = {
+    ...storyData,
+    authorId,
+    status,
+    publishedAt: status === StoryStatus.APPROVED ? new Date() : null,
+    tags: tagIds.length
+      ? { create: tagIds.map((tagId) => ({ tagId })) }
+      : undefined,
+    images: storyImages.length ? { create: storyImages } : undefined,
   };
+
+  // The slug comes from the title on the server and never changes afterwards.
+  for (let attempt = 1; ; attempt++) {
+    try {
+      const story = await prisma.story.create({
+        data: { ...data, slug: createStorySlug(input.title) },
+        select: storyListSelect,
+      });
+      return {
+        id: story.id,
+        slug: story.slug,
+        status: story.status,
+        provinceSlug: story.province.slug,
+        categorySlug: story.category.slug,
+        mapPoint: story.status === StoryStatus.APPROVED ? toMapPoint(story) : null,
+      };
+    } catch (error) {
+      if (attempt >= SLUG_ATTEMPTS || !isSlugConflict(error)) throw error;
+    }
+  }
 }
 
 export async function getOwnedStory(id: string, authorId: string) {
@@ -298,5 +314,12 @@ export async function updateStory(
     },
     select: { id: true, slug: true, status: true },
   });
-  return { ...updated, provinceSlug: province.slug };
+  return {
+    ...updated,
+    provinceSlug: province.slug,
+    categorySlug: category.slug,
+    // Optional chain: older test fixtures omit the relation.
+    previousProvinceSlug: story.province?.slug ?? province.slug,
+    previousCategorySlug: story.category.slug,
+  };
 }

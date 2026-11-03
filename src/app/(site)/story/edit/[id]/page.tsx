@@ -6,8 +6,9 @@ import { getSessionUser } from "@/api/auth/session";
 import { getOwnedStory } from "@/api/stories/service";
 import { ForbiddenError, NotFoundError } from "@/api/common/errors";
 import { prisma } from "@/api/db/prisma";
+import { privatePageRobots } from "@/lib/seo/metadata";
 
-export const metadata = { title: "แก้ไขเรื่องราว" };
+export const metadata = { title: "แก้ไขเรื่องราว", robots: privatePageRobots };
 
 export default async function EditStoryPage({
   params,

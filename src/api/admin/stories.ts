@@ -38,6 +38,10 @@ export async function applyStoryTransition(
     },
   });
   if (count === 0) return false;
+  // First approval sets the publish date; RESTORE keeps the original one.
+  if (action === "APPROVE") {
+    await tx.story.updateMany({ where: { id: storyId, publishedAt: null }, data: { publishedAt: new Date() } });
+  }
   await tx.auditLog.create({
     data: {
       adminId,

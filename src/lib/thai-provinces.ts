@@ -83,3 +83,19 @@ export const provinceRecords = provinces.map(([name, slug, region]) => ({
   slug,
   region,
 }));
+
+export type ProvinceRecord = (typeof provinceRecords)[number];
+
+/** Region order for grouped lists, north to south. */
+export const regionOrder = [
+  "ภาคเหนือ",
+  "ภาคตะวันออกเฉียงเหนือ",
+  "ภาคกลาง",
+  "ภาคตะวันออก",
+  "ภาคตะวันตก",
+  "ภาคใต้",
+] as const;
+
+export function findProvince(slug: string): ProvinceRecord | undefined {
+  return provinceRecords.find((province) => province.slug === slug);
+}

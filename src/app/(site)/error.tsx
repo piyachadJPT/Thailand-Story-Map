@@ -33,7 +33,7 @@ export default function Error({
               <RotateCcw aria-hidden="true" />
               ลองอีกครั้ง
             </Button>
-            <Link href="/" className={buttonVariants({ variant: "outline" })}>
+            <Link href="/" prefetch={false} className={buttonVariants({ variant: "outline" })}>
               กลับหน้าแรก
             </Link>
           </>

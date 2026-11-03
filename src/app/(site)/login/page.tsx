@@ -5,6 +5,9 @@ import PageContainer from "@/components/layout/PageContainer";
 import LoginCard from "@/components/login/LoginCard";
 import { loginErrorMessage, safeCallbackUrl } from "@/components/login/loginError";
 import LoginShowcase from "@/components/login/LoginShowcase";
+import { privatePageRobots } from "@/lib/seo/metadata";
+
+export const metadata = { title: "เข้าสู่ระบบ", robots: privatePageRobots };
 
 export default async function LoginPage({
   searchParams,

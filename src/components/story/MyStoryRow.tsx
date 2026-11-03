@@ -5,6 +5,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { categoryColor, categoryIcon } from "@/config/categories";
 import type { MyStory } from "./myStory";
+import { storyPath } from "@/lib/seo/url";
 
 /** One of my stories: cover, status, details, and read / edit actions. */
 export default function MyStoryRow({ story }: { story: MyStory }) {
@@ -67,7 +68,7 @@ export default function MyStoryRow({ story }: { story: MyStory }) {
       <div className="flex shrink-0 gap-2 sm:flex-col">
         {story.status === "APPROVED" ? (
           <Link
-            href={`/story/${story.provinceSlug}/${story.slug}`}
+            href={storyPath(story.provinceSlug, story.slug)}
             aria-label={`อ่านเรื่อง ${story.title}`}
             className={buttonVariants({ variant: "outline", size: "sm", className: "flex-1 sm:flex-none" })}
           >

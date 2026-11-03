@@ -6,6 +6,7 @@ import { IconButton } from "@/components/ui/icon-button";
 import { categoryIcon, isCategorySlug, storyCategories } from "@/config/categories";
 import { provinceRecords } from "@/lib/thai-provinces";
 import { cn } from "@/lib/utils";
+import { storyPath } from "@/lib/seo/url";
 
 type StoryPreviewCardProps = {
   story: StoryMapPoint;
@@ -59,7 +60,7 @@ export default function StoryPreviewCard({ story, onClose }: StoryPreviewCardPro
       </p>
 
       <a
-        href={`/story/${story.provinceSlug}/${story.slug}`}
+        href={storyPath(story.provinceSlug, story.slug)}
         className={cn(buttonVariants({ size: "md" }), "group/read mt-4 w-full")}
       >
         อ่านเรื่องราวทั้งหมด

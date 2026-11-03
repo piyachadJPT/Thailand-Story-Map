@@ -19,6 +19,7 @@ export default function BrandMark({
   return (
     <Link
       href="/"
+      prefetch={false}
       onClick={onNavigate}
       aria-label={siteConfig.name}
       className="group flex min-w-0 shrink-0 items-center gap-2.5 rounded-full p-0.5 pr-2 outline-none transition-colors hover:bg-foreground/6 focus-visible:ring-3 focus-visible:ring-ring/40"
@@ -39,7 +40,7 @@ export default function BrandMark({
           nameClassName
         )}
       >
-        {siteConfig.name}
+        {siteConfig.shortName}
       </span>
     </Link>
   );

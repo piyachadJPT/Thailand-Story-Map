@@ -4,6 +4,7 @@ import type { StoryListItem } from "@/models/types/story";
 import { Chip } from "@/components/ui/chip";
 import { categoryIcon, isCategorySlug, storyCategories } from "@/config/categories";
 import { provinceRecords } from "@/lib/thai-provinces";
+import { storyPath } from "@/lib/seo/url";
 
 type ResultItemProps = {
   story: StoryListItem;
@@ -51,7 +52,7 @@ export default function ResultItem({ story, onSelect }: ResultItemProps) {
         </span>
       </button>
       <Link
-        href={`/story/${story.provinceSlug}/${story.slug}`}
+        href={storyPath(story.provinceSlug, story.slug)}
         className="absolute top-3 right-3 inline-flex h-8 items-center rounded-full border border-border bg-background/60 px-3 text-xs font-semibold text-foreground outline-none transition-colors hover:border-gold hover:bg-gold/15 focus-visible:ring-3 focus-visible:ring-ring/40"
       >
         อ่าน

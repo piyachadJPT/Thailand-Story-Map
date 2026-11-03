@@ -8,7 +8,7 @@ export default function SourceLink({ url, host, path }: SourceLinkProps) {
     <a
       href={url}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="nofollow noopener noreferrer"
       title={url}
       className="group flex items-center gap-4 rounded-2xl border border-border bg-card/70 p-4 outline-none transition-colors hover:border-gold/60 focus-visible:ring-3 focus-visible:ring-ring/40"
     >

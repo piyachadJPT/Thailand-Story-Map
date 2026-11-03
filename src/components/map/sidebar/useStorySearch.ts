@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import type { StoryListItem } from "@/models/types/story";
+import { isCategorySlug } from "@/config/categories";
 import type { PlaceHit } from "../geocode";
 import { useMapSheetStore } from "../mapSheetStore";
 import { fetchPlaces, fetchStoryPage } from "./searchRequests";
@@ -138,6 +139,14 @@ export function useStorySearch() {
       controller.abort();
     };
   }, [query, categorySlug, mode, page, retryCount]);
+
+  // "ดูบนแผนที่" links from category pages open the map with ?category=<slug>.
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get("category");
+    if (!slug || !isCategorySlug(slug)) return;
+    const timer = setTimeout(() => setCategorySlug(slug), 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const refresh = () => {

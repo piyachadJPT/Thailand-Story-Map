@@ -162,19 +162,34 @@ model Story {
   isSensitive  Boolean     @default(false) @map("is_sensitive")
   createdAt    DateTime    @default(now()) @map("created_at")
   updatedAt    DateTime    @updatedAt @map("updated_at")
+  /// Set the first time the story becomes APPROVED; never changed afterwards.
+  publishedAt  DateTime?   @map("published_at")
 
-  province Province     @relation(fields: [provinceId], references: [id])
-  category Category     @relation(fields: [categoryId], references: [id])
-  author   User         @relation(fields: [authorId], references: [id])
-  images   StoryImage[]
-  tags     StoryTag[]
-  reports  Report[]
+  province      Province            @relation(fields: [provinceId], references: [id])
+  category      Category            @relation(fields: [categoryId], references: [id])
+  author        User                @relation(fields: [authorId], references: [id])
+  images        StoryImage[]
+  tags          StoryTag[]
+  reports       Report[]
+  slugRedirects StorySlugRedirect[]
 
   @@index([status])
   @@index([provinceId])
   @@index([categoryId])
   @@index([createdAt])
   @@map("stories")
+}
+
+/// Old story slugs that permanently redirect to the story's current URL.
+model StorySlugRedirect {
+  oldSlug   String   @id @map("old_slug")
+  storyId   String   @map("story_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  story Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
+
+  @@index([storyId])
+  @@map("story_slug_redirects")
 }
 
 model StoryImage {

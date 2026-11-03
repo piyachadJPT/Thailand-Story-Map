@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Heart } from "lucide-react";
+import { Facebook, Heart, Instagram, Twitter } from "lucide-react";
 import { GoldDivider } from "@/components/ui/gold-divider";
 import { siteConfig } from "@/config/site";
 import FooterColumn from "./FooterColumn";
@@ -11,29 +11,40 @@ const footerSections = [
     links: [
       { name: "แผนที่เรื่องเล่า", href: "/" },
       { name: "สำรวจ", href: "/categories" },
-      { name: "เรื่องราวใหม่", href: "/contact" },
+      { name: "เรื่องเล่า 77 จังหวัด", href: "/province" },
+      { name: "เรื่องราวใหม่", href: "/contribute" },
     ],
   },
   {
     title: "ชุมชน",
     links: [
-      { name: "เกี่ยวกับเรา", href: "#" },
-      { name: "ติดต่อทีมงาน", href: "#" },
-      { name: "บล็อก", href: "#" },
+      { name: "เกี่ยวกับเรา", href: "/about" },
+      { name: "ติดต่อทีมงาน", href: "/about#contact" },
     ],
   },
   {
     title: "กฎหมาย",
     links: [
-      { name: "ความเป็นส่วนตัว", href: "#" },
-      { name: "ข้อกำหนดบริการ", href: "#" },
-      { name: "คุกกี้", href: "#" },
+      { name: "ความเป็นส่วนตัว", href: "/privacy" },
+      { name: "ข้อกำหนดบริการ", href: "/terms" },
+      { name: "คุกกี้", href: "/privacy#cookies" },
     ],
   },
 ] as const;
 
+/** Only profiles that exist (siteConfig.social) get an icon. */
+const socialLinks = [
+  { key: "facebook", label: "Facebook", icon: Facebook },
+  { key: "x", label: "X", icon: Twitter },
+  { key: "instagram", label: "Instagram", icon: Instagram },
+] as const;
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const profiles = socialLinks.flatMap((link) => {
+    const href = siteConfig.social[link.key];
+    return href ? [{ ...link, href }] : [];
+  });
 
   return (
     <footer className="relative z-10 w-full bg-card/60 backdrop-blur-xl">
@@ -43,6 +54,7 @@ export default function Footer() {
           <div className="space-y-5 lg:col-span-2">
             <Link
               href="/"
+              prefetch={false}
               className="group inline-flex items-center gap-3 rounded-full outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
             >
               <span className="grid size-12 place-items-center overflow-hidden rounded-full bg-background ring-1 ring-gold/50 transition-shadow group-hover:ring-gold">
@@ -55,19 +67,28 @@ export default function Footer() {
                 />
               </span>
               <span className="font-heading text-xl font-semibold tracking-tight text-foreground">
-                {siteConfig.name}
+                {siteConfig.shortName}
               </span>
             </Link>
             <p className="max-w-sm text-sm text-muted-foreground">
               {siteConfig.description}
             </p>
-            <a
-              href="#"
-              aria-label="GitHub"
-              className="inline-grid size-11 place-items-center rounded-full border border-border text-muted-foreground outline-none transition-colors hover:border-gold/60 hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/40"
-            >
-              <Github aria-hidden="true" className="size-5" />
-            </a>
+            {profiles.length ? (
+              <div className="flex gap-2">
+                {profiles.map(({ key, label, href, icon: Icon }) => (
+                  <a
+                    key={key}
+                    href={href}
+                    aria-label={label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-grid size-11 place-items-center rounded-full border border-border text-muted-foreground outline-none transition-colors hover:border-gold/60 hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/40"
+                  >
+                    <Icon aria-hidden="true" className="size-5" />
+                  </a>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-3">

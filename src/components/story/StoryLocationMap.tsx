@@ -4,7 +4,6 @@ import { createElement, useEffect, useRef, useState } from "react";
 import type { Root } from "react-dom/client";
 import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
-import "mapbox-gl/dist/mapbox-gl.css";
 import { buttonVariants } from "@/components/ui/button";
 import { readTheme } from "@/lib/theme";
 import StoryMapPin from "./StoryMapPin";
@@ -34,12 +33,31 @@ export default function StoryLocationMap({
   categorySlug,
   href,
 }: Props) {
+  const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [failed, setFailed] = useState(!token);
+  const [visible, setVisible] = useState(false);
+
+  // Mapbox (JS and CSS) loads only when the map scrolls near the viewport.
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || !token) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [token]);
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container || !token) return;
+    if (!visible || !container || !token) return;
 
     let map: import("mapbox-gl").Map | null = null;
     let marker: import("mapbox-gl").Marker | null = null;
@@ -54,8 +72,11 @@ export default function StoryLocationMap({
     themeMedia.addEventListener("change", syncTheme);
 
     (async () => {
-      const mapboxgl = (await import("mapbox-gl")).default;
-      const { createRoot } = await import("react-dom/client");
+      const [{ default: mapboxgl }, { createRoot }] = await Promise.all([
+        import("mapbox-gl"),
+        import("react-dom/client"),
+        import("mapbox-gl/dist/mapbox-gl.css"),
+      ]);
       if (disposed) return;
       if (!mapboxgl.supported(false)) {
         setFailed(true);
@@ -113,15 +134,17 @@ export default function StoryLocationMap({
       map?.remove();
       window.setTimeout(() => root?.unmount(), 0);
     };
-  }, [token, latitude, longitude, categorySlug]);
+  }, [visible, token, latitude, longitude, categorySlug]);
 
   return (
     <section
+      ref={sectionRef}
       aria-label="ตำแหน่งบนแผนที่"
       className="relative h-80 overflow-hidden rounded-panel bg-muted shadow-lift ring-1 ring-border sm:h-96 [&_.mapboxgl-ctrl-bottom-left]:top-2! [&_.mapboxgl-ctrl-bottom-left]:right-2! [&_.mapboxgl-ctrl-bottom-left]:bottom-auto! [&_.mapboxgl-ctrl-bottom-left]:left-auto!"
     >
       {/* Mapbox styles its container as position: relative, so it sits in a positioned wrapper. */}
-      <div aria-hidden="true" className="absolute inset-0">
+      {/* Not aria-hidden: Mapbox puts focusable controls inside. */}
+      <div className="absolute inset-0">
         <div ref={containerRef} className="size-full" />
       </div>
       {failed ? (
@@ -137,7 +160,7 @@ export default function StoryLocationMap({
             {formatCoordinate(latitude, longitude)}
           </p>
         </div>
-        <Link href={href} className={buttonVariants({ size: "sm" })}>
+        <Link href={href} prefetch={false} className={buttonVariants({ size: "sm" })}>
           <MapPin aria-hidden="true" />
           ดูบนแผนที่
           <ArrowUpRight aria-hidden="true" />

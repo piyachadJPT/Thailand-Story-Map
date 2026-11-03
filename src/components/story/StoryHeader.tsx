@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { ArrowLeft, MapPin } from "lucide-react";
+import { createElement } from "react";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import { Chip } from "@/components/ui/chip";
+import { categoryIcon, isCategorySlug, storyCategories } from "@/config/categories";
+import type { Crumb } from "@/lib/seo/jsonld";
+import { categoryPath } from "@/lib/seo/url";
 import { GoldDivider } from "@/components/ui/gold-divider";
-import CategoryChip from "./CategoryChip";
 import StoryMeta from "./StoryMeta";
 
 type StoryHeaderProps = {
@@ -12,16 +16,20 @@ type StoryHeaderProps = {
   provinceName: string;
   mapHref: string;
   author: { name: string; image: string | null };
-  createdAt: string;
+  publishedAt: string;
+  updatedAt: string;
   viewCount: number;
+  breadcrumbs: Crumb[];
 };
 
 /** Back link, chips, title, deck and meta — the article's opening. */
 export default function StoryHeader(props: StoryHeaderProps) {
   return (
     <header className="mx-auto max-w-170 space-y-6">
+      <Breadcrumbs items={props.breadcrumbs} />
       <Link
         href={props.mapHref}
+        prefetch={false}
         className="inline-flex min-h-11 items-center gap-2 rounded-full pr-3 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/40"
       >
         <span className="grid size-9 place-items-center rounded-full border border-border bg-card/70">
@@ -31,9 +39,20 @@ export default function StoryHeader(props: StoryHeaderProps) {
       </Link>
 
       <div className="flex flex-wrap items-center gap-2">
-        <CategoryChip slug={props.categorySlug} size="md" />
+        <Chip
+          asChild
+          size="md"
+          interactive
+          category={isCategorySlug(props.categorySlug) ? props.categorySlug : undefined}
+          variant={isCategorySlug(props.categorySlug) ? "category" : "default"}
+        >
+          <Link href={categoryPath(props.categorySlug)}>
+            {createElement(categoryIcon(props.categorySlug), { "aria-hidden": true })}
+            {storyCategories.find((item) => item.slug === props.categorySlug)?.name ?? "เรื่องราว"}
+          </Link>
+        </Chip>
         <Chip asChild variant="outline" size="md">
-          <Link href={props.mapHref}>
+          <Link href={props.mapHref} prefetch={false}>
             <MapPin aria-hidden="true" className="text-gold-ink" />
             {props.provinceName}
           </Link>
@@ -54,7 +73,12 @@ export default function StoryHeader(props: StoryHeaderProps) {
       </div>
 
       <GoldDivider strength="subtle" />
-      <StoryMeta author={props.author} createdAt={props.createdAt} viewCount={props.viewCount} />
+      <StoryMeta
+        author={props.author}
+        publishedAt={props.publishedAt}
+        updatedAt={props.updatedAt}
+        viewCount={props.viewCount}
+      />
     </header>
   );
 }

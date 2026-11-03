@@ -3,6 +3,7 @@ import { jsonOk, jsonPaginated, handleRouteError } from "@/api/common/http";
 import { requireUser } from "@/api/auth/session";
 import { enforceRateLimit } from "@/api/common/ratelimit";
 import { createStorySchema, listStoriesQuerySchema } from "@/models/schemas";
+import { revalidateStory } from "@/lib/seo/revalidate";
 
 export async function GET(request: Request) {
   try {
@@ -28,6 +29,7 @@ export async function POST(request: Request) {
     await enforceRateLimit("story:create", author.id);
     const body = createStorySchema.parse(await request.json());
     const story = await createStory(body, author.id);
+    if (story.status === "APPROVED") revalidateStory(story);
     return jsonOk(story, { status: 201, message: "Story submitted" });
   } catch (error) {
     return handleRouteError(error);

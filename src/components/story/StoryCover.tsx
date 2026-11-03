@@ -1,15 +1,26 @@
+import Image from "next/image";
+import { isOptimizableImage } from "@/lib/seo/images";
+
 type StoryCoverProps = {
   url: string;
   alt: string;
 };
 
-/** Wide cover banner with a soft ink fade and a gold hairline. */
+/** Wide cover banner with a soft ink fade and a gold hairline. The page's LCP image. */
 export default function StoryCover({ url, alt }: StoryCoverProps) {
   return (
-    <figure className="relative overflow-hidden rounded-panel bg-muted shadow-lift ring-1 ring-border">
-      {/* Uploaded images may use external storage URLs. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={url} alt={alt} className="aspect-video w-full object-cover sm:aspect-21/9" />
+    <figure className="relative aspect-video overflow-hidden rounded-panel bg-muted shadow-lift ring-1 ring-border sm:aspect-21/9">
+      <Image
+        src={url}
+        alt={alt}
+        fill
+        preload
+        fetchPriority="high"
+        loading="eager"
+        sizes="(min-width: 1024px) 976px, calc(100vw - 32px)"
+        unoptimized={!isOptimizableImage(url)}
+        className="object-cover"
+      />
       <span
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-linear-to-t from-background/40 via-transparent to-transparent"

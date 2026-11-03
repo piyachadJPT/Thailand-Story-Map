@@ -1,8 +1,6 @@
 import { z } from "zod";
 import { StoryStatus } from "@/models/enums";
 
-const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-
 export const storyImageInputSchema = z.object({
   url: z.string().url(),
   altText: z.string().max(200).optional(),
@@ -11,7 +9,6 @@ export const storyImageInputSchema = z.object({
 
 export const createStorySchema = z.object({
   title: z.string().min(3).max(200),
-  slug: z.string().regex(slugRegex, "slug ต้องเป็นตัวพิมพ์เล็ก a-z 0-9 และ -"),
   summary: z.string().min(10).max(500),
   content: z.string().min(50),
   latitude: z.number().min(-90).max(90),
@@ -32,7 +29,6 @@ export type CreateStoryInput = z.infer<typeof createStorySchema>;
 
 export const updateStorySchema = createStorySchema
   .omit({
-    slug: true,
     status: true,
     tagIds: true,
     images: true,

@@ -18,6 +18,8 @@
     "admin:password": "tsx --env-file=.env scripts/admin.ts password",
     "admin:disable": "tsx --env-file=.env scripts/admin.ts disable",
     "admin:list": "tsx --env-file=.env scripts/admin.ts list",
+    "seo:migrate-slugs": "tsx --env-file=.env scripts/migrate-story-slugs.ts",
+    "seo:backfill-published": "tsx --env-file=.env scripts/backfill-published-at.ts",
     "supabase:env": "node --env-file=.env scripts/print-supabase-env.mjs",
     "postinstall": "prisma generate"
   },

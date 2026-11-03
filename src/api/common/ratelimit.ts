@@ -8,6 +8,7 @@ export type RateLimitBucket =
   | "upload"
   | "report"
   | "geocode"
+  | "story:view"
   | "admin:login:ip"
   | "admin:login:user";
 
@@ -22,6 +23,8 @@ export const RATE_LIMITS: Record<RateLimitBucket, Rule> = {
   upload: { limit: 20, window: "1 h", windowMs: HOUR },
   report: { limit: 5, window: "1 h", windowMs: HOUR },
   geocode: { limit: 60, window: "1 m", windowMs: MINUTE },
+  /** One counted view per viewer and story every 6 hours. */
+  "story:view": { limit: 1, window: "6 h", windowMs: 6 * HOUR },
   "admin:login:ip": { limit: 10, window: "15 m", windowMs: 15 * MINUTE },
   "admin:login:user": { limit: 5, window: "15 m", windowMs: 15 * MINUTE },
 };
@@ -115,6 +118,11 @@ async function decide(bucket: RateLimitBucket, identifier: string): Promise<Deci
 export async function enforceRateLimit(bucket: RateLimitBucket, identifier: string) {
   const decision = await decide(bucket, identifier);
   if (!decision.success) throw new TooManyRequestsError(decision.retryAfter);
+}
+
+/** Counts one attempt; false when the bucket is full (for callers that must not fail). */
+export async function tryRateLimit(bucket: RateLimitBucket, identifier: string) {
+  return (await decide(bucket, identifier)).success;
 }
 
 /** Clears an identifier's counter (e.g. after a successful admin login). */

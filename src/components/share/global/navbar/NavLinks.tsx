@@ -61,6 +61,7 @@ export default function NavLinks({
         <Link
           key={link.href}
           href={link.href}
+          prefetch={link.href === "/" ? false : undefined}
           onClick={onNavigate}
           aria-current={isActiveLink(pathname, link.href) ? "page" : undefined}
           className={linkVariants({ layout })}

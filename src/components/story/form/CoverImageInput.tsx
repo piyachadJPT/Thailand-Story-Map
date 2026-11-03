@@ -76,7 +76,7 @@ export default function CoverImageInput({
         />
       </div>
       <p id={`${id}-help`} className="text-xs text-muted-foreground">
-        เลือกไฟล์ JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB
+        เลือกไฟล์ JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB · รูปแนวนอนช่วยให้แชร์บนโซเชียลสวยขึ้น
       </p>
       {error ? (
         <p id={`${id}-error`} role="alert" className="text-xs text-destructive">

@@ -16,6 +16,8 @@ export default function FooterColumn({ title, links }: FooterColumnProps) {
           <li key={link.name}>
             <Link
               href={link.href}
+              // The map page is heavy (Mapbox); load it on click, not on sight.
+              prefetch={link.href === "/" ? false : undefined}
               className="group inline-flex items-center gap-2 rounded-sm text-sm text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/40"
             >
               <span

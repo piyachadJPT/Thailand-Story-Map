@@ -2,7 +2,7 @@ import type { StoryMapPoint } from "@/models/types/story";
 import type { Point } from "@/components/story/form/types";
 import { responseErrorMessage } from "@/utils/errorHandler";
 
-/** Builds the POST /api/stories payload from the form (same shape as before). */
+/** Builds the POST /api/stories payload from the form. The server creates the slug. */
 export function buildStoryPayload(
   form: FormData,
   { point, provinceId, categoryId, isCrime }: {
@@ -15,7 +15,6 @@ export function buildStoryPayload(
   const sourceUrl = String(form.get("sourceUrl") ?? "").trim();
   return {
     title: String(form.get("title") ?? "").trim(),
-    slug: `story-${Date.now()}`,
     summary: String(form.get("summary") ?? "").trim(),
     content: String(form.get("content") ?? "").trim(),
     latitude: point.latitude,
