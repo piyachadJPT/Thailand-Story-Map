@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
+import { useRouter } from "next/navigation";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useMapSheetStore } from "./mapSheetStore";
 import { attachComposerLayer } from "./composerLayer";
@@ -25,6 +26,12 @@ export default function MapShell({ token }: { token?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const spriteRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  // Read through a ref so the map isn't rebuilt if the router object changes.
+  const routerRef = useRef(router);
+  useEffect(() => {
+    routerRef.current = router;
+  }, [router]);
   const [failed, setFailed] = useState(false);
   const flyRequest = useMapSheetStore((state) => state.flyRequest);
   const { styleId, styleIdRef, fadeRef, selectStyle, clearFadeTimer } =
@@ -67,7 +74,10 @@ export default function MapShell({ token }: { token?: string }) {
     );
 
     const getIcon = (key: string) => clonePinIcon(spriteRef.current, key);
-    const detachStories = attachStoryLayer(map, getIcon);
+    const detachStories = attachStoryLayer(map, getIcon, {
+      push: (href) => routerRef.current.push(href),
+      prefetch: (href) => routerRef.current.prefetch(href),
+    });
     const detachPlace = attachPlaceLayer(map, getIcon);
     const composer = attachComposerLayer(map, getIcon);
 

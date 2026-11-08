@@ -50,7 +50,8 @@ const storyListSelect = {
   author: { select: { name: true } },
   category: { select: { slug: true, color: true } },
   province: { select: { slug: true } },
-} as const;
+  images: { take: 1, orderBy: [{ sortOrder: "asc" }, { id: "asc" }], select: { url: true } },
+} satisfies Prisma.StorySelect;
 
 export async function listStories(query: ListStoriesQuery) {
   const page = query.page;
@@ -83,6 +84,7 @@ export async function listStories(query: ListStoriesQuery) {
 
   const data: StoryListItem[] = rows.map((row) => ({
     ...toMapPoint(row),
+    coverUrl: row.images[0]?.url ?? null,
     status: row.status,
     authorName: row.author.name,
     createdAt: row.createdAt.toISOString(),

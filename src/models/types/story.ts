@@ -15,6 +15,8 @@ export interface StoryMapPoint {
 }
 
 export interface StoryListItem extends StoryMapPoint {
+  /** First image of the story, for list cards. */
+  coverUrl?: string | null;
   authorName?: string | null;
   status: StoryStatus;
   createdAt: string;

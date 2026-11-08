@@ -2,7 +2,7 @@ import { cache } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Feather, Map, MapPin } from "lucide-react";
+import { Feather, MapPin } from "lucide-react";
 import { countByProvince, listPublishedStories } from "@/api/stories/public";
 import PageContainer from "@/components/layout/PageContainer";
 import PageHero from "@/components/layout/PageHero";
@@ -99,17 +99,11 @@ export default async function CategoryListing({ slug, sort, page }: CategoryList
           title={category.seoTitle}
           description={category.hint}
           className="mb-0 sm:mb-0"
-          actions={
-            <Link href={`/?category=${category.slug}`} prefetch={false} className={buttonVariants({ variant: "outline" })}>
-              <Map aria-hidden="true" />
-              ดูบนแผนที่
-            </Link>
-          }
         />
       </div>
 
       {page === 1 ? (
-        <div className="max-w-[68ch] space-y-4 leading-relaxed text-muted-foreground">
+        <div className="space-y-4 leading-relaxed text-muted-foreground">
           {category.intro.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}

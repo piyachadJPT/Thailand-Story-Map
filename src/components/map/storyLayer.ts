@@ -1,14 +1,18 @@
 import mapboxgl from "mapbox-gl";
 import type { StoryMapPoint } from "@/models/types/story";
 import { createStoryPin, PIN_POPUP_OFFSET, type PinIconSource } from "./MapPin";
-import { createStoryPopup, type ActivePopup } from "./storyPopup";
+import { createStoryPopup, type ActivePopup, type PopupRouter } from "./storyPopup";
 
 /**
  * Story pins on the home map: loads them, handles the ?story= deep link,
  * and reacts to "story-created", "story-selected" and "stories-refresh".
  * Returns a cleanup function.
  */
-export function attachStoryLayer(map: mapboxgl.Map, getIcon: PinIconSource) {
+export function attachStoryLayer(
+  map: mapboxgl.Map,
+  getIcon: PinIconSource,
+  router: PopupRouter
+) {
   let markers: mapboxgl.Marker[] = [];
   let loadGeneration = 0;
   let disposed = false;
@@ -19,30 +23,43 @@ export function attachStoryLayer(map: mapboxgl.Map, getIcon: PinIconSource) {
   const activePopup: ActivePopup = { current: null };
 
   /*
-   * Opens the story's preview and flies so the preview card (not the pin)
-   * lands in the middle of the free map area. The camera target is shifted
-   * down by half the card's height, which leaves the card centered above it.
+   * Moves the camera so the open preview card (not the pin) lands in the middle
+   * of the free map area. The card always sits above the pin, so the target is
+   * shifted down by half the card's height. With a zoom it flies there (search,
+   * deep link); without one it slides at the current zoom (pin tap).
    */
-  const focusStory = (marker: mapboxgl.Marker, story: StoryMapPoint, zoom: number) => {
-    const popup = marker.getPopup();
-    if (popup && !popup.isOpen()) marker.togglePopup();
-    const cardHeight = popup?.getElement()?.offsetHeight ?? 0;
-    map.stop();
-    map.flyTo({
-      center: [story.longitude, story.latitude],
-      zoom,
-      offset: [0, Math.round((cardHeight + PIN_POPUP_OFFSET) / 2)],
-      duration: 1500,
+  const centerOnCard = (marker: mapboxgl.Marker, zoom?: number) => {
+    const cardHeight = marker.getPopup()?.getElement()?.offsetHeight ?? 0;
+    const camera = {
+      center: marker.getLngLat(),
+      offset: [0, Math.round((cardHeight + PIN_POPUP_OFFSET) / 2)] as [number, number],
       essential: true,
-    });
+    };
+    map.stop();
+    if (zoom === undefined) map.easeTo({ ...camera, duration: 450 });
+    else map.flyTo({ ...camera, zoom, duration: 1500 });
+  };
+
+  /** Opens the story's preview and flies so the card is centered. */
+  const focusStory = (marker: mapboxgl.Marker, zoom: number) => {
+    if (!marker.getPopup()?.isOpen()) marker.togglePopup();
+    centerOnCard(marker, zoom);
   };
 
   const createMarker = (story: StoryMapPoint) => {
     const pin = createStoryPin(story, getIcon);
-    return new mapboxgl.Marker({ element: pin, anchor: "bottom" })
+    const marker = new mapboxgl.Marker({ element: pin, anchor: "bottom" })
       .setLngLat([story.longitude, story.latitude])
-      .setPopup(createStoryPopup(story, pin, activePopup))
+      .setPopup(createStoryPopup(story, pin, activePopup, router))
       .addTo(map);
+    // Mapbox toggles the popup from the map's click handler, which runs after
+    // this one, so wait for the click to finish before checking.
+    pin.addEventListener("click", () => {
+      window.setTimeout(() => {
+        if (marker.getPopup()?.isOpen()) centerOnCard(marker);
+      }, 0);
+    });
+    return marker;
   };
 
   const loadStories = async () => {
@@ -60,7 +77,7 @@ export function attachStoryLayer(map: mapboxgl.Map, getIcon: PinIconSource) {
         if (story.id === focusedStoryId) {
           marker.getElement().dataset.featured = "true";
           if (focusRequestedStory) {
-            focusStory(marker, story, 16);
+            focusStory(marker, 16);
             focusRequestedStory = false;
           } else {
             marker.togglePopup();
@@ -98,7 +115,7 @@ export function attachStoryLayer(map: mapboxgl.Map, getIcon: PinIconSource) {
       marker = createMarker(story);
       markers.push(marker);
     }
-    focusStory(marker, story, 15);
+    focusStory(marker, 15);
   };
 
   const onStoriesRefresh = () => void loadStories();

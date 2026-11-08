@@ -1,7 +1,10 @@
+import { createElement } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Eye, MapPin } from "lucide-react";
 import type { StoryListItem } from "@/models/types/story";
-import { categoryColor } from "@/config/categories";
+import { categoryColor, categoryIcon } from "@/config/categories";
+import { isOptimizableImage } from "@/lib/seo/images";
 import { provinceRecords } from "@/lib/thai-provinces";
 import CategoryChip from "./CategoryChip";
 import { storyPath } from "@/lib/seo/url";
@@ -12,7 +15,7 @@ type StoryCardProps = {
   step?: number;
 };
 
-/** Story teaser: category, title, summary, province and reads. */
+/** Story teaser: cover, category, title, summary, province and reads. */
 export default function StoryCard({ story, step }: StoryCardProps) {
   const province =
     provinceRecords.find((item) => item.slug === story.provinceSlug)?.name ?? story.provinceSlug;
@@ -21,32 +24,55 @@ export default function StoryCard({ story, step }: StoryCardProps) {
     <Link
       href={storyPath(story.provinceSlug, story.slug)}
       style={{ "--tint": categoryColor(story.categorySlug) } as React.CSSProperties}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/80 p-5 outline-none backdrop-blur-sm transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-0.5 hover:border-(--tint)/50 focus-visible:ring-3 focus-visible:ring-ring/40 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card outline-none transition-colors duration-200 hover:border-(--tint)/50 focus-visible:ring-3 focus-visible:ring-ring/40 motion-reduce:transition-none"
     >
-      <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-(--tint)/70" />
-      <span className="flex items-center justify-between gap-2">
-        <CategoryChip slug={story.categorySlug} />
-        {step ? (
-          <span className="font-heading text-2xl font-semibold text-gold-ink tabular-nums">
-            {String(step).padStart(2, "0")}
+      {/* w-full + shrink-0: Safari otherwise collapses an aspect-ratio box in a column flexbox to 0px. */}
+      <span className="relative block aspect-16/10 w-full shrink-0 overflow-hidden border-b border-border bg-(--tint)/10">
+        {story.coverUrl ? (
+          <Image
+            src={story.coverUrl}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+            unoptimized={!isOptimizableImage(story.coverUrl)}
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          />
+        ) : (
+          <span className="grid size-full place-items-center text-(--tint)/60">
+            {createElement(categoryIcon(story.categorySlug), {
+              "aria-hidden": true,
+              strokeWidth: 1.25,
+              className: "size-12",
+            })}
           </span>
-        ) : null}
+        )}
       </span>
-      <span className="mt-4 line-clamp-2 font-heading text-lg font-semibold text-foreground">
-        {story.title}
-      </span>
-      <span className="mt-2 line-clamp-3 text-sm text-muted-foreground">{story.summary}</span>
-      <span className="mt-auto flex items-center gap-4 pt-5 text-xs text-muted-foreground">
-        <span className="inline-flex items-center gap-1">
-          <MapPin aria-hidden="true" className="size-3.5 text-gold-ink" />
-          {province}
+
+      <span className="flex flex-1 flex-col p-5">
+        <span className="flex items-center justify-between gap-2">
+          <CategoryChip slug={story.categorySlug} />
+          {step ? (
+            <span className="font-heading text-2xl font-semibold text-gold-ink tabular-nums">
+              {String(step).padStart(2, "0")}
+            </span>
+          ) : null}
         </span>
-        {story.viewCount > 0 ? (
+        <span className="mt-4 line-clamp-2 font-heading text-lg font-semibold text-foreground">
+          {story.title}
+        </span>
+        <span className="mt-2 line-clamp-3 text-sm text-muted-foreground">{story.summary}</span>
+        <span className="mt-auto flex items-center gap-4 pt-5 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1">
-            <Eye aria-hidden="true" className="size-3.5" />
-            {story.viewCount.toLocaleString("th-TH")} ครั้งที่อ่าน
+            <MapPin aria-hidden="true" className="size-3.5 text-gold-ink" />
+            {province}
           </span>
-        ) : null}
+          {story.viewCount > 0 ? (
+            <span className="inline-flex items-center gap-1">
+              <Eye aria-hidden="true" className="size-3.5" />
+              {story.viewCount.toLocaleString("th-TH")} ครั้งที่อ่าน
+            </span>
+          ) : null}
+        </span>
       </span>
     </Link>
   );

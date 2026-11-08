@@ -2,7 +2,7 @@ import { cache } from "react";
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { Compass, MapPin } from "lucide-react";
-import { listRelatedStories, lookupStory, type PublishedStory } from "@/api/stories/public";
+import { listRelatedStories, listStoryPaths, lookupStory, type PublishedStory } from "@/api/stories/public";
 import JsonLd from "@/components/seo/JsonLd";
 import StoryBody from "@/components/story/StoryBody";
 import StoryCover from "@/components/story/StoryCover";
@@ -20,10 +20,21 @@ import { coverAltText, storySeoTitle } from "@/lib/seo/story";
 import { decodeParam, provincePath, storyOgImagePath, storyPath } from "@/lib/seo/url";
 import type { StoryDetail } from "@/models/types/story";
 
-// ISR: built on the first visit, refreshed hourly or right after an edit/moderation.
+/*
+ * Every published story is prebuilt at build time, so opening a story (a link,
+ * a pasted URL, a search result) is served straight from cache. Stories
+ * published later are built on their first visit. Pages refresh hourly or
+ * right after an edit/moderation.
+ */
 export const revalidate = 3600;
-export function generateStaticParams() {
-  return [];
+export async function generateStaticParams() {
+  try {
+    const stories = await listStoryPaths();
+    return stories.map((story) => ({ province: story.province.slug, slug: story.slug }));
+  } catch {
+    // Database unreachable at build time: fall back to building on first visit.
+    return [];
+  }
 }
 
 type Props = { params: Promise<{ province: string; slug: string }> };

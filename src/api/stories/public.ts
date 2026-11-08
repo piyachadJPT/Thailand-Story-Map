@@ -17,6 +17,7 @@ const listSelect = {
   author: { select: { name: true } },
   category: { select: { slug: true, color: true } },
   province: { select: { slug: true } },
+  images: { take: 1, orderBy: [{ sortOrder: "asc" }, { id: "asc" }], select: { url: true } },
 } satisfies Prisma.StorySelect;
 
 type ListRow = Prisma.StoryGetPayload<{ select: typeof listSelect }>;
@@ -34,6 +35,7 @@ export function toListItem(row: ListRow): StoryListItem {
     categoryColor: row.category.color,
     provinceSlug: row.province.slug,
     status: row.status,
+    coverUrl: row.images[0]?.url ?? null,
     authorName: row.author.name,
     createdAt: row.createdAt.toISOString(),
   };
@@ -107,7 +109,7 @@ export async function listRelatedStories(
   return { sameProvince: sameProvince.map(toListItem), sameCategory: sameCategory.map(toListItem) };
 }
 
-export const PAGE_SIZE = 24;
+export const PAGE_SIZE = 12;
 export type ListingSort = "recent" | "popular";
 
 export async function listPublishedStories(filter: {
@@ -198,6 +200,14 @@ export async function listProvincePoints(provinceSlug: string) {
       category: { select: { slug: true } },
     },
     take: 500,
+  });
+}
+
+/** URL parts of every published story, for prebuilding story pages. */
+export function listStoryPaths() {
+  return prisma.story.findMany({
+    where: { status: StoryStatus.APPROVED },
+    select: { slug: true, province: { select: { slug: true } } },
   });
 }
 
