@@ -3,6 +3,7 @@ import type { StoryMapPoint } from "@/models/types/story";
 import { buttonVariants } from "@/components/ui/button";
 import { GoldDivider } from "@/components/ui/gold-divider";
 import { IconButton } from "@/components/ui/icon-button";
+import KrachengCorners from "@/components/ui/kracheng-corners";
 import CategoryLabel from "@/components/story/CategoryLabel";
 import { provinceRecords } from "@/lib/thai-provinces";
 import { cn } from "@/lib/utils";
@@ -24,8 +25,9 @@ export default function StoryPreviewCard({ story, onClose }: StoryPreviewCardPro
     <article
       tabIndex={0}
       aria-label={`รายละเอียด ${story.title}`}
-      className="flex h-[21.5rem] w-80 max-w-full flex-col overflow-hidden rounded-panel p-5 outline-none focus-visible:ring-3 focus-visible:ring-ring/40 focus-visible:ring-inset"
+      className="relative flex h-86 w-80 max-w-full flex-col overflow-hidden rounded-panel p-5 outline-none focus-visible:ring-3 focus-visible:ring-ring/40 focus-visible:ring-inset"
     >
+      <KrachengCorners size="sm" className="text-gold" />
       <div className="flex items-start justify-between gap-3">
         <CategoryLabel slug={story.categorySlug} className="mt-1" />
         <IconButton

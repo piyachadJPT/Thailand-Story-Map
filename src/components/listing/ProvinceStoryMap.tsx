@@ -7,6 +7,7 @@ import { Map as MapIcon } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import StoryMapPin from "@/components/story/StoryMapPin";
 import { readTheme } from "@/lib/theme";
+import { applyThaiTint } from "@/components/map/mapTint";
 
 export type ProvincePoint = {
   id: string;
@@ -87,6 +88,7 @@ export default function ProvinceStoryMap({ token, provinceName, points }: Props)
       map.scrollZoom.disable();
       map.dragRotate.disable();
       map.touchZoomRotate.disableRotation();
+      map.on("style.load", () => map && applyThaiTint(map, readTheme()));
 
       for (const point of points) {
         const element = document.createElement("a");

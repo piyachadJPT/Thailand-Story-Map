@@ -50,6 +50,8 @@
   --color-gold-foreground: var(--gold-foreground);
   /* Vermilion (ชาด): kickers and small emphasis, never large fills. */
   --color-chad: var(--chad);
+  /* Ivory (งา): marks drawn over photos; the same in both themes. */
+  --color-ivory: #f1ebdd;
 
   /* Top nav bar: indigo in light, lacquer black in dark, gold rule below. */
   --color-nav: var(--nav);
@@ -493,6 +495,64 @@
     repeat-x center / 14px 10px;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10'%3E%3Cpath d='M0 5 L7 0.8 L14 5 L7 9.2 Z' fill='none' stroke='black' stroke-width='1.1'/%3E%3C/svg%3E")
     repeat-x center / 14px 10px;
+}
+
+/*
+ * Regional border patterns, one per region (see lib/region-pattern.ts).
+ * Use `lai-region` plus one of lai-central / lai-north / lai-isan / lai-south /
+ * lai-east / lai-west. Single-stroke masks, so `color` sets the tint.
+ */
+.lai-region {
+  display: block;
+  height: 12px;
+  color: var(--gold);
+  background-color: currentColor;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+/* ภาคกลาง: ประจำยาม */
+.lai-central {
+  -webkit-mask-size: 17px 12px;
+  mask-size: 17px 12px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='12'%3E%3Cpath d='M0 6 L8.5 1 L17 6 L8.5 11 Z' fill='none' stroke='black' stroke-width='1.1'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='12'%3E%3Cpath d='M0 6 L8.5 1 L17 6 L8.5 11 Z' fill='none' stroke='black' stroke-width='1.1'/%3E%3C/svg%3E");
+}
+/* ภาคเหนือ: ลายน้ำไหล (ขั้นบันได) แบบผ้าซิ่นล้านนา */
+.lai-north {
+  -webkit-mask-size: 20px 12px;
+  mask-size: 20px 12px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12'%3E%3Cpath d='M0 10.5 H2.5 V7.5 H5 V4.5 H7.5 V1.5 H12.5 V4.5 H15 V7.5 H17.5 V10.5 H20' fill='none' stroke='black' stroke-width='1.1'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12'%3E%3Cpath d='M0 10.5 H2.5 V7.5 H5 V4.5 H7.5 V1.5 H12.5 V4.5 H15 V7.5 H17.5 V10.5 H20' fill='none' stroke='black' stroke-width='1.1'/%3E%3C/svg%3E");
+}
+/* ภาคอีสาน: ลายขิด ข้าวหลามตัดซ้อน */
+.lai-isan {
+  -webkit-mask-size: 19px 12px;
+  mask-size: 19px 12px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='19' height='12'%3E%3Cpath d='M0 6 L9.5 0.7 L19 6 L9.5 11.3 Z M4.8 6 L9.5 3.4 L14.2 6 L9.5 8.6 Z' fill='none' stroke='black' stroke-width='1'/%3E%3Ccircle cx='9.5' cy='6' r='1' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='19' height='12'%3E%3Cpath d='M0 6 L9.5 0.7 L19 6 L9.5 11.3 Z M4.8 6 L9.5 3.4 L14.2 6 L9.5 8.6 Z' fill='none' stroke='black' stroke-width='1'/%3E%3Ccircle cx='9.5' cy='6' r='1' fill='black'/%3E%3C/svg%3E");
+}
+/* ภาคใต้: เชิงผ้า ฟันปลา */
+.lai-south {
+  -webkit-mask-size: 14px 12px;
+  mask-size: 14px 12px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='12'%3E%3Cpath d='M0 10.5 L7 1 L14 10.5 M3.5 10.5 L7 5.8 L10.5 10.5' fill='none' stroke='black' stroke-width='1'/%3E%3Cpath d='M0 11.4 H14' stroke='black' stroke-width='1'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='12'%3E%3Cpath d='M0 10.5 L7 1 L14 10.5 M3.5 10.5 L7 5.8 L10.5 10.5' fill='none' stroke='black' stroke-width='1'/%3E%3Cpath d='M0 11.4 H14' stroke='black' stroke-width='1'/%3E%3C/svg%3E");
+}
+/* ภาคตะวันออก: ลายคลื่นน้ำ */
+.lai-east {
+  -webkit-mask-size: 16px 12px;
+  mask-size: 16px 12px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='12'%3E%3Cpath d='M0 9 C 2 3, 6 3, 8 9 C 10 3, 14 3, 16 9' fill='none' stroke='black' stroke-width='1.1'/%3E%3Cpath d='M3 10.8 C 5 8, 7 8, 8 10.8' fill='none' stroke='black' stroke-width='0.9'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='12'%3E%3Cpath d='M0 9 C 2 3, 6 3, 8 9 C 10 3, 14 3, 16 9' fill='none' stroke='black' stroke-width='1.1'/%3E%3Cpath d='M3 10.8 C 5 8, 7 8, 8 10.8' fill='none' stroke='black' stroke-width='0.9'/%3E%3C/svg%3E");
+}
+/* ภาคตะวันตก: ลายดอกจัน ผ้าทอกะเหรี่ยง/มอญ */
+.lai-west {
+  -webkit-mask-size: 18px 12px;
+  mask-size: 18px 12px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12'%3E%3Cpath d='M9 1.5 V10.5 M4.5 6 H13.5 M6.2 3.2 L11.8 8.8 M11.8 3.2 L6.2 8.8' fill='none' stroke='black' stroke-width='1'/%3E%3Ccircle cx='0.9' cy='6' r='0.9' fill='black'/%3E%3Ccircle cx='17.1' cy='6' r='0.9' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12'%3E%3Cpath d='M9 1.5 V10.5 M4.5 6 H13.5 M6.2 3.2 L11.8 8.8 M11.8 3.2 L6.2 8.8' fill='none' stroke='black' stroke-width='1'/%3E%3Ccircle cx='0.9' cy='6' r='0.9' fill='black'/%3E%3Ccircle cx='17.1' cy='6' r='0.9' fill='black'/%3E%3C/svg%3E");
 }
 
 /*

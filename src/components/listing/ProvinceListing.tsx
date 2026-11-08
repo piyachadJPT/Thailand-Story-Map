@@ -28,6 +28,7 @@ import {
 } from "@/lib/seo/listing";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { provincePath, storyPath } from "@/lib/seo/url";
+import { regionLai } from "@/lib/region-pattern";
 import { findProvince, provinceRecords, type ProvinceRecord } from "@/lib/thai-provinces";
 import ListingPagination from "./ListingPagination";
 import ProvinceStoryMap from "./ProvinceStoryMap";
@@ -123,6 +124,7 @@ export default async function ProvinceListing({ slug, category, sort, page }: Pr
         <Breadcrumbs items={crumbs(province)} />
         <PageHero
           eyebrow={province.region}
+          mark={regionLai(province.region)}
           title={`เรื่องเล่า${province.name}`}
           description={summaryOf(province, provinceTotal, categoryCounts)}
           className="mb-0 sm:mb-0"

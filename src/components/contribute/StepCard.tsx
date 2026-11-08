@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import { thaiOrdinal } from "@/lib/thai-digits";
 
 type StepCardProps = {
   step: number;
@@ -14,7 +15,7 @@ export default function StepCard({ step, icon: Icon, title, body }: StepCardProp
       <div className="flex items-center justify-between">
         <Icon aria-hidden="true" strokeWidth={1.5} className="size-7 text-gold-ink" />
         <span aria-hidden="true" className="font-heading text-4xl font-bold text-gold/50 tabular-nums">
-          {String(step).padStart(2, "0")}
+          {thaiOrdinal(step)}
         </span>
       </div>
       <p className="mt-6 text-sm font-semibold text-chad">ขั้นตอนที่ {step}</p>

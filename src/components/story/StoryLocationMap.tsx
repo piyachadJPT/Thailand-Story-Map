@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { readTheme } from "@/lib/theme";
+import { applyThaiTint } from "@/components/map/mapTint";
 import StoryMapPin from "./StoryMapPin";
 
 type Props = {
@@ -110,6 +111,7 @@ export default function StoryLocationMap({
       map.dragRotate.disable();
       map.touchZoomRotate.disableRotation();
       map.setPadding({ top: 24, bottom: 168, left: 16, right: 16 });
+      map.on("style.load", () => map && applyThaiTint(map, readTheme()));
 
       const element = document.createElement("div");
       root = createRoot(element);

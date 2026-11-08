@@ -1,4 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
+import type { RegionLai } from "@/lib/region-pattern";
 import { cn } from "@/lib/utils";
 
 const sectionHeadingVariants = cva("flex flex-col gap-3", {
@@ -34,6 +35,8 @@ type SectionHeadingProps = Omit<React.ComponentProps<"div">, "title"> &
     as?: "h1" | "h2" | "h3";
     /** id on the heading element, for aria-labelledby. */
     titleId?: string;
+    /** Ornament before the eyebrow: ลายประจำยาม, ๏ ฟองมัน (manuscript mark), or a regional pattern. */
+    mark?: "lai" | "fongman" | RegionLai;
   };
 
 function SectionHeading({
@@ -44,6 +47,7 @@ function SectionHeading({
   titleId,
   align,
   size,
+  mark = "lai",
   className,
   ...props
 }: SectionHeadingProps) {
@@ -55,7 +59,13 @@ function SectionHeading({
     >
       {eyebrow ? (
         <p className="inline-flex items-center gap-2.5 text-sm font-semibold text-chad">
-          <span aria-hidden="true" className="lai-prajamyam w-7" />
+          {mark === "fongman" ? (
+            <span aria-hidden="true" className="text-base text-gold-ink">๏</span>
+          ) : mark === "lai" ? (
+            <span aria-hidden="true" className="lai-prajamyam w-7" />
+          ) : (
+            <span aria-hidden="true" className={cn("lai-region w-9", mark)} />
+          )}
           {eyebrow}
         </p>
       ) : null}

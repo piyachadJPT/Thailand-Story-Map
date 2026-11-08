@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { cva } from "class-variance-authority";
 import { isOptimizableImage } from "@/lib/seo/images";
+import { thaiOrdinal } from "@/lib/thai-digits";
 import type { GalleryLayout } from "./storyView";
 
 const gridVariants = cva("grid gap-3", {
@@ -25,7 +26,7 @@ export default function StoryGallery({ images, layout, title, provinceName }: St
   return (
     <section aria-label="ภาพประกอบ" className="space-y-4">
       <p className="flex items-center gap-2 text-sm font-semibold text-chad">
-        <span aria-hidden="true" className="lai-prajamyam w-7" />
+        <span aria-hidden="true" className="text-base text-gold-ink">๏</span>
         ภาพประกอบ
       </p>
       <div className={gridVariants({ layout })}>
@@ -43,7 +44,7 @@ export default function StoryGallery({ images, layout, title, provinceName }: St
             </div>
             <figcaption className="flex items-baseline gap-2 px-4 py-3 text-xs text-muted-foreground">
               <span className="font-heading font-bold text-gold-ink tabular-nums">
-                {String(index + 1).padStart(2, "0")}
+                {thaiOrdinal(index + 1)}
               </span>
               {image.altText || provinceName}
             </figcaption>

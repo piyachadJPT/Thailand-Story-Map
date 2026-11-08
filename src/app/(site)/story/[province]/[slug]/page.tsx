@@ -175,6 +175,8 @@ export default async function StoryDetailPage({ params }: Props) {
             images={view.bodyImages}
             layout={view.galleryLayout}
             provinceName={story.province.name}
+            // Jump to "เรื่องอื่นใน…" below when it exists, else the province page.
+            continueHref={related.sameProvince.length ? "#section-1" : provincePath(story.province.slug)}
           />
         </StoryReader>
         <StoryFooter

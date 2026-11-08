@@ -9,6 +9,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { breadcrumbJsonLd, collectionPageJsonLd, graph } from "@/lib/seo/jsonld";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { provincePath } from "@/lib/seo/url";
+import { regionLai } from "@/lib/region-pattern";
 import { provinceRecords, regionOrder } from "@/lib/thai-provinces";
 import { cn } from "@/lib/utils";
 
@@ -62,6 +63,7 @@ export default async function ProvincesPage() {
         return (
           <section key={region} aria-labelledby={`region-${index}`} className="space-y-5">
             <SectionHeading titleId={`region-${index}`} size="sm" title={region} />
+            <span aria-hidden="true" className={cn("lai-region opacity-60", regionLai(region))} />
             <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
               {provinces.map((province) => {
                 const count = counts.get(province.slug) ?? 0;

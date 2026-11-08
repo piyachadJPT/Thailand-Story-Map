@@ -1,8 +1,11 @@
 import { SectionHeading } from "@/components/ui/section-heading";
+import type { RegionLai } from "@/lib/region-pattern";
 import { cn } from "@/lib/utils";
 
 type PageHeroProps = {
   eyebrow?: string;
+  /** Ornament before the eyebrow (default ลายประจำยาม). */
+  mark?: "lai" | "fongman" | RegionLai;
   title: string;
   /** Subtitle under the title. */
   description?: string;
@@ -15,6 +18,7 @@ type PageHeroProps = {
 /** Page opener: vermilion eyebrow, large serif title, subtitle, actions. */
 export default function PageHero({
   eyebrow,
+  mark,
   title,
   description,
   actions,
@@ -34,6 +38,7 @@ export default function PageHero({
         size="lg"
         align={align}
         eyebrow={eyebrow}
+        mark={mark}
         title={title}
         description={description}
         className="gap-4"

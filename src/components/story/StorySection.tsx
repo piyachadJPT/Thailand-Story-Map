@@ -4,6 +4,7 @@ import type { StoryListItem } from "@/models/types/story";
 import { buttonVariants } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { thaiOrdinal } from "@/lib/thai-digits";
 import StoryRow from "./StoryRow";
 
 type StorySectionProps = {
@@ -21,7 +22,8 @@ export default function StorySection({ index, icon, title, description, stories,
     <section aria-labelledby={`section-${index}`} className="space-y-6">
       <SectionHeading
         titleId={`section-${index}`}
-        eyebrow={String(index).padStart(2, "0")}
+        eyebrow={thaiOrdinal(index)}
+        mark="fongman"
         title={title}
         description={description}
       />

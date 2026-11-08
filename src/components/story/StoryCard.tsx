@@ -8,6 +8,7 @@ import { isOptimizableImage } from "@/lib/seo/images";
 import { provinceRecords } from "@/lib/thai-provinces";
 import CategoryLabel from "./CategoryLabel";
 import { storyPath } from "@/lib/seo/url";
+import { thaiOrdinal } from "@/lib/thai-digits";
 
 type StoryCardProps = {
   story: StoryListItem;
@@ -53,7 +54,7 @@ export default function StoryCard({ story, step }: StoryCardProps) {
           <CategoryLabel slug={story.categorySlug} />
           {step ? (
             <span className="font-heading text-2xl font-bold text-gold-ink tabular-nums">
-              {String(step).padStart(2, "0")}
+              {thaiOrdinal(step)}
             </span>
           ) : null}
         </span>

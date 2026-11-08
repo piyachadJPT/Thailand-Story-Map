@@ -1,6 +1,7 @@
 import type mapboxgl from "mapbox-gl";
 import { Building2, Map, Satellite, type LucideIcon } from "lucide-react";
 import { readTheme } from "@/lib/theme";
+import { applyThaiTint } from "./mapTint";
 
 /** Democracy Monument — central Bangkok */
 export const BANGKOK_CENTER: [number, number] = [100.5018, 13.7563];
@@ -63,6 +64,8 @@ export function applyStylePresentation(map: mapboxgl.Map, id: MapStyleId) {
     setLanguage?: (language: string) => void;
   };
   localized.setLanguage?.("th");
+  // Only the plain street style is recolored; satellite and 3D keep their own look.
+  if (id === "streets") applyThaiTint(map, readTheme());
   if (id !== "city3d") return;
   try {
     map.setConfigProperty("basemap", "show3dObjects", true);
