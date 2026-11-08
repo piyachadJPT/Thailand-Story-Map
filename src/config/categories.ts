@@ -1,11 +1,5 @@
-import {
-  BookOpen,
-  Compass,
-  Ghost,
-  Landmark,
-  ShieldAlert,
-  type LucideIcon,
-} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { Chedi, Kris, OilLamp, SpiritHouse, ThaiHouse } from "./storyIcons";
 
 /**
  * Single source of truth for categories.
@@ -88,11 +82,11 @@ export const storyCategories = [
 ] as const;
 
 const icons: Record<(typeof storyCategories)[number]["slug"], LucideIcon> = {
-  ghost: Ghost,
-  history: Landmark,
-  legend: BookOpen,
-  crime: ShieldAlert,
-  local: Compass,
+  ghost: SpiritHouse,
+  history: Chedi,
+  legend: OilLamp,
+  crime: Kris,
+  local: ThaiHouse,
 };
 
 export type StoryCategory = (typeof storyCategories)[number];
@@ -103,7 +97,7 @@ export function isCategorySlug(slug: string): slug is CategorySlug {
 }
 
 export function categoryIcon(slug: string): LucideIcon {
-  return icons[slug as keyof typeof icons] ?? Compass;
+  return icons[slug as keyof typeof icons] ?? ThaiHouse;
 }
 
 export function findCategory(slug: string): StoryCategory | undefined {

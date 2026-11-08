@@ -114,7 +114,7 @@ export default function StoryLocationMap({
       const element = document.createElement("div");
       root = createRoot(element);
       root.render(createElement(StoryMapPin, { categorySlug }));
-      marker = new mapboxgl.Marker({ element, anchor: "center" })
+      marker = new mapboxgl.Marker({ element, anchor: "bottom" })
         .setLngLat([longitude, latitude])
         .addTo(map);
 

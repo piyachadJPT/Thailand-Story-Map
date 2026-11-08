@@ -1,6 +1,6 @@
 import mapboxgl from "mapbox-gl";
 import type { StoryMapPoint } from "@/models/types/story";
-import { createStoryPin } from "./MapPin";
+import { createStoryPin, PIN_POPUP_OFFSET, type PinIconSource } from "./MapPin";
 import { createStoryPopup, type ActivePopup } from "./storyPopup";
 
 /**
@@ -8,7 +8,7 @@ import { createStoryPopup, type ActivePopup } from "./storyPopup";
  * and reacts to "story-created", "story-selected" and "stories-refresh".
  * Returns a cleanup function.
  */
-export function attachStoryLayer(map: mapboxgl.Map) {
+export function attachStoryLayer(map: mapboxgl.Map, getIcon: PinIconSource) {
   let markers: mapboxgl.Marker[] = [];
   let loadGeneration = 0;
   let disposed = false;
@@ -18,9 +18,28 @@ export function attachStoryLayer(map: mapboxgl.Map) {
   let focusRequestedStory = Boolean(focusedStoryId);
   const activePopup: ActivePopup = { current: null };
 
+  /*
+   * Opens the story's preview and flies so the preview card (not the pin)
+   * lands in the middle of the free map area. The camera target is shifted
+   * down by half the card's height, which leaves the card centered above it.
+   */
+  const focusStory = (marker: mapboxgl.Marker, story: StoryMapPoint, zoom: number) => {
+    const popup = marker.getPopup();
+    if (popup && !popup.isOpen()) marker.togglePopup();
+    const cardHeight = popup?.getElement()?.offsetHeight ?? 0;
+    map.stop();
+    map.flyTo({
+      center: [story.longitude, story.latitude],
+      zoom,
+      offset: [0, Math.round((cardHeight + PIN_POPUP_OFFSET) / 2)],
+      duration: 1500,
+      essential: true,
+    });
+  };
+
   const createMarker = (story: StoryMapPoint) => {
-    const pin = createStoryPin(story);
-    return new mapboxgl.Marker({ element: pin, anchor: "center" })
+    const pin = createStoryPin(story, getIcon);
+    return new mapboxgl.Marker({ element: pin, anchor: "bottom" })
       .setLngLat([story.longitude, story.latitude])
       .setPopup(createStoryPopup(story, pin, activePopup))
       .addTo(map);
@@ -40,14 +59,11 @@ export function attachStoryLayer(map: mapboxgl.Map) {
         const marker = createMarker(story);
         if (story.id === focusedStoryId) {
           marker.getElement().dataset.featured = "true";
-          marker.togglePopup();
           if (focusRequestedStory) {
-            map.flyTo({
-              center: [story.longitude, story.latitude],
-              zoom: 16,
-              duration: 1200,
-            });
+            focusStory(marker, story, 16);
             focusRequestedStory = false;
+          } else {
+            marker.togglePopup();
           }
         }
         return marker;
@@ -82,7 +98,7 @@ export function attachStoryLayer(map: mapboxgl.Map) {
       marker = createMarker(story);
       markers.push(marker);
     }
-    if (!marker.getPopup()?.isOpen()) marker.togglePopup();
+    focusStory(marker, story, 15);
   };
 
   const onStoriesRefresh = () => void loadStories();

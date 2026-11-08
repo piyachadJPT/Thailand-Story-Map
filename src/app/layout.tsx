@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Kanit } from "next/font/google";
-import Script from "next/script";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 
@@ -70,11 +69,15 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("font-sans", kanit.variable)}
     >
+      <head>
+        {/*
+          Plain inline script, not next/script: it must run while the HTML is
+          parsed, before the first paint, or a saved dark mode flashes light.
+        */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="antialiased">
         <JsonLd data={siteJsonLd()} />
-        <Script id="theme-init" strategy="beforeInteractive">
-          {themeInitScript}
-        </Script>
         <AuthProvider>
           <ReactQueryProvider>
             {children}

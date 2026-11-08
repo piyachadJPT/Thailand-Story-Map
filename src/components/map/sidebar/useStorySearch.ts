@@ -205,8 +205,8 @@ export function useStorySearch() {
       closeSheet();
     },
     openStory(story: StoryListItem) {
+      // The story layer flies there itself so the preview card ends up centered.
       window.dispatchEvent(new CustomEvent("story-selected", { detail: story }));
-      flyTo(story.longitude, story.latitude, 15);
       closeSheet();
     },
   };

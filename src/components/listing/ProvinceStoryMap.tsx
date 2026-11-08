@@ -96,7 +96,7 @@ export default function ProvinceStoryMap({ token, provinceName, points }: Props)
         const root = createRoot(element);
         root.render(createElement(StoryMapPin, { categorySlug: point.categorySlug }));
         roots.push(root);
-        new mapboxgl.Marker({ element, anchor: "center" })
+        new mapboxgl.Marker({ element, anchor: "bottom" })
           .setLngLat([point.longitude, point.latitude])
           .addTo(map);
         // Mapbox marks markers role="img"; these are links, so keep their native role.

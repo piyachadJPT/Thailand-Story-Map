@@ -5,6 +5,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useMapSheetStore } from "./mapSheetStore";
 import { attachComposerLayer } from "./composerLayer";
+import { clonePinIcon } from "./MapPin";
 import MapStyleSwitcher from "./MapStyleSwitcher";
 import MapUnavailable from "./MapUnavailable";
 import {
@@ -15,6 +16,7 @@ import {
   mapPadding,
   styleUrl,
 } from "./mapStyles";
+import PinIconSprite from "./PinIconSprite";
 import { attachPlaceLayer } from "./placeLayer";
 import { attachStoryLayer } from "./storyLayer";
 import { useMapStyle } from "./useMapStyle";
@@ -22,6 +24,7 @@ import { useMapStyle } from "./useMapStyle";
 export default function MapShell({ token }: { token?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
+  const spriteRef = useRef<HTMLDivElement>(null);
   const [failed, setFailed] = useState(false);
   const flyRequest = useMapSheetStore((state) => state.flyRequest);
   const { styleId, styleIdRef, fadeRef, selectStyle, clearFadeTimer } =
@@ -63,9 +66,10 @@ export default function MapShell({ token }: { token?: string }) {
       "bottom-right"
     );
 
-    const detachStories = attachStoryLayer(map);
-    const detachPlace = attachPlaceLayer(map);
-    const composer = attachComposerLayer(map);
+    const getIcon = (key: string) => clonePinIcon(spriteRef.current, key);
+    const detachStories = attachStoryLayer(map, getIcon);
+    const detachPlace = attachPlaceLayer(map, getIcon);
+    const composer = attachComposerLayer(map, getIcon);
 
     const onMoveEnd = () => {
       const center = map.getCenter();
@@ -147,6 +151,7 @@ export default function MapShell({ token }: { token?: string }) {
         className="pointer-events-none absolute inset-0 z-10 size-full"
       />
       <MapStyleSwitcher value={styleId} onChange={selectStyle} />
+      <PinIconSprite ref={spriteRef} />
     </div>
   );
 }
