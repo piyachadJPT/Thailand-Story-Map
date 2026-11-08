@@ -13,7 +13,10 @@ type StoryPreviewCardProps = {
   onClose: () => void;
 };
 
-/** Map popup body: category, title, place and reads, summary, read link. */
+/**
+ * Map popup body: category, title, place and reads, summary, read link.
+ * Same size for every story: long titles and summaries end with "…", never a scrollbar.
+ */
 export default function StoryPreviewCard({ story, onClose }: StoryPreviewCardProps) {
   const category = storyCategories.find((item) => item.slug === story.categorySlug);
   const province = provinceRecords.find((item) => item.slug === story.provinceSlug);
@@ -22,7 +25,7 @@ export default function StoryPreviewCard({ story, onClose }: StoryPreviewCardPro
     <article
       tabIndex={0}
       aria-label={`รายละเอียด ${story.title}`}
-      className="max-h-[min(24rem,50dvh)] overflow-y-auto overscroll-contain rounded-panel p-5 outline-none [scrollbar-width:none] focus-visible:ring-3 focus-visible:ring-ring/40 focus-visible:ring-inset"
+      className="flex h-[21.5rem] w-80 max-w-full flex-col overflow-hidden rounded-panel p-5 outline-none focus-visible:ring-3 focus-visible:ring-ring/40 focus-visible:ring-inset"
     >
       <div className="flex items-start justify-between gap-3">
         <Chip
@@ -42,10 +45,13 @@ export default function StoryPreviewCard({ story, onClose }: StoryPreviewCardPro
         </IconButton>
       </div>
 
-      <h3 className="mt-3 font-heading text-lg font-semibold text-foreground wrap-anywhere">
+      <h3
+        title={story.title}
+        className="mt-3 line-clamp-2 shrink-0 font-heading text-lg font-semibold text-foreground wrap-anywhere"
+      >
         {story.title}
       </h3>
-      <p className="mt-1 flex flex-wrap items-center gap-x-1.5 text-xs text-muted-foreground">
+      <p className="mt-1 flex shrink-0 flex-wrap items-center gap-x-1.5 text-xs text-muted-foreground">
         <MapPin aria-hidden="true" className="size-3.5 text-gold-ink" />
         {province?.name ?? story.provinceSlug}
         {story.viewCount > 0 ? (
@@ -57,15 +63,15 @@ export default function StoryPreviewCard({ story, onClose }: StoryPreviewCardPro
         ) : null}
       </p>
 
-      <div aria-hidden="true" className="my-3 h-px bg-linear-to-r from-gold/50 to-transparent" />
+      <div aria-hidden="true" className="my-3 h-px shrink-0 bg-linear-to-r from-gold/50 to-transparent" />
 
-      <p className="text-sm whitespace-pre-line text-foreground/85 wrap-anywhere">
+      <p className="line-clamp-5 text-sm text-foreground/85 wrap-anywhere">
         {story.summary}
       </p>
 
       <a
         href={storyPath(story.provinceSlug, story.slug)}
-        className={cn(buttonVariants({ size: "md" }), "group/read mt-4 w-full")}
+        className={cn(buttonVariants({ size: "md" }), "group/read mt-auto w-full shrink-0")}
       >
         อ่านเรื่องราวทั้งหมด
         <ArrowRight

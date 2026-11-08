@@ -131,7 +131,7 @@ export default async function StoryDetailPage({ params }: Props) {
       <JsonLd data={jsonLd} />
       <StoryViewBeacon storyId={story.id} />
       <StoryMapBackground />
-      <article className="relative z-10 mx-auto w-full max-w-5xl space-y-10 px-4 pt-4 pb-16 sm:space-y-14 sm:px-6 sm:pt-8">
+      <article className="relative z-10 w-full space-y-10 px-6 pt-4 pb-16 sm:space-y-14 sm:px-10 sm:pt-8 lg:px-20 xl:px-32">
         <StoryHeader
           title={story.title}
           summary={story.summary}
@@ -145,10 +145,12 @@ export default async function StoryDetailPage({ params }: Props) {
           breadcrumbs={crumbs}
         />
         {view.cover ? (
-          <StoryCover
-            url={view.cover.url}
-            alt={coverAltText(view.cover.altText, story.title, story.province.name)}
-          />
+          <div className="mx-auto w-full max-w-5xl">
+            <StoryCover
+              url={view.cover.url}
+              alt={coverAltText(view.cover.altText, story.title, story.province.name)}
+            />
+          </div>
         ) : null}
         {story.isSensitive ? (
           <Notice className="mx-auto max-w-170">

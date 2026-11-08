@@ -85,7 +85,7 @@ export default function AuthControls({
       return (
         <Link
           href={href}
-          className="bg-foreground text-background mt-1 flex w-full items-center justify-center rounded-xl px-3 py-2.5 text-sm font-semibold shadow-sm"
+          className="bg-foreground text-background mt-1 flex w-full items-center justify-center rounded-xl px-3 py-2.5 text-sm font-semibold"
         >
           เข้าสู่ระบบ
         </Link>
@@ -94,7 +94,7 @@ export default function AuthControls({
     return (
       <Link
         href={href}
-        className="bg-foreground text-background hover:bg-foreground/90 hidden items-center rounded-full px-3.5 py-1.5 text-sm font-semibold shadow-sm transition-all hover:scale-[1.03] active:scale-[0.98] md:inline-flex"
+        className="bg-foreground text-background hover:bg-foreground/90 hidden items-center rounded-full px-3.5 py-1.5 text-sm font-semibold transition-all hover:scale-[1.03] active:scale-[0.98] md:inline-flex"
       >
         เข้าสู่ระบบ
       </Link>
@@ -146,7 +146,7 @@ export default function AuthControls({
       <DropdownMenuContent
         align="end"
         sideOffset={12}
-        className="bg-popover ring-border w-72 max-w-[calc(100vw-2rem)] rounded-[1.5rem] p-2 shadow-xl ring-1 shadow-black/10"
+        className="bg-popover ring-border w-72 max-w-[calc(100vw-2rem)] rounded-[1.5rem] p-2 ring-1"
       >
         <DropdownMenuGroup>
           <DropdownMenuLabel className="bg-primary/5 rounded-2xl p-4 font-normal">

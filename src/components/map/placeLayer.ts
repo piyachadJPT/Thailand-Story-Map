@@ -1,9 +1,9 @@
 import mapboxgl from "mapbox-gl";
 import type { PlaceHit } from "./geocode";
-import { createPlacePin, type PinIconSource } from "./MapPin";
+import { createPlacePin, PIN_POPUP_OFFSET } from "./MapPin";
 
 /** Gold pin + small popup for a place chosen in search ("map-search-location"). */
-export function attachPlaceLayer(map: mapboxgl.Map, getIcon: PinIconSource) {
+export function attachPlaceLayer(map: mapboxgl.Map) {
   let marker: mapboxgl.Marker | null = null;
 
   const onSearchLocation = (event: Event) => {
@@ -18,10 +18,10 @@ export function attachPlaceLayer(map: mapboxgl.Map, getIcon: PinIconSource) {
     address.className = "mt-1 text-xs text-muted-foreground";
     address.textContent = place.subtitle;
     content.append(title, address);
-    marker = new mapboxgl.Marker({ element: createPlacePin(getIcon), anchor: "bottom" })
+    marker = new mapboxgl.Marker({ element: createPlacePin(), anchor: "center" })
       .setLngLat([place.longitude, place.latitude])
       .setPopup(
-        new mapboxgl.Popup({ offset: 44, className: "story-map-popup" }).setDOMContent(
+        new mapboxgl.Popup({ offset: PIN_POPUP_OFFSET, className: "story-map-popup" }).setDOMContent(
           content
         )
       )

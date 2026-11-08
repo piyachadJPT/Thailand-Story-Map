@@ -15,7 +15,7 @@ const optionClasses = cn(
   "inline-flex items-center justify-center gap-1.5 rounded-full font-medium whitespace-nowrap outline-none",
   "transition-colors duration-200 focus-visible:ring-3 focus-visible:ring-ring/40",
   "text-foreground hover:bg-foreground/6",
-  "aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:shadow-soft"
+  "aria-pressed:bg-primary aria-pressed:text-primary-foreground"
 );
 
 /** ถนน / ดาวเทียม / เมือง 3D — a pill on desktop, a sheet on mobile. */

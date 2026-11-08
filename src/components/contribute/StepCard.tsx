@@ -10,7 +10,7 @@ type StepCardProps = {
 /** One step of "how to contribute": number, icon, title, short text. */
 export default function StepCard({ step, icon: Icon, title, body }: StepCardProps) {
   return (
-    <article className="relative flex h-full flex-col rounded-2xl border border-border bg-card/80 p-6 shadow-soft backdrop-blur-sm">
+    <article className="relative flex h-full flex-col rounded-2xl border border-border bg-card/80 p-6 backdrop-blur-sm">
       <div className="flex items-center justify-between">
         <span className="grid size-12 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold-ink">
           <Icon aria-hidden="true" className="size-5" />

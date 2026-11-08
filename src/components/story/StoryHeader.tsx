@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { ArrowLeft, MapPin } from "lucide-react";
-import { createElement } from "react";
+import { ArrowLeft } from "lucide-react";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
-import { Chip } from "@/components/ui/chip";
-import { categoryIcon, isCategorySlug, storyCategories } from "@/config/categories";
+import { storyCategories } from "@/config/categories";
 import type { Crumb } from "@/lib/seo/jsonld";
 import { categoryPath } from "@/lib/seo/url";
 import { GoldDivider } from "@/components/ui/gold-divider";
@@ -22,52 +20,41 @@ type StoryHeaderProps = {
   breadcrumbs: Crumb[];
 };
 
-/** Back link, chips, title, deck and meta — the article's opening. */
+const kickerLink =
+  "rounded-sm underline-offset-4 outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring/40";
+
+/** Back link, category · province kicker, title, deck and meta — the article's opening. */
 export default function StoryHeader(props: StoryHeaderProps) {
+  const categoryName =
+    storyCategories.find((item) => item.slug === props.categorySlug)?.name ?? "เรื่องราว";
+
   return (
-    <header className="mx-auto max-w-170 space-y-6">
+    <header className="w-full space-y-6">
       <Breadcrumbs items={props.breadcrumbs} />
-      <Link
+      {/* <Link
         href={props.mapHref}
         prefetch={false}
-        className="inline-flex min-h-11 items-center gap-2 rounded-full pr-3 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/40"
+        className="inline-flex min-h-11 items-center gap-1.5 rounded-sm text-sm text-muted-foreground underline-offset-4 outline-none transition-colors hover:text-foreground hover:underline focus-visible:ring-3 focus-visible:ring-ring/40"
       >
-        <span className="grid size-9 place-items-center rounded-full border border-border bg-card/70">
-          <ArrowLeft aria-hidden="true" className="size-4" />
-        </span>
+        <ArrowLeft aria-hidden="true" className="size-4" />
         กลับไปยังหมุดบนแผนที่
-      </Link>
-
-      <div className="flex flex-wrap items-center gap-2">
-        <Chip
-          asChild
-          size="md"
-          interactive
-          category={isCategorySlug(props.categorySlug) ? props.categorySlug : undefined}
-          variant={isCategorySlug(props.categorySlug) ? "category" : "default"}
-        >
-          <Link href={categoryPath(props.categorySlug)}>
-            {createElement(categoryIcon(props.categorySlug), { "aria-hidden": true })}
-            {storyCategories.find((item) => item.slug === props.categorySlug)?.name ?? "เรื่องราว"}
-          </Link>
-        </Chip>
-        <Chip asChild variant="outline" size="md">
-          <Link href={props.mapHref} prefetch={false}>
-            <MapPin aria-hidden="true" className="text-gold-ink" />
-            {props.provinceName}
-          </Link>
-        </Chip>
-      </div>
+      </Link> */}
 
       <div className="space-y-4">
-        <p className="inline-flex items-center gap-2 text-xs font-medium tracking-widest text-gold-ink">
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-medium text-gold-ink">
           <span aria-hidden="true" className="h-px w-6 bg-gold" />
-          Thailand Story Map · เรื่องเล่าจากพิกัดจริง
+          <Link href={categoryPath(props.categorySlug)} className={kickerLink}>
+            {categoryName}
+          </Link>
+          <span aria-hidden="true">·</span>
+          <Link href={props.mapHref} prefetch={false} className={kickerLink}>
+            {props.provinceName}
+          </Link>
         </p>
         <h1 className="font-heading text-4xl font-semibold tracking-tight text-foreground wrap-anywhere sm:text-5xl">
           {props.title}
         </h1>
-        <p className="text-lg whitespace-pre-wrap text-muted-foreground wrap-anywhere">
+        <p className="text-md whitespace-pre-wrap text-muted-foreground wrap-anywhere">
           {props.summary}
         </p>
       </div>

@@ -30,7 +30,7 @@ export default function WriteStoryButton({
 
   const classes = cn(
     buttonVariants({ variant: "primary", size: "lg" }),
-    "h-14 gap-2.5 pr-6 pl-2 shadow-lift ring-1 ring-gold/40 hover:ring-gold",
+    "h-14 gap-2.5 pr-6 pl-2 ring-1 ring-gold/40 hover:ring-gold",
     className
   );
   const content = (

@@ -85,19 +85,25 @@ export async function listRelatedStories(
   story: { id: string; provinceId: string; categoryId: string },
   limit = 4
 ) {
-  const sameProvince = await prisma.story.findMany({
-    where: { status: StoryStatus.APPROVED, provinceId: story.provinceId, id: { not: story.id } },
-    select: listSelect,
-    orderBy: [{ viewCount: "desc" }, { createdAt: "desc" }, { id: "asc" }],
-    take: limit,
-  });
-  const exclude = [story.id, ...sameProvince.map((row) => row.id)];
-  const sameCategory = await prisma.story.findMany({
-    where: { status: StoryStatus.APPROVED, categoryId: story.categoryId, id: { notIn: exclude } },
-    select: listSelect,
-    orderBy: [{ viewCount: "desc" }, { createdAt: "desc" }, { id: "asc" }],
-    take: limit,
-  });
+  const orderBy = [{ viewCount: "desc" }, { createdAt: "desc" }, { id: "asc" }] satisfies Prisma.StoryOrderByWithRelationInput[];
+  // Both lists in parallel. The category list over-fetches by `limit` so it still
+  // has enough rows after dropping stories already shown in the province list.
+  const [sameProvince, categoryRows] = await Promise.all([
+    prisma.story.findMany({
+      where: { status: StoryStatus.APPROVED, provinceId: story.provinceId, id: { not: story.id } },
+      select: listSelect,
+      orderBy,
+      take: limit,
+    }),
+    prisma.story.findMany({
+      where: { status: StoryStatus.APPROVED, categoryId: story.categoryId, id: { not: story.id } },
+      select: listSelect,
+      orderBy,
+      take: limit * 2,
+    }),
+  ]);
+  const shown = new Set(sameProvince.map((row) => row.id));
+  const sameCategory = categoryRows.filter((row) => !shown.has(row.id)).slice(0, limit);
   return { sameProvince: sameProvince.map(toListItem), sameCategory: sameCategory.map(toListItem) };
 }
 
@@ -135,19 +141,18 @@ export async function listPublishedStories(filter: {
 
 /** Published story count per province slug (optionally within one category). */
 export async function countByProvince(categorySlug?: string) {
-  const groups = await prisma.story.groupBy({
-    by: ["provinceId"],
-    where: {
-      status: StoryStatus.APPROVED,
-      ...(categorySlug ? { category: { slug: categorySlug } } : {}),
-    },
-    _count: { _all: true },
-  });
-  if (!groups.length) return new Map<string, number>();
-  const provinces = await prisma.province.findMany({
-    where: { id: { in: groups.map((group) => group.provinceId) } },
-    select: { id: true, slug: true },
-  });
+  // One round trip: the province list is small, so fetch it alongside the counts.
+  const [groups, provinces] = await Promise.all([
+    prisma.story.groupBy({
+      by: ["provinceId"],
+      where: {
+        status: StoryStatus.APPROVED,
+        ...(categorySlug ? { category: { slug: categorySlug } } : {}),
+      },
+      _count: { _all: true },
+    }),
+    prisma.province.findMany({ select: { id: true, slug: true } }),
+  ]);
   const slugOf = new Map(provinces.map((province) => [province.id, province.slug]));
   return new Map(
     groups.flatMap((group) => {
@@ -159,19 +164,18 @@ export async function countByProvince(categorySlug?: string) {
 
 /** Published story count per category slug (optionally within one province). */
 export async function countByCategory(provinceSlug?: string) {
-  const groups = await prisma.story.groupBy({
-    by: ["categoryId"],
-    where: {
-      status: StoryStatus.APPROVED,
-      ...(provinceSlug ? { province: { slug: provinceSlug } } : {}),
-    },
-    _count: { _all: true },
-  });
-  if (!groups.length) return new Map<string, number>();
-  const categories = await prisma.category.findMany({
-    where: { id: { in: groups.map((group) => group.categoryId) } },
-    select: { id: true, slug: true },
-  });
+  // One round trip: the category list is small, so fetch it alongside the counts.
+  const [groups, categories] = await Promise.all([
+    prisma.story.groupBy({
+      by: ["categoryId"],
+      where: {
+        status: StoryStatus.APPROVED,
+        ...(provinceSlug ? { province: { slug: provinceSlug } } : {}),
+      },
+      _count: { _all: true },
+    }),
+    prisma.category.findMany({ select: { id: true, slug: true } }),
+  ]);
   const slugOf = new Map(categories.map((category) => [category.id, category.slug]));
   return new Map(
     groups.flatMap((group) => {

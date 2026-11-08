@@ -114,7 +114,7 @@ export default function StoryLocationMap({
       const element = document.createElement("div");
       root = createRoot(element);
       root.render(createElement(StoryMapPin, { categorySlug }));
-      marker = new mapboxgl.Marker({ element, anchor: "bottom" })
+      marker = new mapboxgl.Marker({ element, anchor: "center" })
         .setLngLat([longitude, latitude])
         .addTo(map);
 
@@ -140,7 +140,7 @@ export default function StoryLocationMap({
     <section
       ref={sectionRef}
       aria-label="ตำแหน่งบนแผนที่"
-      className="relative h-80 overflow-hidden rounded-panel bg-muted shadow-lift ring-1 ring-border sm:h-96 [&_.mapboxgl-ctrl-bottom-left]:top-2! [&_.mapboxgl-ctrl-bottom-left]:right-2! [&_.mapboxgl-ctrl-bottom-left]:bottom-auto! [&_.mapboxgl-ctrl-bottom-left]:left-auto!"
+      className="relative h-80 overflow-hidden rounded-panel bg-muted ring-1 ring-border sm:h-96 [&_.mapboxgl-ctrl-bottom-left]:top-2! [&_.mapboxgl-ctrl-bottom-left]:right-2! [&_.mapboxgl-ctrl-bottom-left]:bottom-auto! [&_.mapboxgl-ctrl-bottom-left]:left-auto!"
     >
       {/* Mapbox styles its container as position: relative, so it sits in a positioned wrapper. */}
       {/* Not aria-hidden: Mapbox puts focusable controls inside. */}

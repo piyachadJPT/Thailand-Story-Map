@@ -1,6 +1,6 @@
 import mapboxgl from "mapbox-gl";
 import type { StoryMapPoint } from "@/models/types/story";
-import { createStoryPin, type PinIconSource } from "./MapPin";
+import { createStoryPin } from "./MapPin";
 import { createStoryPopup, type ActivePopup } from "./storyPopup";
 
 /**
@@ -8,7 +8,7 @@ import { createStoryPopup, type ActivePopup } from "./storyPopup";
  * and reacts to "story-created", "story-selected" and "stories-refresh".
  * Returns a cleanup function.
  */
-export function attachStoryLayer(map: mapboxgl.Map, getIcon: PinIconSource) {
+export function attachStoryLayer(map: mapboxgl.Map) {
   let markers: mapboxgl.Marker[] = [];
   let loadGeneration = 0;
   let disposed = false;
@@ -19,8 +19,8 @@ export function attachStoryLayer(map: mapboxgl.Map, getIcon: PinIconSource) {
   const activePopup: ActivePopup = { current: null };
 
   const createMarker = (story: StoryMapPoint) => {
-    const pin = createStoryPin(story, getIcon);
-    return new mapboxgl.Marker({ element: pin, anchor: "bottom" })
+    const pin = createStoryPin(story);
+    return new mapboxgl.Marker({ element: pin, anchor: "center" })
       .setLngLat([story.longitude, story.latitude])
       .setPopup(createStoryPopup(story, pin, activePopup))
       .addTo(map);

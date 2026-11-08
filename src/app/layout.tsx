@@ -81,7 +81,7 @@ export default function RootLayout({
             <ToastContainer
               position="top-right"
               autoClose={3000}
-              toastClassName="!rounded-2xl !font-sans !shadow-lg"
+              toastClassName="!rounded-2xl !font-sans !shadow-none !border !border-border"
             />
           </ReactQueryProvider>
         </AuthProvider>

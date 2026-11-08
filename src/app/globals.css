@@ -87,19 +87,13 @@
   --animate-spin-slow: spin 12s linear infinite;
   @keyframes pin-ping {
     0% {
-      box-shadow:
-        var(--elevation-lift),
-        0 0 0 3px color-mix(in srgb, var(--pin-color) 60%, transparent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--pin-color) 60%, transparent);
     }
     100% {
-      box-shadow:
-        var(--elevation-lift),
-        0 0 0 18px transparent;
+      box-shadow: 0 0 0 18px transparent;
     }
   }
 
-  --shadow-soft: var(--elevation-soft);
-  --shadow-lift: var(--elevation-lift);
 }
 
 /* ── Light: warm paper, ink, gold leaf ── */
@@ -123,7 +117,7 @@
   --accent-foreground: #12161f;
   --destructive: #d92d20;
   --destructive-foreground: #ffffff;
-  --border: rgb(18 22 31 / 10%);
+  --border: rgb(18 22 31 / 14%);
   --input: rgb(18 22 31 / 14%);
   --ring: #12161f;
 
@@ -154,17 +148,10 @@
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
 
-  --elevation-soft:
-    0 1px 2px rgb(18 22 31 / 5%), 0 12px 32px -16px rgb(18 22 31 / 18%);
-  --elevation-lift:
-    0 2px 6px rgb(18 22 31 / 6%), 0 28px 60px -24px rgb(18 22 31 / 28%);
-
   /* Glass reads from --card, so it follows the theme automatically. */
   --glass-fill: color-mix(in srgb, var(--card) 60%, transparent);
   --glass-field: color-mix(in srgb, var(--card) 70%, transparent);
-  --glass-stroke: rgb(255 255 255 / 70%);
-  --glass-highlight: rgb(255 255 255 / 85%);
-  --glass-shadow: var(--elevation-lift);
+  --glass-stroke: var(--border);
 }
 
 /* ── Dark: night sky, moonlit ink, warm gold ── */
@@ -187,7 +174,7 @@
   --accent-foreground: #e6e3dc;
   --destructive: #f26b60;
   --destructive-foreground: #0e1117;
-  --border: rgb(255 255 255 / 10%);
+  --border: rgb(255 255 255 / 13%);
   --input: rgb(255 255 255 / 12%);
   --ring: #e6e3dc;
   --gold: #d4aa5e;
@@ -195,10 +182,7 @@
   --gold-foreground: #0e1117;
   --success: #5fcb9b;
   --warning: #e9b65c;
-  --elevation-soft: 0 1px 2px rgb(0 0 0 / 30%), 0 12px 32px -16px rgb(0 0 0 / 60%);
-  --elevation-lift: 0 2px 6px rgb(0 0 0 / 30%), 0 28px 60px -24px rgb(0 0 0 / 70%);
   --glass-stroke: rgb(255 255 255 / 10%);
-  --glass-highlight: rgb(255 255 255 / 8%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -220,7 +204,7 @@
     --accent-foreground: #e6e3dc;
     --destructive: #f26b60;
     --destructive-foreground: #0e1117;
-    --border: rgb(255 255 255 / 10%);
+    --border: rgb(255 255 255 / 13%);
     --input: rgb(255 255 255 / 12%);
     --ring: #e6e3dc;
     --gold: #d4aa5e;
@@ -228,12 +212,7 @@
     --gold-foreground: #0e1117;
     --success: #5fcb9b;
     --warning: #e9b65c;
-    --elevation-soft:
-      0 1px 2px rgb(0 0 0 / 30%), 0 12px 32px -16px rgb(0 0 0 / 60%);
-    --elevation-lift:
-      0 2px 6px rgb(0 0 0 / 30%), 0 28px 60px -24px rgb(0 0 0 / 70%);
     --glass-stroke: rgb(255 255 255 / 10%);
-    --glass-highlight: rgb(255 255 255 / 8%);
   }
 }
 
@@ -436,8 +415,7 @@
 }
 
 /*
- * Floating material: ~60% card fill, xl blur, 1px light border, soft shadow.
- * A faint top sheen gives the edge a lit, gold-leaf-adjacent lip.
+ * Floating material: ~60% card fill, blur, 1px border. Flat: no shadow, no sheen.
  */
 .liquid-glass,
 .glass-card,
@@ -448,9 +426,6 @@
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
   border: 1px solid var(--glass-stroke);
-  box-shadow:
-    inset 0 1px 0 0 var(--glass-highlight),
-    var(--glass-shadow);
   color: var(--foreground);
 }
 
@@ -458,24 +433,6 @@
 .glass-card:not(.absolute):not(.fixed):not(.sticky),
 .glass-card-light:not(.absolute):not(.fixed):not(.sticky) {
   position: relative;
-}
-
-.liquid-glass::before,
-.glass-card::before,
-.glass-card-light::before,
-.story-map-popup .mapboxgl-popup-content::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  pointer-events: none;
-  background: linear-gradient(
-    170deg,
-    var(--glass-highlight) 0%,
-    transparent 38%
-  );
-  opacity: 0.5;
 }
 
 /* Browsers without backdrop blur get a solid, readable surface. */
@@ -491,7 +448,6 @@
 .liquid-field {
   background-color: var(--glass-field);
   border: 1px solid var(--input);
-  box-shadow: inset 0 1px 1px rgb(0 0 0 / 4%);
   transition:
     box-shadow 0.2s ease,
     border-color 0.2s ease,
@@ -501,23 +457,11 @@
 .liquid-field:focus,
 .liquid-field:focus-visible {
   border-color: color-mix(in srgb, var(--gold) 70%, transparent);
-  box-shadow:
-    inset 0 1px 1px rgb(0 0 0 / 4%),
-    0 0 0 3px color-mix(in srgb, var(--gold) 22%, transparent);
-}
-
-.neon-glow {
-  box-shadow: var(--glass-shadow);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 22%, transparent);
 }
 
 .hover-glow {
-  transition:
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
-}
-.hover-glow:hover {
-  box-shadow: 0 16px 40px -18px rgb(0 0 0 / 18%);
-  transform: translateY(-2px);
+  transition: border-color 0.2s ease;
 }
 
 .story-map [data-map-fade] {
@@ -661,24 +605,12 @@
 }
 
 /*
- * Backoffice: flat surfaces. No drop shadows anywhere on the page (including
- * shared buttons, tabs and popups rendered in portals); borders are a touch
- * stronger so cards and tables still read clearly. Focus rings are untouched.
+ * Flat UI: no drop shadows anywhere (including shared components and popups
+ * rendered in portals). Edges come from borders. Focus rings are untouched.
  */
-:root:has([data-backoffice]) {
-  --border: rgb(18 22 31 / 14%);
-}
-:root:has([data-backoffice]):is(.dark, [data-theme="dark"]) {
-  --border: rgb(255 255 255 / 13%);
-}
-@media (prefers-color-scheme: dark) {
-  :root:has([data-backoffice]):not([data-theme="light"]):not(.light) {
-    --border: rgb(255 255 255 / 13%);
-  }
-}
-:root:has([data-backoffice]) *,
-:root:has([data-backoffice]) *::before,
-:root:has([data-backoffice]) *::after {
+*,
+*::before,
+*::after {
   --tw-shadow: 0 0 #0000 !important;
   --tw-inset-shadow: 0 0 #0000 !important;
 }

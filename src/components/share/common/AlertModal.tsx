@@ -71,7 +71,7 @@ export default function AlertModal({
 
     return (
         <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
-            <div className="bg-card text-card-foreground rounded-2xl shadow-xl w-full max-w-sm overflow-hidden scale-100 animate-in zoom-in-95 duration-200 border border-border">
+            <div className="bg-card text-card-foreground rounded-2xl w-full max-w-sm overflow-hidden scale-100 animate-in zoom-in-95 duration-200 border border-border">
                 <div className="p-6 text-center">
                     <div
                         className={`mx-auto mb-4 w-12 h-12 rounded-full flex items-center justify-center ${colors.iconBg} ${colors.iconText}`}

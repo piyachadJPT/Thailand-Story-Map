@@ -70,7 +70,7 @@ export default function StoryDropdown({
       <Combobox.Portal>
         <Combobox.Positioner sideOffset={8} align="start" className="z-80 outline-none">
           <Combobox.Popup
-            className="w-(--anchor-width) max-w-[calc(100vw-1rem)] overflow-hidden rounded-2xl border border-border bg-popover p-2 text-popover-foreground shadow-lift outline-none"
+            className="w-(--anchor-width) max-w-[calc(100vw-1rem)] overflow-hidden rounded-2xl border border-border bg-popover p-2 text-popover-foreground outline-none"
             onKeyDown={(event) => {
               if (event.key === "Escape") event.stopPropagation();
             }}

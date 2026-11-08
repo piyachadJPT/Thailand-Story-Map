@@ -96,7 +96,7 @@ export default function ProvinceStoryMap({ token, provinceName, points }: Props)
         const root = createRoot(element);
         root.render(createElement(StoryMapPin, { categorySlug: point.categorySlug }));
         roots.push(root);
-        new mapboxgl.Marker({ element, anchor: "bottom" })
+        new mapboxgl.Marker({ element, anchor: "center" })
           .setLngLat([point.longitude, point.latitude])
           .addTo(map);
         // Mapbox marks markers role="img"; these are links, so keep their native role.
@@ -118,7 +118,7 @@ export default function ProvinceStoryMap({ token, provinceName, points }: Props)
     <section
       ref={sectionRef}
       aria-label={`แผนที่เรื่องเล่าใน${provinceName}`}
-      className="relative h-72 overflow-hidden rounded-panel bg-muted shadow-lift ring-1 ring-border sm:h-96"
+      className="relative h-72 overflow-hidden rounded-panel bg-muted ring-1 ring-border sm:h-96"
     >
       <div className="absolute inset-0">
         <div ref={containerRef} className="size-full" />

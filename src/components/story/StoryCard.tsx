@@ -21,7 +21,7 @@ export default function StoryCard({ story, step }: StoryCardProps) {
     <Link
       href={storyPath(story.provinceSlug, story.slug)}
       style={{ "--tint": categoryColor(story.categorySlug) } as React.CSSProperties}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/80 p-5 shadow-soft outline-none backdrop-blur-sm transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-0.5 hover:border-(--tint)/50 hover:shadow-lift focus-visible:ring-3 focus-visible:ring-ring/40 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/80 p-5 outline-none backdrop-blur-sm transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-0.5 hover:border-(--tint)/50 focus-visible:ring-3 focus-visible:ring-ring/40 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
     >
       <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-(--tint)/70" />
       <span className="flex items-center justify-between gap-2">

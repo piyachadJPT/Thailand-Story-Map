@@ -7,7 +7,7 @@ const glassPanelVariants = cva("text-foreground", {
       /** Frosted floating material (over the map or the page canvas). */
       glass: "liquid-glass",
       /** Opaque card surface for long reading content. */
-      solid: "border border-border bg-card text-card-foreground shadow-soft",
+      solid: "border border-border bg-card text-card-foreground",
     },
     radius: {
       card: "rounded-2xl",

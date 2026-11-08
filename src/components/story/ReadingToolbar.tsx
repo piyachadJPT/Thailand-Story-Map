@@ -13,7 +13,8 @@ type ReadingToolbarProps = {
 };
 
 /**
- * Sticky bar below the floating navbar: text size −/+, share (falls back to
+ * Bar pinned to the bottom of the screen while reading; settles under the
+ * last paragraph at the end of the story. Text size −/+, share (falls back to
  * copy), copy link. Mostly opaque so the story text never shows through.
  */
 export default function ReadingToolbar({ fontSize, onFontSizeChange }: ReadingToolbarProps) {
@@ -45,8 +46,13 @@ export default function ReadingToolbar({ fontSize, onFontSizeChange }: ReadingTo
   }
 
   return (
-    <div className="sticky top-22 z-20 mx-auto max-w-170">
-      <div className="flex items-center justify-between gap-2 rounded-full border border-border bg-card/90 p-1.5 pl-4 shadow-soft backdrop-blur-xl">
+    <div className="sticky bottom-[max(1rem,env(safe-area-inset-bottom))] z-20 mx-auto max-w-170">
+      {copyError ? (
+        <p role="status" className="mb-2 px-4 text-xs text-muted-foreground">
+          คัดลอกไม่ได้ กรุณาคัดลอกลิงก์จากแถบที่อยู่ของเบราว์เซอร์
+        </p>
+      ) : null}
+      <div className="flex items-center justify-between gap-2 rounded-full border border-border bg-card/95 p-1.5 pl-4 backdrop-blur-xl">
         <p className="hidden items-center gap-2 text-sm font-semibold text-foreground sm:inline-flex">
           <BookOpen aria-hidden="true" className="size-4 text-gold-ink" />
           เรื่องราว
@@ -87,11 +93,6 @@ export default function ReadingToolbar({ fontSize, onFontSizeChange }: ReadingTo
           </IconButton>
         </div>
       </div>
-      {copyError ? (
-        <p role="status" className="mt-2 px-4 text-xs text-muted-foreground">
-          คัดลอกไม่ได้ กรุณาคัดลอกลิงก์จากแถบที่อยู่ของเบราว์เซอร์
-        </p>
-      ) : null}
     </div>
   );
 }

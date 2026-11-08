@@ -101,12 +101,19 @@ export async function getOverview(range: number, now = new Date()) {
     }),
   ]);
 
-  const reportedStories = reportedGroups.length
-    ? await prisma.story.findMany({
-        where: { id: { in: reportedGroups.map((group) => group.storyId) } },
-        select: { id: true, title: true, status: true },
-      })
-    : [];
+  // Both follow-ups depend only on the batch above, so fetch them together.
+  const [reportedStories, provinceCounts] = await Promise.all([
+    reportedGroups.length
+      ? prisma.story.findMany({
+          where: { id: { in: reportedGroups.map((group) => group.storyId) } },
+          select: { id: true, title: true, status: true },
+        })
+      : [],
+    prisma.province.findMany({
+      where: { id: { in: provinceGroups.map((group) => group.provinceId) } },
+      select: { id: true, name: true, slug: true },
+    }),
+  ]);
 
   const storySeries = fillDailySeries(storyDays, start, range, ["published", "other"] as const);
   const userSeries = fillDailySeries(userDays, start, range, ["count"] as const);
@@ -117,10 +124,6 @@ export async function getOverview(range: number, now = new Date()) {
   const usersNow = sumBetween(userDays, startKey, "count");
   const usersBefore = sumBetween(userDays, previousKey, "count", startKey);
 
-  const provinceCounts = await prisma.province.findMany({
-    where: { id: { in: provinceGroups.map((group) => group.provinceId) } },
-    select: { id: true, name: true, slug: true },
-  });
   const topProvinces = provinceGroups
     .map((group) => ({
       ...(provinceCounts.find((province) => province.id === group.provinceId) ?? {

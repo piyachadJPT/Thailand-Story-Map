@@ -37,8 +37,8 @@ export default function CategoryCard({ slug, name, hint, href, feature = false, 
       href={href}
       className={cn(
         tintVariants({ category: slug }),
-        "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/70 p-5 shadow-soft outline-none backdrop-blur-sm sm:p-6",
-        "transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-0.5 hover:border-(--tint)/50 hover:shadow-lift motion-reduce:transition-none motion-reduce:hover:translate-y-0",
+        "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/70 p-5 outline-none backdrop-blur-sm sm:p-6",
+        "transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-0.5 hover:border-(--tint)/50 motion-reduce:transition-none motion-reduce:hover:translate-y-0",
         "focus-visible:ring-3 focus-visible:ring-ring/40",
         feature ? "min-h-72 sm:p-8" : "min-h-48",
         className

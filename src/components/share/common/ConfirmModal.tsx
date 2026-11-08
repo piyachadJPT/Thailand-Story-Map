@@ -42,7 +42,7 @@ export default function ConfirmModal({
 
     return createPortal(
         <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-            <div className="bg-card text-card-foreground rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden scale-100 animate-in zoom-in-95 fade-in slide-in-from-bottom-2 duration-200 ring-1 ring-foreground/10">
+            <div className="bg-card text-card-foreground rounded-3xl w-full max-w-sm overflow-hidden scale-100 animate-in zoom-in-95 fade-in slide-in-from-bottom-2 duration-200 ring-1 ring-foreground/10">
                 <div className="p-8 text-center">
                     <div
                         className={`mx-auto mb-6 w-16 h-16 rounded-full flex items-center justify-center p-3 ${type === "danger"
@@ -81,11 +81,11 @@ export default function ConfirmModal({
                     <button
                         onClick={onConfirm}
                         disabled={isLoading}
-                        className={`flex-1 px-4 py-2.5 text-sm font-medium rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 ${type === "danger"
-                            ? "bg-[#ff3b30] text-white shadow-[#ff3b30]/20"
+                        className={`flex-1 px-4 py-2.5 text-sm font-medium rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 ${type === "danger"
+                            ? "bg-[#ff3b30] text-white"
                             : type === "warning"
-                                ? "bg-[#ff6b00] text-white shadow-[#ff6b00]/20"
-                                : "bg-primary text-primary-foreground shadow-primary/20"
+                                ? "bg-[#ff6b00] text-white"
+                                : "bg-primary text-primary-foreground"
                             }`}
                     >
                         {isLoading ? (

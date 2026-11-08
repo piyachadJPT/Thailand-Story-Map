@@ -9,7 +9,7 @@ export default function MapUnavailable({ invalidToken }: { invalidToken: boolean
       role="status"
     >
       <GlassPanel gilded padding="lg" className="max-w-sm space-y-4 text-center">
-        <div className="mx-auto grid size-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-lift ring-1 ring-gold/50">
+        <div className="mx-auto grid size-16 place-items-center rounded-full bg-primary text-primary-foreground ring-1 ring-gold/50">
           <Map aria-hidden="true" className="size-7" />
         </div>
         <p className="font-heading text-xl font-semibold text-foreground">

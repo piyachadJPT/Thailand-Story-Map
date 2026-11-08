@@ -26,7 +26,7 @@ export default function ComposerPanel({ hidden, step, onStepChange, children }: 
       hidden={hidden}
       className={cn(
         "fixed inset-0 z-70 flex flex-col overflow-hidden bg-card/95 outline-none text-card-foreground backdrop-blur-xl",
-        "sm:inset-auto sm:top-24 sm:right-4 sm:bottom-4 sm:w-[min(32rem,calc(100vw-2rem))] sm:rounded-panel sm:border sm:border-border sm:shadow-lift",
+        "sm:inset-auto sm:top-24 sm:right-4 sm:bottom-4 sm:w-[min(32rem,calc(100vw-2rem))] sm:rounded-panel sm:border sm:border-border",
         "motion-safe:animate-slide-up"
       )}
     >

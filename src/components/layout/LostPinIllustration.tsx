@@ -39,10 +39,10 @@ export default function LostPinIllustration({ tone, label, className }: LostPinI
         <circle cx="30" cy="170" r="5" className="fill-(--trail)" />
         <path d="M188 62 l16 16 M204 62 l-16 16" className="stroke-(--trail)" strokeWidth="2.5" strokeLinecap="round" />
       </svg>
-      <span className="absolute top-1/2 left-1/2 grid size-20 -translate-1/2 place-items-center rounded-full border border-current/40 bg-card shadow-lift motion-safe:animate-float">
+      <span className="absolute top-1/2 left-1/2 grid size-20 -translate-1/2 place-items-center rounded-full border border-current/40 bg-card motion-safe:animate-float">
         <Pin className="size-9" />
       </span>
-      <span className="absolute right-4 bottom-6 grid size-11 place-items-center rounded-full border border-border bg-card text-muted-foreground shadow-soft">
+      <span className="absolute right-4 bottom-6 grid size-11 place-items-center rounded-full border border-border bg-card text-muted-foreground">
         <Compass className="size-5 motion-safe:animate-spin-slow" />
       </span>
       {label ? (

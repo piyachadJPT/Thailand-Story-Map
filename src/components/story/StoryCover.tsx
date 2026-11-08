@@ -9,7 +9,7 @@ type StoryCoverProps = {
 /** Wide cover banner with a soft ink fade and a gold hairline. The page's LCP image. */
 export default function StoryCover({ url, alt }: StoryCoverProps) {
   return (
-    <figure className="relative aspect-video overflow-hidden rounded-panel bg-muted shadow-lift ring-1 ring-border sm:aspect-21/9">
+    <figure className="relative aspect-video overflow-hidden rounded-panel bg-muted ring-1 ring-border sm:aspect-21/9">
       <Image
         src={url}
         alt={alt}

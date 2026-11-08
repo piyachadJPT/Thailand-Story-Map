@@ -1,5 +1,5 @@
 import mapboxgl from "mapbox-gl";
-import { createDraftPin, type PinIconSource } from "./MapPin";
+import { createDraftPin } from "./MapPin";
 import { mapPadding, PIN_MODE_PADDING } from "./mapStyles";
 
 type Point = { longitude: number; latitude: number };
@@ -12,7 +12,7 @@ function selectLocation(detail: Point) {
  * Map side of the story composer: pin-placing mode ("story-pin-mode"),
  * the draggable draft pin ("story-draft-location") and map clicks.
  */
-export function attachComposerLayer(map: mapboxgl.Map, getIcon: PinIconSource) {
+export function attachComposerLayer(map: mapboxgl.Map) {
   let placingPin = false;
   let draftMarker: mapboxgl.Marker | null = null;
 
@@ -29,8 +29,8 @@ export function attachComposerLayer(map: mapboxgl.Map, getIcon: PinIconSource) {
     draftMarker?.remove();
     draftMarker = point
       ? new mapboxgl.Marker({
-          element: createDraftPin(getIcon),
-          anchor: "bottom",
+          element: createDraftPin(),
+          anchor: "center",
           draggable: true,
         })
           .setLngLat([point.longitude, point.latitude])

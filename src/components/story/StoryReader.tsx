@@ -20,8 +20,8 @@ export default function StoryReader({ children }: { children: ReactNode }) {
       className="scroll-mt-28 space-y-8"
     >
       <ReadingProgress targetRef={sectionRef} />
-      <ReadingToolbar fontSize={fontSize} onFontSizeChange={setFontSize} />
       <div style={{ fontSize }}>{children}</div>
+      <ReadingToolbar fontSize={fontSize} onFontSizeChange={setFontSize} />
     </section>
   );
 }

@@ -2,6 +2,7 @@ import mapboxgl from "mapbox-gl";
 import { flushSync } from "react-dom";
 import { createRoot, type Root } from "react-dom/client";
 import type { StoryMapPoint } from "@/models/types/story";
+import { PIN_POPUP_OFFSET } from "./MapPin";
 import StoryPreviewCard from "./StoryPreviewCard";
 
 /** Only one story preview is open at a time. */
@@ -20,7 +21,7 @@ export function createStoryPopup(
 ) {
   const container = document.createElement("div");
   const popup = new mapboxgl.Popup({
-    offset: 44,
+    offset: PIN_POPUP_OFFSET,
     closeButton: false,
     maxWidth: "min(320px, calc(100vw - 32px))",
     className: "story-map-popup",

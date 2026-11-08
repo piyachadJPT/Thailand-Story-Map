@@ -36,7 +36,7 @@ export default function CoverImageInput({
             variant="secondary"
             disabled={disabled}
             aria-label="นำรูปปกออก"
-            className="absolute top-3 right-3 shadow-soft"
+            className="absolute top-3 right-3"
             onClick={() => {
               image.select(null);
               setError("");

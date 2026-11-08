@@ -93,7 +93,7 @@ function SegmentedTabs<T extends string>({
         <TabsPrimitive.Indicator
           renderBeforeHydration
           className={cn(
-            "absolute top-1/2 left-0 z-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 rounded-full bg-primary shadow-soft",
+            "absolute top-1/2 left-0 z-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 rounded-full bg-primary",
             "transition-[translate,width] duration-300 ease-out"
           )}
         />

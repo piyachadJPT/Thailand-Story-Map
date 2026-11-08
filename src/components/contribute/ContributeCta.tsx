@@ -23,7 +23,7 @@ export default function ContributeCta() {
         className="gap-2"
       />
       <div className="flex flex-wrap items-center gap-3">
-        <WriteStoryButton isHome={false} className="h-12 shadow-soft" />
+        <WriteStoryButton isHome={false} className="h-12" />
         <Link href="/" prefetch={false} className={buttonVariants({ variant: "outline", size: "lg" })}>
           กลับไปที่แผนที่
         </Link>
