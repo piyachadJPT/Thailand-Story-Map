@@ -6,7 +6,7 @@ import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const listVariants = cva(
-  "relative inline-flex w-full items-center gap-1 rounded-full border border-border bg-foreground/4 p-1",
+  "relative inline-flex w-full items-center gap-1 rounded-control border border-border bg-foreground/4 p-1",
   {
     variants: {
       size: {
@@ -24,7 +24,7 @@ const listVariants = cva(
 );
 
 const tabClasses = cn(
-  "relative z-10 inline-flex h-full min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full px-3 font-medium whitespace-nowrap text-muted-foreground",
+  "relative z-10 inline-flex h-full min-w-0 flex-1 items-center justify-center gap-1.5 rounded-control px-3 font-medium whitespace-nowrap text-muted-foreground",
   "transition-colors duration-200 hover:text-foreground data-active:text-primary-foreground",
   "outline-none focus-visible:ring-3 focus-visible:ring-ring/40",
   "disabled:pointer-events-none disabled:opacity-50",
@@ -52,7 +52,7 @@ type SegmentedTabsProps<T extends string> = VariantProps<typeof listVariants> & 
 };
 
 /**
- * Pill-shaped tab switcher with a sliding ink indicator.
+ * Tab switcher with a sliding ink indicator (shape follows --radius-control).
  * Arrow keys move between tabs (Base UI Tabs).
  */
 function SegmentedTabs<T extends string>({
@@ -93,7 +93,7 @@ function SegmentedTabs<T extends string>({
         <TabsPrimitive.Indicator
           renderBeforeHydration
           className={cn(
-            "absolute top-1/2 left-0 z-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 rounded-full bg-primary",
+            "absolute top-1/2 left-0 z-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) -translate-y-1/2 rounded-control bg-primary",
             "transition-[translate,width] duration-300 ease-out"
           )}
         />

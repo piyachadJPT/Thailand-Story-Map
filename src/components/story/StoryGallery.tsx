@@ -24,13 +24,13 @@ type StoryGalleryProps = {
 export default function StoryGallery({ images, layout, title, provinceName }: StoryGalleryProps) {
   return (
     <section aria-label="ภาพประกอบ" className="space-y-4">
-      <p className="flex items-center gap-2 text-xs font-medium tracking-widest text-gold-ink">
-        <span aria-hidden="true" className="h-px w-6 bg-gold" />
+      <p className="flex items-center gap-2 text-sm font-semibold text-chad">
+        <span aria-hidden="true" className="lai-prajamyam w-7" />
         ภาพประกอบ
       </p>
       <div className={gridVariants({ layout })}>
         {images.map((image, index) => (
-          <figure key={image.id} className="overflow-hidden rounded-2xl bg-card ring-1 ring-border">
+          <figure key={image.id} className="overflow-hidden rounded-lg bg-card ring-1 ring-border">
             <div className="relative aspect-4/3 w-full bg-muted">
               <Image
                 src={image.url}
@@ -42,7 +42,7 @@ export default function StoryGallery({ images, layout, title, provinceName }: St
               />
             </div>
             <figcaption className="flex items-baseline gap-2 px-4 py-3 text-xs text-muted-foreground">
-              <span className="font-heading font-semibold text-gold-ink tabular-nums">
+              <span className="font-heading font-bold text-gold-ink tabular-nums">
                 {String(index + 1).padStart(2, "0")}
               </span>
               {image.altText || provinceName}

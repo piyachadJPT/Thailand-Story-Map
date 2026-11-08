@@ -21,10 +21,11 @@ const linkVariants = cva(
   {
     variants: {
       layout: {
+        // On the nav bar: the current page gets a gold underline, not a filled pill.
         inline:
-          "rounded-full px-3.5 py-2 text-muted-foreground hover:bg-foreground/6 hover:text-foreground aria-[current=page]:bg-primary aria-[current=page]:text-primary-foreground",
+          "rounded-control px-3 py-2 text-nav-foreground/75 hover:bg-nav-foreground/10 hover:text-nav-foreground focus-visible:ring-nav-rule aria-[current=page]:text-nav-foreground aria-[current=page]:after:absolute aria-[current=page]:after:inset-x-3 aria-[current=page]:after:bottom-0.5 aria-[current=page]:after:h-0.5 aria-[current=page]:after:bg-nav-rule",
         stacked:
-          "flex min-h-11 items-center rounded-xl px-3 text-foreground hover:bg-foreground/6 aria-[current=page]:bg-accent aria-[current=page]:before:absolute aria-[current=page]:before:inset-y-2.5 aria-[current=page]:before:left-0 aria-[current=page]:before:w-0.5 aria-[current=page]:before:rounded-full aria-[current=page]:before:bg-gold",
+          "flex min-h-11 items-center rounded-control px-3 text-foreground hover:bg-foreground/6 aria-[current=page]:bg-accent aria-[current=page]:before:absolute aria-[current=page]:before:inset-y-2.5 aria-[current=page]:before:left-0 aria-[current=page]:before:w-0.5 aria-[current=page]:before:bg-gold",
       },
     },
     defaultVariants: { layout: "inline" },

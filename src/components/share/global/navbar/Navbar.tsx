@@ -2,9 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
-import { ChevronsLeft, ChevronsRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import AuthControls from "@/components/auth/AuthControls";
-import { GoldDivider } from "@/components/ui/gold-divider";
 import { IconButton } from "@/components/ui/icon-button";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "../ThemeToggle";
@@ -14,95 +13,64 @@ import NavLinks from "./NavLinks";
 import WriteStoryButton from "./WriteStoryButton";
 import { useHideOnScroll } from "./useHideOnScroll";
 
+/**
+ * Full-width top bar (indigo in light, lacquer in dark) with a gold rule.
+ * Height is --nav-h; pages and map panels offset themselves by it.
+ */
 export default function Navbar() {
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [expanded, setExpanded] = useState(false);
   const isHome = pathname === "/";
   const isStory = pathname === "/story" || pathname.startsWith("/story/");
   const scrolledAway = useHideOnScroll(isStory, pathname, headerRef);
   const isHidden = scrolledAway && !isMenuOpen;
   const showWriteButton = !isStory && pathname !== "/my-stories";
-  const collapse = () => setExpanded(false);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header
       ref={headerRef}
       inert={isHidden}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") closeMenu();
+      }}
       className={cn(
-        "pointer-events-none fixed top-4 right-4 left-4 z-50",
-        isHome && "lg:left-[24rem]",
-        isStory &&
-          "transition-transform duration-300 ease-out motion-reduce:transition-none",
-        isHidden && "-translate-y-[calc(100%+2rem)]"
+        "fixed inset-x-0 top-0 z-50",
+        isStory && "transition-transform duration-300 ease-out motion-reduce:transition-none",
+        isHidden && "-translate-y-full"
       )}
     >
-      <div className="pointer-events-auto hidden items-start justify-end gap-3 lg:flex">
-        <div
-          className={cn(
-            "liquid-glass min-w-0 flex-1 overflow-hidden rounded-full p-1.5",
-            // Over the map, the bar starts compact below xl so the map stays visible.
-            isHome && !expanded && "max-xl:flex-none max-xl:shrink-0"
-          )}
-          onKeyDown={(event) => {
-            if (event.key === "Escape") collapse();
-          }}
-        >
-          <div className="flex h-11 items-center gap-2">
-            <BrandMark
-              onNavigate={collapse}
-              nameClassName={cn("hidden", (!isHome || expanded) && "xl:block")}
-            />
+      <div className="border-b-[3px] border-nav-rule bg-nav text-nav-foreground">
+        <div className="mx-auto flex h-14 max-w-screen-2xl items-center gap-2 px-4 lg:gap-4 lg:px-6">
+          <BrandMark onNavigate={closeMenu} priority />
 
-            <GoldDivider
-              orientation="vertical"
-              className={cn(isHome && !expanded && "max-xl:hidden")}
-            />
+          <NavLinks
+            pathname={pathname}
+            className="hidden min-w-0 flex-1 justify-center overflow-x-auto md:flex lg:justify-start"
+          />
 
-            <NavLinks
-              id="desktop-navigation"
-              pathname={pathname}
-              onNavigate={collapse}
-              className={cn(
-                "flex-1 justify-start overflow-x-auto",
-                isHome && !expanded && "max-xl:hidden"
-              )}
-            />
-
-            <div className="ml-auto flex shrink-0 items-center gap-1">
-              <div className={cn(isHome && !expanded && "max-xl:hidden")}>
-                <ThemeToggle />
-              </div>
-              <AuthControls variant="desktop" />
-              {isHome ? (
-                <IconButton
-                  size="sm"
-                  variant="secondary"
-                  className="xl:hidden"
-                  onClick={() => setExpanded((value) => !value)}
-                  aria-expanded={expanded}
-                  aria-controls="desktop-navigation"
-                  aria-label={expanded ? "ย่อเมนูนำทาง" : "ขยายเมนูนำทาง"}
-                  title={expanded ? "ย่อเมนู" : "ขยายเมนู"}
-                >
-                  {expanded ? <ChevronsRight /> : <ChevronsLeft />}
-                </IconButton>
-              ) : null}
-            </div>
+          <div className="ml-auto flex shrink-0 items-center gap-1 md:ml-0">
+            <ThemeToggle />
+            <AuthControls variant="desktop" />
+            {showWriteButton ? (
+              <WriteStoryButton isHome={isHome} className="ml-2 hidden lg:inline-flex" />
+            ) : null}
+            <IconButton
+              size="sm"
+              className="text-nav-foreground hover:bg-nav-foreground/10 hover:text-nav-foreground aria-expanded:bg-nav-foreground/10 focus-visible:ring-nav-rule md:hidden"
+              onClick={() => setIsMenuOpen((open) => !open)}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation"
+              aria-label={isMenuOpen ? "ปิดเมนู" : "เปิดเมนู"}
+            >
+              {isMenuOpen ? <X /> : <Menu />}
+            </IconButton>
           </div>
         </div>
-
-        {showWriteButton ? (
-          <WriteStoryButton isHome={isHome} onOpen={collapse} />
-        ) : null}
       </div>
 
-      <MobileMenu
-        pathname={pathname}
-        open={isMenuOpen}
-        onOpenChange={setIsMenuOpen}
-      />
+      <MobileMenu pathname={pathname} open={isMenuOpen} onClose={closeMenu} />
     </header>
   );
 }

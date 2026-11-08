@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 const buttonStyles = cva(
   [
-    "group/button inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-transparent font-medium whitespace-nowrap select-none",
+    "group/button inline-flex shrink-0 items-center justify-center gap-2 rounded-control border border-transparent font-medium whitespace-nowrap select-none",
     "transition-[background-color,border-color,color,box-shadow,translate] duration-200 ease-out",
     "outline-none focus-visible:ring-3 focus-visible:ring-ring/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     "active:not-aria-[haspopup]:translate-y-px motion-reduce:active:translate-y-0",

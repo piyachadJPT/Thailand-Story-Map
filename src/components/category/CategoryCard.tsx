@@ -30,37 +30,30 @@ type CategoryCardProps = {
   className?: string;
 };
 
-/** A category tile: tinted glow, oversized icon watermark, name and hint. */
+/** A category tile: category-color top band, faint icon watermark, name and hint. */
 export default function CategoryCard({ slug, name, hint, href, feature = false, count, className }: CategoryCardProps) {
   return (
     <Link
       href={href}
       className={cn(
         tintVariants({ category: slug }),
-        "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/70 p-5 outline-none backdrop-blur-sm sm:p-6",
-        "transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-0.5 hover:border-(--tint)/50 motion-reduce:transition-none motion-reduce:hover:translate-y-0",
-        "focus-visible:ring-3 focus-visible:ring-ring/40",
+        // A band of the category color along the top edge, like a mural panel.
+        "group relative flex h-full flex-col overflow-hidden rounded-lg border border-border border-t-4 border-t-(--tint) bg-card p-5 outline-none sm:p-6",
+        "transition-colors duration-200 hover:border-(--tint) motion-reduce:transition-none",
+        "focus-visible:ring-2 focus-visible:ring-ring",
         feature ? "min-h-72 sm:p-8" : "min-h-48",
         className
       )}
     >
-      <span
-        aria-hidden="true"
-        className="absolute -top-16 -right-16 size-56 rounded-full bg-(--tint)/15 blur-2xl"
-      />
       {createElement(categoryIcon(slug), {
         "aria-hidden": true,
-        className: cn(
-          "absolute top-5 right-5 text-(--tint) opacity-15 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6 motion-reduce:transition-none",
-          feature ? "size-40" : "size-24"
-        ),
+        strokeWidth: 1.25,
+        className: cn("absolute top-5 right-5 text-(--tint) opacity-15", feature ? "size-40" : "size-24"),
       })}
-      <span className="relative flex items-center gap-3">
-        <span className="grid size-12 place-items-center rounded-full border border-(--tint)/40 bg-(--tint)/10 text-(--tint)">
-          {createElement(categoryIcon(slug), { "aria-hidden": true, className: "size-5" })}
-        </span>
+      <span className="relative flex items-center gap-2 text-sm font-semibold text-(--tint)">
+        {createElement(categoryIcon(slug), { "aria-hidden": true, className: "size-4" })}
         {count !== undefined ? (
-          <span className="rounded-full border border-border bg-card/80 px-3 py-1 text-xs font-medium text-foreground tabular-nums">
+          <span className="text-muted-foreground tabular-nums">
             {count > 0 ? `${count.toLocaleString("th-TH")} เรื่อง` : "ยังไม่มีเรื่อง"}
           </span>
         ) : null}
@@ -68,7 +61,7 @@ export default function CategoryCard({ slug, name, hint, href, feature = false, 
       <span className="relative mt-auto block pt-10">
         <span
           className={cn(
-            "block font-heading font-semibold text-foreground",
+            "block font-heading font-bold text-foreground",
             feature ? "text-3xl sm:text-4xl" : "text-xl"
           )}
         >

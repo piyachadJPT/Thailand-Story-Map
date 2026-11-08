@@ -22,7 +22,7 @@ export default function ComposerProgress({ step, onStepChange }: ComposerProgres
               type="button"
               aria-current={current ? "step" : undefined}
               onClick={() => onStepChange(index as ComposerStep)}
-              className="group flex min-w-0 items-center gap-2 rounded-full py-1 pr-2 text-left outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
+              className="group flex min-w-0 items-center gap-2 rounded-control py-1 pr-2 text-left outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
             >
               <span
                 className={cn(

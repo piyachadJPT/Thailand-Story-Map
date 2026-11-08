@@ -52,7 +52,7 @@ export default function ReadingToolbar({ fontSize, onFontSizeChange }: ReadingTo
           คัดลอกไม่ได้ กรุณาคัดลอกลิงก์จากแถบที่อยู่ของเบราว์เซอร์
         </p>
       ) : null}
-      <div className="flex items-center justify-between gap-2 rounded-full border border-border bg-card/95 p-1.5 pl-4 backdrop-blur-xl">
+      <div className="flex items-center justify-between gap-2 rounded-panel border border-border bg-card p-1.5 pl-4">
         <p className="hidden items-center gap-2 text-sm font-semibold text-foreground sm:inline-flex">
           <BookOpen aria-hidden="true" className="size-4 text-gold-ink" />
           เรื่องราว

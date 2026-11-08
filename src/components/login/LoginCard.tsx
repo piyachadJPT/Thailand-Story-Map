@@ -23,12 +23,15 @@ export default function LoginCard({ callbackUrl, errorMessage, googleConfigured,
         <span className="mb-5 grid size-16 place-items-center overflow-hidden rounded-full bg-background ring-1 ring-gold/50">
           <Image src="/logo.png" alt="" width={56} height={56} priority className="size-12 object-contain" />
         </span>
-        <p className="text-xs font-medium tracking-widest text-gold-ink">{siteConfig.name}</p>
-        <h1 className="mt-1 font-heading text-3xl font-semibold tracking-tight text-foreground">เข้าสู่ระบบ</h1>
+        <p className="inline-flex items-center gap-2 text-sm font-semibold text-chad">
+          <span aria-hidden="true" className="lai-prajamyam w-7" />
+          {siteConfig.nameTh}
+        </p>
+        <h1 className="mt-1 font-heading text-3xl font-bold text-foreground">เข้าสู่ระบบ</h1>
         <p className="mt-2 text-sm text-muted-foreground">ใช้บัญชี Google เพื่อเล่าเรื่องบนแผนที่</p>
       </div>
 
-      <GoldDivider strength="subtle" className="my-7" />
+      <GoldDivider pattern="lai" strength="subtle" className="my-7" />
 
       <div className="space-y-4">
         {errorMessage ? <Alert variant="destructive">{errorMessage}</Alert> : null}
@@ -46,7 +49,7 @@ export default function LoginCard({ callbackUrl, errorMessage, googleConfigured,
 
       <Link
         href="/"
-        className="mx-auto mt-8 inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/40"
+        className="mx-auto mt-8 inline-flex min-h-11 items-center gap-2 rounded-control px-3 text-sm font-medium text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
       >
         <ArrowLeft aria-hidden="true" className="size-4" />
         กลับหน้าแรก

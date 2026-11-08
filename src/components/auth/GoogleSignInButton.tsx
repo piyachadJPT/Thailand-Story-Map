@@ -45,7 +45,7 @@ export default function GoogleSignInButton({
         void signIn("google", { callbackUrl }).catch(() => setPending(false));
       }}
       className={cn(
-        "inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-foreground px-5 text-sm font-semibold text-background transition-all hover:scale-[1.02] hover:bg-foreground/90 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-70",
+        "inline-flex h-12 items-center justify-center gap-2.5 rounded-control border border-input bg-card px-5 text-sm font-semibold text-foreground outline-none transition-colors hover:border-gold focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-70",
         className,
       )}
     >

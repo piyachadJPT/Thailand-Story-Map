@@ -18,9 +18,11 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-kanit), sans-serif;
+  /* Public site: Noto Sans Thai body, Noto Serif Thai (looped) headings.
+     The backoffice swaps both to Kanit (see "Backoffice" below). */
+  --font-sans: var(--font-body), sans-serif;
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-kanit), sans-serif;
+  --font-heading: var(--font-display), serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -46,6 +48,13 @@
   --color-gold: var(--gold);
   --color-gold-ink: var(--gold-ink);
   --color-gold-foreground: var(--gold-foreground);
+  /* Vermilion (ชาด): kickers and small emphasis, never large fills. */
+  --color-chad: var(--chad);
+
+  /* Top nav bar: indigo in light, lacquer black in dark, gold rule below. */
+  --color-nav: var(--nav);
+  --color-nav-foreground: var(--nav-foreground);
+  --color-nav-rule: var(--nav-rule);
 
   --color-success: var(--success);
   --color-warning: var(--warning);
@@ -79,12 +88,12 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
   /* Floating panels: `rounded-panel` */
-  --radius-panel: 1.75rem;
+  --radius-panel: var(--radius-panel-size);
+  /* Buttons, chips, tabs, pills: `rounded-control` (square-ish on the site, pill in the backoffice). */
+  --radius-control: var(--radius-control-size);
 
   /* Featured map pin: `animate-pin-ping` (color comes from --pin-color). */
   --animate-pin-ping: pin-ping 1.4s ease-out 3;
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-spin-slow: spin 12s linear infinite;
   @keyframes pin-ping {
     0% {
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--pin-color) 60%, transparent);
@@ -93,13 +102,165 @@
       box-shadow: 0 0 0 18px transparent;
     }
   }
-
 }
 
-/* ── Light: warm paper, ink, gold leaf ── */
+/* ── Light: lime plaster, indigo, vermilion, gold (Thai mural pigments) ── */
 :root {
   color-scheme: light;
+  --font-body: var(--font-sans-thai);
+  --font-display: var(--font-serif-thai);
+  --radius: 0.375rem;
+  --radius-panel-size: 0.625rem;
+  --radius-control-size: 0.375rem;
+  /* Top nav bar: h-14 plus its 3px gold rule. */
+  --nav-h: calc(3.5rem + 3px);
+
+  --background: #f1ebdd;
+  --foreground: #1d2433;
+  --card: #f8f4ea;
+  --card-foreground: #1d2433;
+  --popover: #f8f4ea;
+  --popover-foreground: #1d2433;
+  --primary: #24365a;
+  --primary-foreground: #f1ebdd;
+  --secondary: #e7dfcd;
+  --secondary-foreground: #1d2433;
+  --muted: #ebe4d4;
+  --muted-foreground: #6b665b;
+  --accent: rgb(36 54 90 / 8%);
+  --accent-foreground: #1d2433;
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
+  --border: rgb(29 36 51 / 14%);
+  --input: rgb(29 36 51 / 22%);
+  --ring: #24365a;
+
+  --gold: #c8963e;
+  --gold-ink: #7d5a1c;
+  --gold-foreground: #1d2433;
+  --chad: #a83a2a;
+  --success: #2f6b4a;
+  --warning: #8a5a0a;
+
+  --nav: #24365a;
+  --nav-foreground: #f1ebdd;
+  --nav-rule: #c8963e;
+
+  --cat-ghost: #5d4a8c;
+  --cat-history: #a87628;
+  --cat-legend: #3d6b52;
+  --cat-crime: #a83a2a;
+  --cat-local: #2f5d86;
+
+  --chart-1: var(--cat-ghost);
+  --chart-2: var(--cat-history);
+  --chart-3: var(--cat-legend);
+  --chart-4: var(--cat-crime);
+  --chart-5: var(--cat-local);
+
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  /* Floating panels are solid now; these stay as aliases for old class names. */
+  --glass-fill: var(--card);
+  --glass-field: var(--card);
+  --glass-stroke: var(--border);
+}
+
+/* ── Dark: black lacquer and gold leaf ── */
+.dark,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #16130f;
+  --foreground: #efe6d2;
+  --card: #1f1a15;
+  --card-foreground: #efe6d2;
+  --popover: #1f1a15;
+  --popover-foreground: #efe6d2;
+  --primary: #d4aa5e;
+  --primary-foreground: #16130f;
+  --secondary: #2a241d;
+  --secondary-foreground: #efe6d2;
+  --muted: #221d17;
+  --muted-foreground: #9b8f78;
+  --accent: rgb(212 170 94 / 12%);
+  --accent-foreground: #efe6d2;
+  --destructive: #f26b60;
+  --destructive-foreground: #16130f;
+  --border: rgb(212 170 94 / 18%);
+  --input: rgb(212 170 94 / 26%);
+  --ring: #d4aa5e;
+  --gold: #d4aa5e;
+  --gold-ink: #d4aa5e;
+  --gold-foreground: #16130f;
+  --chad: #e07a62;
+  --success: #6fbf94;
+  --warning: #e9b65c;
+  --nav: #0f0d0a;
+  --nav-foreground: #efe6d2;
+  --nav-rule: #d4aa5e;
+  --cat-ghost: #a594e0;
+  --cat-history: #d4aa5e;
+  --cat-legend: #7fbf9b;
+  --cat-crime: #e07a62;
+  --cat-local: #7eaad6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light) {
+    color-scheme: dark;
+    --background: #16130f;
+    --foreground: #efe6d2;
+    --card: #1f1a15;
+    --card-foreground: #efe6d2;
+    --popover: #1f1a15;
+    --popover-foreground: #efe6d2;
+    --primary: #d4aa5e;
+    --primary-foreground: #16130f;
+    --secondary: #2a241d;
+    --secondary-foreground: #efe6d2;
+    --muted: #221d17;
+    --muted-foreground: #9b8f78;
+    --accent: rgb(212 170 94 / 12%);
+    --accent-foreground: #efe6d2;
+    --destructive: #f26b60;
+    --destructive-foreground: #16130f;
+    --border: rgb(212 170 94 / 18%);
+    --input: rgb(212 170 94 / 26%);
+    --ring: #d4aa5e;
+    --gold: #d4aa5e;
+    --gold-ink: #d4aa5e;
+    --gold-foreground: #16130f;
+    --chad: #e07a62;
+    --success: #6fbf94;
+    --warning: #e9b65c;
+    --nav: #0f0d0a;
+    --nav-foreground: #efe6d2;
+    --nav-rule: #d4aa5e;
+    --cat-ghost: #a594e0;
+    --cat-history: #d4aa5e;
+    --cat-legend: #7fbf9b;
+    --cat-crime: #e07a62;
+    --cat-local: #7eaad6;
+  }
+}
+
+/*
+ * ── Backoffice: keeps the previous theme (Kanit, paper/ink, night sky). ──
+ * Keyed on :root:has() so dialogs and menus portaled to <body> match too.
+ */
+:root:has([data-backoffice]) {
+  --font-body: var(--font-kanit);
+  --font-display: var(--font-kanit);
   --radius: 0.625rem;
+  --radius-panel-size: 1.75rem;
+  --radius-control-size: 9999px;
 
   --background: #f6f3ec;
   --foreground: #12161f;
@@ -120,44 +281,20 @@
   --border: rgb(18 22 31 / 14%);
   --input: rgb(18 22 31 / 14%);
   --ring: #12161f;
-
   --gold: #c8963e;
   --gold-ink: #85601f;
   --gold-foreground: #12161f;
   --success: #1d7550;
   --warning: #93560a;
-
   --cat-ghost: #7c5cff;
   --cat-history: #c8963e;
   --cat-legend: #2fa58a;
   --cat-crime: #e0475b;
   --cat-local: #3b8edb;
-
-  --chart-1: var(--cat-ghost);
-  --chart-2: var(--cat-history);
-  --chart-3: var(--cat-legend);
-  --chart-4: var(--cat-crime);
-  --chart-5: var(--cat-local);
-
-  --sidebar: var(--background);
-  --sidebar-foreground: var(--foreground);
-  --sidebar-primary: var(--primary);
-  --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: var(--accent);
-  --sidebar-accent-foreground: var(--accent-foreground);
-  --sidebar-border: var(--border);
-  --sidebar-ring: var(--ring);
-
-  /* Glass reads from --card, so it follows the theme automatically. */
-  --glass-fill: color-mix(in srgb, var(--card) 60%, transparent);
-  --glass-field: color-mix(in srgb, var(--card) 70%, transparent);
-  --glass-stroke: var(--border);
 }
 
-/* ── Dark: night sky, moonlit ink, warm gold ── */
-.dark,
-:root[data-theme="dark"] {
-  color-scheme: dark;
+.dark:has([data-backoffice]),
+:root[data-theme="dark"]:has([data-backoffice]) {
   --background: #0e1117;
   --foreground: #e6e3dc;
   --card: #171c26;
@@ -182,12 +319,16 @@
   --gold-foreground: #0e1117;
   --success: #5fcb9b;
   --warning: #e9b65c;
+  --cat-ghost: #7c5cff;
+  --cat-history: #c8963e;
+  --cat-legend: #2fa58a;
+  --cat-crime: #e0475b;
+  --cat-local: #3b8edb;
   --glass-stroke: rgb(255 255 255 / 10%);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]):not(.light) {
-    color-scheme: dark;
+  :root:not([data-theme="light"]):not(.light):has([data-backoffice]) {
     --background: #0e1117;
     --foreground: #e6e3dc;
     --card: #171c26;
@@ -212,6 +353,11 @@
     --gold-foreground: #0e1117;
     --success: #5fcb9b;
     --warning: #e9b65c;
+    --cat-ghost: #7c5cff;
+    --cat-history: #c8963e;
+    --cat-legend: #2fa58a;
+    --cat-crime: #e0475b;
+    --cat-local: #3b8edb;
     --glass-stroke: rgb(255 255 255 / 10%);
   }
 }
@@ -226,7 +372,7 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-kanit), sans-serif;
+    font-family: var(--font-body), sans-serif;
     /* Thai stacks vowels and tone marks above and below; give them room. */
     line-height: 1.75;
   }
@@ -235,8 +381,8 @@
   h3,
   h4,
   .font-heading {
-    font-family: var(--font-heading);
-    line-height: 1.35;
+    font-family: var(--font-display), serif;
+    line-height: 1.4;
     text-wrap: balance;
   }
   ::selection {
@@ -287,51 +433,7 @@
   }
 }
 
-
 /* ── Custom Keyframes ── */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes glow-pulse {
-  0%,
-  100% {
-    opacity: 0.4;
-    filter: blur(40px);
-  }
-  50% {
-    opacity: 0.7;
-    filter: blur(60px);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 @keyframes slide-up {
   from {
     opacity: 0;
@@ -353,24 +455,6 @@
 }
 
 /* ── Utility Classes ── */
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-glow-pulse {
-  animation: glow-pulse 4s ease-in-out infinite;
-}
-
-.animate-shimmer {
-  background-size: 200% 100%;
-  animation: shimmer 3s linear infinite;
-}
-
-.animate-gradient-shift {
-  background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
-}
-
 .animate-slide-up {
   animation: slide-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -395,54 +479,36 @@
   animation-delay: 500ms;
 }
 
-.text-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--foreground) 0%,
-    var(--foreground) 68%,
-    var(--gold) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient > * {
-  -webkit-text-fill-color: currentColor;
-  background-image: none;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
+/*
+ * ลายประจำยาม: a chain of small diamonds for dividers. Drawn as a mask so the
+ * color follows `color` (defaults to gold). Use sparingly: dividers, section
+ * heads, and under the nav bar.
+ */
+.lai-prajamyam {
+  display: block;
+  height: 10px;
+  color: var(--gold);
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10'%3E%3Cpath d='M0 5 L7 0.8 L14 5 L7 9.2 Z' fill='none' stroke='black' stroke-width='1.1'/%3E%3C/svg%3E")
+    repeat-x center / 14px 10px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10'%3E%3Cpath d='M0 5 L7 0.8 L14 5 L7 9.2 Z' fill='none' stroke='black' stroke-width='1.1'/%3E%3C/svg%3E")
+    repeat-x center / 14px 10px;
 }
 
 /*
- * Floating material: ~60% card fill, blur, 1px border. Flat: no shadow, no sheen.
+ * Floating surfaces (old "glass" class names): solid card fill + 1px border.
+ * No blur, no shadow, no sheen.
  */
 .liquid-glass,
-.glass-card,
-.glass-card-light,
 .story-map-popup .mapboxgl-popup-content {
   isolation: isolate;
   background-color: var(--glass-fill);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
   border: 1px solid var(--glass-stroke);
   color: var(--foreground);
 }
 
-.liquid-glass:not(.absolute):not(.fixed):not(.sticky),
-.glass-card:not(.absolute):not(.fixed):not(.sticky),
-.glass-card-light:not(.absolute):not(.fixed):not(.sticky) {
+.liquid-glass:not(.absolute):not(.fixed):not(.sticky) {
   position: relative;
-}
-
-/* Browsers without backdrop blur get a solid, readable surface. */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .liquid-glass,
-  .glass-card,
-  .glass-card-light,
-  .story-map-popup .mapboxgl-popup-content {
-    background-color: var(--card);
-  }
 }
 
 .liquid-field {
@@ -456,12 +522,8 @@
 
 .liquid-field:focus,
 .liquid-field:focus-visible {
-  border-color: color-mix(in srgb, var(--gold) 70%, transparent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 22%, transparent);
-}
-
-.hover-glow {
-  transition: border-color 0.2s ease;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--gold) 45%, transparent);
 }
 
 .story-map [data-map-fade] {
@@ -470,28 +532,27 @@
 
 /* Mapbox popup frame (the card inside is Tailwind: StoryPreviewCard). */
 .story-map-popup .mapboxgl-popup-content {
-  /* Reading surface: more opaque than regular glass so text stays crisp. */
-  background-color: color-mix(in srgb, var(--card) 88%, transparent);
+  background-color: var(--card);
   padding: 0;
   border-radius: var(--radius-panel);
-  font-family: var(--font-kanit), sans-serif;
+  font-family: var(--font-body), sans-serif;
 }
 
 .story-map-popup.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
 .story-map-popup.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
 .story-map-popup.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
-  border-top-color: color-mix(in srgb, var(--card) 88%, transparent);
+  border-top-color: var(--card);
 }
 .story-map-popup.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
 .story-map-popup.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
 .story-map-popup.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
-  border-bottom-color: color-mix(in srgb, var(--card) 88%, transparent);
+  border-bottom-color: var(--card);
 }
 .story-map-popup.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
-  border-right-color: color-mix(in srgb, var(--card) 88%, transparent);
+  border-right-color: var(--card);
 }
 .story-map-popup.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
-  border-left-color: color-mix(in srgb, var(--card) 88%, transparent);
+  border-left-color: var(--card);
 }
 
 /* Built-in close button (used by the searched-place popup). */
@@ -502,7 +563,7 @@
   place-items: center;
   width: 32px;
   height: 32px;
-  border-radius: 50%;
+  border-radius: var(--radius);
   background: color-mix(in srgb, var(--foreground) 6%, transparent);
   color: var(--foreground);
   font-size: 22px;
@@ -532,67 +593,16 @@
   }
 }
 
-.bg-mesh {
-  background:
-    radial-gradient(
-      ellipse at 14% 8%,
-      color-mix(in srgb, var(--foreground) 7%, transparent) 0%,
-      transparent 46%
-    ),
-    radial-gradient(
-      ellipse at 88% 4%,
-      color-mix(in srgb, var(--gold) 12%, transparent) 0%,
-      transparent 42%
-    ),
-    radial-gradient(
-      ellipse at 50% 100%,
-      color-mix(in srgb, var(--foreground) 5%, transparent) 0%,
-      transparent 48%
-    );
-}
-
-/* Night-journey canvas: ink vignette with a low gold moon in the corner. */
+/* Page background: flat plaster (light) or lacquer (dark). */
 .page-canvas {
   background-color: var(--background);
-  background-image:
-    radial-gradient(
-      ellipse at 12% 0%,
-      color-mix(in srgb, var(--foreground) 6%, transparent) 0%,
-      transparent 42%
-    ),
-    radial-gradient(
-      ellipse at 92% 8%,
-      color-mix(in srgb, var(--gold) 12%, transparent) 0%,
-      transparent 40%
-    ),
-    radial-gradient(
-      ellipse at 50% 120%,
-      color-mix(in srgb, var(--foreground) 5%, transparent) 0%,
-      transparent 46%
-    );
-}
-
-.page-canvas::before {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  opacity: 0.045;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
-}
-
-.dark .page-canvas::before,
-:root[data-theme="dark"] .page-canvas::before {
-  opacity: 0.07;
-  mix-blend-mode: overlay;
 }
 
 .icon-well {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
+  border-radius: var(--radius);
   color: var(--muted-foreground);
   transition:
     background-color 0.2s ease,
@@ -614,4 +624,3 @@
   --tw-shadow: 0 0 #0000 !important;
   --tw-inset-shadow: 0 0 #0000 !important;
 }
-

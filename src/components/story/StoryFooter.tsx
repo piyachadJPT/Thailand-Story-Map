@@ -25,7 +25,7 @@ export default function StoryFooter(props: StoryFooterProps) {
           {props.tags.map((tag) => (
             <li
               key={tag.id}
-              className="inline-flex h-8 items-center rounded-full border border-border bg-card/60 px-3 text-sm text-foreground"
+              className="inline-flex h-8 items-center rounded-control border border-border bg-card px-3 text-sm text-foreground"
             >
               <span aria-hidden="true" className="mr-0.5 text-gold-ink">
                 #

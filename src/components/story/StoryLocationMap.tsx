@@ -148,13 +148,13 @@ export default function StoryLocationMap({
         <div ref={containerRef} className="size-full" />
       </div>
       {failed ? (
-        <div aria-hidden="true" className="absolute inset-0 grid place-items-center bg-linear-to-br from-muted to-accent">
+        <div aria-hidden="true" className="absolute inset-0 grid place-items-center bg-muted">
           <StoryMapPin categorySlug={categorySlug} />
         </div>
       ) : null}
-      <div className="liquid-glass absolute inset-x-3 bottom-3 z-10 flex flex-wrap items-end justify-between gap-3 rounded-2xl p-4">
+      <div className="liquid-glass absolute inset-x-3 bottom-3 z-10 flex flex-wrap items-end justify-between gap-3 rounded-lg p-4">
         <div className="min-w-0">
-          <p className="line-clamp-2 font-heading font-semibold text-foreground">{title}</p>
+          <p className="line-clamp-2 font-heading font-bold text-foreground">{title}</p>
           <p className="text-xs text-muted-foreground">{provinceName} · ประเทศไทย</p>
           <p className="mt-0.5 text-xs text-gold-ink tabular-nums">
             {formatCoordinate(latitude, longitude)}

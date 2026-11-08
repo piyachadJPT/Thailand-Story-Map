@@ -19,7 +19,7 @@ type IconButtonProps = Omit<ButtonProps, "size" | "aria-label"> &
     "aria-label": string;
   };
 
-/** Round icon-only button. Defaults to the ghost variant. */
+/** Icon-only button (shape follows --radius-control). Defaults to the ghost variant. */
 function IconButton({
   className,
   size,

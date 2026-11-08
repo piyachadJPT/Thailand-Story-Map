@@ -89,22 +89,20 @@ export default function ReportDialog({ open, onOpenChange, storyId, title, onRep
       <DialogContent
         className={cn(
           "max-h-[92dvh] gap-5 overflow-y-auto p-5 sm:max-w-lg sm:p-6",
-          "max-sm:top-auto max-sm:bottom-0 max-sm:max-w-none max-sm:translate-y-0 max-sm:rounded-t-3xl max-sm:rounded-b-none",
+          "max-sm:top-auto max-sm:bottom-0 max-sm:max-w-none max-sm:translate-y-0 max-sm:rounded-t-panel max-sm:rounded-b-none",
           "max-sm:data-open:slide-in-from-bottom-8 max-sm:data-open:zoom-in-100"
         )}
       >
         {done ? (
           <div role="status" className="flex flex-col items-center gap-3 py-8 text-center">
-            <span className="grid size-14 place-items-center rounded-full bg-success/12 text-success">
-              <CheckCircle2 aria-hidden="true" className="size-7" />
-            </span>
-            <DialogTitle className="text-lg font-semibold">ขอบคุณที่ช่วยดูแลชุมชน</DialogTitle>
+            <CheckCircle2 aria-hidden="true" strokeWidth={1.5} className="size-10 text-success" />
+            <DialogTitle className="text-lg font-bold">ขอบคุณที่ช่วยดูแลชุมชน</DialogTitle>
             <DialogDescription>ทีมงานได้รับรายงานแล้ว และจะตรวจสอบโดยเร็ว</DialogDescription>
           </div>
         ) : (
           <form onSubmit={submit} noValidate className="grid gap-5">
             <DialogHeader className="pr-8">
-              <DialogTitle className="text-lg leading-snug font-semibold">รายงานเรื่องนี้</DialogTitle>
+              <DialogTitle className="text-lg leading-snug font-bold">รายงานเรื่องนี้</DialogTitle>
               <DialogDescription className="line-clamp-2">“{title}”</DialogDescription>
             </DialogHeader>
 
@@ -118,7 +116,7 @@ export default function ReportDialog({ open, onOpenChange, storyId, title, onRep
                     <label
                       key={reason.value}
                       className={cn(
-                        "flex cursor-pointer items-start gap-3 rounded-2xl border border-border p-3 transition-colors duration-150",
+                        "flex cursor-pointer items-start gap-3 rounded-lg border border-border p-3 transition-colors duration-150",
                         "hover:border-gold/60 has-focus-visible:ring-3 has-focus-visible:ring-ring/40",
                         checked && "border-gold bg-gold/10"
                       )}
@@ -181,7 +179,7 @@ export default function ReportDialog({ open, onOpenChange, storyId, title, onRep
                 aria-invalid={detailsError ? true : undefined}
                 aria-describedby={`${id}-details-hint${detailsError ? ` ${id}-details-error` : ""}`}
                 placeholder="เล่าสั้น ๆ ว่าส่วนไหนผิด หรือไม่เหมาะสมอย่างไร"
-                className="min-h-28 rounded-2xl px-3.5 py-3"
+                className="min-h-28 rounded-lg px-3.5 py-3"
               />
               <p id={`${id}-details-hint`} className="text-xs text-muted-foreground">
                 อย่างน้อย {minLength} ตัวอักษร
@@ -193,7 +191,7 @@ export default function ReportDialog({ open, onOpenChange, storyId, title, onRep
               ) : null}
             </div>
 
-            <p className="flex items-start gap-2 rounded-2xl bg-foreground/4 p-3 text-xs leading-relaxed text-muted-foreground">
+            <p className="flex items-start gap-2 rounded-lg bg-foreground/4 p-3 text-xs leading-relaxed text-muted-foreground">
               <ShieldCheck aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-gold-ink" />
               ทีมงานจะตรวจสอบโดยเร็ว และจะไม่เปิดเผยตัวตนผู้รายงาน
             </p>

@@ -8,10 +8,10 @@ type ResultGroupProps = {
 export default function ResultGroup({ title, count, children }: ResultGroupProps) {
   return (
     <section aria-label={title}>
-      <h3 className="flex items-center gap-2 px-1 pb-2 text-xs font-medium tracking-widest text-gold-ink">
-        <span aria-hidden="true" className="h-px w-4 bg-gold" />
+      <h3 className="flex items-center gap-2 px-1 pb-2 font-sans text-sm font-semibold text-chad">
+        <span aria-hidden="true" className="lai-prajamyam w-3.5" />
         {title}
-        <span className="font-normal tracking-normal text-muted-foreground">
+        <span className="font-normal text-muted-foreground">
           · {count}
         </span>
       </h3>

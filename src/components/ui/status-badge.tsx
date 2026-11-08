@@ -10,7 +10,7 @@ const statusLabels: Record<StoryStatus, string> = {
 };
 
 const statusBadgeVariants = cva(
-  "inline-flex h-7 w-fit shrink-0 items-center gap-2 rounded-full border px-3 text-xs font-medium leading-none whitespace-nowrap",
+  "inline-flex h-7 w-fit shrink-0 items-center gap-2 rounded-control border px-3 text-xs font-medium leading-none whitespace-nowrap",
   {
     variants: {
       status: {
@@ -60,7 +60,7 @@ const userStatusLabels = { ACTIVE: "ใช้งานปกติ", BANNED: "�
 const reportStatusLabels = { OPEN: "เปิดอยู่", RESOLVED: "จัดการแล้ว" } as const;
 
 const toneBadge = cva(
-  "inline-flex h-7 w-fit shrink-0 items-center gap-2 rounded-full border px-3 text-xs font-medium leading-none whitespace-nowrap",
+  "inline-flex h-7 w-fit shrink-0 items-center gap-2 rounded-control border px-3 text-xs font-medium leading-none whitespace-nowrap",
   {
     variants: {
       tone: {

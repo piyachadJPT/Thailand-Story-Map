@@ -24,7 +24,7 @@ export default function CoverImageInput({
         รูปปก (ถ้ามี)
       </label>
       {image.url ? (
-        <div className="relative overflow-hidden rounded-2xl bg-muted ring-1 ring-gold/30">
+        <div className="relative overflow-hidden rounded-lg bg-muted ring-1 ring-border">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={image.url}
@@ -47,10 +47,10 @@ export default function CoverImageInput({
           </IconButton>
         </div>
       ) : null}
-      <div className="relative flex items-center gap-3 rounded-2xl border border-dashed border-border p-3 transition-colors focus-within:border-gold hover:border-gold/60">
+      <div className="relative flex items-center gap-3 rounded-lg border border-dashed border-border p-3 transition-colors focus-within:border-gold hover:border-gold/60">
         <span
           aria-hidden="true"
-          className="grid size-10 shrink-0 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold-ink"
+          className="grid size-10 shrink-0 place-items-center text-gold-ink"
         >
           <ImagePlus className="size-5" />
         </span>
@@ -61,7 +61,7 @@ export default function CoverImageInput({
           accept={IMAGE_TYPES.join(",")}
           disabled={disabled}
           aria-describedby={`${id}-help${error ? ` ${id}-error` : ""}`}
-          className="w-full min-w-0 text-sm text-muted-foreground outline-none file:mr-3 file:rounded-full file:border-0 file:bg-secondary file:px-4 file:py-2 file:font-medium file:text-secondary-foreground disabled:opacity-50"
+          className="w-full min-w-0 text-sm text-muted-foreground outline-none file:mr-3 file:rounded-control file:border-0 file:bg-secondary file:px-4 file:py-2 file:font-medium file:text-secondary-foreground disabled:opacity-50"
           onChange={(event) => {
             const file = event.target.files?.[0];
             if (!file) return;

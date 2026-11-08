@@ -1,27 +1,39 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const goldDividerVariants = cva("shrink-0 from-transparent to-transparent", {
+const goldDividerVariants = cva("shrink-0", {
   variants: {
     orientation: {
-      horizontal: "h-px w-full bg-linear-to-r",
-      vertical: "h-5 w-px bg-linear-to-b",
+      horizontal: "w-full",
+      vertical: "h-5 w-px",
+    },
+    /** line: plain gold hairline. lai: ลายประจำยาม diamond chain (horizontal only). */
+    pattern: {
+      line: "",
+      lai: "lai-prajamyam",
     },
     strength: {
-      subtle: "via-gold/40",
-      default: "via-gold/60",
+      subtle: "",
+      default: "",
     },
   },
-  defaultVariants: { orientation: "horizontal", strength: "default" },
+  compoundVariants: [
+    { orientation: "horizontal", pattern: "line", className: "h-px" },
+    { pattern: "line", strength: "subtle", className: "bg-gold/35" },
+    { pattern: "line", strength: "default", className: "bg-gold/60" },
+    { pattern: "lai", strength: "subtle", className: "opacity-60" },
+  ],
+  defaultVariants: { orientation: "horizontal", pattern: "line", strength: "default" },
 });
 
 type GoldDividerProps = React.ComponentProps<"div"> &
   VariantProps<typeof goldDividerVariants>;
 
-/** Decorative gold-leaf hairline that fades out at both ends. */
+/** Decorative gold divider: a hairline, or the ลายประจำยาม pattern. */
 function GoldDivider({
   className,
   orientation,
+  pattern,
   strength,
   ...props
 }: GoldDividerProps) {
@@ -29,7 +41,7 @@ function GoldDivider({
     <div
       aria-hidden="true"
       data-slot="gold-divider"
-      className={cn(goldDividerVariants({ orientation, strength }), className)}
+      className={cn(goldDividerVariants({ orientation, pattern, strength }), className)}
       {...props}
     />
   );

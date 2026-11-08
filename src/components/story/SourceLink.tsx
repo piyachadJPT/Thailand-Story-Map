@@ -10,16 +10,16 @@ export default function SourceLink({ url, host, path }: SourceLinkProps) {
       target="_blank"
       rel="nofollow noopener noreferrer"
       title={url}
-      className="group flex items-center gap-4 rounded-2xl border border-border bg-card/70 p-4 outline-none transition-colors hover:border-gold/60 focus-visible:ring-3 focus-visible:ring-ring/40"
+      className="group flex items-center gap-4 rounded-lg border border-border bg-card p-4 outline-none transition-colors hover:border-gold focus-visible:ring-2 focus-visible:ring-ring"
     >
       <span
         aria-hidden="true"
-        className="grid size-11 shrink-0 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold-ink"
+        className="shrink-0 text-gold-ink"
       >
         <Link2 className="size-5" />
       </span>
       <span className="min-w-0 flex-1">
-        <span className="block text-xs font-medium tracking-widest text-gold-ink">
+        <span className="block text-xs font-semibold text-chad">
           แหล่งข้อมูลอ้างอิง
         </span>
         <span className="block truncate font-medium text-foreground">{host}</span>

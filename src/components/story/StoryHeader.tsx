@@ -41,8 +41,8 @@ export default function StoryHeader(props: StoryHeaderProps) {
       </Link> */}
 
       <div className="space-y-4">
-        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-medium text-gold-ink">
-          <span aria-hidden="true" className="h-px w-6 bg-gold" />
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold text-chad">
+          <span aria-hidden="true" className="lai-prajamyam w-7" />
           <Link href={categoryPath(props.categorySlug)} className={kickerLink}>
             {categoryName}
           </Link>
@@ -51,15 +51,15 @@ export default function StoryHeader(props: StoryHeaderProps) {
             {props.provinceName}
           </Link>
         </p>
-        <h1 className="font-heading text-4xl font-semibold tracking-tight text-foreground wrap-anywhere sm:text-5xl">
+        <h1 className="font-heading text-3xl font-bold text-foreground wrap-anywhere sm:text-5xl">
           {props.title}
         </h1>
-        <p className="text-md whitespace-pre-wrap text-muted-foreground wrap-anywhere">
+        <p className="text-base whitespace-pre-wrap sm:text-lg text-muted-foreground wrap-anywhere">
           {props.summary}
         </p>
       </div>
 
-      <GoldDivider strength="subtle" />
+      <GoldDivider pattern="lai" strength="subtle" />
       <StoryMeta
         author={props.author}
         publishedAt={props.publishedAt}

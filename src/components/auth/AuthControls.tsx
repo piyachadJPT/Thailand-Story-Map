@@ -72,8 +72,8 @@ export default function AuthControls({
     return (
       <span
         className={cn(
-          "bg-foreground/10 animate-pulse rounded-full",
-          variant === "desktop" ? "h-8 w-24" : "mt-1 h-10 w-full"
+          "animate-pulse rounded-control",
+          variant === "desktop" ? "hidden h-8 w-24 bg-nav-foreground/15 md:block" : "mt-1 h-11 w-full bg-foreground/10"
         )}
         aria-hidden
       />
@@ -85,7 +85,7 @@ export default function AuthControls({
       return (
         <Link
           href={href}
-          className="bg-foreground text-background mt-1 flex w-full items-center justify-center rounded-xl px-3 py-2.5 text-sm font-semibold"
+          className="bg-primary text-primary-foreground hover:bg-primary/90 mt-1 flex h-11 w-full items-center justify-center rounded-control px-3 text-sm font-semibold"
         >
           เข้าสู่ระบบ
         </Link>
@@ -94,7 +94,7 @@ export default function AuthControls({
     return (
       <Link
         href={href}
-        className="bg-foreground text-background hover:bg-foreground/90 hidden items-center rounded-full px-3.5 py-1.5 text-sm font-semibold transition-all hover:scale-[1.03] active:scale-[0.98] md:inline-flex"
+        className="border-nav-foreground/35 text-nav-foreground hover:bg-nav-foreground/10 focus-visible:ring-nav-rule hidden h-9 items-center rounded-control border px-3.5 text-sm font-medium outline-none transition-colors focus-visible:ring-2 md:inline-flex"
       >
         เข้าสู่ระบบ
       </Link>
@@ -109,12 +109,12 @@ export default function AuthControls({
         <Link
           href="/my-stories"
           onClick={onNavigate}
-          className="text-foreground hover:bg-foreground/5 flex min-h-11 items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium"
+          className="text-foreground hover:bg-foreground/5 flex min-h-11 items-center gap-3 rounded-control px-3 py-2.5 text-sm font-medium"
         >
           <BookOpen className="h-4 w-4" aria-hidden="true" />
           เรื่องราวของฉัน
         </Link>
-        <div className="mt-1 flex items-center gap-3 rounded-xl px-3 py-2">
+        <div className="mt-1 flex items-center gap-3 px-3 py-2">
           <UserAvatar name={name} image={image} />
           <div className="min-w-0 flex-1">
             <p className="text-foreground truncate text-sm font-semibold">
@@ -138,7 +138,7 @@ export default function AuthControls({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        className="hover:ring-primary/10 focus-visible:ring-primary data-popup-open:ring-primary/15 hidden h-9 w-9 items-center justify-center rounded-full transition-shadow outline-none hover:ring-4 focus-visible:ring-2 data-popup-open:ring-4 md:inline-flex"
+        className="hover:ring-nav-foreground/25 focus-visible:ring-nav-rule data-popup-open:ring-nav-rule hidden h-9 w-9 items-center justify-center rounded-full transition-shadow outline-none hover:ring-2 focus-visible:ring-2 data-popup-open:ring-2 md:inline-flex"
         aria-label="บัญชีผู้ใช้"
       >
         <UserAvatar name={name} image={image} />
@@ -146,10 +146,10 @@ export default function AuthControls({
       <DropdownMenuContent
         align="end"
         sideOffset={12}
-        className="bg-popover ring-border w-72 max-w-[calc(100vw-2rem)] rounded-[1.5rem] p-2 ring-1"
+        className="bg-popover ring-border w-72 max-w-[calc(100vw-2rem)] rounded-panel p-2 ring-1"
       >
         <DropdownMenuGroup>
-          <DropdownMenuLabel className="bg-primary/5 rounded-2xl p-4 font-normal">
+          <DropdownMenuLabel className="bg-primary/5 rounded-md p-4 font-normal">
             <span className="text-muted-foreground mb-3 block text-[0.7rem] font-medium">
               บัญชีของคุณ
             </span>
@@ -179,7 +179,7 @@ export default function AuthControls({
         <DropdownMenuSeparator className="mx-2 my-2" />
         <DropdownMenuItem
           render={<Link href="/my-stories" />}
-          className="hover:bg-primary/5 min-h-11 cursor-pointer gap-3 rounded-xl px-3 py-2.5"
+          className="hover:bg-primary/5 min-h-11 cursor-pointer gap-3 rounded-md px-3 py-2.5"
         >
           <span className="bg-primary/10 inline-flex h-8 w-8 items-center justify-center rounded-lg">
             <BookOpen aria-hidden="true" />
@@ -188,7 +188,7 @@ export default function AuthControls({
         </DropdownMenuItem>
         <DropdownMenuItem
           variant="destructive"
-          className="hover:bg-destructive/10 data-highlighted:bg-destructive/10 min-h-11 cursor-pointer gap-3 rounded-xl px-3 py-2.5 transition-colors"
+          className="hover:bg-destructive/10 data-highlighted:bg-destructive/10 min-h-11 cursor-pointer gap-3 rounded-md px-3 py-2.5 transition-colors"
           onClick={() => void signOut({ callbackUrl: "/" })}
         >
           <span className="bg-destructive/10 inline-flex h-8 w-8 items-center justify-center rounded-lg">

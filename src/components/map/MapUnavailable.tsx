@@ -9,10 +9,8 @@ export default function MapUnavailable({ invalidToken }: { invalidToken: boolean
       role="status"
     >
       <GlassPanel gilded padding="lg" className="max-w-sm space-y-4 text-center">
-        <div className="mx-auto grid size-16 place-items-center rounded-full bg-primary text-primary-foreground ring-1 ring-gold/50">
-          <Map aria-hidden="true" className="size-7" />
-        </div>
-        <p className="font-heading text-xl font-semibold text-foreground">
+        <Map aria-hidden="true" strokeWidth={1.5} className="mx-auto size-10 text-gold-ink" />
+        <p className="font-heading text-xl font-bold text-foreground">
           แผนที่เรื่องเล่า
         </p>
         <p className="text-sm text-muted-foreground">

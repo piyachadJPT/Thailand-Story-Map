@@ -53,9 +53,9 @@ export default function MobileSearchSheet({ search }: { search: StorySearch }) {
         aria-label="เปิดค้นหา"
         aria-expanded={false}
         {...peekDrag.handlers}
-        className="liquid-glass absolute right-20 bottom-[max(1rem,env(safe-area-inset-bottom))] left-3 z-40 flex h-14 touch-none items-center gap-3 rounded-full pr-4 pl-2 text-left outline-none focus-visible:ring-3 focus-visible:ring-ring/40 lg:hidden"
+        className="liquid-glass absolute right-20 bottom-[max(1rem,env(safe-area-inset-bottom))] left-3 z-40 flex h-14 touch-none items-center gap-3 rounded-panel pr-4 pl-2 text-left outline-none focus-visible:ring-3 focus-visible:ring-ring/40 lg:hidden"
       >
-        <span className="grid size-10 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground">
+        <span className="grid size-10 shrink-0 place-items-center rounded-control bg-primary text-primary-foreground">
           <Search aria-hidden="true" className="size-4" />
         </span>
         <span className="min-w-0">
@@ -72,7 +72,7 @@ export default function MobileSearchSheet({ search }: { search: StorySearch }) {
     <>
       <button
         type="button"
-        className="absolute inset-0 z-30 bg-background/30 backdrop-blur-[2px] lg:hidden"
+        className="absolute inset-0 z-30 bg-nav/30 lg:hidden"
         aria-label="ปิดค้นหา"
         onClick={closeSheet}
       />
@@ -95,7 +95,7 @@ export default function MobileSearchSheet({ search }: { search: StorySearch }) {
           <span aria-hidden="true" className="h-1 w-10 rounded-full bg-foreground/25" />
         </button>
         <div className="mb-3 flex items-center justify-between gap-2">
-          <h2 className="font-heading text-base font-semibold text-foreground">
+          <h2 className="font-heading text-base font-bold text-foreground">
             ค้นหาสถานที่และเรื่องราว
           </h2>
           <IconButton size="sm" aria-label="ปิดค้นหา" onClick={closeSheet}>

@@ -6,14 +6,12 @@ import { cn } from "@/lib/utils";
 
 const classes = cn(
   buttonVariants({ size: "lg" }),
-  "absolute bottom-[calc(max(1rem,env(safe-area-inset-bottom))+4rem)] left-1/2 z-40 h-12 -translate-x-1/2 gap-2.5 pr-5 pl-1.5 ring-1 ring-gold/40 lg:hidden"
+  "absolute bottom-[calc(max(1rem,env(safe-area-inset-bottom))+4rem)] left-1/2 z-40 h-12 -translate-x-1/2 gap-2 px-5 lg:hidden"
 );
 
 const content = (
   <>
-    <span className="grid size-9 place-items-center rounded-full bg-gold text-gold-foreground">
-      <Feather aria-hidden="true" className="size-4" />
-    </span>
+    <Feather aria-hidden="true" />
     เขียนเรื่องราว
   </>
 );

@@ -30,8 +30,8 @@ export default function LegalPage({ eyebrow, title, description, crumbs, section
       <div className={toc ? "lg:grid lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-12" : undefined}>
         {toc ? (
           <nav aria-label="สารบัญ" className="mb-10 lg:mb-0">
-            <div className="rounded-2xl border border-border bg-card/60 p-5 lg:sticky lg:top-28">
-              <p className="text-xs font-medium tracking-widest text-gold-ink">สารบัญ</p>
+            <div className="rounded-lg border border-border bg-card p-5 lg:sticky lg:top-28">
+              <p className="text-sm font-semibold text-chad">สารบัญ</p>
               <ol className="mt-3 space-y-2 text-sm">
                 {sections.map((section) => (
                   <li key={section.id}>
@@ -50,7 +50,7 @@ export default function LegalPage({ eyebrow, title, description, crumbs, section
         <div className="max-w-[68ch] space-y-10 leading-relaxed text-foreground">
           {sections.map((section) => (
             <section key={section.id} id={section.id} aria-labelledby={`${section.id}-title`} className="scroll-mt-28 space-y-3">
-              <h2 id={`${section.id}-title`} className="font-heading text-2xl font-semibold tracking-tight">
+              <h2 id={`${section.id}-title`} className="font-heading text-2xl font-bold">
                 {section.title}
               </h2>
               <div className="space-y-3 text-muted-foreground [&_li]:ml-5 [&_li]:list-disc [&_li]:pl-1 [&_strong]:font-medium [&_strong]:text-foreground [&_a]:text-gold-ink [&_a]:underline [&_a]:underline-offset-4">

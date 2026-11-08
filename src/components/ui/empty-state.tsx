@@ -6,7 +6,7 @@ const emptyStateVariants = cva("flex flex-col items-center gap-4 text-center", {
   variants: {
     /** framed: dashed box inside a page; page: full-page message (404, errors). */
     layout: {
-      framed: "rounded-2xl border border-dashed border-border px-6 py-12",
+      framed: "rounded-lg border border-dashed border-border px-6 py-12",
       page: "px-2 py-6",
     },
   },
@@ -41,14 +41,12 @@ function EmptyState({
     <div data-slot="empty-state" className={cn(emptyStateVariants({ layout }), className)} {...props}>
       {illustration ??
         (Icon ? (
-          <span className="relative grid size-14 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold-ink">
-            <Icon aria-hidden="true" className="size-6" />
-          </span>
+          <Icon aria-hidden="true" strokeWidth={1.5} className="size-9 text-gold-ink" />
         ) : null)}
       <div className="max-w-md space-y-1.5">
         <Heading
           className={cn(
-            "font-heading font-semibold text-foreground",
+            "font-heading font-bold text-foreground",
             layout === "page" ? "text-3xl sm:text-4xl" : "text-lg"
           )}
         >

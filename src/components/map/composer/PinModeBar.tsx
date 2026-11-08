@@ -14,12 +14,7 @@ export default function PinModeBar({ hasPendingPoint, onConfirm, onCancel }: Pin
       role="status"
       className="liquid-glass absolute inset-x-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-60 mx-auto flex max-w-lg items-start gap-3 rounded-panel p-4 motion-safe:animate-slide-up"
     >
-      <span
-        aria-hidden="true"
-        className="grid size-10 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground ring-1 ring-gold/50"
-      >
-        <MapPin className="size-5" />
-      </span>
+      <MapPin aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-gold-ink" />
       <div className="min-w-0 flex-1">
         <p className="text-sm font-semibold text-foreground">
           {hasPendingPoint

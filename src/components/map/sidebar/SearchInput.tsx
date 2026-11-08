@@ -40,7 +40,7 @@ export default function SearchInput({
           onChange={(event) => onChange(event.target.value)}
           maxLength={100}
           placeholder={placeholders[mode]}
-          className="liquid-field h-12 w-full rounded-full pr-4 pl-11 text-sm text-foreground outline-none placeholder:text-muted-foreground"
+          className="liquid-field h-11 w-full rounded-lg pr-4 pl-11 text-base text-foreground outline-none placeholder:text-muted-foreground sm:text-sm"
         />
       </label>
     </form>

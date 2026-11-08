@@ -16,7 +16,7 @@ export default function SidebarSkeleton() {
           {Array.from({ length: group.cards }, (_, card) => (
             <div
               key={card}
-              className="space-y-2 rounded-2xl border border-dashed border-border p-3.5"
+              className="space-y-2 rounded-lg border border-dashed border-border p-3.5"
             >
               <Skeleton className="h-3.5 w-2/3 rounded-full" />
               <Skeleton className="h-2.5 w-full rounded-full" />

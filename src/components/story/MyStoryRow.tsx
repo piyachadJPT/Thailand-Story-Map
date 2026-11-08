@@ -12,7 +12,7 @@ export default function MyStoryRow({ story }: { story: MyStory }) {
   return (
     <article
       style={{ "--tint": categoryColor(story.categorySlug) } as React.CSSProperties}
-      className="flex flex-col gap-5 rounded-2xl border border-border bg-card/80 p-4 backdrop-blur-sm sm:flex-row sm:items-center sm:p-5"
+      className="flex flex-col gap-5 rounded-lg border border-border bg-card p-4 sm:flex-row sm:items-center sm:p-5"
     >
       {story.cover ? (
         // eslint-disable-next-line @next/next/no-img-element

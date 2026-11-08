@@ -70,8 +70,8 @@ export default async function ProvincesPage() {
                     <Link
                       href={provincePath(province.slug)}
                       className={cn(
-                        "flex min-h-11 items-center justify-between gap-2 rounded-2xl border border-border bg-card/70 px-4 py-2.5 text-sm outline-none transition-colors hover:border-gold/60 focus-visible:ring-3 focus-visible:ring-ring/40",
-                        count === 0 && "bg-card/30 text-muted-foreground"
+                        "flex min-h-11 items-center justify-between gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm outline-none transition-colors hover:border-gold/60 focus-visible:ring-3 focus-visible:ring-ring/40",
+                        count === 0 && "bg-transparent text-muted-foreground"
                       )}
                     >
                       <span className={cn("truncate", count > 0 && "font-medium text-foreground")}>

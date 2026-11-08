@@ -124,7 +124,7 @@ export default function ProvinceStoryMap({ token, provinceName, points }: Props)
         <div ref={containerRef} className="size-full" />
       </div>
       {failed || !visible ? (
-        <div className="absolute inset-0 grid place-items-center bg-linear-to-br from-muted to-accent p-6 text-center">
+        <div className="absolute inset-0 grid place-items-center bg-muted p-6 text-center">
           {failed ? (
             <div className="flex flex-col items-center gap-3">
               <p className="text-sm text-muted-foreground">แผนที่ขนาดเล็กไม่พร้อมใช้งานในตอนนี้</p>

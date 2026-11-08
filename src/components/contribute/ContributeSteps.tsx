@@ -25,7 +25,7 @@ export default function ContributeSteps() {
     <div className="relative">
       <span
         aria-hidden="true"
-        className="absolute inset-x-1/6 top-12 hidden h-px bg-linear-to-r from-gold/0 via-gold/60 to-gold/0 md:block"
+        className="absolute inset-x-1/6 top-12 hidden h-px bg-gold/50 md:block"
       />
       <ol className="relative grid gap-4 md:grid-cols-3">
         {steps.map((step, index) => (

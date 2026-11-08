@@ -13,11 +13,9 @@ export default function PlaceResultItem({ place, onSelect }: PlaceResultItemProp
       <button
         type="button"
         onClick={() => onSelect(place)}
-        className="flex w-full items-start gap-3 rounded-2xl border border-border bg-card/50 p-3.5 text-left outline-none transition-colors hover:border-gold/50 hover:bg-card/80 focus-visible:ring-3 focus-visible:ring-ring/40"
+        className="flex w-full items-start gap-3 rounded-lg border border-border bg-card p-3.5 text-left outline-none transition-colors hover:border-gold focus-visible:ring-2 focus-visible:ring-ring"
       >
-        <span className="grid size-9 shrink-0 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold-ink">
-          <MapPin aria-hidden="true" className="size-4" />
-        </span>
+        <MapPin aria-hidden="true" className="mt-1 size-4 shrink-0 text-gold-ink" />
         <span className="min-w-0">
           <span className="block text-sm font-medium text-foreground">
             {place.title}

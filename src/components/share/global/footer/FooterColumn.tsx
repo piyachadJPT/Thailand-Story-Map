@@ -8,7 +8,7 @@ type FooterColumnProps = {
 export default function FooterColumn({ title, links }: FooterColumnProps) {
   return (
     <div>
-      <h3 className="text-xs font-medium tracking-widest text-gold-ink">
+      <h3 className="text-sm font-semibold text-chad">
         {title}
       </h3>
       <ul role="list" className="mt-5 space-y-3">
@@ -18,12 +18,8 @@ export default function FooterColumn({ title, links }: FooterColumnProps) {
               href={link.href}
               // The map page is heavy (Mapbox); load it on click, not on sight.
               prefetch={link.href === "/" ? false : undefined}
-              className="group inline-flex items-center gap-2 rounded-sm text-sm text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/40"
+              className="inline-flex min-h-6 items-center rounded-sm text-sm text-muted-foreground underline-offset-4 outline-none transition-colors hover:text-foreground hover:underline focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <span
-                aria-hidden="true"
-                className="h-px w-2 bg-border transition-all duration-200 group-hover:w-4 group-hover:bg-gold"
-              />
               {link.name}
             </Link>
           </li>

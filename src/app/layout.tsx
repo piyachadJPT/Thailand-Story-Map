@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Kanit } from "next/font/google";
+import { Kanit, Noto_Sans_Thai, Noto_Serif_Thai } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 
@@ -11,12 +11,29 @@ import { siteJsonLd } from "@/lib/seo/jsonld";
 import { themeInitScript } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
+/** Public site headings: looped Thai serif. */
+const notoSerifThai = Noto_Serif_Thai({
+  subsets: ["thai", "latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-serif-thai",
+  display: "swap",
+});
+
+/** Public site body and UI text. */
+const notoSansThai = Noto_Sans_Thai({
+  subsets: ["thai", "latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans-thai",
+  display: "swap",
+});
+
+/** Backoffice only. Browsers fetch it only on pages that render it. */
 const kanit = Kanit({
   subsets: ["thai", "latin"],
-  // Only the weights the UI uses (font-normal/medium/semibold/bold).
   weight: ["400", "500", "600", "700"],
   variable: "--font-kanit",
   display: "swap",
+  preload: false,
 });
 
 const DEFAULT_TITLE =
@@ -50,11 +67,11 @@ export const metadata: Metadata = {
   },
 };
 
-/** Browser UI color follows the page background (--background) in each theme. */
+/** Browser UI color matches the top nav bar (--nav) in each theme. */
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f6f3ec" },
-    { media: "(prefers-color-scheme: dark)", color: "#0e1117" },
+    { media: "(prefers-color-scheme: light)", color: "#24365a" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0d0a" },
   ],
 };
 
@@ -67,7 +84,7 @@ export default function RootLayout({
     <html
       lang="th"
       suppressHydrationWarning
-      className={cn("font-sans", kanit.variable)}
+      className={cn("font-sans", notoSerifThai.variable, notoSansThai.variable, kanit.variable)}
     >
       <head>
         {/*
@@ -84,7 +101,7 @@ export default function RootLayout({
             <ToastContainer
               position="top-right"
               autoClose={3000}
-              toastClassName="!rounded-2xl !font-sans !shadow-none !border !border-border"
+              toastClassName="!rounded-md !font-sans !shadow-none !border !border-border"
             />
           </ReactQueryProvider>
         </AuthProvider>

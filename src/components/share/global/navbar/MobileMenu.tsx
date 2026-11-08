@@ -1,98 +1,45 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
 import AuthControls from "@/components/auth/AuthControls";
-import { GoldDivider } from "@/components/ui/gold-divider";
-import { IconButton } from "@/components/ui/icon-button";
 import { cn } from "@/lib/utils";
-import ThemeToggle from "../ThemeToggle";
-import BrandMark from "./BrandMark";
 import NavLinks from "./NavLinks";
 
 type MobileMenuProps = {
   pathname: string;
   open: boolean;
-  onOpenChange: (open: boolean) => void;
+  onClose: () => void;
 };
 
-/** Glass bar below lg: inline links on md, an expanding drawer on phones. */
-export default function MobileMenu({
-  pathname,
-  open,
-  onOpenChange,
-}: MobileMenuProps) {
-  const close = () => onOpenChange(false);
-
+/** Phone menu: a drawer that slides open under the nav bar (hidden from md up). */
+export default function MobileMenu({ pathname, open, onClose }: MobileMenuProps) {
   return (
     <>
       {/* Dims the page behind the open drawer; tapping it closes the menu. */}
       <div
         aria-hidden="true"
-        onClick={close}
+        onClick={onClose}
         className={cn(
-          "bg-background/70 fixed inset-0 -z-10 backdrop-blur-sm transition-opacity duration-300 md:hidden",
-          open
-            ? "pointer-events-auto opacity-100"
-            : "pointer-events-none opacity-0"
+          "fixed inset-x-0 top-(--nav-h) bottom-0 -z-10 bg-nav/45 transition-opacity duration-300 md:hidden",
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         )}
       />
       <div
+        id="mobile-navigation"
+        inert={!open}
         className={cn(
-          "liquid-glass rounded-panel pointer-events-auto w-full overflow-hidden p-1.5 lg:hidden",
-          // Solid while open so page text never shows through the links.
-          open && "max-md:bg-card!"
+          "grid border-border bg-card text-card-foreground transition-[grid-template-rows] duration-300 ease-out md:hidden",
+          open ? "grid-rows-[1fr] border-b" : "grid-rows-[0fr]"
         )}
-        onKeyDown={(event) => {
-          if (event.key === "Escape") close();
-        }}
       >
-        <div className="flex h-12 items-center gap-1">
-          <BrandMark
-            onNavigate={close}
-            priority
-            nameClassName="hidden sm:block"
-          />
-
+        <div className="overflow-hidden">
           <NavLinks
             pathname={pathname}
-            className="hidden flex-1 justify-center md:flex"
-          />
-
-          <div className="ml-auto flex shrink-0 items-center gap-1">
-            <ThemeToggle />
-            <AuthControls variant="desktop" />
-            <IconButton
-              size="sm"
-              className="md:hidden"
-              onClick={() => onOpenChange(!open)}
-              aria-expanded={open}
-              aria-controls="mobile-navigation"
-              aria-label={open ? "ปิดเมนู" : "เปิดเมนู"}
-            >
-              {open ? <X /> : <Menu />}
-            </IconButton>
-          </div>
-        </div>
-
-        <div
-          id="mobile-navigation"
-          inert={!open}
-          className={cn(
-            "grid transition-[grid-template-rows] duration-300 ease-out md:hidden",
-            open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-          )}
-        >
-          <div className="overflow-hidden">
-            <GoldDivider strength="subtle" className="mx-3 mt-1.5 w-auto" />
-            <NavLinks
-              pathname={pathname}
-              layout="stacked"
-              onNavigate={close}
-              className="px-1 pt-2 pb-1"
-            >
-              <AuthControls variant="mobile" onNavigate={close} />
-            </NavLinks>
-          </div>
+            layout="stacked"
+            onNavigate={onClose}
+            className="px-3 pt-3 pb-4"
+          >
+            <AuthControls variant="mobile" onNavigate={onClose} />
+          </NavLinks>
         </div>
       </div>
     </>

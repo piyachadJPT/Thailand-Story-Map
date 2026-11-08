@@ -48,11 +48,11 @@ export default function StoryDropdown({
         id={id}
         aria-label={label}
         disabled={options.length === 0}
-        className="liquid-field flex min-h-12 w-full items-center gap-3 rounded-2xl px-2 text-left text-base text-foreground transition-colors outline-none hover:border-gold/50 disabled:opacity-50 sm:text-sm"
+        className="liquid-field flex min-h-11 w-full items-center gap-3 rounded-lg px-2 text-left text-base text-foreground transition-colors outline-none hover:border-gold/50 disabled:opacity-50 sm:text-sm"
       >
         <span
           aria-hidden="true"
-          className="grid size-8 shrink-0 place-items-center rounded-full border border-gold/40 bg-gold/10 text-gold-ink"
+          className="grid size-8 shrink-0 place-items-center text-gold-ink"
         >
           {icon}
         </span>
@@ -70,7 +70,7 @@ export default function StoryDropdown({
       <Combobox.Portal>
         <Combobox.Positioner sideOffset={8} align="start" className="z-80 outline-none">
           <Combobox.Popup
-            className="w-(--anchor-width) max-w-[calc(100vw-1rem)] overflow-hidden rounded-2xl border border-border bg-popover p-2 text-popover-foreground outline-none"
+            className="w-(--anchor-width) max-w-[calc(100vw-1rem)] overflow-hidden rounded-panel border border-border bg-popover p-2 text-popover-foreground outline-none"
             onKeyDown={(event) => {
               if (event.key === "Escape") event.stopPropagation();
             }}
@@ -83,7 +83,7 @@ export default function StoryDropdown({
               <Combobox.Input
                 aria-label={searchPlaceholder}
                 placeholder={searchPlaceholder}
-                className="liquid-field h-11 w-full rounded-full pr-3 pl-10 text-base text-foreground outline-none placeholder:text-muted-foreground sm:text-sm"
+                className="liquid-field h-11 w-full rounded-lg pr-3 pl-10 text-base text-foreground outline-none placeholder:text-muted-foreground sm:text-sm"
               />
             </div>
             <Combobox.Empty className="px-3 py-6 text-center text-sm text-muted-foreground empty:hidden">

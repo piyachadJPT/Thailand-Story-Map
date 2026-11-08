@@ -61,7 +61,7 @@ export default function PlaceSearch({ onSelect }: { onSelect: (place: PlaceHit) 
           className="pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-gold-ink"
         />
         <input
-          className={`${inputClass} rounded-full pl-11`}
+          className={`${inputClass} pl-11`}
           type="search"
           autoComplete="off"
           value={query}
@@ -70,7 +70,7 @@ export default function PlaceSearch({ onSelect }: { onSelect: (place: PlaceHit) 
         />
       </label>
       {showList ? (
-        <div className="mt-2 max-h-44 space-y-1 overflow-y-auto overscroll-contain rounded-2xl border border-border bg-card/80 p-1.5">
+        <div className="mt-2 max-h-44 space-y-1 overflow-y-auto overscroll-contain rounded-lg border border-border bg-card p-1.5">
           {searching ? (
             <p className="px-2 py-1.5 text-xs text-muted-foreground">กำลังค้นหาสถานที่…</p>
           ) : null}

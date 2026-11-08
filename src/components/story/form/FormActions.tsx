@@ -23,7 +23,7 @@ export default function FormActions({
       className={cn(
         "space-y-3 border-t border-border pt-4",
         sticky &&
-          "sticky bottom-0 bg-card/85 px-5 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-xl",
+          "sticky bottom-0 bg-card px-5 pb-[max(1rem,env(safe-area-inset-bottom))]",
         className
       )}
     >

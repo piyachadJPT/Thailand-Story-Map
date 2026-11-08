@@ -12,7 +12,7 @@ type PageHeroProps = {
   className?: string;
 };
 
-/** Page opener: gold eyebrow, large Kanit title, subtitle, actions. */
+/** Page opener: vermilion eyebrow, large serif title, subtitle, actions. */
 export default function PageHero({
   eyebrow,
   title,

@@ -33,7 +33,7 @@ export default function ReadingProgress({ targetRef }: { targetRef: RefObject<HT
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-60 h-1">
       <div
-        className="h-full origin-left bg-linear-to-r from-gold/70 to-gold"
+        className="h-full origin-left bg-gold"
         style={{ transform: `scaleX(${progress})` }}
       />
     </div>

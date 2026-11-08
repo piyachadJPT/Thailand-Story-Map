@@ -14,7 +14,7 @@ export default function SearchSidebar() {
     <>
       <aside
         aria-label="ค้นหาสถานที่และเรื่องราว"
-        className="liquid-glass absolute top-4 bottom-4 left-4 z-30 hidden w-88 flex-col rounded-panel p-5 lg:flex"
+        className="liquid-glass absolute top-[calc(var(--nav-h)+1rem)] bottom-4 left-4 z-30 hidden w-88 flex-col rounded-panel p-5 lg:flex"
       >
         <SectionHeading
           size="sm"

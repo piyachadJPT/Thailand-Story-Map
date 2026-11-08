@@ -4,13 +4,13 @@ import { cn } from "@/lib/utils";
 const glassPanelVariants = cva("text-foreground", {
   variants: {
     surface: {
-      /** Frosted floating material (over the map or the page canvas). */
+      /** Floating surface over the map or the page (solid card + hairline). */
       glass: "liquid-glass",
-      /** Opaque card surface for long reading content. */
+      /** Card surface for long reading content. */
       solid: "border border-border bg-card text-card-foreground",
     },
     radius: {
-      card: "rounded-2xl",
+      card: "rounded-lg",
       panel: "rounded-panel",
     },
     padding: {
@@ -19,9 +19,9 @@ const glassPanelVariants = cva("text-foreground", {
       md: "p-4 sm:p-5",
       lg: "p-5 sm:p-7",
     },
-    /** Hairline of gold leaf along the top edge. */
+    /** Gold rule along the top edge. */
     gilded: {
-      true: "after:pointer-events-none after:absolute after:inset-x-8 after:top-0 after:h-px after:bg-linear-to-r after:from-transparent after:via-gold/70 after:to-transparent",
+      true: "after:pointer-events-none after:absolute after:inset-x-0 after:top-0 after:h-0.5 after:bg-gold",
       false: "",
     },
   },

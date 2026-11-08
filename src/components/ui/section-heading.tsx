@@ -12,7 +12,7 @@ const sectionHeadingVariants = cva("flex flex-col gap-3", {
 });
 
 const titleVariants = cva(
-  "font-heading font-semibold tracking-tight text-foreground",
+  "font-heading font-bold text-foreground",
   {
     variants: {
       size: {
@@ -54,8 +54,8 @@ function SectionHeading({
       {...props}
     >
       {eyebrow ? (
-        <p className="inline-flex items-center gap-2.5 text-xs font-medium tracking-widest text-gold-ink">
-          <span aria-hidden="true" className="h-px w-6 bg-gold" />
+        <p className="inline-flex items-center gap-2.5 text-sm font-semibold text-chad">
+          <span aria-hidden="true" className="lai-prajamyam w-7" />
           {eyebrow}
         </p>
       ) : null}

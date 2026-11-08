@@ -38,11 +38,11 @@ export default function StepReview({
         <img
           src={coverUrl}
           alt="ตัวอย่างรูปปกเรื่องราว"
-          className="aspect-video w-full rounded-2xl object-cover ring-1 ring-gold/30"
+          className="aspect-video w-full rounded-lg object-cover ring-1 ring-gold/30"
         />
       ) : null}
 
-      <dl className="divide-y divide-border rounded-2xl border border-border bg-background/40">
+      <dl className="divide-y divide-border rounded-lg border border-border bg-background">
         {rows.map((row) => (
           <div key={row.label} className="grid gap-1 px-4 py-3 sm:grid-cols-[8rem_1fr] sm:gap-3">
             <dt className="text-xs font-medium text-muted-foreground">{row.label}</dt>

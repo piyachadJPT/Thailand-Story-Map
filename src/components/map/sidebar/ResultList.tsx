@@ -6,7 +6,7 @@ import SidebarSkeleton from "./SidebarSkeleton";
 import type { StorySearch } from "./useStorySearch";
 
 const noteClasses =
-  "rounded-2xl border border-dashed border-border bg-card/40 p-4 text-sm text-muted-foreground";
+  "rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground";
 
 /** Results grouped under "สถานที่" and "เรื่องราว", plus every search state. */
 export default function ResultList({ search }: { search: StorySearch }) {
@@ -36,7 +36,7 @@ export default function ResultList({ search }: { search: StorySearch }) {
         </p>
       ) : null}
       {status === "error" ? (
-        <p className="rounded-2xl border border-dashed border-destructive/40 p-4 text-sm text-destructive">
+        <p className="rounded-lg border border-dashed border-destructive/40 p-4 text-sm text-destructive">
           ค้นหาไม่สำเร็จ ลองอีกครั้ง
         </p>
       ) : null}

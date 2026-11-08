@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Heart, Instagram, Twitter } from "lucide-react";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 import { GoldDivider } from "@/components/ui/gold-divider";
 import { siteConfig } from "@/config/site";
 import FooterColumn from "./FooterColumn";
@@ -47,27 +47,32 @@ export default function Footer() {
   });
 
   return (
-    <footer className="relative z-10 w-full bg-card/60 backdrop-blur-xl">
-      <GoldDivider />
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
+    <footer className="relative z-10 w-full border-t border-border bg-card">
+      <GoldDivider pattern="lai" strength="subtle" className="-mt-1.25" />
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-5">
           <div className="space-y-5 lg:col-span-2">
             <Link
               href="/"
               prefetch={false}
-              className="group inline-flex items-center gap-3 rounded-full outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
+              className="inline-flex items-center gap-3 rounded-control outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              <span className="grid size-12 place-items-center overflow-hidden rounded-full bg-background ring-1 ring-gold/50 transition-shadow group-hover:ring-gold">
+              <span className="grid size-11 place-items-center overflow-hidden rounded-full bg-background ring-1 ring-gold/60">
                 <Image
                   src="/logo.png"
                   alt=""
-                  width={40}
-                  height={40}
-                  className="size-9 object-contain"
+                  width={36}
+                  height={36}
+                  className="size-8 object-contain"
                 />
               </span>
-              <span className="font-heading text-xl font-semibold tracking-tight text-foreground">
-                {siteConfig.name}
+              <span className="leading-tight">
+                <span className="block font-heading text-lg font-bold text-foreground">
+                  {siteConfig.nameTh}
+                </span>
+                <span className="block text-[0.625rem] font-medium tracking-[0.14em] text-muted-foreground uppercase">
+                  {siteConfig.name}
+                </span>
               </span>
             </Link>
             <p className="max-w-sm text-sm text-muted-foreground">
@@ -82,7 +87,7 @@ export default function Footer() {
                     aria-label={label}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-grid size-11 place-items-center rounded-full border border-border text-muted-foreground outline-none transition-colors hover:border-gold/60 hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/40"
+                    className="inline-grid size-11 place-items-center rounded-control border border-border text-muted-foreground outline-none transition-colors hover:border-gold hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     <Icon aria-hidden="true" className="size-5" />
                   </a>
@@ -102,19 +107,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <GoldDivider strength="subtle" className="mt-14" />
-        <div className="flex flex-col items-center gap-3 pt-6 text-xs text-muted-foreground sm:flex-row sm:justify-between">
+        <div className="mt-12 flex flex-col items-center gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:justify-between">
           <p>
             &copy; {currentYear} {siteConfig.name} · สงวนลิขสิทธิ์
           </p>
-          <p className="flex items-center gap-1">
-            สร้างด้วย
-            <Heart
-              aria-hidden="true"
-              className="inline size-3 fill-gold text-gold motion-safe:animate-pulse"
-            />
-            ในประเทศไทย 🇹🇭
-          </p>
+          <p>สร้างในประเทศไทย</p>
         </div>
       </div>
     </footer>

@@ -28,16 +28,15 @@ export default function WriteStoryButton({
   const { data: session, status } = useSession();
   if (status === "loading") return null;
 
+  // Gold on the nav bar in both themes.
   const classes = cn(
-    buttonVariants({ variant: "primary", size: "lg" }),
-    "h-14 gap-2.5 pr-6 pl-2 ring-1 ring-gold/40 hover:ring-gold",
+    buttonVariants({ size: "sm" }),
+    "bg-gold text-gold-foreground hover:bg-gold/90 focus-visible:ring-offset-nav",
     className
   );
   const content = (
     <>
-      <span className="grid size-10 place-items-center rounded-full bg-gold text-gold-foreground">
-        <Feather aria-hidden="true" className="size-4" />
-      </span>
+      <Feather aria-hidden="true" />
       {label}
     </>
   );

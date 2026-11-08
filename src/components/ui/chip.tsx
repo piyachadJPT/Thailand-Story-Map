@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
  */
 const chipVariants = cva(
   [
-    "inline-flex w-fit shrink-0 items-center gap-1.5 rounded-full border font-medium leading-none whitespace-nowrap",
+    "inline-flex w-fit shrink-0 items-center gap-1.5 rounded-control border font-medium leading-none whitespace-nowrap",
     "transition-[background-color,border-color,color] duration-200",
     "outline-none focus-visible:ring-3 focus-visible:ring-ring/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -41,11 +41,12 @@ const chipVariants = cva(
       },
     },
     compoundVariants: [
-      { variant: "category", category: "ghost", className: "border-cat-ghost/35 bg-cat-ghost/10 [&_svg]:text-cat-ghost aria-pressed:border-cat-ghost aria-pressed:bg-cat-ghost/20" },
-      { variant: "category", category: "history", className: "border-cat-history/40 bg-cat-history/10 [&_svg]:text-cat-history aria-pressed:border-cat-history aria-pressed:bg-cat-history/20" },
-      { variant: "category", category: "legend", className: "border-cat-legend/35 bg-cat-legend/10 [&_svg]:text-cat-legend aria-pressed:border-cat-legend aria-pressed:bg-cat-legend/20" },
-      { variant: "category", category: "crime", className: "border-cat-crime/35 bg-cat-crime/10 [&_svg]:text-cat-crime aria-pressed:border-cat-crime aria-pressed:bg-cat-crime/20" },
-      { variant: "category", category: "local", className: "border-cat-local/35 bg-cat-local/10 [&_svg]:text-cat-local aria-pressed:border-cat-local aria-pressed:bg-cat-local/20" },
+      // Quiet at rest (hairline + colored icon); the category color fills in only when pressed.
+      { variant: "category", category: "ghost", className: "border-border [&_svg]:text-cat-ghost aria-pressed:border-cat-ghost aria-pressed:bg-cat-ghost/12" },
+      { variant: "category", category: "history", className: "border-border [&_svg]:text-cat-history aria-pressed:border-cat-history aria-pressed:bg-cat-history/12" },
+      { variant: "category", category: "legend", className: "border-border [&_svg]:text-cat-legend aria-pressed:border-cat-legend aria-pressed:bg-cat-legend/12" },
+      { variant: "category", category: "crime", className: "border-border [&_svg]:text-cat-crime aria-pressed:border-cat-crime aria-pressed:bg-cat-crime/12" },
+      { variant: "category", category: "local", className: "border-border [&_svg]:text-cat-local aria-pressed:border-cat-local aria-pressed:bg-cat-local/12" },
     ],
     defaultVariants: {
       variant: "default",

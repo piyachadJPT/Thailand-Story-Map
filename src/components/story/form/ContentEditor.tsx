@@ -88,7 +88,7 @@ export default function ContentEditor({ defaultValue = "", placeholder }: Conten
 
   return (
     <FormField label="รายละเอียด" labelId="story-content-label">
-      <div className="liquid-field relative min-h-44 rounded-2xl text-foreground focus-within:border-gold/70 focus-within:ring-3 focus-within:ring-gold/20">
+      <div className="liquid-field relative min-h-44 rounded-lg text-foreground focus-within:border-ring focus-within:ring-2 focus-within:ring-gold/45">
         {text === "" && placeholder ? (
           <p
             aria-hidden="true"

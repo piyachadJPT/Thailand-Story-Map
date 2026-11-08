@@ -12,7 +12,7 @@ type MapStyleSwitcherProps = {
 };
 
 const optionClasses = cn(
-  "inline-flex items-center justify-center gap-1.5 rounded-full font-medium whitespace-nowrap outline-none",
+  "inline-flex items-center justify-center gap-1.5 rounded-control font-medium whitespace-nowrap outline-none",
   "transition-colors duration-200 focus-visible:ring-3 focus-visible:ring-ring/40",
   "text-foreground hover:bg-foreground/6",
   "aria-pressed:bg-primary aria-pressed:text-primary-foreground"
@@ -54,7 +54,7 @@ export default function MapStyleSwitcher({ value, onChange }: MapStyleSwitcherPr
         role="group"
         aria-label="รูปแบบแผนที่"
         hidden={sheet === "composer"}
-        className="liquid-glass absolute bottom-5 left-[calc(50%+12rem)] z-20 hidden -translate-x-1/2 gap-0.5 rounded-full p-1 lg:flex"
+        className="liquid-glass absolute bottom-5 left-[calc(50%+12rem)] z-20 hidden -translate-x-1/2 gap-0.5 rounded-lg p-1 lg:flex"
       >
         {options("pill")}
       </div>
@@ -62,7 +62,7 @@ export default function MapStyleSwitcher({ value, onChange }: MapStyleSwitcherPr
       {open ? (
         <button
           type="button"
-          className="absolute inset-0 z-45 bg-background/30 backdrop-blur-[2px] lg:hidden"
+          className="absolute inset-0 z-45 bg-nav/30 lg:hidden"
           aria-label="ปิดรูปแบบแผนที่"
           onClick={closeSheet}
         />
@@ -77,7 +77,7 @@ export default function MapStyleSwitcher({ value, onChange }: MapStyleSwitcherPr
               onKeyDown={(event) => event.key === "Escape" && closeSheet()}
             >
               <div className="mb-3 flex items-center justify-between gap-2">
-                <p className="font-heading text-base font-semibold text-foreground">
+                <p className="font-heading text-base font-bold text-foreground">
                   รูปแบบแผนที่
                 </p>
                 <IconButton size="sm" aria-label="ปิดรูปแบบแผนที่" onClick={closeSheet}>
@@ -95,7 +95,7 @@ export default function MapStyleSwitcher({ value, onChange }: MapStyleSwitcherPr
               aria-label="เปิดรูปแบบแผนที่"
               aria-expanded={false}
               onClick={() => openSheet("style")}
-              className="liquid-glass pointer-events-auto grid size-14 place-items-center rounded-full text-foreground outline-none transition-colors hover:text-gold-ink focus-visible:ring-3 focus-visible:ring-ring/40"
+              className="liquid-glass pointer-events-auto grid size-14 place-items-center rounded-panel text-foreground outline-none transition-colors hover:text-gold-ink focus-visible:ring-3 focus-visible:ring-ring/40"
             >
               <ActiveIcon aria-hidden="true" className="size-5" />
             </button>

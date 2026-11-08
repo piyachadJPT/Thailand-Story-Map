@@ -26,7 +26,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
       <main
         className={cn(
           "relative z-10 flex w-full flex-1 flex-col",
-          isMapHome ? "h-dvh overflow-hidden" : "pt-24"
+          isMapHome ? "h-dvh overflow-hidden" : "pt-[calc(var(--nav-h)+1.5rem)]"
         )}
       >
         {children}
