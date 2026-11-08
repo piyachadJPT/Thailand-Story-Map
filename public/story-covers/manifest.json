@@ -1,409 +1,607 @@
 {
- "generated_with": "Figma MCP generate_image, model gpt-image-2.5-flare (via Claude Code)",
- "date": "2026-11-07",
- "note": "AI-generated illustrations. Verify the commercial-use terms of Figma AI / the model before publishing. Credit text for the site: ภาพประกอบสร้างด้วย AI",
- "images": [
-  {
-   "id": "ghost-01",
-   "file": "/story-covers/ghost-01.webp",
-   "size": "1600x900",
-   "prompt": "A clearing in a misty hillside forest at the foot of a mountain in northern Thailand at early morning, several small rustic wooden spirit shrines on posts arranged around the clearing, a large old painted Buddhist cloth banner hanging from tall bamboo poles, offerings of flowers and candles on the shrines, mist between tall trees, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-02",
-   "file": "/story-covers/ghost-02.webp",
-   "size": "1600x900",
-   "prompt": "An ancient Lanna temple hall in Chiang Mai at dusk with a small old shrine housing a tall carved city pillar, ancient brick chedi behind, glowing lanterns, incense haze, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-03",
-   "file": "/story-covers/ghost-03.webp",
-   "size": "1600x900",
-   "prompt": "A temporary bamboo pavilion roofed with white and red cloth in the courtyard of an old teak house in northern Thailand on a warm afternoon, strips of red and white cloth hanging from the beams, trays of offerings with flowers, betel and bananas on a low table, traditional northern Thai drums and gongs resting in a corner, dappled light, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-04",
-   "file": "/story-covers/ghost-04.webp",
-   "size": "1600x900",
-   "prompt": "A long forested limestone mountain ridge at misty dawn in far northern Thailand whose silhouette resembles a reclining woman with a rounded belly, a dark cave mouth at the foot of the mountain half hidden by vegetation, a small old wooden spirit shrine with fresh flowers beneath a large tree near the cave path, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-05",
-   "file": "/story-covers/ghost-05.webp",
-   "size": "1600x900",
-   "prompt": "A narrow footpath winding through a dense green mountain forest in northern Thailand at dusk, thick mist swallowing the path ahead, at the far end a faint old wooden town gate half dissolving into the fog, on the path in the foreground a handwoven cloth shoulder bag lying open with a few knobs of turmeric glinting faintly gold, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-06",
-   "file": "/story-covers/ghost-06.webp",
-   "size": "1600x900",
-   "prompt": "The veranda of an old raised wooden house in northeastern Thailand at dusk, a woven mat laid with a traditional offering tray of cooked dishes, bundled sticky-rice banana-leaf parcels, sweets and fruit, lit incense sticks and candles, marigold garlands, soft lantern light, dark rice fields behind, quiet, reverent, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-07",
-   "file": "/story-covers/ghost-07.webp",
-   "size": "1600x900",
-   "prompt": "A small old wooden spirit shrine on short stilts beneath a huge ancient tree inside a tiny patch of dense forest surrounded by open rice fields in northern-central Thailand, colored cloth strips tied around the tree trunk, incense sticks and flowers at the foot of the shrine, soft morning light, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-08",
-   "file": "/story-covers/ghost-08.webp",
-   "size": "1600x900",
-   "prompt": "A temple courtyard in southern Thailand in early morning light, a white cloth spread on the ground covered with piles of traditional fried rice-flour sweets in several shapes, scattered coins, small bowls of water and flowers, a large shady tree in the corner, a tall tiered offering tray stacked with dry goods and sweets at the edge, quiet anticipation, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-09",
-   "file": "/story-covers/ghost-09.webp",
-   "size": "1600x900",
-   "prompt": "The base of a huge old tree next to a Buddhist temple wall in northeastern Thailand in the dark before dawn, a row of small banana-leaf parcels laid on the bare earth with a few lit incense sticks and candles stuck in the ground beside them, flickering candlelight, blue-grey pre-dawn mist, a faint temple roof silhouette, quiet, reverent, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-10",
-   "file": "/story-covers/ghost-10.webp",
-   "size": "1600x900",
-   "prompt": "A small canal-side shrine at dusk in Bangkok, behind a glass panel a statue of a young woman in old Thai dress holding a baby, around it neatly folded fine dresses, children's toys, lotus buds and incense, colored cloth strips wound around a large bodhi tree beside the shrine, calm canal water reflecting the light, quiet, reverent, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-11",
-   "file": "/story-covers/ghost-11.webp",
-   "size": "1600x900",
-   "prompt": "The interior of an old stilted bamboo and timber house of a Tai Song Dam family in central Thailand in dim lantern light, a high shelf-like household spirit altar on the wall with small offerings, a woven mat laid with a traditional offering tray of cooked dishes and sticky rice, small folded indigo-black cloth hanging nearby, a lit oil lamp, dark wooden posts, quiet, reverent, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-12",
-   "file": "/story-covers/ghost-12.webp",
-   "size": "1600x900",
-   "prompt": "A seaside open ground in a small eastern Thai coastal town at early morning, a large mound of steamed rice, sweets, bananas and coconut spread on white cloth, ringed by a low ceremonial fence hung with small colorful flags at four corners, incense sticks and candles planted beside the mound, calm gray-blue sea and fishing boats in the background, soft haze, quiet, reverent, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-13",
-   "file": "/story-covers/ghost-13.webp",
-   "size": "1600x900",
-   "prompt": "A giant ceremonial effigy of a seated king of the underworld with a pointed triangular crown and golden ornaments, seen from behind and in silhouette, placed on a bamboo raft at the edge of a calm eastern Thai sea at dusk, a small offering table with incense bowl, banana-leaf flower tiered offering and fruit in front, fishing boats waiting on the horizon, soft haze, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-14",
-   "file": "/story-covers/ghost-14.webp",
-   "size": "1600x900",
-   "prompt": "A row of handmade festival masks made from woven bamboo sticky-rice steamers and dried coconut husk hanging on a wooden rail in front of an old stilted timber house in northern Isan countryside at misty dawn, strips of patchwork multicolored cloth costumes hanging beside, a few hollow wooden bell-like rattles, rice fields and low hills fading in haze, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-15",
-   "file": "/story-covers/ghost-15.webp",
-   "size": "1600x900",
-   "prompt": "A small hand-carved wooden ritual boat made of pale palm wood with a carved bird perched at the bow and toothlike zigzag patterns along its side, resting on a quiet sandy beach of a southern Thai island at pre-dawn, a row of seven slender wooden stakes planted in the sand beside it, a single lit candle glowing near the stern, calm Andaman Sea and distant limestone islands in faint mist, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-16",
-   "file": "/story-covers/ghost-16.webp",
-   "size": "1600x900",
-   "prompt": "A traditional open-sided ritual stage hut tied with rope without nails, gabled roof thatched with palm leaves and a pandan-leaf cap on the ridge, standing in the middle of a southern Thai temple courtyard at early dawn, a raised small shelf on one side holding offerings and incense, colorful strips of cloth tied to the branches of an old bodhi tree beside it, a dim oil lamp glowing inside, mist over wet ground, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-17",
-   "file": "/story-covers/ghost-17.webp",
-   "size": "1600x900",
-   "prompt": "The corner of an old Mon-style timber house interior in central Thailand, a thick main wooden post with a woven basket at its base holding neatly folded white and red cloths with a checkered sarong visible, small offerings of banana and incense placed on the floor, a dim oil lamp, deep shadows, wooden walls aged and smooth, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-18",
-   "file": "/story-covers/ghost-18.webp",
-   "size": "1600x900",
-   "prompt": "An ancient weathered laterite sanctuary mound standing in a vast flat Isan rice plain at misty dawn, a few small wooden spirit shrines lined beside the mound, colorful cloth banners on tall bamboo poles, a rough ancient earth moat ring faintly visible in the fog, a single standing stone marker in the foreground, soft haze, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-19",
-   "file": "/story-covers/ghost-19.webp",
-   "size": "1600x900",
-   "prompt": "A large handmade bamboo boat decorated with tall paper streamers and colorful paper flags resting at the edge of a calm river confluence at misty dawn in western Thailand, three river channels meeting in the background, wooden poles and bamboo stalks stacked on the bank, giant paper lanterns drifting faintly in the haze, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "ghost-20",
-   "file": "/story-covers/ghost-20.webp",
-   "size": "1600x900",
-   "prompt": "A small simple wooden spirit shrine on a low rise at the edge of a forest near the Mekong river at misty dawn, a row of triangular banana-stem offering trays set neatly in front of the shrine, small bundles of thin sticks tied together beside them, steep forested hills behind and the wide river faintly visible in haze, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-01",
-   "file": "/story-covers/history-01.webp",
-   "size": "1600x900",
-   "prompt": "Excavated ancient brick temple foundations of a lost medieval city lying below the surrounding ground level in northern Thailand, green grass, slanted evening light, a river plain beyond, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-02",
-   "file": "/story-covers/history-02.webp",
-   "size": "1600x900",
-   "prompt": "A tall white bell-shaped Buddhist reliquary chedi with a golden spire inside a cloistered temple compound in Nakhon Si Thammarat, southern Thailand, late afternoon light, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-03",
-   "file": "/story-covers/history-03.webp",
-   "size": "1600x900",
-   "prompt": "Ruined brick palace platform mound among the lotus ponds and old city walls of Sukhothai historical park at golden hour, one low ruined mound in focus, grass and stone, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-04",
-   "file": "/story-covers/history-04.webp",
-   "size": "1600x900",
-   "prompt": "A huge ancient laterite stepped stupa mound in Si Thep historical park, Phetchabun, with a second moat bank and forested hills behind, dry-season light, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-05",
-   "file": "/story-covers/history-05.webp",
-   "size": "1600x900",
-   "prompt": "A prehistoric excavation pit with layers of earth, painted red-on-buff clay pots and bone fragments lined up in a village museum shed, northeast Thailand, warm light, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-06",
-   "file": "/story-covers/history-06.webp",
-   "size": "1600x900",
-   "prompt": "A sandstone Khmer temple sanctuary on the rim of an extinct volcano at sunrise, long stone processional stairway and a carved empty lintel space above a doorway, Buriram, Thailand, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-07",
-   "file": "/story-covers/history-07.webp",
-   "size": "1600x900",
-   "prompt": "A bronze heroine monument on a plinth in the center of Nakhon Ratchasima at dusk, city gate and old moat in the background, empty plaza, warm lights, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-08",
-   "file": "/story-covers/history-08.webp",
-   "size": "1600x900",
-   "prompt": "A wide, flat rice paddy landscape in rural northeastern Thailand at the end of the dry season, cracked pale earth and low dikes stretching to the horizon, a few scattered old trees and a distant line of village palms, no buildings in focus, blue hour after sunset with a faint warm glow on the horizon, quiet and solemn atmosphere, muted noir palette, empty location only, no victims, no weapons, no blood, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-09",
-   "file": "/story-covers/history-09.webp",
-   "size": "1600x900",
-   "prompt": "A small simple wooden stilt house with a thatched roof and a vegetable garden beside a quiet village lane near the Mekong in Nakhon Phanom, soft morning light, no people, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-10",
-   "file": "/story-covers/history-10.webp",
-   "size": "1600x900",
-   "prompt": "A heroic village monument with seven stone-carved defenders in a rural plain of Singburi, Thailand, a mound of earth and bamboo stakes, dusk sky, no human faces visible, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-11",
-   "file": "/story-covers/history-11.webp",
-   "size": "1600x900",
-   "prompt": "Ruins of a former Portuguese quarter in Ayutthaya, brick foundations of a church and a small cemetery by the Chao Phraya river, soft evening light, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-12",
-   "file": "/story-covers/history-12.webp",
-   "size": "1600x900",
-   "prompt": "Ruined brick walls of an old European-style royal mansion from the 17th century in Lopburi with arched windows, overgrown courtyard, golden hour, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-13",
-   "file": "/story-covers/history-13.webp",
-   "size": "1600x900",
-   "prompt": "A nineteenth-century coastal fort at the mouth of the Chao Phraya river with cannon embrasures and a tall lighthouse-like tower, calm river water, dawn mist, no ships firing, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-14",
-   "file": "/story-covers/history-14.webp",
-   "size": "1600x900",
-   "prompt": "A tall unfinished memorial stupa-like monument in the middle of Ratchadamnoen Avenue in Bangkok at sunset, empty wide avenue, soft haze, some scaffolding on the monument, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-15",
-   "file": "/story-covers/history-15.webp",
-   "size": "1600x900",
-   "prompt": "Old concrete bridge piers standing alone in a slow coastal creek in rural southern Thailand, the steel bridge deck long removed, coconut palms and mangrove along the banks, a quiet two-lane rural road nearby, dawn with low mist over the water and a faint warm light on the horizon, golden hour tones fading into blue, weathered concrete, sense of age, respectful documentary tone, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-16",
-   "file": "/story-covers/history-16.webp",
-   "size": "1600x900",
-   "prompt": "A calm sea off Koh Chang, Trat at dawn, forested island silhouette, low mist on the water, a single distant grey naval ship far on the horizon, sober mood, no combat, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-17",
-   "file": "/story-covers/history-17.webp",
-   "size": "1600x900",
-   "prompt": "A long steel arched railway bridge crossing the Kwai river in Kanchanaburi at dawn, green hills and mist, empty tracks, sober mood, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-18",
-   "file": "/story-covers/history-18.webp",
-   "size": "1600x900",
-   "prompt": "A quiet curved beach in Prachuap Khiri Khan at early morning with a military airfield fence and palm trees on the shore, soft pastel light, calm sea, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-19",
-   "file": "/story-covers/history-19.webp",
-   "size": "1600x900",
-   "prompt": "A pair of stone monuments of two heroines in a roundabout intersection in Thalang, Phuket at dusk, tropical trees, empty street, warm sky, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "history-20",
-   "file": "/story-covers/history-20.webp",
-   "size": "1600x900",
-   "prompt": "Ruined fort wall of an old walled port city on a red hill by the sea at Singora, Songkhla, with stone bastions overgrown by trees, sea and distant islands behind, golden hour, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-01",
-   "file": "/story-covers/legend-01.webp",
-   "size": "1600x900",
-   "prompt": "A wide misty wetland lake in a northern Thai valley at dawn, crumbling ancient red brick stupa foundations rising just above the shallow still water, reeds and water lilies, a single small old wooden house standing on a tiny island mound in the middle of the lake, low forested hills in the distance, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-02",
-   "file": "/story-covers/legend-02.webp",
-   "size": "1600x900",
-   "prompt": "An ancient square tiered brick chedi with niches holding gold-tinted Buddha figures in a temple in Lamphun, northern Thailand, mythic mist and glowing light, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-03",
-   "file": "/story-covers/legend-03.webp",
-   "size": "1600x900",
-   "prompt": "A tall limestone mountain peak crowned with clouds above forested foothills in Chiang Dao, Chiang Mai, hint of a golden deer silhouette among the mist, mythic atmosphere, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-04",
-   "file": "/story-covers/legend-04.webp",
-   "size": "1600x900",
-   "prompt": "A golden chedi and gilded parasol at a hilltop temple above Chiang Mai in evening mist, ceremonial lanterns, a stone stairway leading up between naga balustrades, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-05",
-   "file": "/story-covers/legend-05.webp",
-   "size": "1600x900",
-   "prompt": "A serene seated Buddha statue among ancient lotus-bud chedis in Wat Mahathat, Sukhothai historical park at dusk, mythic glow, reflecting pond, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-06",
-   "file": "/story-covers/legend-06.webp",
-   "size": "1600x900",
-   "prompt": "A wide calm lake at dawn with lotus flowers and a hazy shoreline, a small white squirrel on a branch in the foreground, northeast Thailand, mythic soft glow, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-07",
-   "file": "/story-covers/legend-07.webp",
-   "size": "1600x900",
-   "prompt": "Glowing pink-red balls of light rising from the Mekong river on a dark night, silhouettes of palms on the far bank, mythic glow, calm water, no people, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-08",
-   "file": "/story-covers/legend-08.webp",
-   "size": "1600x900",
-   "prompt": "A sacred forested islet beside a lake, accessed by a long wooden bridge with white-and-gold cloth banners and a seven-headed naga statue at the entrance, dusk mist, Udon Thani, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-09",
-   "file": "/story-covers/legend-09.webp",
-   "size": "1600x900",
-   "prompt": "A tall slender square-based white and gold stupa with a pointed tiered spire rising on a low mound near a wide brown river at golden evening light, distant low hills on the far bank, in the foreground a bundle of old palm-leaf manuscripts tied with cord resting on a simple wooden table, calm, sacred, timeless, folklore atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-10",
-   "file": "/story-covers/legend-10.webp",
-   "size": "1600x900",
-   "prompt": "An ancient Khmer sandstone temple sanctuary with a tall prang in a historical park, at dusk with soft warm lights, two small carved lintels visible, quiet courtyard, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-11",
-   "file": "/story-covers/legend-11.webp",
-   "size": "1600x900",
-   "prompt": "A long covered cloister gallery of an old central Thai Buddhist temple in warm late afternoon light, a row of white pillars casting long shadows, the inner wall lined with faded traditional Thai mural panels showing small scenes of riders, houses and boats in sequence, a large temple hall roof visible behind, quiet, nostalgic, storytelling atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-12",
-   "file": "/story-covers/legend-12.webp",
-   "size": "1600x900",
-   "prompt": "A large white Thai temple ordination hall with a golden pediment by the Bang Pakong river, a seated golden Buddha visible through the doorway, soft glowing morning mist, Chachoengsao, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-13",
-   "file": "/story-covers/legend-13.webp",
-   "size": "1600x900",
-   "prompt": "A massive golden-orange bell-shaped stupa towering over a temple courtyard in Nakhon Pathom at dusk, soft glow, empty stone steps, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-14",
-   "file": "/story-covers/legend-14.webp",
-   "size": "1600x900",
-   "prompt": "A small shrine beside a canal with a carved wooden boat prow and a cut-down tree stump, a rural canal landscape in Samut Sakhon at dusk, mythic mist, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-15",
-   "file": "/story-covers/legend-15.webp",
-   "size": "1600x900",
-   "prompt": "A rocky forested hill by the sea with three small mountain peaks in layers, a long sandy beach below, foam and waves, evening glow, Chonburi, mythic romance atmosphere, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-16",
-   "file": "/story-covers/legend-16.webp",
-   "size": "1600x900",
-   "prompt": "A beach on Koh Samet at sunset with a bronze statue of a flute-playing prince seated on a rock beside a mermaid statue, turquoise water, empty beach, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-17",
-   "file": "/story-covers/legend-17.webp",
-   "size": "1600x900",
-   "prompt": "A wide curving bay on the upper Gulf of Thailand at golden evening, a long rugged limestone ridge jutting into the sea at one end shaped vaguely like a reclining old man, a round rock resembling a jar near its foot, several oddly shaped small islands scattered across calm water, a few wooden fishing boats far away, folklore atmosphere, mysterious, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-18",
-   "file": "/story-covers/legend-18.webp",
-   "size": "1600x900",
-   "prompt": "A tall white stupa with a gold spire in a hilltop temple of Phatthalung amid rubber trees and limestone karst, mythic evening mist, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-19",
-   "file": "/story-covers/legend-19.webp",
-   "size": "1600x900",
-   "prompt": "Two small rocky islands in a calm sea beside a sandy beach in Songkhla at dawn, one rounded like a mouse and one like a cat, pastel sky, mythic soft glow, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "legend-20",
-   "file": "/story-covers/legend-20.webp",
-   "size": "1600x900",
-   "prompt": "A richly ornamented Chinese-Hokkien shrine with red lanterns, dragon roof ridges and incense smoke in Pattani, evening light, empty courtyard, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "local-01",
-   "file": "/story-covers/local-01.webp",
-   "size": "1600x900",
-   "prompt": "A rack of drying handmade mulberry-paper umbrellas painted in green, red and blue in a village yard in San Kamphaeng, Chiang Mai, bamboo frames, warm daylight, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "local-02",
-   "file": "/story-covers/local-02.webp",
-   "size": "1600x900",
-   "prompt": "The interior of an old northern Thai temple hall with colorful traditional mural paintings of village life on the wall and a four-faced Buddha altar, Nan, soft light through windows, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "local-03",
-   "file": "/story-covers/local-03.webp",
-   "size": "1600x900",
-   "prompt": "A row of colorful hand-painted festival masks with long noses made from woven sticky-rice steamers and coconut husk, hanging on a wooden rail in a village of Dan Sai, Loei, daylight, no wearers, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "local-04",
-   "file": "/story-covers/local-04.webp",
-   "size": "1600x900",
-   "prompt": "A tea-plantation hillside terraces and a mountain village with Yunnan-style houses on Doi Mae Salong, Chiang Rai, morning mist, warm light, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "local-05",
-   "file": "/story-covers/local-05.webp",
-   "size": "1600x900",
-   "prompt": "A valley town surrounded by green mountains and rice fields in Pai, Mae Hong Son, wooden bridge over a stream, soft morning light, no people, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "local-06",
-   "file": "/story-covers/local-06.webp",
-   "size": "1600x900",
-   "prompt": "A tall decorated traditional bamboo rocket resting on a launch rack in a field, with festive flags and a rainy-season sky above, Yasothon, warm light, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  },
-  {
-   "id": "local-07",
-   "file": "/story-covers/local-07.webp",
-   "size": "1600x900",
-   "prompt": "A huge carved beeswax candle with ornate gold-and-white relief on a decorated float at a temple courtyard in Ubon Ratchathani, warm evening light, no people, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
-  }
- ]
+  "generated_with": "Figma MCP generate_image, model gpt-image-2.5-flare (via Claude Code)",
+  "date": "2026-11-07",
+  "note": "AI-generated illustrations. Verify the commercial-use terms of Figma AI / the model before publishing. Credit text for the site: ภาพประกอบสร้างด้วย AI",
+  "images": [
+    {
+      "id": "crime-01",
+      "file": "crime-01.webp",
+      "size": "1600x900",
+      "prompt": "An empty business street in Bangkok's Silom district at dusk in the mid-1990s, a modest mid-rise bank office building with a closed glass-and-steel entrance and shuttered teller windows, tropical street trees, wet asphalt reflecting street lamps, a few parked cars of the era, no signage legible, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-02",
+      "file": "crime-02.webp",
+      "size": "1600x900",
+      "prompt": "A quiet mountain border village in northern Chiang Rai at daybreak in the early 1980s, a dirt road winding between plain wooden and tin-roofed houses on a hillside, a small generator shed at the edge of the settlement, forested ridges rising toward the Burmese frontier, thin mist filling the valley, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-03",
+      "file": "crime-03.webp",
+      "size": "1600x900",
+      "prompt": "The quiet forecourt of a large Thai government ministry complex on a suburban avenue at dusk, pale multi-storey office blocks with rows of windows, one ground-floor window revealing stacked sealed cardboard medicine boxes and a metal pharmacy cabinet, empty parking spaces, tropical trees and street lamps just switching on, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-04",
+      "file": "crime-04.webp",
+      "size": "1600x900",
+      "prompt": "A vast unfinished wastewater treatment plant on flat coastal land in Samut Prakan at dusk, rows of empty rectangular concrete basins with rusted railings, a small tidal canal cutting through the site, mangrove trees at the edge, distant low clouds over the Gulf, weeds growing between slabs, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-05",
+      "file": "crime-05.webp",
+      "size": "1600x900",
+      "prompt": "A wide stretch of graded open land on low rolling hills in rural eastern Thailand at dusk, an old barbed-wire fence with leaning concrete posts, patches of scrub forest and young eucalyptus at the edges, faint tracks of heavy trucks in reddish laterite soil, distant low hills under a heavy indigo sky, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-06",
+      "file": "crime-06.webp",
+      "size": "1600x900",
+      "prompt": "A remote grassland clearing at the edge of a hill evergreen forest in western Thailand at dawn, low mist drifting over tall grass, a flattened empty patch where a camp once stood with a cold fire ring of stones, distant forested ridges layered in blue, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-07",
+      "file": "crime-07.webp",
+      "size": "1600x900",
+      "prompt": "Rural northern Thailand at golden dusk, flat rice fields bordered by a few longan trees, a distant single-storey wooden village house on short stilts with a corrugated roof, a bare empty plot of turned earth beside the house, low blue hills of Lampang on the horizon, quiet and still, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-08",
+      "file": "crime-08.webp",
+      "size": "1600x900",
+      "prompt": "A quiet side street in Bangkok's Ekkamai neighbourhood late at night, an empty fenced lot behind corrugated metal sheets between modern low-rise commercial buildings, a single narrow doorway frame of an abandoned entrance in shadow, wet pavement reflecting distant neon glow without readable signs, a few potted plants, muted noir palette, empty location only, sober and non-sensational, no fire, no smoke, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-09",
+      "file": "crime-09.webp",
+      "size": "1600x900",
+      "prompt": "The edge of a dry dipterocarp forest in northeastern Thailand at late afternoon, a cleared patch with old tree stumps and a neat stack of unmarked teak logs in tall dry grass, scattered young teak trees with large leaves, red laterite soil, hazy amber light filtering through, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-10",
+      "file": "crime-10.webp",
+      "size": "1600x900",
+      "prompt": "An empty outdoor futsal court beside a modest one-storey rural primary school building in northeastern Thailand, the rubber floor sheets faded, curling at the seams and patched with puddles after rain, a flagpole and a row of tamarind trees, flat rice fields beyond under a low evening sky, a closed school gate, no signage legible, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-11",
+      "file": "crime-11.webp",
+      "size": "1600x900",
+      "prompt": "An empty night-market lane in Chiang Mai's Chang Khlan area in the mid-1990s after closing time, folded canvas stall awnings, a neat row of wooden pushcarts topped with crossed Lanna kalae gable ornaments, old shophouses with shuttered fronts, string lights switched off, a single sodium street lamp, wet pavement, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-12",
+      "file": "crime-12.webp",
+      "size": "1600x900",
+      "prompt": "A low forested hill in Wat Bot district of Phitsanulok at first light after a dry-season fire, mixed deciduous and dipterocarp trees with blackened trunks, a carpet of grey ash and curled dry teak-like leaves, thin smoke lingering in the valley, a distant ridge still green, a dirt forest track leading in, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-13",
+      "file": "crime-13.webp",
+      "size": "1600x900",
+      "prompt": "A tall standing bronze Buddha statue in the gesture of calming the relatives on the summit of Kho Hong hill above Hat Yai at blue dusk, its surface dull and weathered rather than freshly gilded, an empty stone stairway and railings leading up, tropical hillside trees, the lights of a low-rise southern Thai city spreading below, muted noir palette, empty location only, sober and non-sensational, respectful, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-14",
+      "file": "crime-14.webp",
+      "size": "1600x900",
+      "prompt": "A wide manicured golf course on the flat central Thai floodplain at misty dawn, a single hole flag standing still beside a water hazard, rows of palms and rain trees, a straight irrigation canal at the edge, flat paddy land beyond, an empty cart path, no clubhouse signage, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-15",
+      "file": "crime-15.webp",
+      "size": "1600x900",
+      "prompt": "A quiet main avenue in the old town of Nakhon Si Thammarat in early morning, a modest provincial police station building with a tiled roof behind a low fence, an empty stone pedestal plinth with a small offering of red cloth at its base on the roadside, large rain trees casting long shadows, distant temple spire, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-16",
+      "file": "crime-16.webp",
+      "size": "1600x900",
+      "prompt": "A small ancient Khmer-style stone sanctuary on a flat northeastern Thai plain at early morning, weathered sandstone doorframe with an empty carved recess above the doorway where a lintel once sat, fallen stone blocks resting in tall dry grass, a few sugar palms and rain trees in the distance, pale mist over rice fields, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-17",
+      "file": "crime-17.webp",
+      "size": "1600x900",
+      "prompt": "A quiet rice paddy beside a small stream in a misty valley near the Thai-Myanmar border in Tak province at early morning, terraced paddies with rows of young green rice, a narrow dirt embankment, forested limestone ridges in the distance with a pale scarred hillside, a few banana trees and bamboo clumps, still water reflecting soft light, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-18",
+      "file": "crime-18.webp",
+      "size": "1600x900",
+      "prompt": "A clear shallow forest stream in a mountain valley of Kanchanaburi province in early morning, a low rock-fill weir of piled stones across the stream, large old trees leaning over the bank with exposed roots, smooth river stones, thin mist among mixed deciduous forest slopes, a simple bamboo footbridge in the distance, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-19",
+      "file": "crime-19.webp",
+      "size": "1600x900",
+      "prompt": "The front of a provincial courthouse on Ratchadamnoen Road in Nakhon Si Thammarat on a grey July morning just after rain, a modern Thai government building with a tiered pitched roof and wide stone steps, an empty forecourt with puddles reflecting the facade, tall rain trees and a low wall along the road, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "crime-20",
+      "file": "crime-20.webp",
+      "size": "1600x900",
+      "prompt": "A wide view of a provincial government office compound near Songkhla on a humid morning after rain, a low-rise concrete office building with a pitched tiled roof behind a gate, an empty paved parking forecourt with wet reflections, tropical palms and rain trees along the boundary wall, flat southern Thai coastal light, muted noir palette, empty location only, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-01",
+      "file": "/story-covers/ghost-01.webp",
+      "size": "1600x900",
+      "prompt": "A clearing in a misty hillside forest at the foot of a mountain in northern Thailand at early morning, several small rustic wooden spirit shrines on posts arranged around the clearing, a large old painted Buddhist cloth banner hanging from tall bamboo poles, offerings of flowers and candles on the shrines, mist between tall trees, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-02",
+      "file": "/story-covers/ghost-02.webp",
+      "size": "1600x900",
+      "prompt": "An ancient Lanna temple hall in Chiang Mai at dusk with a small old shrine housing a tall carved city pillar, ancient brick chedi behind, glowing lanterns, incense haze, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-03",
+      "file": "/story-covers/ghost-03.webp",
+      "size": "1600x900",
+      "prompt": "A temporary bamboo pavilion roofed with white and red cloth in the courtyard of an old teak house in northern Thailand on a warm afternoon, strips of red and white cloth hanging from the beams, trays of offerings with flowers, betel and bananas on a low table, traditional northern Thai drums and gongs resting in a corner, dappled light, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-04",
+      "file": "/story-covers/ghost-04.webp",
+      "size": "1600x900",
+      "prompt": "A long forested limestone mountain ridge at misty dawn in far northern Thailand whose silhouette resembles a reclining woman with a rounded belly, a dark cave mouth at the foot of the mountain half hidden by vegetation, a small old wooden spirit shrine with fresh flowers beneath a large tree near the cave path, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-05",
+      "file": "/story-covers/ghost-05.webp",
+      "size": "1600x900",
+      "prompt": "A narrow footpath winding through a dense green mountain forest in northern Thailand at dusk, thick mist swallowing the path ahead, at the far end a faint old wooden town gate half dissolving into the fog, on the path in the foreground a handwoven cloth shoulder bag lying open with a few knobs of turmeric glinting faintly gold, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-06",
+      "file": "/story-covers/ghost-06.webp",
+      "size": "1600x900",
+      "prompt": "The veranda of an old raised wooden house in northeastern Thailand at dusk, a woven mat laid with a traditional offering tray of cooked dishes, bundled sticky-rice banana-leaf parcels, sweets and fruit, lit incense sticks and candles, marigold garlands, soft lantern light, dark rice fields behind, quiet, reverent, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-07",
+      "file": "/story-covers/ghost-07.webp",
+      "size": "1600x900",
+      "prompt": "A small old wooden spirit shrine on short stilts beneath a huge ancient tree inside a tiny patch of dense forest surrounded by open rice fields in northern-central Thailand, colored cloth strips tied around the tree trunk, incense sticks and flowers at the foot of the shrine, soft morning light, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-08",
+      "file": "/story-covers/ghost-08.webp",
+      "size": "1600x900",
+      "prompt": "A temple courtyard in southern Thailand in early morning light, a white cloth spread on the ground covered with piles of traditional fried rice-flour sweets in several shapes, scattered coins, small bowls of water and flowers, a large shady tree in the corner, a tall tiered offering tray stacked with dry goods and sweets at the edge, quiet anticipation, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-09",
+      "file": "/story-covers/ghost-09.webp",
+      "size": "1600x900",
+      "prompt": "The base of a huge old tree next to a Buddhist temple wall in northeastern Thailand in the dark before dawn, a row of small banana-leaf parcels laid on the bare earth with a few lit incense sticks and candles stuck in the ground beside them, flickering candlelight, blue-grey pre-dawn mist, a faint temple roof silhouette, quiet, reverent, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-10",
+      "file": "/story-covers/ghost-10.webp",
+      "size": "1600x900",
+      "prompt": "A small canal-side shrine at dusk in Bangkok, behind a glass panel a statue of a young woman in old Thai dress holding a baby, around it neatly folded fine dresses, children's toys, lotus buds and incense, colored cloth strips wound around a large bodhi tree beside the shrine, calm canal water reflecting the light, quiet, reverent, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-11",
+      "file": "/story-covers/ghost-11.webp",
+      "size": "1600x900",
+      "prompt": "The interior of an old stilted bamboo and timber house of a Tai Song Dam family in central Thailand in dim lantern light, a high shelf-like household spirit altar on the wall with small offerings, a woven mat laid with a traditional offering tray of cooked dishes and sticky rice, small folded indigo-black cloth hanging nearby, a lit oil lamp, dark wooden posts, quiet, reverent, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-12",
+      "file": "/story-covers/ghost-12.webp",
+      "size": "1600x900",
+      "prompt": "A seaside open ground in a small eastern Thai coastal town at early morning, a large mound of steamed rice, sweets, bananas and coconut spread on white cloth, ringed by a low ceremonial fence hung with small colorful flags at four corners, incense sticks and candles planted beside the mound, calm gray-blue sea and fishing boats in the background, soft haze, quiet, reverent, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-13",
+      "file": "/story-covers/ghost-13.webp",
+      "size": "1600x900",
+      "prompt": "A giant ceremonial effigy of a seated king of the underworld with a pointed triangular crown and golden ornaments, seen from behind and in silhouette, placed on a bamboo raft at the edge of a calm eastern Thai sea at dusk, a small offering table with incense bowl, banana-leaf flower tiered offering and fruit in front, fishing boats waiting on the horizon, soft haze, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-14",
+      "file": "/story-covers/ghost-14.webp",
+      "size": "1600x900",
+      "prompt": "A row of handmade festival masks made from woven bamboo sticky-rice steamers and dried coconut husk hanging on a wooden rail in front of an old stilted timber house in northern Isan countryside at misty dawn, strips of patchwork multicolored cloth costumes hanging beside, a few hollow wooden bell-like rattles, rice fields and low hills fading in haze, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-15",
+      "file": "/story-covers/ghost-15.webp",
+      "size": "1600x900",
+      "prompt": "A small hand-carved wooden ritual boat made of pale palm wood with a carved bird perched at the bow and toothlike zigzag patterns along its side, resting on a quiet sandy beach of a southern Thai island at pre-dawn, a row of seven slender wooden stakes planted in the sand beside it, a single lit candle glowing near the stern, calm Andaman Sea and distant limestone islands in faint mist, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-16",
+      "file": "/story-covers/ghost-16.webp",
+      "size": "1600x900",
+      "prompt": "A traditional open-sided ritual stage hut tied with rope without nails, gabled roof thatched with palm leaves and a pandan-leaf cap on the ridge, standing in the middle of a southern Thai temple courtyard at early dawn, a raised small shelf on one side holding offerings and incense, colorful strips of cloth tied to the branches of an old bodhi tree beside it, a dim oil lamp glowing inside, mist over wet ground, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-17",
+      "file": "/story-covers/ghost-17.webp",
+      "size": "1600x900",
+      "prompt": "The corner of an old Mon-style timber house interior in central Thailand, a thick main wooden post with a woven basket at its base holding neatly folded white and red cloths with a checkered sarong visible, small offerings of banana and incense placed on the floor, a dim oil lamp, deep shadows, wooden walls aged and smooth, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-18",
+      "file": "/story-covers/ghost-18.webp",
+      "size": "1600x900",
+      "prompt": "An ancient weathered laterite sanctuary mound standing in a vast flat Isan rice plain at misty dawn, a few small wooden spirit shrines lined beside the mound, colorful cloth banners on tall bamboo poles, a rough ancient earth moat ring faintly visible in the fog, a single standing stone marker in the foreground, soft haze, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-19",
+      "file": "/story-covers/ghost-19.webp",
+      "size": "1600x900",
+      "prompt": "A large handmade bamboo boat decorated with tall paper streamers and colorful paper flags resting at the edge of a calm river confluence at misty dawn in western Thailand, three river channels meeting in the background, wooden poles and bamboo stalks stacked on the bank, giant paper lanterns drifting faintly in the haze, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "ghost-20",
+      "file": "/story-covers/ghost-20.webp",
+      "size": "1600x900",
+      "prompt": "A small simple wooden spirit shrine on a low rise at the edge of a forest near the Mekong river at misty dawn, a row of triangular banana-stem offering trays set neatly in front of the shrine, small bundles of thin sticks tied together beside them, steep forested hills behind and the wide river faintly visible in haze, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-01",
+      "file": "/story-covers/history-01.webp",
+      "size": "1600x900",
+      "prompt": "Excavated ancient brick temple foundations of a lost medieval city lying below the surrounding ground level in northern Thailand, green grass, slanted evening light, a river plain beyond, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-02",
+      "file": "/story-covers/history-02.webp",
+      "size": "1600x900",
+      "prompt": "A tall white bell-shaped Buddhist reliquary chedi with a golden spire inside a cloistered temple compound in Nakhon Si Thammarat, southern Thailand, late afternoon light, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-03",
+      "file": "/story-covers/history-03.webp",
+      "size": "1600x900",
+      "prompt": "Ruined brick palace platform mound among the lotus ponds and old city walls of Sukhothai historical park at golden hour, one low ruined mound in focus, grass and stone, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-04",
+      "file": "/story-covers/history-04.webp",
+      "size": "1600x900",
+      "prompt": "A huge ancient laterite stepped stupa mound in Si Thep historical park, Phetchabun, with a second moat bank and forested hills behind, dry-season light, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-05",
+      "file": "/story-covers/history-05.webp",
+      "size": "1600x900",
+      "prompt": "A prehistoric excavation pit with layers of earth, painted red-on-buff clay pots and bone fragments lined up in a village museum shed, northeast Thailand, warm light, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-06",
+      "file": "/story-covers/history-06.webp",
+      "size": "1600x900",
+      "prompt": "A sandstone Khmer temple sanctuary on the rim of an extinct volcano at sunrise, long stone processional stairway and a carved empty lintel space above a doorway, Buriram, Thailand, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-07",
+      "file": "/story-covers/history-07.webp",
+      "size": "1600x900",
+      "prompt": "A bronze heroine monument on a plinth in the center of Nakhon Ratchasima at dusk, city gate and old moat in the background, empty plaza, warm lights, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-08",
+      "file": "/story-covers/history-08.webp",
+      "size": "1600x900",
+      "prompt": "A wide, flat rice paddy landscape in rural northeastern Thailand at the end of the dry season, cracked pale earth and low dikes stretching to the horizon, a few scattered old trees and a distant line of village palms, no buildings in focus, blue hour after sunset with a faint warm glow on the horizon, quiet and solemn atmosphere, muted noir palette, empty location only, no victims, no weapons, no blood, sober and non-sensational, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-09",
+      "file": "/story-covers/history-09.webp",
+      "size": "1600x900",
+      "prompt": "A small simple wooden stilt house with a thatched roof and a vegetable garden beside a quiet village lane near the Mekong in Nakhon Phanom, soft morning light, no people, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-10",
+      "file": "/story-covers/history-10.webp",
+      "size": "1600x900",
+      "prompt": "A heroic village monument with seven stone-carved defenders in a rural plain of Singburi, Thailand, a mound of earth and bamboo stakes, dusk sky, no human faces visible, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-11",
+      "file": "/story-covers/history-11.webp",
+      "size": "1600x900",
+      "prompt": "Ruins of a former Portuguese quarter in Ayutthaya, brick foundations of a church and a small cemetery by the Chao Phraya river, soft evening light, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-12",
+      "file": "/story-covers/history-12.webp",
+      "size": "1600x900",
+      "prompt": "Ruined brick walls of an old European-style royal mansion from the 17th century in Lopburi with arched windows, overgrown courtyard, golden hour, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-13",
+      "file": "/story-covers/history-13.webp",
+      "size": "1600x900",
+      "prompt": "A nineteenth-century coastal fort at the mouth of the Chao Phraya river with cannon embrasures and a tall lighthouse-like tower, calm river water, dawn mist, no ships firing, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-14",
+      "file": "/story-covers/history-14.webp",
+      "size": "1600x900",
+      "prompt": "A tall unfinished memorial stupa-like monument in the middle of Ratchadamnoen Avenue in Bangkok at sunset, empty wide avenue, soft haze, some scaffolding on the monument, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-15",
+      "file": "/story-covers/history-15.webp",
+      "size": "1600x900",
+      "prompt": "Old concrete bridge piers standing alone in a slow coastal creek in rural southern Thailand, the steel bridge deck long removed, coconut palms and mangrove along the banks, a quiet two-lane rural road nearby, dawn with low mist over the water and a faint warm light on the horizon, golden hour tones fading into blue, weathered concrete, sense of age, respectful documentary tone, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-16",
+      "file": "/story-covers/history-16.webp",
+      "size": "1600x900",
+      "prompt": "A calm sea off Koh Chang, Trat at dawn, forested island silhouette, low mist on the water, a single distant grey naval ship far on the horizon, sober mood, no combat, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-17",
+      "file": "/story-covers/history-17.webp",
+      "size": "1600x900",
+      "prompt": "A long steel arched railway bridge crossing the Kwai river in Kanchanaburi at dawn, green hills and mist, empty tracks, sober mood, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-18",
+      "file": "/story-covers/history-18.webp",
+      "size": "1600x900",
+      "prompt": "A quiet curved beach in Prachuap Khiri Khan at early morning with a military airfield fence and palm trees on the shore, soft pastel light, calm sea, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-19",
+      "file": "/story-covers/history-19.webp",
+      "size": "1600x900",
+      "prompt": "A pair of stone monuments of two heroines in a roundabout intersection in Thalang, Phuket at dusk, tropical trees, empty street, warm sky, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "history-20",
+      "file": "/story-covers/history-20.webp",
+      "size": "1600x900",
+      "prompt": "Ruined fort wall of an old walled port city on a red hill by the sea at Singora, Songkhla, with stone bastions overgrown by trees, sea and distant islands behind, golden hour, golden hour light on weathered stone and brick, sober, documentary feel, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-01",
+      "file": "/story-covers/legend-01.webp",
+      "size": "1600x900",
+      "prompt": "A wide misty wetland lake in a northern Thai valley at dawn, crumbling ancient red brick stupa foundations rising just above the shallow still water, reeds and water lilies, a single small old wooden house standing on a tiny island mound in the middle of the lake, low forested hills in the distance, quiet, mysterious, slightly eerie, folklore atmosphere, mist, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-02",
+      "file": "/story-covers/legend-02.webp",
+      "size": "1600x900",
+      "prompt": "An ancient square tiered brick chedi with niches holding gold-tinted Buddha figures in a temple in Lamphun, northern Thailand, mythic mist and glowing light, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-03",
+      "file": "/story-covers/legend-03.webp",
+      "size": "1600x900",
+      "prompt": "A tall limestone mountain peak crowned with clouds above forested foothills in Chiang Dao, Chiang Mai, hint of a golden deer silhouette among the mist, mythic atmosphere, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-04",
+      "file": "/story-covers/legend-04.webp",
+      "size": "1600x900",
+      "prompt": "A golden chedi and gilded parasol at a hilltop temple above Chiang Mai in evening mist, ceremonial lanterns, a stone stairway leading up between naga balustrades, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-05",
+      "file": "/story-covers/legend-05.webp",
+      "size": "1600x900",
+      "prompt": "A serene seated Buddha statue among ancient lotus-bud chedis in Wat Mahathat, Sukhothai historical park at dusk, mythic glow, reflecting pond, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-06",
+      "file": "/story-covers/legend-06.webp",
+      "size": "1600x900",
+      "prompt": "A wide calm lake at dawn with lotus flowers and a hazy shoreline, a small white squirrel on a branch in the foreground, northeast Thailand, mythic soft glow, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-07",
+      "file": "/story-covers/legend-07.webp",
+      "size": "1600x900",
+      "prompt": "Glowing pink-red balls of light rising from the Mekong river on a dark night, silhouettes of palms on the far bank, mythic glow, calm water, no people, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-08",
+      "file": "/story-covers/legend-08.webp",
+      "size": "1600x900",
+      "prompt": "A sacred forested islet beside a lake, accessed by a long wooden bridge with white-and-gold cloth banners and a seven-headed naga statue at the entrance, dusk mist, Udon Thani, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-09",
+      "file": "/story-covers/legend-09.webp",
+      "size": "1600x900",
+      "prompt": "A tall slender square-based white and gold stupa with a pointed tiered spire rising on a low mound near a wide brown river at golden evening light, distant low hills on the far bank, in the foreground a bundle of old palm-leaf manuscripts tied with cord resting on a simple wooden table, calm, sacred, timeless, folklore atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-10",
+      "file": "/story-covers/legend-10.webp",
+      "size": "1600x900",
+      "prompt": "An ancient Khmer sandstone temple sanctuary with a tall prang in a historical park, at dusk with soft warm lights, two small carved lintels visible, quiet courtyard, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-11",
+      "file": "/story-covers/legend-11.webp",
+      "size": "1600x900",
+      "prompt": "A long covered cloister gallery of an old central Thai Buddhist temple in warm late afternoon light, a row of white pillars casting long shadows, the inner wall lined with faded traditional Thai mural panels showing small scenes of riders, houses and boats in sequence, a large temple hall roof visible behind, quiet, nostalgic, storytelling atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-12",
+      "file": "/story-covers/legend-12.webp",
+      "size": "1600x900",
+      "prompt": "A large white Thai temple ordination hall with a golden pediment by the Bang Pakong river, a seated golden Buddha visible through the doorway, soft glowing morning mist, Chachoengsao, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-13",
+      "file": "/story-covers/legend-13.webp",
+      "size": "1600x900",
+      "prompt": "A massive golden-orange bell-shaped stupa towering over a temple courtyard in Nakhon Pathom at dusk, soft glow, empty stone steps, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-14",
+      "file": "/story-covers/legend-14.webp",
+      "size": "1600x900",
+      "prompt": "A small shrine beside a canal with a carved wooden boat prow and a cut-down tree stump, a rural canal landscape in Samut Sakhon at dusk, mythic mist, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-15",
+      "file": "/story-covers/legend-15.webp",
+      "size": "1600x900",
+      "prompt": "A rocky forested hill by the sea with three small mountain peaks in layers, a long sandy beach below, foam and waves, evening glow, Chonburi, mythic romance atmosphere, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-16",
+      "file": "/story-covers/legend-16.webp",
+      "size": "1600x900",
+      "prompt": "A beach on Koh Samet at sunset with a bronze statue of a flute-playing prince seated on a rock beside a mermaid statue, turquoise water, empty beach, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-17",
+      "file": "/story-covers/legend-17.webp",
+      "size": "1600x900",
+      "prompt": "A wide curving bay on the upper Gulf of Thailand at golden evening, a long rugged limestone ridge jutting into the sea at one end shaped vaguely like a reclining old man, a round rock resembling a jar near its foot, several oddly shaped small islands scattered across calm water, a few wooden fishing boats far away, folklore atmosphere, mysterious, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-18",
+      "file": "/story-covers/legend-18.webp",
+      "size": "1600x900",
+      "prompt": "A tall white stupa with a gold spire in a hilltop temple of Phatthalung amid rubber trees and limestone karst, mythic evening mist, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-19",
+      "file": "/story-covers/legend-19.webp",
+      "size": "1600x900",
+      "prompt": "Two small rocky islands in a calm sea beside a sandy beach in Songkhla at dawn, one rounded like a mouse and one like a cat, pastel sky, mythic soft glow, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "legend-20",
+      "file": "/story-covers/legend-20.webp",
+      "size": "1600x900",
+      "prompt": "A richly ornamented Chinese-Hokkien shrine with red lanterns, dragon roof ridges and incense smoke in Pattani, evening light, empty courtyard, mythic mist and soft glow, storybook atmosphere, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-01",
+      "file": "/story-covers/local-01.webp",
+      "size": "1600x900",
+      "prompt": "A rack of drying handmade mulberry-paper umbrellas painted in green, red and blue in a village yard in San Kamphaeng, Chiang Mai, bamboo frames, warm daylight, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-02",
+      "file": "/story-covers/local-02.webp",
+      "size": "1600x900",
+      "prompt": "The interior of an old northern Thai temple hall with colorful traditional mural paintings of village life on the wall and a four-faced Buddha altar, Nan, soft light through windows, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-03",
+      "file": "/story-covers/local-03.webp",
+      "size": "1600x900",
+      "prompt": "A row of colorful hand-painted festival masks with long noses made from woven sticky-rice steamers and coconut husk, hanging on a wooden rail in a village of Dan Sai, Loei, daylight, no wearers, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-04",
+      "file": "/story-covers/local-04.webp",
+      "size": "1600x900",
+      "prompt": "A tea-plantation hillside terraces and a mountain village with Yunnan-style houses on Doi Mae Salong, Chiang Rai, morning mist, warm light, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-05",
+      "file": "/story-covers/local-05.webp",
+      "size": "1600x900",
+      "prompt": "A valley town surrounded by green mountains and rice fields in Pai, Mae Hong Son, wooden bridge over a stream, soft morning light, no people, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-06",
+      "file": "/story-covers/local-06.webp",
+      "size": "1600x900",
+      "prompt": "A tall decorated traditional bamboo rocket resting on a launch rack in a field, with festive flags and a rainy-season sky above, Yasothon, warm light, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-07",
+      "file": "/story-covers/local-07.webp",
+      "size": "1600x900",
+      "prompt": "A huge carved beeswax candle with ornate gold-and-white relief on a decorated float at a temple courtyard in Ubon Ratchathani, warm evening light, no people, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-08",
+      "file": "local-08.webp",
+      "size": "1600x900",
+      "prompt": "A wide river bend with a shallow natural pool in the flat plains of lower northeastern Thailand, early morning warm light, several domestic Asian elephants standing far in the distance near the water, a small old wooden spirit shrine beneath a large shade tree on the bank, tall grass and scattered sugar palms, mist lifting off the water, warm daylight, everyday life atmosphere, local materials and colors, inviting, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-09",
+      "file": "local-09.webp",
+      "size": "1600x900",
+      "prompt": "A slender white Mon-style stupa leaning noticeably at the tip of a small river island where a wide brown river meets a canal, old temple roofs and tropical trees behind it, a simple wooden ferry boat crossing in the far distance, warm afternoon daylight, everyday life atmosphere, local materials and colors, inviting, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-10",
+      "file": "local-10.webp",
+      "size": "1600x900",
+      "prompt": "Wooden boats moored in a row along a narrow canal lined with old Thai wooden houses and trees in Amphawa, Samut Songkhram, golden evening, no people, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-11",
+      "file": "local-11.webp",
+      "size": "1600x900",
+      "prompt": "Inside an old wooden shophouse workshop in a narrow Bangkok alley, a low wooden workbench holding an unfinished hand-hammered iron monk's alms bowl, several small hammers, a steel anvil and cut iron sheets, metal shavings on the floor, folding wooden doors half open with warm afternoon light pouring in, everyday life atmosphere, local materials and colors, inviting, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-12",
+      "file": "local-12.webp",
+      "size": "1600x900",
+      "prompt": "An octagonal white old fort tower with a section of the ancient city wall beside a quiet street, wooden houses tucked behind the wall, Bangkok, sunny daylight, no people, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-13",
+      "file": "local-13.webp",
+      "size": "1600x900",
+      "prompt": "A street in an old provincial market town in eastern Thailand in early morning light, several water buffaloes decorated with colorful cloth and flower garlands standing in a loose row, a decorated wooden ox cart parked beside old two-storey shophouses, puddles of water on the road, warm daylight, everyday life atmosphere, local materials and colors, inviting, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-14",
+      "file": "local-14.webp",
+      "size": "1600x900",
+      "prompt": "Old shophouses and wooden riverside houses along a quiet river with a slow current, Chanthaburi, warm afternoon light, reflections on the water, no people, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-15",
+      "file": "local-15.webp",
+      "size": "1600x900",
+      "prompt": "A calm tidal canal at dawn in a small coastal village in eastern Thailand, a tall arched steel footbridge crossing the canal whose reflection forms an almond-shaped eye in the still water, small wooden fishing boats moored along the bank, dense green mangrove forest on both sides, a modest mosque dome and a temple roof faintly visible in the distance, soft mist, warm daylight, everyday life atmosphere, local materials and colors, inviting, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-16",
+      "file": "local-16.webp",
+      "size": "1600x900",
+      "prompt": "A long covered market lane near a land border crossing in eastern Thailand in early morning before the shops open, stacks of large bundled cloth bales and woven sacks, rolled-down tarpaulin awnings, a few empty hand carts, bags and shoes hanging in rows, warm low sunlight cutting across the corrugated roof, everyday life atmosphere, local materials and colors, inviting, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-17",
+      "file": "local-17.webp",
+      "size": "1600x900",
+      "prompt": "A very long weathered wooden pedestrian bridge crossing a wide river with houses and a hillside on the far shore at golden hour, Sangkhlaburi, empty bridge, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-18",
+      "file": "local-18.webp",
+      "size": "1600x900",
+      "prompt": "The yard of an old pottery works in western Thailand in warm late afternoon light, rows of large glazed brown earthenware water jars decorated with raised yellow coiling dragon motifs, a long low brick kiln behind them shaped like a sloping tunnel with small stoking holes along its top, stacks of firewood, red-brown clay piles, everyday life atmosphere, local materials and colors, inviting, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-19",
+      "file": "local-19.webp",
+      "size": "1600x900",
+      "prompt": "A night street in Phuket old town decorated with yellow festival flags and red lanterns during the vegetarian festival, food stalls without people, warm street lights, wet road, warm daylight, everyday life, welcoming, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    },
+    {
+      "id": "local-20",
+      "file": "local-20.webp",
+      "size": "1600x900",
+      "prompt": "A quiet beach on a small tropical island in the Andaman Sea at early morning, a weathered wooden longtail fishing boat pulled up on white sand, a few simple raised wooden fishermen's houses under coconut palms, fishing nets drying on poles, clear turquoise shallow water, a narrow sandy footpath leading from the houses to the shore, warm daylight, everyday life atmosphere, local materials and colors, inviting, editorial illustration, muted warm palette with deep indigo and antique gold accents, soft film grain, painterly texture, vintage travel-poster feel, wide 16:9 composition, main subject slightly off-center, generous empty space on the left and bottom for cropping and overlays, no people in focus, no faces, no text, no logos, no watermark"
+    }
+  ]
 }
