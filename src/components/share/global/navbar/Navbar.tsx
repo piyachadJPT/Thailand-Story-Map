@@ -41,8 +41,9 @@ export default function Navbar() {
       <div className="pointer-events-auto hidden items-start justify-end gap-3 lg:flex">
         <div
           className={cn(
-            "liquid-glass min-w-0 overflow-hidden rounded-full p-1.5 transition-[flex-grow] duration-300 ease-out motion-reduce:transition-none",
-            expanded ? "flex-1" : "shrink-0"
+            "liquid-glass min-w-0 flex-1 overflow-hidden rounded-full p-1.5",
+            // Over the map, the bar starts compact below xl so the map stays visible.
+            isHome && !expanded && "max-xl:flex-none max-xl:shrink-0"
           )}
           onKeyDown={(event) => {
             if (event.key === "Escape") collapse();
@@ -51,38 +52,43 @@ export default function Navbar() {
           <div className="flex h-11 items-center gap-2">
             <BrandMark
               onNavigate={collapse}
-              nameClassName={expanded ? "hidden 2xl:block" : "hidden"}
+              nameClassName={cn("hidden", (!isHome || expanded) && "xl:block")}
             />
 
-            {expanded ? <GoldDivider orientation="vertical" /> : null}
+            <GoldDivider
+              orientation="vertical"
+              className={cn(isHome && !expanded && "max-xl:hidden")}
+            />
 
             <NavLinks
               id="desktop-navigation"
               pathname={pathname}
-              hidden={!expanded}
               onNavigate={collapse}
               className={cn(
-                "flex-1 justify-start overflow-x-auto xl:justify-center",
-                !expanded && "hidden"
+                "flex-1 justify-start overflow-x-auto",
+                isHome && !expanded && "max-xl:hidden"
               )}
             />
 
             <div className="ml-auto flex shrink-0 items-center gap-1">
-              <div hidden={!expanded} className={expanded ? "block" : "hidden"}>
+              <div className={cn(isHome && !expanded && "max-xl:hidden")}>
                 <ThemeToggle />
               </div>
               <AuthControls variant="desktop" />
-              <IconButton
-                size="sm"
-                variant="secondary"
-                onClick={() => setExpanded((value) => !value)}
-                aria-expanded={expanded}
-                aria-controls="desktop-navigation"
-                aria-label={expanded ? "ย่อเมนูนำทาง" : "ขยายเมนูนำทาง"}
-                title={expanded ? "ย่อเมนู" : "ขยายเมนู"}
-              >
-                {expanded ? <ChevronsRight /> : <ChevronsLeft />}
-              </IconButton>
+              {isHome ? (
+                <IconButton
+                  size="sm"
+                  variant="secondary"
+                  className="xl:hidden"
+                  onClick={() => setExpanded((value) => !value)}
+                  aria-expanded={expanded}
+                  aria-controls="desktop-navigation"
+                  aria-label={expanded ? "ย่อเมนูนำทาง" : "ขยายเมนูนำทาง"}
+                  title={expanded ? "ย่อเมนู" : "ขยายเมนู"}
+                >
+                  {expanded ? <ChevronsRight /> : <ChevronsLeft />}
+                </IconButton>
+              ) : null}
             </div>
           </div>
         </div>

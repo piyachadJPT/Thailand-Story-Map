@@ -40,10 +40,12 @@ export default function StoryMeta({ author, publishedAt, updatedAt, viewCount }:
           อัปเดต <time dateTime={updatedAt}>{thaiDate(updatedAt)}</time>
         </span>
       ) : null}
-      <span className="inline-flex items-center gap-1.5">
-        <Eye aria-hidden="true" className="size-4 text-gold-ink" />
-        อ่าน {viewCount.toLocaleString("th-TH")} ครั้ง
-      </span>
+      {viewCount > 0 ? (
+        <span className="inline-flex items-center gap-1.5">
+          <Eye aria-hidden="true" className="size-4 text-gold-ink" />
+          อ่าน {viewCount.toLocaleString("th-TH")} ครั้ง
+        </span>
+      ) : null}
     </div>
   );
 }

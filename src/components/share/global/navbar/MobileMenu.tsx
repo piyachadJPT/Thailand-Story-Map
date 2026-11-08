@@ -24,60 +24,77 @@ export default function MobileMenu({
   const close = () => onOpenChange(false);
 
   return (
-    <div
-      className="liquid-glass pointer-events-auto w-full overflow-hidden rounded-panel p-1.5 lg:hidden"
-      onKeyDown={(event) => {
-        if (event.key === "Escape") close();
-      }}
-    >
-      <div className="flex h-12 items-center gap-1">
-        <BrandMark
-          onNavigate={close}
-          priority
-          nameClassName="hidden sm:block"
-        />
-
-        <NavLinks
-          pathname={pathname}
-          className="hidden flex-1 justify-center md:flex"
-        />
-
-        <div className="ml-auto flex shrink-0 items-center gap-1">
-          <ThemeToggle />
-          <AuthControls variant="desktop" />
-          <IconButton
-            size="sm"
-            className="md:hidden"
-            onClick={() => onOpenChange(!open)}
-            aria-expanded={open}
-            aria-controls="mobile-navigation"
-            aria-label={open ? "ปิดเมนู" : "เปิดเมนู"}
-          >
-            {open ? <X /> : <Menu />}
-          </IconButton>
-        </div>
-      </div>
-
+    <>
+      {/* Dims the page behind the open drawer; tapping it closes the menu. */}
       <div
-        id="mobile-navigation"
-        inert={!open}
+        aria-hidden="true"
+        onClick={close}
         className={cn(
-          "grid transition-[grid-template-rows] duration-300 ease-out md:hidden",
-          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          "bg-background/70 fixed inset-0 -z-10 backdrop-blur-sm transition-opacity duration-300 md:hidden",
+          open
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
         )}
+      />
+      <div
+        className={cn(
+          "liquid-glass rounded-panel pointer-events-auto w-full overflow-hidden p-1.5 lg:hidden",
+          // Solid while open so page text never shows through the links.
+          open && "max-md:bg-card!"
+        )}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") close();
+        }}
       >
-        <div className="overflow-hidden">
-          <GoldDivider strength="subtle" className="mx-3 mt-1.5 w-auto" />
+        <div className="flex h-12 items-center gap-1">
+          <BrandMark
+            onNavigate={close}
+            priority
+            nameClassName="hidden sm:block"
+          />
+
           <NavLinks
             pathname={pathname}
-            layout="stacked"
-            onNavigate={close}
-            className="px-1 pt-2 pb-1"
-          >
-            <AuthControls variant="mobile" onNavigate={close} />
-          </NavLinks>
+            className="hidden flex-1 justify-center md:flex"
+          />
+
+          <div className="ml-auto flex shrink-0 items-center gap-1">
+            <ThemeToggle />
+            <AuthControls variant="desktop" />
+            <IconButton
+              size="sm"
+              className="md:hidden"
+              onClick={() => onOpenChange(!open)}
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
+              aria-label={open ? "ปิดเมนู" : "เปิดเมนู"}
+            >
+              {open ? <X /> : <Menu />}
+            </IconButton>
+          </div>
+        </div>
+
+        <div
+          id="mobile-navigation"
+          inert={!open}
+          className={cn(
+            "grid transition-[grid-template-rows] duration-300 ease-out md:hidden",
+            open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          )}
+        >
+          <div className="overflow-hidden">
+            <GoldDivider strength="subtle" className="mx-3 mt-1.5 w-auto" />
+            <NavLinks
+              pathname={pathname}
+              layout="stacked"
+              onNavigate={close}
+              className="px-1 pt-2 pb-1"
+            >
+              <AuthControls variant="mobile" onNavigate={close} />
+            </NavLinks>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

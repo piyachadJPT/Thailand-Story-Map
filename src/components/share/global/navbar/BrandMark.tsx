@@ -40,7 +40,7 @@ export default function BrandMark({
           nameClassName
         )}
       >
-        {siteConfig.shortName}
+        {siteConfig.name}
       </span>
     </Link>
   );

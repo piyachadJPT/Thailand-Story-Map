@@ -27,8 +27,8 @@ export default function LoginShowcase() {
       <div className="bg-gold/15 absolute -top-24 -right-24 -z-10 size-96 rounded-full blur-3xl" />
       <div className="from-card via-card/60 absolute inset-0 -z-10 bg-linear-to-t to-transparent" />
 
-      {/* Pins stay in the top half on small screens so they never cover the text. */}
-      <div className="absolute inset-x-0 top-0 -z-10 h-3/5 lg:h-full">
+      {/* Pins stay in the top part so they never cover the text. */}
+      <div className="absolute inset-x-0 top-0 -z-10 h-1/2">
         {storyCategories.map((category, index) => (
           <span
             key={category.slug}
@@ -47,12 +47,15 @@ export default function LoginShowcase() {
         ))}
       </div>
 
-      <div className="relative max-w-sm">
+      <div className="relative max-w-md">
         <p className="text-gold-ink inline-flex items-center gap-2 text-xs font-medium tracking-widest">
           <span className="bg-gold h-px w-6" />
-          {siteConfig.shortName}
+          {siteConfig.name}
         </p>
-        <p className="font-heading text-foreground mt-3 text-xl font-semibold sm:text-2xl">
+        <p className="font-heading text-foreground mt-3 text-2xl font-semibold sm:text-3xl">
+          {siteConfig.tagline}
+        </p>
+        <p className="text-muted-foreground mt-2 text-sm sm:text-base">
           {siteConfig.description}
         </p>
       </div>

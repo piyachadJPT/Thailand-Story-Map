@@ -48,9 +48,13 @@ export default function StoryPreviewCard({ story, onClose }: StoryPreviewCardPro
       <p className="mt-1 flex flex-wrap items-center gap-x-1.5 text-xs text-muted-foreground">
         <MapPin aria-hidden="true" className="size-3.5 text-gold-ink" />
         {province?.name ?? story.provinceSlug}
-        <span aria-hidden="true">·</span>
-        <Eye aria-hidden="true" className="size-3.5" />
-        {story.viewCount.toLocaleString("th-TH")} ครั้งที่อ่าน
+        {story.viewCount > 0 ? (
+          <>
+            <span aria-hidden="true">·</span>
+            <Eye aria-hidden="true" className="size-3.5" />
+            {story.viewCount.toLocaleString("th-TH")} ครั้งที่อ่าน
+          </>
+        ) : null}
       </p>
 
       <div aria-hidden="true" className="my-3 h-px bg-linear-to-r from-gold/50 to-transparent" />

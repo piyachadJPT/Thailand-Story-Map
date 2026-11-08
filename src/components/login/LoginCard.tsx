@@ -23,7 +23,7 @@ export default function LoginCard({ callbackUrl, errorMessage, googleConfigured,
         <span className="mb-5 grid size-16 place-items-center overflow-hidden rounded-full bg-background ring-1 ring-gold/50">
           <Image src="/logo.png" alt="" width={56} height={56} priority className="size-12 object-contain" />
         </span>
-        <p className="text-xs font-medium tracking-widest text-gold-ink">{siteConfig.shortName}</p>
+        <p className="text-xs font-medium tracking-widest text-gold-ink">{siteConfig.name}</p>
         <h1 className="mt-1 font-heading text-3xl font-semibold tracking-tight text-foreground">เข้าสู่ระบบ</h1>
         <p className="mt-2 text-sm text-muted-foreground">ใช้บัญชี Google เพื่อเล่าเรื่องบนแผนที่</p>
       </div>

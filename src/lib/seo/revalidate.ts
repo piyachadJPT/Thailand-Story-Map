@@ -20,6 +20,7 @@ export function storyPagePaths(route: StoryRoute): string[] {
     provincePath(route.provinceSlug),
     categoryPath(route.categorySlug),
     "/province",
+    "/categories",
     "/places",
     "/sitemap.xml",
   ];

@@ -14,7 +14,12 @@ const spans = [
   "sm:col-span-2 lg:col-span-3",
 ];
 
-export default function CategoryGrid() {
+type CategoryGridProps = {
+  /** Published stories per category slug; omitted when unavailable. */
+  counts?: Map<string, number>;
+};
+
+export default function CategoryGrid({ counts }: CategoryGridProps) {
   return (
     <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
       {storyCategories.map((category, index) => (
@@ -25,6 +30,7 @@ export default function CategoryGrid() {
             hint={category.hint}
             href={categoryPath(category.slug)}
             feature={index === 0}
+            count={counts?.get(category.slug) ?? (counts ? 0 : undefined)}
           />
         </li>
       ))}

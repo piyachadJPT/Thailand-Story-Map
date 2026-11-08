@@ -19,12 +19,12 @@ export default function ContributeCta() {
     >
       <SectionHeading
         eyebrow="ร่วมเล่า"
-        title="ทุกจุดบนแผนที่มีเรื่องซ่อนอยู่"
+        title="มีเรื่องเล่าในพื้นที่ของคุณไหม?"
         className="gap-2"
       />
       <div className="flex flex-wrap items-center gap-3">
         <WriteStoryButton isHome={false} className="h-12 shadow-soft" />
-        <Link href="/" prefetch={false} className={buttonVariants({ variant: "ghost" })}>
+        <Link href="/" prefetch={false} className={buttonVariants({ variant: "outline", size: "lg" })}>
           กลับไปที่แผนที่
         </Link>
       </div>

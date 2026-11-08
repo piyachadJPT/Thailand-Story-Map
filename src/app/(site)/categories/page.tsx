@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
+import { countByCategory } from "@/api/stories/public";
 import CategoryGrid from "@/components/category/CategoryGrid";
 import PageContainer from "@/components/layout/PageContainer";
 import PageHero from "@/components/layout/PageHero";
@@ -11,6 +12,9 @@ import { breadcrumbJsonLd, collectionPageJsonLd, graph } from "@/lib/seo/jsonld"
 import { buildMetadata } from "@/lib/seo/metadata";
 import { categoryPath } from "@/lib/seo/url";
 
+// Story counts change with new stories: cached and refreshed hourly or after story changes.
+export const revalidate = 3600;
+
 const description =
   "เลือกหมวดแล้วเดินทางผ่านเรื่องลี้ลับ ประวัติศาสตร์ ตำนาน และเรื่องท้องถิ่นบนแผนที่ประเทศไทย";
 
@@ -20,7 +24,18 @@ export const metadata: Metadata = buildMetadata({
   path: "/categories",
 });
 
-export default function CategoriesPage() {
+/** Story counts per category; none if the database is unavailable. */
+async function categoryCounts() {
+  try {
+    return await countByCategory();
+  } catch {
+    return undefined;
+  }
+}
+
+export default async function CategoriesPage() {
+  const counts = await categoryCounts();
+
   return (
     <PageContainer width="wide">
       <JsonLd
@@ -48,7 +63,7 @@ export default function CategoriesPage() {
           </Link>
         }
       />
-      <CategoryGrid />
+      <CategoryGrid counts={counts} />
     </PageContainer>
   );
 }

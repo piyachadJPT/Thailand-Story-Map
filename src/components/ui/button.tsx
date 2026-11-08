@@ -2,7 +2,7 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const buttonVariants = cva(
+const buttonStyles = cva(
   [
     "group/button inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-transparent font-medium whitespace-nowrap select-none",
     "transition-[background-color,border-color,color,box-shadow,translate] duration-200 ease-out",
@@ -40,7 +40,14 @@ const buttonVariants = cva(
   }
 );
 
-type ButtonProps = ButtonPrimitive.Props & VariantProps<typeof buttonVariants>;
+type ButtonVariantProps = VariantProps<typeof buttonStyles>;
+
+/** Merged so a variant's border/background wins over the base `border-transparent`. */
+function buttonVariants(props?: Parameters<typeof buttonStyles>[0]) {
+  return cn(buttonStyles(props));
+}
+
+type ButtonProps = ButtonPrimitive.Props & ButtonVariantProps;
 
 function Button({ className, variant, size, ...props }: ButtonProps) {
   return (

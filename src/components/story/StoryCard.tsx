@@ -41,10 +41,12 @@ export default function StoryCard({ story, step }: StoryCardProps) {
           <MapPin aria-hidden="true" className="size-3.5 text-gold-ink" />
           {province}
         </span>
-        <span className="inline-flex items-center gap-1">
-          <Eye aria-hidden="true" className="size-3.5" />
-          {story.viewCount.toLocaleString("th-TH")} ครั้งที่อ่าน
-        </span>
+        {story.viewCount > 0 ? (
+          <span className="inline-flex items-center gap-1">
+            <Eye aria-hidden="true" className="size-3.5" />
+            {story.viewCount.toLocaleString("th-TH")} ครั้งที่อ่าน
+          </span>
+        ) : null}
       </span>
     </Link>
   );

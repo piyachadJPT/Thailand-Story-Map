@@ -25,11 +25,13 @@ type CategoryCardProps = {
   href: string;
   /** The large bento tile. */
   feature?: boolean;
+  /** Published stories in this category. */
+  count?: number;
   className?: string;
 };
 
 /** A category tile: tinted glow, oversized icon watermark, name and hint. */
-export default function CategoryCard({ slug, name, hint, href, feature = false, className }: CategoryCardProps) {
+export default function CategoryCard({ slug, name, hint, href, feature = false, count, className }: CategoryCardProps) {
   return (
     <Link
       href={href}
@@ -53,8 +55,15 @@ export default function CategoryCard({ slug, name, hint, href, feature = false, 
           feature ? "size-40" : "size-24"
         ),
       })}
-      <span className="relative grid size-12 place-items-center rounded-full border border-(--tint)/40 bg-(--tint)/10 text-(--tint)">
-        {createElement(categoryIcon(slug), { "aria-hidden": true, className: "size-5" })}
+      <span className="relative flex items-center gap-3">
+        <span className="grid size-12 place-items-center rounded-full border border-(--tint)/40 bg-(--tint)/10 text-(--tint)">
+          {createElement(categoryIcon(slug), { "aria-hidden": true, className: "size-5" })}
+        </span>
+        {count !== undefined ? (
+          <span className="rounded-full border border-border bg-card/80 px-3 py-1 text-xs font-medium text-foreground tabular-nums">
+            {count > 0 ? `${count.toLocaleString("th-TH")} เรื่อง` : "ยังไม่มีเรื่อง"}
+          </span>
+        ) : null}
       </span>
       <span className="relative mt-auto block pt-10">
         <span

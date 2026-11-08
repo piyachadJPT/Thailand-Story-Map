@@ -67,7 +67,7 @@ export default function Footer() {
                 />
               </span>
               <span className="font-heading text-xl font-semibold tracking-tight text-foreground">
-                {siteConfig.shortName}
+                {siteConfig.name}
               </span>
             </Link>
             <p className="max-w-sm text-sm text-muted-foreground">
