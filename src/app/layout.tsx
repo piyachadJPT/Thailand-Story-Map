@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Kanit, Noto_Sans_Thai, Noto_Serif_Thai } from "next/font/google";
+import { Kanit, Noto_Sans_Thai } from "next/font/google";
+import localFont from "next/font/local";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 
@@ -12,9 +13,16 @@ import { themeInitScript } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
 /** Public site headings: looped Thai serif. */
-const notoSerifThai = Noto_Serif_Thai({
-  subsets: ["thai", "latin"],
-  weight: ["600", "700", "800"],
+// Self-hosted: Turbopack cannot resolve the new next/font/google URL format for this family.
+const notoSerifThai = localFont({
+  src: [
+    { path: "../assets/fonts/noto-serif-thai/noto-serif-thai-thai-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "../assets/fonts/noto-serif-thai/noto-serif-thai-latin-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "../assets/fonts/noto-serif-thai/noto-serif-thai-thai-700-normal.woff2", weight: "700", style: "normal" },
+    { path: "../assets/fonts/noto-serif-thai/noto-serif-thai-latin-700-normal.woff2", weight: "700", style: "normal" },
+    { path: "../assets/fonts/noto-serif-thai/noto-serif-thai-thai-800-normal.woff2", weight: "800", style: "normal" },
+    { path: "../assets/fonts/noto-serif-thai/noto-serif-thai-latin-800-normal.woff2", weight: "800", style: "normal" },
+  ],
   variable: "--font-serif-thai",
   display: "swap",
 });
