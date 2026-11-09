@@ -24,8 +24,27 @@ function devDatabaseUrl(): string | undefined {
   }
 }
 
+/**
+ * `next build` prerenders hundreds of pages against a remote DB, many queries at once.
+ * Prisma's default pool (CPU-based, ~3 on Vercel) with a 10s wait times out. Give the
+ * build a bigger pool and a longer wait; runtime keeps the small serverless pool.
+ */
+function buildDatabaseUrl(): string | undefined {
+  if (process.env.NEXT_PHASE !== "phase-production-build" || !process.env.DATABASE_URL) {
+    return undefined;
+  }
+  try {
+    const url = new URL(process.env.DATABASE_URL);
+    if (!url.searchParams.has("connection_limit")) url.searchParams.set("connection_limit", "8");
+    if (!url.searchParams.has("pool_timeout")) url.searchParams.set("pool_timeout", "120");
+    return url.toString();
+  } catch {
+    return undefined;
+  }
+}
+
 function createPrismaClient() {
-  const url = devDatabaseUrl();
+  const url = devDatabaseUrl() ?? buildDatabaseUrl();
   return new PrismaClient({
     ...(url ? { datasources: { db: { url } } } : {}),
     log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
